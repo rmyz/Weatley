@@ -1,21 +1,37 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<mat-drawer-container class="sidenav-container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <mat-list>
+            <mat-list-item>
+              <mat-icon>dashboard</mat-icon><h3>Dashboard</h3>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon>today</mat-icon><h3>Calendar</h3>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon>announcement</mat-icon><h3>Notifications</h3>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon>payment</mat-icon><h3>Accounting</h3>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon>people</mat-icon><h3>Customers</h3>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon>smartphone</mat-icon><h3>App Management</h3>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon>business</mat-icon><h3>Hotel Management</h3>
+            </mat-list-item>
+           </mat-list>
+    </mat-drawer>
+
+    <div class="outside-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+  
+        Toggle sidenav
+      </button>
+    </div>
+
+  </mat-drawer-container>
 
 <router-outlet></router-outlet>
