@@ -1,0 +1,17 @@
+.sidenav-container {
+    width: 99%;
+    position: absolute;
+    min-height: 99%;
+    font-family: Roboto;
+    font-size: 18px;
+  }
+  
+  .outside-content { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;  
+  }
+  
+  .sidenav {
+    padding: 20px;
+  }
