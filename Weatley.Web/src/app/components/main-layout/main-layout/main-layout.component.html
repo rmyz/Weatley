@@ -1,18 +1,24 @@
 <mat-drawer-container class="sidenav-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
+  <mat-drawer #drawer class="sidenav" opened="openedSidenav" mode="side">
       <mat-list>
-          <mat-list-item *ngFor="let menuItem of menuItems">
-            <mat-icon matListIcon>{{ menuItem.icon }}</mat-icon>
-            <h4> {{ menuItem.name }}</h4>
+          <mat-list-item>
+            <button type="button" mat-icon-button (click)="openedSidenav = !openedSidenav">
+            <mat-icon>menu</mat-icon>
+            </button>
+          </mat-list-item>
+          <mat-list-item *ngFor="let menuItem of menuItems">  
+            <button type="button" *ngIf="openedSidenav" class="button-large" mat-button>
+                <mat-icon matListIcon>{{ menuItem.icon }}</mat-icon>
+                <span> {{ menuItem.name }}</span>
+              </button>
+              <button type="button" *ngIf="!openedSidenav" mat-icon-button >
+                  <mat-icon matListIcon>{{ menuItem.icon }}</mat-icon>
+                </button>
           </mat-list-item>
          </mat-list>
   </mat-drawer>
 
   <div class="outside-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-
-      Toggle sidenav
-    </button>
   </div>
 
 </mat-drawer-container>

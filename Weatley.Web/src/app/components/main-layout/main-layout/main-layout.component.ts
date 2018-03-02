@@ -11,6 +11,7 @@ import { MenuItem } from '../../../core/entities/menu-item';
 export class MainLayoutComponent implements OnInit {
 
   menuItems: MenuItem[] = [];
+  openedSidenav = false;
 
     constructor(private menuItemsDataService: MenuItemsDataService) {}
 
