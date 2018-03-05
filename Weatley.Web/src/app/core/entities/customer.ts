@@ -5,4 +5,8 @@ export class Customer {
     dni: string;
     phone: string;
     email: string;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }
