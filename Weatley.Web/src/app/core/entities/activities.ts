@@ -4,4 +4,8 @@ export class Activities {
     description: string;
     startHour: string;
     endHour: string;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

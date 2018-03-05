@@ -3,4 +3,8 @@ export class Room {
     roomNumber: number;
     floor: number;
     type: string;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

@@ -10,4 +10,8 @@ export class Order {
     deliveryDate: string;
     products: Product[];
     customer: Customer;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

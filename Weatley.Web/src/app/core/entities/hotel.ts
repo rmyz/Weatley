@@ -11,4 +11,8 @@ export class Hotel {
     web: string;
     services: Service[];
     products: Product[];
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

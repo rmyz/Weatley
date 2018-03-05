@@ -6,4 +6,8 @@ export class Report {
     date: string;
     fixed: boolean;
     customer: Customer;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

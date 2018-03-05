@@ -9,4 +9,8 @@ export class Booking {
     price: number;
     room: Room[];
     customer: Customer;
+
+        constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

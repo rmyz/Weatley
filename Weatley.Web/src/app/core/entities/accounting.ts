@@ -9,4 +9,9 @@ export class Accounting {
     booking: Booking;
     orders: Order[];
 
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }
+
+
