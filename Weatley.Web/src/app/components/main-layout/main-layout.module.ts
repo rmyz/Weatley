@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { CoreModule } from '../../core/core.module';
 
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { AccountingModule } from '../main-components/accounting/accounting.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    AccountingModule
   ],
   providers: [],
   exports: [MainLayoutComponent]
