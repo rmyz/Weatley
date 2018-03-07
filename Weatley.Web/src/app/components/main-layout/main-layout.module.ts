@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 import { CoreModule } from '../../core/core.module';
 
@@ -26,7 +27,8 @@ import { AccountingModule } from '../main-components/accounting/accounting.modul
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    AccountingModule
+    AccountingModule,
+    RouterModule
   ],
   providers: [],
   exports: [MainLayoutComponent]
