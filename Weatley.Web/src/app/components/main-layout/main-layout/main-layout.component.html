@@ -8,19 +8,19 @@
             </button>
           </mat-list-item>
           <mat-list-item *ngFor="let menuItem of menuItems">  
-            <button type="button" *ngIf="openedSidenav" class="button-large" mat-button>
+            <a [routerLink]="menuItem.route"><button type="button" *ngIf="openedSidenav" class="button-large" mat-button >
                 <mat-icon matListIcon>{{ menuItem.icon }}</mat-icon>
                 <span> {{ menuItem.name }}</span>
-              </button>
-              <button type="button" *ngIf="!openedSidenav" mat-icon-button >
+              </button></a>
+              <a [routerLink]="menuItem.route"><button type="button" *ngIf="!openedSidenav" mat-icon-button >
                   <mat-icon matListIcon>{{ menuItem.icon }}</mat-icon>
-                </button>
+                </button></a>
           </mat-list-item>
          </mat-list>
   </mat-drawer>
 
   <div class="outside-content">
-    <app-accounting></app-accounting>
+    <router-outlet></router-outlet>
   </div>
 
 </mat-drawer-container>

@@ -9,7 +9,7 @@ export class MenuItemsDataService {
         return  [new MenuItem ({ name: 'Dashboard', icon: 'dashboard'}),
         new MenuItem ({ name: 'Calendar', icon: 'today'}),
         new MenuItem ({ name: 'Notifications', icon: 'announcement'}),
-        new MenuItem ({ name: 'Accounting', icon: 'payment'}),
+        new MenuItem ({ name: 'Accounting', icon: 'payment', route: 'accounting'}),
         new MenuItem ({ name: 'Customers', icon: 'people'}),
         new MenuItem ({ name: 'App Management', icon: 'smartphone'}),
         new MenuItem ({ name: 'Hotel Management', icon: 'business'})];
