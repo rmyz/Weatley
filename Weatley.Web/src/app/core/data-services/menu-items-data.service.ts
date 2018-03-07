@@ -6,12 +6,12 @@ export class MenuItemsDataService {
     constructor() {}
 
     getMenuItems(): MenuItem[] {
-        return  [new MenuItem ({ name: 'Dashboard', icon: 'dashboard'}),
-        new MenuItem ({ name: 'Calendar', icon: 'today'}),
-        new MenuItem ({ name: 'Notifications', icon: 'announcement'}),
+        return  [new MenuItem ({ name: 'Dashboard', icon: 'dashboard', route: ''}),
+        new MenuItem ({ name: 'Calendar', icon: 'today', route: 'calendar'}),
+        new MenuItem ({ name: 'Notifications', icon: 'announcement', route: 'notifications'}),
         new MenuItem ({ name: 'Accounting', icon: 'payment', route: 'accounting'}),
-        new MenuItem ({ name: 'Customers', icon: 'people'}),
-        new MenuItem ({ name: 'App Management', icon: 'smartphone'}),
-        new MenuItem ({ name: 'Hotel Management', icon: 'business'})];
+        new MenuItem ({ name: 'Customers', icon: 'people', route: 'customers'}),
+        new MenuItem ({ name: 'App Management', icon: 'smartphone', route: 'app-management'}),
+        new MenuItem ({ name: 'Hotel Management', icon: 'business', route: 'hotel-management'})];
     }
 }
