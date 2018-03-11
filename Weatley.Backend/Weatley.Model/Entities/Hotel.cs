@@ -12,6 +12,7 @@ namespace Weatley.Model.Entities
             Services = new List<Service>();
             Products = new List<Product>();
             Users = new List<User>();
+            Rooms = new List<Room>();
         }
 
         public Guid Id { get; set; }
@@ -33,6 +34,9 @@ namespace Weatley.Model.Entities
 
         //Relation with Users
         public ICollection<User> Users { get; set; }
+
+        //Relation with Room
+        public ICollection<Room> Rooms { get; set; }
 
     }
 }
