@@ -11,5 +11,8 @@ namespace Weatley.Model.Entities
         public int RoomNumber { get; set; }
         public int FloorNumber { get; set; }
         public RoomTypeEnum RoomType { get; set; }
+
+        //Relation with Booking
+        public ICollection<BookedRoom> BookedRooms { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace Weatley.DataAccess
         {
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
-                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+                relationship.DeleteBehavior = DeleteBehavior.Cascade;
             }
 
             #region Accounting
@@ -41,8 +41,53 @@ namespace Weatley.DataAccess
                 .IsRequired();
 
             modelBuilder.Entity<Accounting>()
+                .Property(s => s.Id)
+                .HasDefaultValueSql("NEWID()");
+
+            modelBuilder.Entity<Accounting>()
                .Property(s => s.Date)
                .HasDefaultValue(DateTime.Now);
+            #endregion
+            #region Activity
+            modelBuilder.Entity<Activity>()
+                .ToTable("Activity");
+
+            modelBuilder.Entity<Activity>()
+                .Property(s => s.Id)
+                .IsRequired();
+
+            modelBuilder.Entity<Activity>()
+                .Property(s => s.Id)
+                .HasDefaultValueSql("NEWID()");
+
+            modelBuilder.Entity<Activity>()
+                .Property(s => s.StartHour)
+                .HasDefaultValue(DateTime.Now);
+
+            #endregion
+            #region BookedRoom
+
+            modelBuilder.Entity<BookedRoom>()
+                .ToTable("BookedRoom");
+
+            modelBuilder.Entity<BookedRoom>()
+                .Property(s => s.Id)
+                .IsRequired();
+
+            // Not sure if its needed
+            modelBuilder.Entity<BookedRoom>()
+                .HasKey(bc => new { bc.BookingId, bc.RoomId });
+
+            modelBuilder.Entity<BookedRoom>()
+                .HasOne(s => s.Booking)
+                .WithMany(b => b.BookedRooms)
+                .HasForeignKey(s => s.BookingId);
+
+            modelBuilder.Entity<BookedRoom>()
+               .HasOne(s => s.Room)
+               .WithMany(b => b.BookedRooms)
+               .HasForeignKey(s => s.RoomId);
+
             #endregion
         }
     }

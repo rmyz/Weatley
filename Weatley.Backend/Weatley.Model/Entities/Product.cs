@@ -13,5 +13,8 @@ namespace Weatley.Model.Entities
         public ProductTypeEnum ProductType { get; set; }
         public Boolean Available { get; set; }
 
+        //Relation with Order
+        public ICollection<ProductOrdered> ProductsOrdered { get; set; }
+
     }
 }
