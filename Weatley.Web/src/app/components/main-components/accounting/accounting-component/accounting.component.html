@@ -1,54 +1,55 @@
 
-<div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+<div>
+    <h3 class="title">Accounting table</h3>
+    <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
 
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-            <mat-cell *matCellDef="let item"> {{ item.id }} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.id }} </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="price">
-            <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-            <mat-cell *matCellDef="let item"> {{ item.price }} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.price }} </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="date">
-            <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-            <mat-cell *matCellDef="let item"> {{ item.date }} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.date }} </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="paymentType">
-            <mat-header-cell *matHeaderCellDef> PaymentType </mat-header-cell>
-            <mat-cell *matCellDef="let item"> {{ item.paymentType }} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="paymentType">
+                <mat-header-cell *matHeaderCellDef> PaymentType </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.paymentType }} </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="booking">
-            <mat-header-cell *matHeaderCellDef> Booking </mat-header-cell>
-            <mat-cell *matCellDef="let item"> {{ item.booking }} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="booking">
+                <mat-header-cell *matHeaderCellDef> Booking </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.booking }} </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="orders">
-            <mat-header-cell *matHeaderCellDef> Orders </mat-header-cell>
-            <mat-cell *matCellDef="let item"> {{ item.orders }} </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="orders">
+                <mat-header-cell *matHeaderCellDef> Orders </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.orders }} </mat-cell>
+            </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-    </mat-table>
+        </mat-table>
 
-    <mat-paginator #paginator
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 20]"
-        [showFirstLastButtons]="true">
-    </mat-paginator>
-</div>
-<div class="flexbox-parent">
-    <div layout="row" layout-align="center center" style="min-height: 500px"> 
-        <div>
-        <button type="button" mat-icon-button>
-            <mat-icon>add</mat-icon>
-        </button>
+        <mat-paginator #paginator
+            [pageSize]="10"
+            [pageSizeOptions]="[5, 10, 20]"
+            [showFirstLastButtons]="true">
+        </mat-paginator>
+    </div>
+    <div>
+        <div style="min-height: 500px"> 
+                <button type="button" mat-icon-button  class="float-right">
+                    <mat-icon>add</mat-icon>
+                </button>
         </div>
     </div>
 </div>
