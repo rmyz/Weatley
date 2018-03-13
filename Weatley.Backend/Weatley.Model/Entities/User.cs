@@ -12,5 +12,6 @@ namespace Weatley.Model.Entities
         public string Password { get; set; }
         public UserTypeEnum UserType { get; set; }
         public string Name { get; set; }
+        public Hotel Hotel { get; set; }
     }
 }

@@ -7,7 +7,6 @@ namespace Weatley.Model.Entities
     public class BookedRoom : IEntityBase
     {
         public Guid Id { get; set; }
-
         //Relation with Room
         public Guid RoomId { get; set; }
         public Room Room { get; set; }

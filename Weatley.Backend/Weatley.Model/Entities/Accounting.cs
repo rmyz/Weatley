@@ -11,6 +11,7 @@ namespace Weatley.Model.Entities
         public double FinalPrice { get; set; }
         public DateTime Date { get; set; }
         public PaymentTypeEnum PaymentType { get; set; }
-    
+        public Customer Customer { get; set; }
+
     }
 }

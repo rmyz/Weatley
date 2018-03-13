@@ -6,11 +6,6 @@ namespace Weatley.Model.Entities
 {
     public class ProductOrdered : IEntityBase
     {
-        public ProductOrdered()
-        {
-            Products = new List<Product>();
-        }
-
         public Guid Id { get; set; }
         public int Quantity { get; set; }
         public string Comments { get; set; }
@@ -19,7 +14,7 @@ namespace Weatley.Model.Entities
 
         //Relation with Product
         public Guid ProductId { get; set; }
-        public ICollection<Product> Products { get; set; } // Not sure if we should have collection or just one item
+        public Product Product { get; set; }
 
         //Relation with Order
         public Guid OrderId { get; set; }

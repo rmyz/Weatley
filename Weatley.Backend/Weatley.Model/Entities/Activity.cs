@@ -11,6 +11,7 @@ namespace Weatley.Model.Entities
         public string Description { get; set; }
         public DateTime StartHour { get; set; }
         public DateTime EndHour { get; set; }
-    
+        public Hotel Hotel { get; set; }
+
     }
 }
