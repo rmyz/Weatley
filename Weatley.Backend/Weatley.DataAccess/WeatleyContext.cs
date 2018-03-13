@@ -23,7 +23,11 @@ namespace Weatley.DataAccess
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public WeatleyContext(DbContextOptions options) : base(options) { }
+        public WeatleyContext(DbContextOptions options) : base(options)
+        {
+            Database.SetInitializer(new CustomInitializer());
+            Database.Initialize(true); 
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -217,10 +221,6 @@ namespace Weatley.DataAccess
             modelBuilder.Entity<Product>()
                 .Property(p => p.Id)
                 .HasDefaultValueSql("NEWID()");
-
-            modelBuilder.Entity<Product>()
-                .Property(p => p.Available)
-                .HasDefaultValue(true);
 
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Hotel)
