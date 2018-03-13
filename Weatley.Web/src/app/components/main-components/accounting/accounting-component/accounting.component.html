@@ -1,33 +1,52 @@
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="dataSource">
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-    </ng-container>
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-    </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <mat-cell *matCellDef="let item"> {{ item.id }} </mat-cell>
+        </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+            <mat-cell *matCellDef="let item"> {{ item.price }} </mat-cell>
+        </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-    </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+            <mat-cell *matCellDef="let item"> {{ item.date }} </mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-  
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="paymentType">
+            <mat-header-cell *matHeaderCellDef> PaymentType </mat-header-cell>
+            <mat-cell *matCellDef="let item"> {{ item.paymentType }} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="booking">
+            <mat-header-cell *matHeaderCellDef> Booking </mat-header-cell>
+            <mat-cell *matCellDef="let item"> {{ item.booking }} </mat-cell>
+        </ng-container>
+
+        <!-- booking Column -->
+        <ng-container matColumnDef="orders">
+            <mat-header-cell *matHeaderCellDef> Orders </mat-header-cell>
+            <mat-cell *matCellDef="let item"> {{ item.orders }} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 20]"
+        [showFirstLastButtons]="true">
+    </mat-paginator>
 </div>
-

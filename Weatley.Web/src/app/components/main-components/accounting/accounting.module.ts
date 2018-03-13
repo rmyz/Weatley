@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatTableModule } from '@angular/material/table';
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
 
 
 import { AccountingComponent } from './accounting-component/accounting.component';
@@ -14,8 +14,13 @@ import { AccountingComponent } from './accounting-component/accounting.component
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatTableModule
-  ],
+    MatTableModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule],
   providers: [],
   exports: [AccountingComponent]
 })
