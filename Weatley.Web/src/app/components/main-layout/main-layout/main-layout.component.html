@@ -1,23 +1,30 @@
-<mat-toolbar>Header</mat-toolbar>
-<mat-sidenav-container class="sidenav-container" autosize>
-	<mat-sidenav #sidenav mode="side" opened="true">
+<div [class.lightTheme]="theme">
+	<mat-toolbar>
+		<span>Header</span>
+		<div class="flex-spacer"></div>
+		<button mat-icon-button (click)="changeTheme()">
+			<mat-icon>wb_sunny</mat-icon>
+		</button>
+	</mat-toolbar>
+	<mat-sidenav-container class="sidenav-container">
+		<mat-sidenav #sidenav mode="side" opened="true">
+			<mat-nav-list>
+				<mat-list-item>
+					<button mat-icon-button (click)="openedSidenav = !openedSidenav">
+						<mat-icon *ngIf="!openedSidenav">chevron_right</mat-icon>
+						<mat-icon *ngIf="openedSidenav">chevron_left</mat-icon>
+					</button>
+				</mat-list-item>
+				<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route">
+					<mat-icon mat-list-icon>{{ menuItem.icon }}</mat-icon>
+					<p matLine *ngIf="openedSidenav">{{ menuItem.name }}</p>
+				</mat-list-item>
+			</mat-nav-list>
+		</mat-sidenav>
 
-		<mat-nav-list>
-			<mat-list-item>
-				<button mat-icon-button (click)="openedSidenav = !openedSidenav">
-					<mat-icon *ngIf="!openedSidenav">chevron_right</mat-icon>
-					<mat-icon *ngIf="openedSidenav">chevron_left</mat-icon>
-				</button>
-			</mat-list-item>
-			<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route">
-				<mat-icon mat-list-icon>{{ menuItem.icon }}</mat-icon>
-				<p matLine *ngIf="openedSidenav">{{ menuItem.name }}</p>
-			</mat-list-item>
-		</mat-nav-list>
-	</mat-sidenav>
+		<div class="outside-content">
+			<router-outlet></router-outlet>
+		</div>
 
-	<div class="outside-content">
-		<router-outlet></router-outlet>
-	</div>
-
-</mat-sidenav-container>
+	</mat-sidenav-container>
+</div>
