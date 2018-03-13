@@ -41,7 +41,7 @@ namespace Weatley.DataAccess.Repositories
 
         public T GetSingle(int id)
         {
-            return _context.Set<T>().FirstOrDefault(x => x.Id == id);
+            return _context.Set<T>().FirstOrDefault(x => x.Id.Equals(id));
         }
 
         public T GetSingle(Expression<Func<T, bool>> predicate)
