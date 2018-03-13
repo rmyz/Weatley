@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
 
 
@@ -12,7 +14,9 @@ import { AccountingComponent } from './accounting-component/accounting.component
     AccountingComponent
   ],
   imports: [
+    MatIconModule,
     BrowserModule,
+    MatButtonModule,
     BrowserAnimationsModule,
     MatTableModule,
     BrowserAnimationsModule,
