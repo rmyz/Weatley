@@ -1,8 +1,12 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { AccountingDataService } from '../../../../core/data-services/accounting-data.service';
 import { BookingDataService } from '../../../../core/data-services/bookings-data.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Accounting } from '../../../../core/entities/accounting';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+
+import { AccountingEditDialogComponent } from '../accounting-edit-dialog/accounting-edit-dialog.component';
+
 
 @Component({
     selector: 'app-accounting',
@@ -30,3 +34,17 @@ export class AccountingComponent implements OnInit, AfterViewInit {
         this.dataSource.paginator = this.paginator;
     }
 }
+export class Dialog {
+
+        constructor(private dialog: MatDialog) {}
+
+        openDialog() {
+
+            const dialogConfig = new MatDialogConfig();
+
+            dialogConfig.disableClose = true;
+            dialogConfig.autoFocus = true;
+
+            this.dialog.open(AccountingEditDialogComponent, dialogConfig);
+        }
+    }
