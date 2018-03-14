@@ -23,11 +23,7 @@ namespace Weatley.DataAccess
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public WeatleyContext(DbContextOptions options) : base(options)
-        {
-            Database.SetInitializer(new CustomInitializer());
-            Database.Initialize(true); 
-        }
+        public WeatleyContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
