@@ -12,7 +12,7 @@ using Weatley.Model.Enums;
 namespace Weatley.Backend.Migrations
 {
     [DbContext(typeof(WeatleyContext))]
-    [Migration("20180313205656_initial")]
+    [Migration("20180314085455_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 3, 13, 21, 56, 56, 361, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 3, 14, 9, 54, 55, 22, DateTimeKind.Local));
 
                     b.Property<double>("FinalPrice");
 
@@ -61,7 +61,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("StartHour")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 3, 13, 21, 56, 56, 363, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 3, 14, 9, 54, 55, 25, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
@@ -101,7 +101,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("StartingDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 3, 13, 21, 56, 56, 366, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 3, 14, 9, 54, 55, 27, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
@@ -170,7 +170,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 3, 13, 21, 56, 56, 371, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 3, 14, 9, 54, 55, 32, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
