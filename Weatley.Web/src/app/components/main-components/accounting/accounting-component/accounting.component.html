@@ -1,6 +1,6 @@
 
 <div>
-    <h3 class="title">Accounting table</h3>
+    <div class="title">Accounting table</div>
     <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="dataSource">
 
@@ -34,20 +34,32 @@
                 <mat-cell *matCellDef="let item"> {{ item.orders }} </mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="function">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let item"> 
+                        <button type="button" mat-icon-button  class="float-right" matTooltip="Delete" matTooltipPosition="above">
+                            <mat-icon>delete</mat-icon>
+                        </button> 
+                        <button type="button" mat-icon-button  class="float-right" matTooltip="Edit" matTooltipPosition="above">
+                            <mat-icon>mode_edit</mat-icon>
+                        </button> 
+                    </mat-cell>
+                </ng-container>
+
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
         </mat-table>
 
         <mat-paginator #paginator
-            [pageSize]="10"
-            [pageSizeOptions]="[5, 10, 20]"
+            [pageSize]="8"
+            [pageSizeOptions]="[4, 8, 12]"
             [showFirstLastButtons]="true">
         </mat-paginator>
     </div>
     <div>
         <div style="min-height: 500px"> 
-                <button type="button" mat-icon-button  class="float-right">
+                <button type="button" mat-icon-button  class="float-right" matTooltip="Add new" matTooltipPosition="left">
                     <mat-icon>add</mat-icon>
                 </button>
         </div>

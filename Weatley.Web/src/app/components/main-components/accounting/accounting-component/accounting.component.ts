@@ -12,7 +12,7 @@ import { Accounting } from '../../../../core/entities/accounting';
 })
 export class AccountingComponent implements OnInit, AfterViewInit {
 
-    displayedColumns = ['id', 'price', 'date', 'paymentType', 'booking', 'orders'];
+    displayedColumns = ['id', 'price', 'date', 'paymentType', 'booking', 'orders', 'function'];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 

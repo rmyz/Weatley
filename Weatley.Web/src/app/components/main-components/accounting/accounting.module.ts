@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 import { AccountingComponent } from './accounting-component/accounting.component';
@@ -14,6 +15,7 @@ import { AccountingComponent } from './accounting-component/accounting.component
     AccountingComponent
   ],
   imports: [
+    MatTooltipModule,
     MatIconModule,
     BrowserModule,
     MatButtonModule,
