@@ -5,7 +5,8 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Accounting } from '../../../../core/entities/accounting';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 
-import { AccountingEditDialogComponent } from '../accounting-edit-dialog/accounting-edit-dialog.component';
+import { AccountingFormComponent } from '../accounting-form/accounting-form.component';
+
 
 
 @Component({
@@ -24,7 +25,7 @@ export class AccountingComponent implements OnInit, AfterViewInit {
 
     dataAccount: Accounting[] = [];
 
-    constructor(private accountingDataService: AccountingDataService) { }
+    constructor(private accountingDataService: AccountingDataService, private dialog: MatDialog) { }
 
     ngOnInit() {
         this.dataAccount = this.accountingDataService.getAccounting();
@@ -33,18 +34,7 @@ export class AccountingComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
     }
-}
-export class Dialog {
-
-        constructor(private dialog: MatDialog) {}
-
-        openDialog() {
-
-            const dialogConfig = new MatDialogConfig();
-
-            dialogConfig.disableClose = true;
-            dialogConfig.autoFocus = true;
-
-            this.dialog.open(AccountingEditDialogComponent, dialogConfig);
-        }
+    openAddDialog() {
+        this.dialog.open(AccountingFormComponent, {width: '1000px', height: '250px'});
     }
+}
