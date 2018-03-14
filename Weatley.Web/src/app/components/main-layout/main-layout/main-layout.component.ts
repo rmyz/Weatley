@@ -1,18 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItemsDataService } from '../../../core/data-services/menu-items-data.service';
 import { MenuItem } from '../../../core/entities/menu-item';
+import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 
 @Component({
     selector: 'app-main-layout',
     templateUrl: './main-layout.component.html',
     styleUrls: ['./main-layout.component.scss'],
-    providers: [MenuItemsDataService]
+    providers: [MenuItemsDataService],
+    animations: [
+        trigger('itemOpacity', [
+            state('out',
+                style( { width: 78 } )
+            ),
+            state('in',
+                style( { width: 216 } )
+            ),
+            transition('out => in', animate('300ms ease-in')),
+            transition('in => out', animate('300ms ease-out'))
+        ]),
+    ]
 })
 export class MainLayoutComponent implements OnInit {
 
     theme = false;
     menuItems: MenuItem[] = [];
-    openedSidenav = false;
+    openedSidenav = 'out';
+    test = true;
 
     constructor(private menuItemsDataService: MenuItemsDataService) { }
 
@@ -22,5 +36,13 @@ export class MainLayoutComponent implements OnInit {
 
     changeTheme() {
         this.theme = !this.theme;
+    }
+
+    toggleState() {
+        this.openedSidenav = this.openedSidenav === 'out' ? 'in' : 'out';
+      }
+
+    animationDone() {
+        this.test = !this.test;
     }
 }

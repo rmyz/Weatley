@@ -1,23 +1,25 @@
 <div [class.lightTheme]="theme">
 	<mat-toolbar>
-		<span>Header</span>
+		<h2>Header</h2>
 		<div class="flex-spacer"></div>
 		<button mat-icon-button (click)="changeTheme()">
 			<mat-icon>wb_sunny</mat-icon>
 		</button>
 	</mat-toolbar>
 	<mat-sidenav-container class="sidenav-container">
-		<mat-sidenav #sidenav mode="side" opened="true">
+		<mat-sidenav #sidenav mode="side" opened="true" 
+			[@itemOpacity]="openedSidenav"
+			(@itemOpacity.done)="animationDone()">
 			<mat-nav-list>
 				<mat-list-item>
-					<button mat-icon-button (click)="openedSidenav = !openedSidenav">
-						<mat-icon *ngIf="!openedSidenav">chevron_right</mat-icon>
-						<mat-icon *ngIf="openedSidenav">chevron_left</mat-icon>
+					<button mat-icon-button (click)="toggleState()">
+						<mat-icon *ngIf="!test">chevron_right</mat-icon>
+						<mat-icon *ngIf="test">chevron_left</mat-icon>
 					</button>
 				</mat-list-item>
-				<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route">
+				<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route" >
 					<mat-icon mat-list-icon>{{ menuItem.icon }}</mat-icon>
-					<p matLine *ngIf="openedSidenav">{{ menuItem.name }}</p>
+					<p matLine *ngIf="test">{{ menuItem.name }}</p>
 				</mat-list-item>
 			</mat-nav-list>
 		</mat-sidenav>
