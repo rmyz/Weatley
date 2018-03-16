@@ -2,15 +2,13 @@ import { Service } from './service';
 import { Product } from './product';
 
 export class Hotel {
-    id: number;
+    id: string;
     name: string;
-    definition: string;
+    description: string;
     address: string;
     email: string;
     phone: string;
     web: string;
-    services: Service[];
-    products: Product[];
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

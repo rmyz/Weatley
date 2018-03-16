@@ -4,6 +4,7 @@ export class Product {
     description: string;
     type: string;
     available: boolean;
+    hotelId: string;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

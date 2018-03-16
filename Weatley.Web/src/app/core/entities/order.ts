@@ -6,10 +6,9 @@ export class Order {
     price: number;
     comment: string;
     status: boolean;
-    orderDate: string;
-    deliveryDate: string;
-    products: Product[];
-    customer: Customer;
+    orderDate: Date;
+    deliveryDate: Date;
+    customerId: string;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

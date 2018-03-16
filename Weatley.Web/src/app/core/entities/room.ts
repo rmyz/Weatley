@@ -3,6 +3,7 @@ export class Room {
     roomNumber: number;
     floor: number;
     type: string;
+    hotelId: string;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

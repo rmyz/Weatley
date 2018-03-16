@@ -1,9 +1,10 @@
 export class Activities {
-    id: number;
+    id: string;
     name: string;
     description: string;
-    startHour: string;
-    endHour: string;
+    startHour: Date;
+    endHour: Date;
+    hotelId: string;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

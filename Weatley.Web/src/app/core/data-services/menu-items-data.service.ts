@@ -3,15 +3,17 @@ import { MenuItem } from '../entities/menu-item';
 
 @Injectable()
 export class MenuItemsDataService {
-    constructor() {}
+	constructor() {}
 
-    getMenuItems(): MenuItem[] {
-        return  [new MenuItem ({ name: 'Dashboard', icon: 'dashboard', route: ''}),
-        new MenuItem ({ name: 'Calendar', icon: 'today', route: 'calendar'}),
-        new MenuItem ({ name: 'Notifications', icon: 'announcement', route: 'notifications'}),
-        new MenuItem ({ name: 'Accounting', icon: 'payment', route: 'accounting'}),
-        new MenuItem ({ name: 'Customers', icon: 'people', route: 'customers'}),
-        new MenuItem ({ name: 'App Management', icon: 'smartphone', route: 'app-management'}),
-        new MenuItem ({ name: 'Hotel Management', icon: 'business', route: 'hotel-management'})];
-    }
+	getMenuItems(): MenuItem[] {
+		return  [new MenuItem ({ name: 'Dashboard', icon: 'dashboard', route: ''}),
+		new MenuItem ({ name: 'Calendar', icon: 'today', route: 'calendar'}),
+		new MenuItem ({ name: 'Bookings', icon: 'book', route: 'booking'}),
+		new MenuItem ({ name: 'Orders', icon: 'shopping_cart', route: 'order'}),
+		new MenuItem ({ name: 'Notifications', icon: 'announcement', route: 'notifications'}),
+		new MenuItem ({ name: 'Accounting', icon: 'payment', route: 'accounting'}),
+		new MenuItem ({ name: 'Customers', icon: 'people', route: 'customers'}),
+		new MenuItem ({ name: 'App Management', icon: 'smartphone', route: 'app-management'}),
+		new MenuItem ({ name: 'Hotel Management', icon: 'business', route: 'hotel-management'})];
+	}
 }
