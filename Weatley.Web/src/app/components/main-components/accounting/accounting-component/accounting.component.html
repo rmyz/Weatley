@@ -1,3 +1,67 @@
-<p>
-  accounting works!
-</p>
+
+<div>
+    <div class="title">Accounting table</div>
+    <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.id }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.price }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.date }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="paymentType">
+                <mat-header-cell *matHeaderCellDef> PaymentType </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.paymentType }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="booking">
+                <mat-header-cell *matHeaderCellDef> Booking </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.booking }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="orders">
+                <mat-header-cell *matHeaderCellDef> Orders </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.orders }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="function">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let item"> 
+                        <button type="button" mat-icon-button  class="float-right" matTooltip="Delete" matTooltipPosition="above">
+                            <mat-icon>delete</mat-icon>
+                        </button> 
+                        <button type="button" mat-icon-button  class="float-right" matTooltip="Edit" matTooltipPosition="above" (click)="openAddDialog()">
+                            <mat-icon>mode_edit</mat-icon>
+                        </button> 
+                    </mat-cell>
+                </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+
+        <mat-paginator #paginator
+            [pageSize]="8"
+            [pageSizeOptions]="[4, 8, 12]"
+            [showFirstLastButtons]="true">
+        </mat-paginator>
+    </div>
+    <div>
+        <div style="min-height: 500px"> 
+                <button type="button" mat-icon-button  class="float-right" matTooltip="Add new" matTooltipPosition="left" (click)="openAddDialog()">
+                    <mat-icon>add</mat-icon>
+                </button>
+        </div>
+    </div>
+</div>
