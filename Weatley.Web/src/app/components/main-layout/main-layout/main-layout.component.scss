@@ -1,4 +1,6 @@
 
+$userIconSize: 84px;
+
 .sidenav-container {
     width: 100%;
     position: absolute;
@@ -17,4 +19,14 @@
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
+  }
+
+  .user-icon {
+    font-size: $userIconSize;
+    height: $userIconSize;
+    width: $userIconSize;
+  }
+
+  .chip-margin {
+    margin-top: 10px;
   }

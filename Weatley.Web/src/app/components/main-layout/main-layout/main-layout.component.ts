@@ -9,7 +9,7 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
     styleUrls: ['./main-layout.component.scss'],
     providers: [MenuItemsDataService],
     animations: [
-        trigger('itemOpacity', [
+        trigger('sidenav', [
             state('out',
                 style( { width: 78 } )
             ),
@@ -25,8 +25,12 @@ export class MainLayoutComponent implements OnInit {
 
     theme = false;
     menuItems: MenuItem[] = [];
-    openedSidenav = 'out';
-    test = true;
+    sidenavStatus = 'out';
+    sidenavItems = true;
+    user = {
+        username: 'Manolo',
+        usertype: 'Putu'
+    };
 
     constructor(private menuItemsDataService: MenuItemsDataService) { }
 
@@ -39,10 +43,10 @@ export class MainLayoutComponent implements OnInit {
     }
 
     toggleState() {
-        this.openedSidenav = this.openedSidenav === 'out' ? 'in' : 'out';
+        this.sidenavStatus = this.sidenavStatus === 'out' ? 'in' : 'out';
       }
 
     animationDone() {
-        this.test = !this.test;
+        this.sidenavItems = !this.sidenavItems;
     }
 }

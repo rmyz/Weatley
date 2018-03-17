@@ -8,18 +8,26 @@
 	</mat-toolbar>
 	<mat-sidenav-container class="sidenav-container">
 		<mat-sidenav #sidenav mode="side" opened="true" 
-			[@itemOpacity]="openedSidenav"
-			(@itemOpacity.done)="animationDone()">
+			[@sidenav]="sidenavStatus"
+			(@sidenav.done)="animationDone()">
 			<mat-nav-list>
 				<mat-list-item>
 					<button mat-icon-button (click)="toggleState()">
-						<mat-icon *ngIf="!test">chevron_right</mat-icon>
-						<mat-icon *ngIf="test">chevron_left</mat-icon>
+						<mat-icon *ngIf="!sidenavItems">chevron_right</mat-icon>
+						<mat-icon *ngIf="sidenavItems">chevron_left</mat-icon>
 					</button>
 				</mat-list-item>
+					<div *ngIf ="sidenavItems" class="container text-center">
+						<mat-icon class="user-icon" mat-list-icon>account_circle</mat-icon>
+						<mat-chip-list class="mat-chip-list-stacked">
+							<mat-chip>{{user.username}}</mat-chip>
+							<mat-chip>{{user.usertype}}</mat-chip>
+						</mat-chip-list>
+						<mat-divider class="chip-margin"></mat-divider>
+					</div>
 				<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route" >
 					<mat-icon mat-list-icon>{{ menuItem.icon }}</mat-icon>
-					<p matLine *ngIf="test">{{ menuItem.name }}</p>
+					<p matLine *ngIf="sidenavItems">{{ menuItem.name }}</p>
 				</mat-list-item>
 			</mat-nav-list>
 		</mat-sidenav>
