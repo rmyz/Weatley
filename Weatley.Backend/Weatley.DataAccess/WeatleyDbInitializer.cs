@@ -8,17 +8,8 @@ namespace Weatley.DataAccess
 {
     public class WeatleyDbInitializer
     {
-        private static WeatleyContext context;
 
-        public static void Initialize(WeatleyContext Context)
-        {
-            context = Context;
-            context.Database.EnsureCreated();
-
-            InitializeWeatleyDB();
-        }
-
-        private static void InitializeWeatleyDB()
+        public static void Seed(WeatleyContext context)
         {
             #region Customers
             if (!context.Customers.Any())

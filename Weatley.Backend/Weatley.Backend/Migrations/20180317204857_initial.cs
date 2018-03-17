@@ -47,7 +47,7 @@ namespace Weatley.Backend.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     CustomerId = table.Column<Guid>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 13, 55, 59, 186, DateTimeKind.Local)),
+                    Date = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 21, 48, 57, 140, DateTimeKind.Local)),
                     FinalPrice = table.Column<double>(nullable: false),
                     PaymentType = table.Column<int>(nullable: false)
                 },
@@ -71,7 +71,7 @@ namespace Weatley.Backend.Migrations
                     CustomerId = table.Column<Guid>(nullable: true),
                     EndDate = table.Column<DateTime>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    StartingDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 13, 55, 59, 190, DateTimeKind.Local))
+                    StartingDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 21, 48, 57, 145, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -93,7 +93,7 @@ namespace Weatley.Backend.Migrations
                     CustomerId = table.Column<Guid>(nullable: true),
                     DeliveryDate = table.Column<DateTime>(nullable: false),
                     FinalPrice = table.Column<double>(nullable: false),
-                    OrderDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 13, 55, 59, 195, DateTimeKind.Local))
+                    OrderDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 21, 48, 57, 152, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -136,7 +136,7 @@ namespace Weatley.Backend.Migrations
                     EndHour = table.Column<DateTime>(nullable: false),
                     HotelId = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    StartHour = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 13, 55, 59, 188, DateTimeKind.Local))
+                    StartHour = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 21, 48, 57, 142, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {

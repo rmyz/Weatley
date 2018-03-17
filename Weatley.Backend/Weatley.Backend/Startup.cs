@@ -48,7 +48,7 @@ namespace Weatley.Backend
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, WeatleyContext Context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -78,7 +78,6 @@ namespace Weatley.Backend
               });
 
             app.UseMvc();
-            WeatleyDbInitializer.Initialize(Context);
         }
     }
 }
