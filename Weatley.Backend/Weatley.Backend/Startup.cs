@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -10,8 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Weatley.Backend.Core;
 using Weatley.DataAccess;
 using Weatley.DataAccess.Abstract;
@@ -54,7 +48,7 @@ namespace Weatley.Backend
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, WeatleyContext Context)
         {
             if (env.IsDevelopment())
             {
@@ -84,6 +78,7 @@ namespace Weatley.Backend
               });
 
             app.UseMvc();
+            WeatleyDbInitializer.Initialize(Context);
         }
     }
 }
