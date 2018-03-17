@@ -16,7 +16,9 @@ import { MainLayoutModule } from './main-layout/main-layout.module';
     MainLayoutModule
   ],
   providers: [],
-  exports: [AccountingModule,
-    MainLayoutModule]
+  exports: [
+    AccountingModule,
+    MainLayoutModule
+  ]
 })
 export class ComponentModule { }

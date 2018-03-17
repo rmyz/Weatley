@@ -1,26 +1,40 @@
-<mat-toolbar>Header</mat-toolbar>
-<mat-drawer-container class="sidenav-container" autosize>
-  <mat-drawer #drawer class="sidenav" opened="openedSidenav" mode="side">
-      <mat-list>
-          <mat-list-item>
-            <button type="button" mat-icon-button (click)="openedSidenav = !openedSidenav">
-            <mat-icon>menu</mat-icon>
-            </button>
-          </mat-list-item>
-          <mat-list-item *ngFor="let menuItem of menuItems">  
-            <a [routerLink]="menuItem.route"><button type="button" *ngIf="openedSidenav" class="button-large" mat-button >
-                <mat-icon matListIcon>{{ menuItem.icon }}</mat-icon>
-                <span> {{ menuItem.name }}</span>
-              </button></a>
-              <a [routerLink]="menuItem.route"><button type="button" *ngIf="!openedSidenav" mat-icon-button >
-                  <mat-icon matListIcon>{{ menuItem.icon }}</mat-icon>
-                </button></a>
-          </mat-list-item>
-         </mat-list>
-  </mat-drawer>
+<div [class.lightTheme]="theme">
+	<mat-toolbar>
+		<h2>Header</h2>
+		<div class="flex-spacer"></div>
+		<button mat-icon-button (click)="changeTheme()">
+			<mat-icon>wb_sunny</mat-icon>
+		</button>
+	</mat-toolbar>
+	<mat-sidenav-container class="sidenav-container">
+		<mat-sidenav #sidenav mode="side" opened="true" 
+			[@sidenav]="sidenavStatus"
+			(@sidenav.done)="animationDone()">
+			<mat-nav-list>
+				<mat-list-item>
+					<button mat-icon-button (click)="toggleState()">
+						<mat-icon *ngIf="!sidenavItems">chevron_right</mat-icon>
+						<mat-icon *ngIf="sidenavItems">chevron_left</mat-icon>
+					</button>
+				</mat-list-item>
+					<div *ngIf ="sidenavItems" class="container text-center">
+						<mat-icon class="user-icon" mat-list-icon>account_circle</mat-icon>
+						<mat-chip-list class="mat-chip-list-stacked">
+							<mat-chip>{{user.username}}</mat-chip>
+							<mat-chip>{{user.usertype}}</mat-chip>
+						</mat-chip-list>
+						<mat-divider class="chip-margin"></mat-divider>
+					</div>
+				<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route" >
+					<mat-icon mat-list-icon>{{ menuItem.icon }}</mat-icon>
+					<p matLine *ngIf="sidenavItems">{{ menuItem.name }}</p>
+				</mat-list-item>
+			</mat-nav-list>
+		</mat-sidenav>
 
-  <div class="outside-content">
-    <router-outlet></router-outlet>
-  </div>
+		<div class="outside-content">
+			<router-outlet></router-outlet>
+		</div>
 
-</mat-drawer-container>
+	</mat-sidenav-container>
+</div>

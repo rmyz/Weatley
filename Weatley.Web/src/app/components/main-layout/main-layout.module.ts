@@ -6,6 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
@@ -27,6 +28,7 @@ import { AccountingModule } from '../main-components/accounting/accounting.modul
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatChipsModule,
     AccountingModule,
     RouterModule
   ],

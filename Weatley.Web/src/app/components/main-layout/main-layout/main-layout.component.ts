@@ -1,22 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItemsDataService } from '../../../core/data-services/menu-items-data.service';
 import { MenuItem } from '../../../core/entities/menu-item';
+import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 
 @Component({
-  selector: 'app-main-layout',
-  templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.scss'],
-  providers: [MenuItemsDataService]
+    selector: 'app-main-layout',
+    templateUrl: './main-layout.component.html',
+    styleUrls: ['./main-layout.component.scss'],
+    providers: [MenuItemsDataService],
+    animations: [
+        trigger('sidenav', [
+            state('out',
+                style( { width: 78 } )
+            ),
+            state('in',
+                style( { width: 216 } )
+            ),
+            transition('out => in', animate('300ms ease-in')),
+            transition('in => out', animate('300ms ease-out'))
+        ]),
+    ]
 })
 export class MainLayoutComponent implements OnInit {
 
-  menuItems: MenuItem[] = [];
-  openedSidenav = false;
+    theme = false;
+    menuItems: MenuItem[] = [];
+    sidenavStatus = 'out';
+    sidenavItems = true;
+    user = {
+        username: 'Manolo',
+        usertype: 'Putu'
+    };
 
-    constructor(private menuItemsDataService: MenuItemsDataService) {}
+    constructor(private menuItemsDataService: MenuItemsDataService) { }
 
-  ngOnInit() {
-    this.menuItems = this.menuItemsDataService.getMenuItems();
-  }
+    ngOnInit() {
+        this.menuItems = this.menuItemsDataService.getMenuItems();
+    }
 
+    changeTheme() {
+        this.theme = !this.theme;
+    }
+
+    toggleState() {
+        this.sidenavStatus = this.sidenavStatus === 'out' ? 'in' : 'out';
+      }
+
+    animationDone() {
+        this.sidenavItems = !this.sidenavItems;
+    }
 }

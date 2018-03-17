@@ -10,3 +10,7 @@ $light-theme: mat-light-theme($color-primary, $color-accent);
 $dark-theme: mat-dark-theme($color-primary, $color-accent);
 
 @include angular-material-theme($dark-theme);
+
+.lightTheme {
+    @include angular-material-theme($light-theme);
+}

@@ -1,4 +1,6 @@
 
+$userIconSize: 84px;
+
 .sidenav-container {
     width: 100%;
     position: absolute;
@@ -13,15 +15,19 @@
     justify-content: center;
   }
   
-  .sidenav {
-    padding: 20px;
+  .flex-spacer {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
   }
 
-  .button-large {
-    padding: 0px 5px 0px 4px;
+  .user-icon {
+    font-size: $userIconSize;
+    height: $userIconSize;
+    width: $userIconSize;
   }
-  
-  a {
-    color: white;
+
+  .chip-margin {
+    margin-top: 10px;
+    padding-bottom: 10px;
   }
-  
