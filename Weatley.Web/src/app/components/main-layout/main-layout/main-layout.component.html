@@ -1,5 +1,5 @@
 <div [class.lightTheme]="theme">
-	<mat-toolbar>
+	<mat-toolbar color="primary">
 		<h2>Header</h2>
 		<div class="flex-spacer"></div>
 		<button mat-icon-button (click)="changeTheme()">
@@ -18,15 +18,15 @@
 					</button>
 				</mat-list-item>
 					<div *ngIf ="sidenavItems" class="container text-center">
-						<mat-icon class="user-icon" mat-list-icon>account_circle</mat-icon>
+						<mat-icon color="primary" class="user-icon" mat-list-icon>account_circle</mat-icon>
 						<mat-chip-list class="mat-chip-list-stacked">
-							<mat-chip>{{user.username}}</mat-chip>
-							<mat-chip>{{user.usertype}}</mat-chip>
+							<mat-chip color="primary" selected="true">{{user.username}}</mat-chip>
+							<mat-chip color="primary" selected="true">{{user.usertype}}</mat-chip>
 						</mat-chip-list>
 						<mat-divider class="chip-margin"></mat-divider>
 					</div>
 				<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route" >
-					<mat-icon mat-list-icon>{{ menuItem.icon }}</mat-icon>
+					<mat-icon color="accent" mat-list-icon>{{ menuItem.icon }}</mat-icon>
 					<p matLine *ngIf="sidenavItems">{{ menuItem.name }}</p>
 				</mat-list-item>
 			</mat-nav-list>

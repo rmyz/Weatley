@@ -3,14 +3,18 @@
 
 @include mat-core;
 
-$color-primary: mat-palette($mat-blue-grey, 900);
-$color-accent:  mat-palette($mat-deep-orange, A700);
+$color-primary-light: mat-palette($mat-orange);
+$color-accent-light:  mat-palette($mat-orange, A700);
 
-$light-theme: mat-light-theme($color-primary, $color-accent);
-$dark-theme: mat-dark-theme($color-primary, $color-accent);
+$color-primary-dark: mat-palette($mat-deep-orange);
+$color-accent-dark:  mat-palette($mat-deep-orange, A200);
+
+$dark-theme: mat-dark-theme($color-primary-dark, $color-accent-dark);
 
 @include angular-material-theme($dark-theme);
 
 .lightTheme {
+    $light-theme: mat-light-theme($color-primary-light, $color-accent-light);
+
     @include angular-material-theme($light-theme);
 }
