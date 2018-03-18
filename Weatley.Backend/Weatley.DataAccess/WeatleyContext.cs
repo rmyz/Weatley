@@ -12,10 +12,10 @@ namespace Weatley.DataAccess
         public DbSet<Accounting> Accountings { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<BookedRoom> BookedRooms { get; set; }
-        public DbSet<Booking> Booking { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<Order> Order { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductOrdered> ProductsOrdered { get; set; }
         public DbSet<Report> Reports { get; set; }
