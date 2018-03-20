@@ -413,7 +413,7 @@ namespace Weatley.DataAccess
             }
             #endregion
             #region Users
-            if (!context.Services.Any())
+            if (!context.Users.Any())
             {
                 User user_01 = new User
                 {
