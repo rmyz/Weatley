@@ -413,9 +413,32 @@ namespace Weatley.DataAccess
             }
             #endregion
             #region Users
-            if (!context.Users.Any())
+            if (!context.Services.Any())
             {
-                // JOW
+                User user_01 = new User
+                {
+                    Id = Guid.NewGuid(),
+                    Username = "ManoloEB",
+                    Password = "342afdde46c91456a3cf8ea2c5a6f8130e2effd1c4672830bb579b5cd00ba10a54b6f8a67ca993798e50a4affd8d1247178b986c45c7ad9943cfea6c74a5c08f",
+                    UserType = UserTypeEnum.Receptionist,
+                    Name = "Manolo elder bar",
+                    Hotel = context.Hotels.FirstOrDefault()
+                };
+
+                User user_02 = new User
+                {
+                    Id = Guid.NewGuid(),
+                    Username = "Admin",
+                    Password = "887375daec62a9f02d32a63c9e14c7641a9a8a42e4fa8f6590eb928d9744b57bb5057a1d227e4d40ef911ac030590bbce2bfdb78103ff0b79094cee8425601f5",
+                    UserType = UserTypeEnum.Admin,
+                    Name = "Admin",
+                    Hotel = context.Hotels.FirstOrDefault()
+                };
+
+                context.Users.Add(user_01);
+                context.Users.Add(user_02);
+
+                context.SaveChanges();
             }
             #endregion
             context.SaveChanges();
