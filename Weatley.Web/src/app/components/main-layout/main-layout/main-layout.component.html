@@ -20,8 +20,9 @@
 					<div *ngIf ="sidenavItems" class="container text-center">
 						<mat-icon color="primary" class="user-icon" mat-list-icon>account_circle</mat-icon>
 						<mat-chip-list class="mat-chip-list-stacked">
-							<mat-chip color="primary" selected="true">{{user.username}}</mat-chip>
-							<mat-chip color="primary" selected="true">{{user.usertype}}</mat-chip>
+							<mat-chip color="primary" selected="true">
+								<span class="font-weight-normal">{{user?.username}}</span>, 
+								<span class="font-italic">{{user?.userType}}</span></mat-chip>
 						</mat-chip-list>
 						<mat-divider class="chip-margin"></mat-divider>
 					</div>

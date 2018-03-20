@@ -17,22 +17,22 @@ import { AccountingModule } from '../main-components/accounting/accounting.modul
 
 
 @NgModule({
-  declarations: [
-    MainLayoutComponent
-  ],
-  imports: [
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatChipsModule,
-    AccountingModule,
-    RouterModule
-  ],
-  providers: [],
-  exports: [MainLayoutComponent]
+	declarations: [
+		MainLayoutComponent
+	],
+	imports: [
+		MatSidenavModule,
+		MatListModule,
+		MatIconModule,
+		MatButtonModule,
+		BrowserModule,
+		BrowserAnimationsModule,
+		MatToolbarModule,
+		MatChipsModule,
+		AccountingModule,
+		RouterModule
+	],
+	providers: [],
+	exports: [MainLayoutComponent]
 })
 export class MainLayoutModule { }

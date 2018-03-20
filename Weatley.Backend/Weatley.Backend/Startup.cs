@@ -26,7 +26,8 @@ namespace Weatley.Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<WeatleyContext>(options =>
-                options.UseSqlServer(Configuration["Data:WeatleyConnection:ConnectionString"],                b => b.MigrationsAssembly("Weatley.Backend")));
+                options.UseSqlServer(Configuration["Data:WeatleyConnection:ConnectionString"],
+                b => b.MigrationsAssembly("Weatley.Backend")));
 
             services.AddScoped<IAccountingRepository, AccountingRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
