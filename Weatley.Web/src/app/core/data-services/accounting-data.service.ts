@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Accounting } from '../entities/accounting';
-import { BookingDataService } from '../data-services/bookings-data.service';
 
 @Injectable()
 export class AccountingDataService {
-	constructor(private bookingDataService: BookingDataService) {}
+	constructor() {}
 
 	getAccounting(): Accounting[] {
 		return  [

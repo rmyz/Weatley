@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { AccountingDataService } from '../../../../core/data-services/accounting-data.service';
-import { BookingDataService } from '../../../../core/data-services/bookings-data.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Accounting } from '../../../../core/entities/accounting';
 import { Router } from '@angular/router';
+import { RoutingEnum } from '../../../../core/enums/routing-enum';
 
 
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 	selector: 'app-accounting',
 	templateUrl: './accounting.component.html',
 	styleUrls: ['./accounting.component.scss'],
-	providers: [AccountingDataService, BookingDataService]
+	providers: [AccountingDataService]
 })
 export class AccountingComponent implements OnInit, AfterViewInit {
 
@@ -29,11 +29,16 @@ export class AccountingComponent implements OnInit, AfterViewInit {
 		this.dataAccount = this.accountingDataService.getAccounting();
 		this.dataSource =  new MatTableDataSource<Accounting>(this.dataAccount);
 	}
+
 	ngAfterViewInit() {
 		this.dataSource.paginator = this.paginator;
 	}
+
 	goToEdit(id) {
-		console.log(id);
-		this.router.navigate(['accounting' + '/' + 'edit/' + id]);
+		this.router.navigate([RoutingEnum.ACCOUNTING_EDIT_ROUTE + '/' + id]);
+	}
+
+	goToCreate() {
+		this.router.navigate([RoutingEnum.ACCOUNTING_CREATE_ROUTE]);
 	}
 }

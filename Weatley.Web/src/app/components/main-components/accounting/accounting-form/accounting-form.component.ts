@@ -3,30 +3,26 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Accounting } from '../../../../core/entities/accounting';
 
 import { AccountingDataService } from '../../../../core/data-services/accounting-data.service';
-import { BookingDataService } from '../../../../core/data-services/bookings-data.service';
 
 @Component({
 	selector: 'app-accounting-form',
 	templateUrl: './accounting-form.component.html',
 	styleUrls: ['./accounting-form.component.scss'],
-	providers: [AccountingDataService, BookingDataService]
+	providers: [AccountingDataService]
 })
 export class AccountingFormComponent implements OnInit {
+	private accountingById: Accounting;
 
-
-	dataAccount: Accounting[] = [];
-	id: string;
-
-	constructor(private accountingDataService: AccountingDataService, private router: Router, private route: ActivatedRoute) { }
+	constructor(private accountingDataService: AccountingDataService,
+							private route: ActivatedRoute) { }
 
 	ngOnInit() {
-		this.dataAccount = this.accountingDataService.getAccounting();
+		if (this.route.params) {
+			this.route.params.subscribe(params => {
+				this.accountingById = this.accountingDataService.getAccountingById(params['id']);
+				console.log(this.accountingById);
+			});
+		}
 
-		this.route.params.subscribe(params => {
-			this.id = params['id'];
-		});
-
-		const accountingById = this.accountingDataService.getAccountingById(this.id);
-		console.log(accountingById);
 	}
 }
