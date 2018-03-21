@@ -3,9 +3,7 @@ import { AccountingDataService } from '../../../../core/data-services/accounting
 import { BookingDataService } from '../../../../core/data-services/bookings-data.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Accounting } from '../../../../core/entities/accounting';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
-
-import { AccountingFormComponent } from '../accounting-form/accounting-form.component';
+import { Router } from '@angular/router';
 
 
 
@@ -25,7 +23,7 @@ export class AccountingComponent implements OnInit, AfterViewInit {
 
     dataAccount: Accounting[] = [];
 
-    constructor(private accountingDataService: AccountingDataService, private dialog: MatDialog) { }
+    constructor(private accountingDataService: AccountingDataService, private router: Router) { }
 
     ngOnInit() {
         this.dataAccount = this.accountingDataService.getAccounting();
@@ -34,7 +32,8 @@ export class AccountingComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
     }
-    openAddDialog() {
-        this.dialog.open(AccountingFormComponent, {width: '1000px', height: '250px'});
+    goToEdit(id) {
+        console.log(id);
+        this.router.navigate(['accounting' + '/' + 'edit/' + id]);
     }
 }

@@ -24,4 +24,8 @@ export class AccountingDataService {
 		new Accounting ({ id: 7, price: 500.24, date: '5/15/2018', paymentType: 'Efectiu', booking: this.bookingDataService.getBooking(7), orders: null})
 	];
 	}
+	getAccountingById(id: string): Accounting {
+		const accountings = this.getAccounting();
+		return accountings.find(accounting => accounting.id === id);
+	}
 }

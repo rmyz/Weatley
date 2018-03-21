@@ -2,7 +2,7 @@ import { Booking } from './booking';
 import { Order } from './order';
 
 export class Accounting {
-    id: number;
+    id: string;
     price: number;
     date: string;
     paymentType: string;

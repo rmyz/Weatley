@@ -16,10 +16,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 
 import { AccountingComponent } from './accounting-component/accounting.component';
 import { AccountingFormComponent } from './accounting-form/accounting-form.component';
+import { AccountingRouter } from './accounting-form/accounting-routing.module';
 
 
 @NgModule({
@@ -44,10 +48,13 @@ import { AccountingFormComponent } from './accounting-form/accounting-form.compo
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    MatGridListModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule,
+    AccountingRouter,
+    MatCardModule,
+    MatGridListModule,
+    MatDividerModule
   ],
   providers: [
   ],
@@ -55,7 +62,8 @@ import { AccountingFormComponent } from './accounting-form/accounting-form.compo
     AccountingComponent,
     MatGridListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AccountingFormComponent
   ],
   entryComponents: [
     AccountingFormComponent
