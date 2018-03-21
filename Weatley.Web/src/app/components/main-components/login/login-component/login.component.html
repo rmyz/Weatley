@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="Absolute-Center is-Responsive">
+			<div class="col-sm-12 col-md-10 col-md-offset-1">
+				<mat-toolbar color="primary">Login</mat-toolbar>
+				<mat-card>
+					<mat-card-content>
+						<div class="input-width">
+							<mat-form-field>
+								<input matInput placeholder="Input">
+							</mat-form-field>
+							<mat-form-field>
+								<input matInput placeholder="Enter your password" [type]="hide ? 'text' : 'password'">
+								<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+							</mat-form-field>
+						</div>
+					</mat-card-content>
+					<mat-card-actions align="end">
+						<button mat-raised-button color="accent">Login</button>
+					</mat-card-actions>
+				</mat-card>
+			</div>
+		</div>
+	</div>
+</div>

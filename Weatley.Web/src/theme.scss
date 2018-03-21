@@ -9,12 +9,12 @@ $color-accent-light:  mat-palette($mat-blue, A400);
 $color-primary-dark: mat-palette($mat-blue, 700);
 $color-accent-dark:  mat-palette($mat-blue, A200);
 
-$dark-theme: mat-dark-theme($color-primary-dark, $color-accent-dark);
+$light-theme: mat-light-theme($color-primary-light, $color-accent-light);
 
-@include angular-material-theme($dark-theme);
+@include angular-material-theme($light-theme);
 
-.lightTheme {
-    $light-theme: mat-light-theme($color-primary-light, $color-accent-light);
+.darkTheme {
+    $dark-theme: mat-dark-theme($color-primary-dark, $color-accent-dark);
 
-    @include angular-material-theme($light-theme);
+    @include angular-material-theme($dark-theme);
 }

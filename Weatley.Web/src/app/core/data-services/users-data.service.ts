@@ -9,10 +9,10 @@ export class UserDataService {
 	constructor(private http: HttpClient) { }
 
 	getUsers(): Observable<User[]> {
-		return this.http.get<User[]>('http://localhost:9985/api/Users');
+		return this.http.get<User[]>('http://localhost:5000/api/Users');
 	}
 
 	getUser(id: string): Observable<User> {
-		return this.http.get<User>('http://localhost:9985/api/Users/' + id);
+		return this.http.get<User>('http://localhost:5000/api/Users/' + id);
 	}
 }
