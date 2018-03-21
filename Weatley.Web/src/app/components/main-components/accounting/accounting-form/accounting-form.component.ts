@@ -12,17 +12,28 @@ import { AccountingDataService } from '../../../../core/data-services/accounting
 })
 export class AccountingFormComponent implements OnInit {
 	private accountingById: Accounting;
-
+	private id: string;
 	constructor(private accountingDataService: AccountingDataService,
 							private route: ActivatedRoute) { }
 
 	ngOnInit() {
-		if (this.route.params) {
 			this.route.params.subscribe(params => {
-				this.accountingById = this.accountingDataService.getAccountingById(params['id']);
-				console.log(this.accountingById);
+				this.id = params['id'];
+				this.loadData(this.id);
+			});
+	}
+	
+	private loadData(id: string){
+		if (id) {
+			this.accountingById = this.accountingDataService.getAccountingById(id);
+		} else {
+			this.accountingById = new Accounting({
+				id: null,
+				price: null,
+				date: null,
+				paymentType: null,
+				customer: null
 			});
 		}
-
 	}
 }

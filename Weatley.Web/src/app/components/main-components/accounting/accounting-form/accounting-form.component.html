@@ -3,22 +3,22 @@
     <div class="example-container mat-elevation-z8">
         <mat-card class="example-container">
             <div class="main-div">
-                <mat-form-field class="inputs">
-                    <input matInput placeholder="Price">
+                <mat-form-field class="inputs" >
+                    <input matInput placeholder="Price" [(ngModel)]="accountingById.price">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="accountingById.date">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-select placeholder="Payment Type">
+                    <mat-select placeholder="Payment Type" [(ngModel)]="accountingById.paymentType">
                         <mat-option value="tarjeta">Tarjeta</mat-option>
                         <mat-option value="metalic">Metalico</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-select placeholder="Cliente">
+                    <mat-select placeholder="Cliente" [(ngModel)]="accountingById.customer" >
                         <mat-option value="cliente1">Cliente1</mat-option>
                         <mat-option value="cliente2">Cliente2</mat-option>
                     </mat-select>
