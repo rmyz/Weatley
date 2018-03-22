@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { LoginComponent } from './login-component/login.component';
@@ -21,7 +22,9 @@ import { LoginComponent } from './login-component/login.component';
 		MatCardModule,
 		MatButtonModule,
 		MatInputModule,
-		MatToolbarModule
+		MatToolbarModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 	providers: [],
 	exports: [
