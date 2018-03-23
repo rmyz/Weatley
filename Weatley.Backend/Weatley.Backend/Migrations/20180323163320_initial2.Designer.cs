@@ -11,9 +11,10 @@ using Weatley.DataAccess;
 namespace Weatley.Backend.Migrations
 {
     [DbContext(typeof(WeatleyContext))]
-    partial class WeatleyContextModelSnapshot : ModelSnapshot
+    [Migration("20180323163320_initial2")]
+    partial class initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

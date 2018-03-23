@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Weatley.Model.Enums
 {
-    public enum ReportStatusEnum
+    public static class ReportStatusEnum
     {
-        Waiting = 1,
-        Accepted = 2,
-        Delivered = 3,
-        Cancelled = 4
+        public const string Waiting = "Waiting";
+        public const string Accepted = "Accepted";
+        public const string Delivered = "Delivered";
+        public const string Cancelled = "Cancelled";
     }
 }

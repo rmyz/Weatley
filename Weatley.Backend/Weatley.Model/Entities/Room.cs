@@ -10,7 +10,7 @@ namespace Weatley.Model.Entities
         public Guid Id { get; set; }
         public int RoomNumber { get; set; }
         public int FloorNumber { get; set; }
-        public RoomTypeEnum RoomType { get; set; }
+        public string RoomType { get; set; }
         public Hotel Hotel { get; set; }
 
         //Relation with Booking

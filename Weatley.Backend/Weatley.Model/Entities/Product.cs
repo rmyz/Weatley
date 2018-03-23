@@ -10,7 +10,7 @@ namespace Weatley.Model.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public ProductTypeEnum ProductType { get; set; }
+        public string ProductType { get; set; }
         public Boolean? Available { get; set; }
         public Hotel Hotel { get; set; }
 

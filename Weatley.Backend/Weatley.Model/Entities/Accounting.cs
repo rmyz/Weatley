@@ -10,7 +10,7 @@ namespace Weatley.Model.Entities
         public Guid Id { get; set; }
         public double FinalPrice { get; set; }
         public DateTime Date { get; set; }
-        public PaymentTypeEnum PaymentType { get; set; }
+        public string PaymentType { get; set; }
         public Customer Customer { get; set; }
 
     }

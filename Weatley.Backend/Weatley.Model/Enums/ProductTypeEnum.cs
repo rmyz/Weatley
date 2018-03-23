@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Weatley.Model.Enums
 {
-    public enum ProductTypeEnum
+    public static class ProductTypeEnum
     {
-        Food = 1,
-        Drink = 2,
-        Service = 3
+        public const string Food = "Food";
+        public const string Drink = "Drink";
+        public const string Service = "Service";
     }
 }
