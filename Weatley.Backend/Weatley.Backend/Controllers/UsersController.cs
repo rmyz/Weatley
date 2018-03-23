@@ -28,20 +28,20 @@ namespace Weatley.Backend.Controllers
             return _context.Users;
         }
 
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser([FromRoute] Guid id)
+        // GET: api/Users/username
+        [HttpGet("{username}")]
+        public async Task<IActionResult> GetUserByUsername([FromRoute] String username)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.Username == username);
 
             if (user == null)
             {
-                return NotFound();
+                return NotFound(null);
             }
 
             return Ok(user);

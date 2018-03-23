@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { UserDataService } from '../../../../core/data-services/users-data.service';
+import { MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { User } from '../../../../core/entities/user';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss']
+	styleUrls: ['./login.component.scss'],
+	providers: [UserDataService]
 })
 export class LoginComponent implements OnInit {
+	user: User;
 
 	loginGroup = new FormGroup ({
 		username: new FormControl(),
 		password: new FormControl()
 	});
 
-	constructor(private fb: FormBuilder) { }
+	constructor(private fb: FormBuilder, private userDataService: UserDataService, private snackBar: MatSnackBar ) { }
 
 	ngOnInit() {
 		this.loginGroup = this.fb.group({
@@ -23,7 +28,22 @@ export class LoginComponent implements OnInit {
 	}
 
 	login() {
-		console.log(this.loginGroup.controls.username.value);
-		console.log(this.loginGroup.controls.password.value);
+		const username = this.loginGroup.controls.username.value;
+		const password = this.loginGroup.controls.password.value;
+
+		if (username !== '' && password !== '') {
+			this.userDataService.getUser(username).subscribe(
+				user => {
+				this.user = user;
+			},
+				err => {
+					this.snackBar.open('Username not found', 'Dimiss', {
+						duration: 3000,
+						verticalPosition: 'top',
+						horizontalPosition: 'end',
+					});
+				}
+			);
+		}
 	}
 }

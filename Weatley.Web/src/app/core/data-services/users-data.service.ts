@@ -12,7 +12,7 @@ export class UserDataService {
 		return this.http.get<User[]>('http://localhost:5000/api/Users');
 	}
 
-	getUser(id: string): Observable<User> {
-		return this.http.get<User>('http://localhost:5000/api/Users/' + id);
+	getUser(username: string): Observable<User> {
+		return this.http.get<User>('http://localhost:5000/api/Users/' + username);
 	}
 }
