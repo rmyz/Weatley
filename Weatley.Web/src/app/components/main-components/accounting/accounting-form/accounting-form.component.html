@@ -2,28 +2,28 @@
     <div class="title"></div>
     <div class="example-container mat-elevation-z8">
         <mat-card class="example-container">
-            <div class="main-div">
-                <mat-form-field class="inputs" >
-                    <input matInput placeholder="Price" [(ngModel)]="accountingById.price">
+            <form class="main-div" #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+                <mat-form-field >
+                    <input matInput placeholder="Price" name="price" [(ngModel)]="accountingById.price">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="accountingById.date">
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="accountingById.date" name="date">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-select placeholder="Payment Type" [(ngModel)]="accountingById.paymentType">
+                    <mat-select placeholder="Payment Type" [(ngModel)]="accountingById.paymentType" name="paymentType">
                         <mat-option value="tarjeta">Tarjeta</mat-option>
                         <mat-option value="metalic">Metalico</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-select placeholder="Cliente" [(ngModel)]="accountingById.customer" >
+                    <mat-select placeholder="Cliente" [(ngModel)]="accountingById.customer" name="cliente">
                         <mat-option value="cliente1">Cliente1</mat-option>
                         <mat-option value="cliente2">Cliente2</mat-option>
                     </mat-select>
                 </mat-form-field>
-            </div>
+            </form>
         </mat-card>
     </div>
         <div>
