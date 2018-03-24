@@ -25,7 +25,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Report> GetReports()
         {
-            return _context.Reports;
+            return _context.Reports.Include(r => r.Customer);
         }
 
         // GET: api/Reports/5
@@ -37,7 +37,8 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var report = await _context.Reports.SingleOrDefaultAsync(m => m.Id == id);
+            var report = await _context.Reports.Include(r => r.Customer)
+                                               .SingleOrDefaultAsync(m => m.Id == id);
 
             if (report == null)
             {

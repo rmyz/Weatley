@@ -25,7 +25,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Service> GetServices()
         {
-            return _context.Services;
+            return _context.Services.Include(s => s.Hotel);
         }
 
         // GET: api/Services/5
@@ -37,7 +37,8 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var service = await _context.Services.SingleOrDefaultAsync(m => m.Id == id);
+            var service = await _context.Services.Include(s => s.Hotel)
+                                                 .SingleOrDefaultAsync(m => m.Id == id);
 
             if (service == null)
             {

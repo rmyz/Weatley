@@ -25,7 +25,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Activity> GetActivities()
         {
-            return _context.Activities;
+            return _context.Activities.Include(a => a.Hotel);
         }
 
         // GET: api/Activities/5
@@ -37,7 +37,8 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var activity = await _context.Activities.SingleOrDefaultAsync(m => m.Id == id);
+            var activity = await _context.Activities.Include(a => a.Hotel)
+                                                    .SingleOrDefaultAsync(m => m.Id == id);
 
             if (activity == null)
             {

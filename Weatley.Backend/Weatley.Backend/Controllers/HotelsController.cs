@@ -25,7 +25,11 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Hotel> GetHotels()
         {
-            return _context.Hotels;
+            return _context.Hotels.Include(h => h.Activities)
+                                  .Include(h => h.Rooms)
+                                  .Include(h => h.Services)
+                                  .Include(h => h.Users)
+                                  .Include(h => h.Products);
         }
 
         // GET: api/Hotels/5
@@ -37,7 +41,12 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var hotel = await _context.Hotels.SingleOrDefaultAsync(m => m.Id == id);
+            var hotel = await _context.Hotels.Include(h => h.Activities)
+                                             .Include(h => h.Rooms)
+                                             .Include(h => h.Services)
+                                             .Include(h => h.Users)
+                                             .Include(h => h.Products)
+                                             .SingleOrDefaultAsync(m => m.Id == id);
 
             if (hotel == null)
             {
