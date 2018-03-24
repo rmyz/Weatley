@@ -1,12 +1,11 @@
-import { Booking } from './booking';
-import { Order } from './order';
+import { Customer } from './customer';
 
 export class Accounting {
 	id: string;
 	price: number;
-	date: Date;
+	date: string;
 	paymentType: string;
-	customerId: string;
+	customer: Customer;
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);
