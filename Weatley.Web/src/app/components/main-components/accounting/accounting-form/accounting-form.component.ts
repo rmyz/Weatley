@@ -27,6 +27,7 @@ export class AccountingFormComponent implements OnInit {
 	private loadData(id: string) {
 		if (id) {
 			this.accountingById = this.accountingDataService.getAccountingById(id);
+			console.log(this.accountingById);
 		} else {
 			this.accountingById = new Accounting({
 				id: null,

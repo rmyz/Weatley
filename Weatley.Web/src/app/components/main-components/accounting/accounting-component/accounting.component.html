@@ -26,7 +26,7 @@
             <ng-container matColumnDef="function">
                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
                 <mat-cell *matCellDef="let item">
-                    <button type="button" mat-icon-button class="float-right" matTooltip="Delete" matTooltipPosition="above" (click)="onDelete(item.id)">
+                    <button type="button" mat-icon-button class="float-right" matTooltip="Delete" matTooltipPosition="above" (click)="onDelete(item)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     <button type="button" mat-icon-button class="float-right" matTooltip="Edit" matTooltipPosition="above" (click)="goToEdit(item.id)">

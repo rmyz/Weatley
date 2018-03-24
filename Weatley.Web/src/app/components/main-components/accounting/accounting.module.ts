@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule} from '@angular/material';
+import { MatInputModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { MatSortModule } from '@angular/material';
@@ -20,53 +20,55 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material';
 
 import { AccountingComponent } from './accounting-component/accounting.component';
+import { AccountingDataService } from '../../../core/data-services/accounting-data.service';
 import { AccountingFormComponent } from './accounting-form/accounting-form.component';
 import { AccountingRouter } from './accounting-form/accounting-routing.module';
 import { DialogComponent } from './accounting-component/accounting.component';
 
 @NgModule({
-  declarations: [
-    AccountingComponent,
-    AccountingFormComponent,
-    DialogComponent
-  ],
-  imports: [
-    MatTooltipModule,
-    MatIconModule,
-    BrowserModule,
-    MatButtonModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatSelectModule,
-    AccountingRouter,
-    MatCardModule,
-    MatGridListModule,
-    MatDividerModule
-  ],
-  providers: [
-  ],
-  exports: [
-    AccountingComponent,
-    MatGridListModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    AccountingFormComponent
-  ],
-  entryComponents: [
-    AccountingFormComponent,
-    DialogComponent
-  ]
+	declarations: [
+		AccountingComponent,
+		AccountingFormComponent,
+		DialogComponent
+	],
+	imports: [
+		MatTooltipModule,
+		MatIconModule,
+		BrowserModule,
+		MatButtonModule,
+		BrowserAnimationsModule,
+		MatTableModule,
+		BrowserAnimationsModule,
+		MatInputModule,
+		MatTableModule,
+		MatPaginatorModule,
+		MatSortModule,
+		MatProgressSpinnerModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatNativeDateModule,
+		MatDatepickerModule,
+		MatSelectModule,
+		AccountingRouter,
+		MatCardModule,
+		MatGridListModule,
+		MatDividerModule
+	],
+	providers: [
+		AccountingDataService
+	],
+	exports: [
+		AccountingComponent,
+		MatGridListModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
+		AccountingFormComponent
+	],
+	entryComponents: [
+		AccountingFormComponent,
+		DialogComponent
+	]
 })
 export class AccountingModule { }

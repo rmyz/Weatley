@@ -13,7 +13,13 @@
                     <input matInput placeholder="Price" name="price" [(ngModel)]="accountingById.price">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="accountingById.date" name="date">
+                    <input matInput [matDatepicker]="picker" 
+                        placeholder="Choose a date" 
+                        [(ngModel)]="accountingById.date"
+                        (focus)="picker.open()" 
+                        (click)="picker.open()" 
+                        readonly
+                        name="date">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
