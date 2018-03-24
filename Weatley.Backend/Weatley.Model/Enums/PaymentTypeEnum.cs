@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Weatley.Model.Enums
 {
-    public enum PaymentTypeEnum
+    public static class PaymentTypeEnum
     {
-        CreditCard = 1,
-        Cash = 2
+        public const string CreditCard = "Credit card";
+        public const string Cash = "Cash";
     }
 }

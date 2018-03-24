@@ -10,7 +10,7 @@ namespace Weatley.Model.Entities
         public Guid Id { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public ReportStatusEnum Status { get; set; }
+        public string Status { get; set; }
         public Customer Customer { get; set; }
     }
 }

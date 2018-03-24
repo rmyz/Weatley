@@ -25,7 +25,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Accounting> GetAccountings()
         {
-            return _context.Accountings;
+            return _context.Accountings.Include(a => a.Customer);
         }
 
         // GET: api/Accountings/5
@@ -37,7 +37,8 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var accounting = await _context.Accountings.SingleOrDefaultAsync(m => m.Id == id);
+            var accounting = await _context.Accountings.Include(a => a.Customer)
+                                                       .SingleOrDefaultAsync(m => m.Id == id);
 
             if (accounting == null)
             {

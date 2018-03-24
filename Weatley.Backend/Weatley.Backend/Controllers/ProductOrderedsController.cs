@@ -25,7 +25,8 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<ProductOrdered> GetProductsOrdered()
         {
-            return _context.ProductsOrdered;
+            return _context.ProductsOrdered.Include(po => po.Order)
+                                           .Include(po => po.Product);
         }
 
         // GET: api/ProductOrdereds/5
@@ -37,7 +38,9 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var productOrdered = await _context.ProductsOrdered.SingleOrDefaultAsync(m => m.OrderId == id);
+            var productOrdered = await _context.ProductsOrdered.Include(po => po.Order)
+                                                               .Include(po => po.Product)
+                                                               .SingleOrDefaultAsync(m => m.OrderId == id);
 
             if (productOrdered == null)
             {

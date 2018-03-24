@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Weatley.Model.Enums
 {
-    public enum UserTypeEnum
+    public static class UserTypeEnum
     {
-        Admin = 0,
-        Receptionist = 1
+        public const string Admin = "Admin";
+        public const string Receptionist = "Receptionist";
     }
 }

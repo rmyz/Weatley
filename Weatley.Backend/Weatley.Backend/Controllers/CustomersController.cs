@@ -25,7 +25,10 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Customer> GetCustomers()
         {
-            return _context.Customers;
+            return _context.Customers.Include(c => c.Accountings)
+                                     .Include(c => c.Bookings)
+                                     .Include(c => c.Reports)
+                                     .Include(c => c.Orders);
         }
 
         // GET: api/Customers/5
@@ -37,7 +40,11 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.Id == id);
+            var customer = await _context.Customers.Include(c => c.Accountings)
+                                                   .Include(c => c.Bookings)
+                                                   .Include(c => c.Reports)
+                                                   .Include(c => c.Orders)
+                                                   .SingleOrDefaultAsync(m => m.Id == id);
 
             if (customer == null)
             {

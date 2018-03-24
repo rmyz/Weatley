@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Weatley.Model.Enums
 {
-    public enum RoomTypeEnum
+    public static class RoomTypeEnum
     {
-        Single = 1,
-        Double = 2,
-        Suite = 3
+        public const string Single = "Single";
+        public const string Double = "Double";
+        public const string Suite = "Suite";
     }
 }

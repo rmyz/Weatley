@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Weatley.Backend.Core;
 using Weatley.DataAccess;
 using Weatley.DataAccess.Abstract;
@@ -25,6 +26,10 @@ namespace Weatley.Backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
             services.AddDbContext<WeatleyContext>(options =>
                 options.UseSqlServer(Configuration["Data:WeatleyConnection:ConnectionString"],                b => b.MigrationsAssembly("Weatley.Backend")));
 

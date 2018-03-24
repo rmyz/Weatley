@@ -25,7 +25,8 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<BookedRoom> GetBookedRooms()
         {
-            return _context.BookedRooms;
+            return _context.BookedRooms.Include(br => br.Booking)
+                                       .Include(br => br.Room);
         }
 
         // GET: api/BookedRooms/5
@@ -37,7 +38,9 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var bookedRoom = await _context.BookedRooms.SingleOrDefaultAsync(m => m.BookingId == id);
+            var bookedRoom = await _context.BookedRooms.Include(br => br.Booking)
+                                       .Include(br => br.Room)
+                                       .SingleOrDefaultAsync(m => m.BookingId == id);
 
             if (bookedRoom == null)
             {
