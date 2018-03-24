@@ -17,19 +17,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
-
-
+import { MatDividerModule } from '@angular/material';
 
 import { AccountingComponent } from './accounting-component/accounting.component';
 import { AccountingFormComponent } from './accounting-form/accounting-form.component';
 import { AccountingRouter } from './accounting-form/accounting-routing.module';
-
+import { DialogComponent } from './accounting-component/accounting.component';
 
 @NgModule({
   declarations: [
     AccountingComponent,
-    AccountingFormComponent
+    AccountingFormComponent,
+    DialogComponent
   ],
   imports: [
     MatTooltipModule,
@@ -66,7 +65,8 @@ import { AccountingRouter } from './accounting-form/accounting-routing.module';
     AccountingFormComponent
   ],
   entryComponents: [
-    AccountingFormComponent
+    AccountingFormComponent,
+    DialogComponent
   ]
 })
 export class AccountingModule { }
