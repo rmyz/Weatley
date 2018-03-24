@@ -25,7 +25,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<User> GetUsers()
         {
-            return _context.Users;
+            return _context.Users.Include(u => u.Hotel);
         }
 
         // GET: api/Users/username
@@ -37,7 +37,7 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.Users.SingleOrDefaultAsync(m => m.Username == username);
+            var user = await _context.Users.Include(u => u.Hotel).SingleOrDefaultAsync(m => m.Username == username);
 
             if (user == null)
             {

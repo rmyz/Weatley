@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 				this.user = user;
 			},
 				err => {
-					this.snackBar.open('Username not found', 'Dimiss', {
+					this.snackBar.open('Username not found', 'Dismiss', {
 						duration: 3000,
 						verticalPosition: 'top',
 						horizontalPosition: 'end',
