@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { AccountingDataService } from '../../../../core/data-services/accounting-data.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Accounting } from '../../../../core/entities/accounting';
@@ -12,9 +12,9 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 	styleUrls: ['./accounting.component.scss'],
 	providers: [AccountingDataService]
 })
-export class AccountingComponent implements OnInit, AfterViewInit {
+export class AccountingComponent implements OnInit {
 
-	displayedColumns = ['client', 'date', 'price', 'paymentType', 'function'];
+	displayedColumns = ['customer', 'date', 'price', 'paymentType', 'function'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -26,12 +26,11 @@ export class AccountingComponent implements OnInit, AfterViewInit {
 		private dialog: MatDialog) { }
 
 	ngOnInit() {
-		this.dataAccount = this.accountingDataService.getAccounting();
-		this.dataSource = new MatTableDataSource<Accounting>(this.dataAccount);
-	}
-
-	ngAfterViewInit() {
-		this.dataSource.paginator = this.paginator;
+		this.accountingDataService.getAccounting().subscribe(accountings => {
+			this.dataAccount = accountings;
+			this.dataSource = new MatTableDataSource<Accounting>(this.dataAccount);
+			this.dataSource.paginator = this.paginator;
+		});
 	}
 
 	goToEdit(id) {
@@ -55,6 +54,9 @@ export class AccountingComponent implements OnInit, AfterViewInit {
 				i.id === item.id
 			);
 			console.log(index);
+			this.accountingDataService.deleteGoal(item.id).subscribe(res => {}, err => {
+				console.log(err);
+			});
 			this.dataSource.data.splice(index, 1);
 		}
 		this.dataSource = new MatTableDataSource<Accounting>(this.dataSource.data);

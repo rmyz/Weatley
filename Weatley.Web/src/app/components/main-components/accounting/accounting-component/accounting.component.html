@@ -3,9 +3,9 @@
     <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="dataSource">
 
-            <ng-container matColumnDef="client">
-                <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.client }} </mat-cell>
+            <ng-container matColumnDef="customer">
+                <mat-header-cell *matHeaderCellDef> Customer </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.customer.name }} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="date">
@@ -15,7 +15,7 @@
 
             <ng-container matColumnDef="price">
                 <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.price }} </mat-cell>
+                <mat-cell *matCellDef="let item"> {{ item.finalPrice }} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="paymentType">

@@ -2,8 +2,8 @@ import { Customer } from './customer';
 
 export class Accounting {
 	id: string;
-	price: number;
-	date: string;
+	finalPrice: number;
+	date: Date;
 	paymentType: string;
 	customer: Customer;
 

@@ -3,14 +3,16 @@
     <div class="example-container mat-elevation-z8">
         <mat-card class="example-container">
             <form class="main-div">
-                <mat-form-field>
-                    <mat-select placeholder="Cliente" [(ngModel)]="accountingById.customer" name="cliente">
-                        <mat-option value="cliente1">Cliente1</mat-option>
-                        <mat-option value="cliente2">Cliente2</mat-option>
+                <mat-form-field *ngIf="!id">
+                    <mat-select placeholder="Customer" [(ngModel)]="accountingById.customer" name="customer">
+                        <mat-option [value]="customer" *ngFor="let customer of customers">{{ customer.name }}</mat-option>
                     </mat-select>
                 </mat-form-field>
+                <mat-form-field *ngIf="id">
+                    <input matInput placeholder="Customer" [disabled]="true" name="customer" [value]="accountingById.customer.name">
+                </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="Price" name="price" [(ngModel)]="accountingById.price">
+                    <input matInput placeholder="Price" name="price" [(ngModel)]="accountingById.finalPrice">
                 </mat-form-field>
                 <mat-form-field>
                     <input matInput [matDatepicker]="picker" 
@@ -25,18 +27,18 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-select placeholder="Payment Type" [(ngModel)]="accountingById.paymentType" name="paymentType">
-                        <mat-option value="tarjeta">Tarjeta</mat-option>
-                        <mat-option value="efectiu">Efectiu</mat-option>
+                        <mat-option value="Credit card">Credit card</mat-option>
+                        <mat-option value="Cash">Cash</mat-option>
                     </mat-select>
                 </mat-form-field>
             </form>
         </mat-card>
     </div>
     <div>
-        <button type="button" mat-icon-button class="float-right" matTooltip="Add new" matTooltipPosition="left" (click)="cancel()">
+        <button type="button" mat-icon-button class="float-right" matTooltip="Cancel" matTooltipPosition="left" (click)="cancel()">
                 <mat-icon>cancel</mat-icon>
             </button>
-        <button type="button" mat-icon-button class="float-right" matTooltip="Add new" matTooltipPosition="left" (click)="submitAccounting()">
+        <button type="button" mat-icon-button class="float-right" matTooltip="Save" matTooltipPosition="left" (click)="submitAccounting()">
             <mat-icon>done</mat-icon>
         </button>
     </div>

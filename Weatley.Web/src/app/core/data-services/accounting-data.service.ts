@@ -1,23 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Accounting } from '../entities/accounting';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AccountingDataService {
-	constructor() {}
+	constructor(private http: Http) {}
 
-	getAccounting(): Accounting[] {
-		return  [
-		new Accounting ({ id: '1', client: "Manolo1", price: 500.24, date: '2018-03-14T23:00:00.000Z', paymentType: 'Efectiu'}),
-		new Accounting ({ id: '2', client: "Manolo2", price: 500.24, date: '5/15/2018', paymentType: 'Efectiu'}),
-		new Accounting ({ id: '3', client: "Manolo3", price: 500.24, date: '5/15/2018', paymentType: 'Efectiu'}),
-		new Accounting ({ id: '4', client: "Manolo4", price: 500.24, date: '5/15/2018', paymentType: 'Efectiu'}),
-		new Accounting ({ id: '5', client: "Manolo5", price: 500.24, date: '5/15/2018', paymentType: 'Efectiu'}),
-		new Accounting ({ id: '6', client: "Manolo6", price: 500.24, date: '5/15/2018', paymentType: 'Efectiu'}),
-		new Accounting ({ id: '7', client: "Manolo7", price: 500.24, date: '5/15/2018', paymentType: 'Efectiu'}),
-		];
+	getAccounting(): Observable<Accounting[]> {
+		return this.http
+					.get('http://localhost:5000/api/Accountings')
+					.map((res: Response) => res.json());
 	}
-	getAccountingById(id: string): Accounting {
-		const accountings = this.getAccounting();
-		return accountings.find(accounting => accounting.id === id);
+
+	getAccountingById(id: string): Observable<Accounting> {
+		return this.http
+					.get('http://localhost:5000/api/Accountings/' + id)
+					.map((res: Response) => res.json());
 	}
+
+	createAccounting(accounting: Accounting) {
+		return this.http
+			.post('http://localhost:5000/api/Accountings/', accounting)
+			.map((res: Response) => {
+				return new Accounting(res.json());
+			});
+	}
+
+	updateAccounting(accounting: Accounting): Observable<any> {
+		return this.http
+			.put('http://localhost:5000/api/Accountings/' + accounting.id , accounting)
+			.map((res: Response) => {
+				return new Accounting(res.json());
+		});
+	}
+
+	deleteGoal(accountingId: string): Observable<any> {
+		return this.http
+			.delete('http://localhost:5000/api/Accountings/' + accountingId)
+			.map((res: Response) => {
+				return res.json();
+			});
+		}
 }

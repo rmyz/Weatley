@@ -7,17 +7,19 @@ import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
 import { ComponentModule } from './components/components.module';
+import { Http, HttpModule } from '@angular/http';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ComponentModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		ComponentModule,
+		HttpModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
