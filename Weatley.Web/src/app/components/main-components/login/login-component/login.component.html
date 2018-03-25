@@ -4,23 +4,23 @@
 			<img class="image" src="../../../../../assets/login/round-aservise.png">
 			<mat-toolbar color="primary">Login</mat-toolbar>
 			<mat-card>
-					<form [formGroup]="loginGroup">
-					<mat-card-content>
-							<div class="input-width">
-								<mat-form-field>
-									<input matInput required placeholder="Username" formControlName="username">
-									<mat-error>Please enter a username</mat-error>
-								</mat-form-field>
-								<mat-form-field>
-									<input matInput required placeholder="Enter your password" [type]="hide ? 'text' : 'password'" formControlName="password">
-									<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-									<mat-error>Please enter a password</mat-error>
-								</mat-form-field>
-							</div>
-					</mat-card-content>
-					<mat-card-actions align="end">
-							<button (click)="login()" mat-raised-button color="accent">Login</button>
-					</mat-card-actions>
+				<form [formGroup]="loginGroup">
+				<mat-card-content>
+						<div class="input-width">
+							<mat-form-field>
+								<input matInput required placeholder="Username" formControlName="username">
+								<mat-error>Please enter a username</mat-error>
+							</mat-form-field>
+							<mat-form-field>
+								<input matInput required placeholder="Enter your password" [type]="hide ? 'text' : 'password'" formControlName="password">
+								<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+								<mat-error>Please enter a password</mat-error>
+							</mat-form-field>
+						</div>
+				</mat-card-content>
+				<mat-card-actions align="end">
+						<button (click)="login()" mat-raised-button color="accent">Login</button>
+				</mat-card-actions>
 				</form>
 			</mat-card>
 		</div>

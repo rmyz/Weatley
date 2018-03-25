@@ -28,11 +28,10 @@ export class LoginComponent implements OnInit {
 	}
 
 	login() {
-		const username = this.loginGroup.controls.username.value;
-		const password = this.loginGroup.controls.password.value;
+		const form = this.loginGroup.value;
 
-		if (username !== '' && password !== '') {
-			this.userDataService.getUser(username).subscribe(
+		if (this.loginGroup.valid) {
+			this.userDataService.getUser(form.username).subscribe(
 				user => {
 				this.user = user;
 			},

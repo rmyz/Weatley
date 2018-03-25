@@ -102,6 +102,7 @@ namespace Weatley.Backend.Controllers
                       expires: DateTime.UtcNow.AddMinutes(60),
                       signingCredentials: signingCredentials
                       );
+
                     return Ok(new
                     {
                         token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
