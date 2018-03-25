@@ -24,14 +24,14 @@ namespace Weatley.Backend.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<Role> _roleManager;
         private IPasswordHasher<User> _passwordHasher;
-        //private IConfigurationRoot _configurationRoot;
+        private IConfiguration _configurationRoot;
         private ILogger<AuthController> _logger;
 
         public AuthController(UserManager<User> userManager,
                 SignInManager<User> signInManager,
                 RoleManager<Role> roleManager,
                 IPasswordHasher<User> passwordHasher,
-                //IConfigurationRoot configurationRoot,
+                IConfiguration configurationRoot,
                 ILogger<AuthController> logger
             )
         {
@@ -40,7 +40,7 @@ namespace Weatley.Backend.Controllers
             _roleManager = roleManager;
             _logger = logger;
             _passwordHasher = passwordHasher;
-            //_configurationRoot = configurationRoot;
+            _configurationRoot = configurationRoot;
         }
 
         [AllowAnonymous]
@@ -70,52 +70,52 @@ namespace Weatley.Backend.Controllers
             return BadRequest(result.Errors);
         }
 
-        //[HttpPost("CreateToken")]
-        //[Route("token")]
-        //public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
-        //{
-        //    try
-        //    {
-        //        var user = await _userManager.FindByNameAsync(model.Email);
-        //        if (user == null)
-        //        {
-        //            return Unauthorized();
-        //        }
-        //        if (_passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) == PasswordVerificationResult.Success)
-        //        {
-        //            var userClaims = await _userManager.GetClaimsAsync(user);
+        [HttpPost("CreateToken")]
+        [Route("token")]
+        public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(model.Email);
+                if (user == null)
+                {
+                    return Unauthorized();
+                }
+                if (_passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) == PasswordVerificationResult.Success)
+                {
+                    var userClaims = await _userManager.GetClaimsAsync(user);
 
-        //            var claims = new[]
-        //            {
-        //                  new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-        //                  new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        //                  new Claim(JwtRegisteredClaimNames.Email, user.Email)
-        //                }.Union(userClaims);
+                    var claims = new[]
+                    {
+                          new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                          new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                          new Claim(JwtRegisteredClaimNames.Email, user.Email)
+                        }.Union(userClaims);
 
-        //            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configurationRoot["JwtSecurityToken:Key"]));
-        //            var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+                    var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configurationRoot["JwtSecurityToken:Key"]));
+                    var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
-        //            var jwtSecurityToken = new JwtSecurityToken(
-        //              issuer: _configurationRoot["JwtSecurityToken:Issuer"],
-        //              audience: _configurationRoot["JwtSecurityToken:Audience"],
-        //              claims: claims,
-        //              expires: DateTime.UtcNow.AddMinutes(60),
-        //              signingCredentials: signingCredentials
-        //              );
-        //            return Ok(new
-        //            {
-        //                token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-        //                expiration = jwtSecurityToken.ValidTo
-        //            });
-        //        }
-        //        return Unauthorized();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError($"error while creating token: {ex}");
-        //        return StatusCode((int)HttpStatusCode.InternalServerError, "error while creating token");
-        //    }
-        //}
+                    var jwtSecurityToken = new JwtSecurityToken(
+                      issuer: _configurationRoot["JwtSecurityToken:Issuer"],
+                      audience: _configurationRoot["JwtSecurityToken:Audience"],
+                      claims: claims,
+                      expires: DateTime.UtcNow.AddMinutes(60),
+                      signingCredentials: signingCredentials
+                      );
+                    return Ok(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+                        expiration = jwtSecurityToken.ValidTo
+                    });
+                }
+                return Unauthorized();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"error while creating token: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, "error while creating token");
+            }
+        }
 
     }
 }
