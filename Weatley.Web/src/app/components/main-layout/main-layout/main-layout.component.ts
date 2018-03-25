@@ -37,7 +37,7 @@ export class MainLayoutComponent implements OnInit {
 
 	ngOnInit() {
 		this.menuItems = this.menuItemsDataService.getMenuItems();
-		this.userDataService.getUser('9F9BC46C-CDC6-405A-B197-AB79FE6043EF').subscribe( user => {
+		this.userDataService.getUser('C8EE9AFD-F31D-4181-9789-2D573ACF2244').subscribe( user => {
 			this.user = user;
 		});
 	}

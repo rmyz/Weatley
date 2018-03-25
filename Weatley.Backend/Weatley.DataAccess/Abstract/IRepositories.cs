@@ -29,5 +29,4 @@ namespace Weatley.DataAccess.Abstract
 
         public interface IServiceRepository : IEntityBaseRepository<Service> { }
 
-        public interface IUserRepository : IEntityBaseRepository<User> { }
 }

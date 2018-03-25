@@ -12,9 +12,10 @@ using Weatley.Model.Enums;
 namespace Weatley.Backend.Migrations
 {
     [DbContext(typeof(WeatleyContext))]
-    partial class WeatleyContextModelSnapshot : ModelSnapshot
+    [Migration("20180325153911_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

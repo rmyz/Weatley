@@ -1,8 +1,11 @@
 ﻿using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +13,7 @@ using Weatley.Backend.Core;
 using Weatley.DataAccess;
 using Weatley.DataAccess.Abstract;
 using Weatley.DataAccess.Repositories;
+using Weatley.Model.Entities;
 
 namespace Weatley.Backend
 {
@@ -25,12 +29,31 @@ namespace Weatley.Backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(Configuration);
+
             services.AddDbContext<WeatleyContext>(options =>
                 options.UseSqlServer(Configuration["Data:WeatleyConnection:ConnectionString"],
                 b => b.MigrationsAssembly("Weatley.Backend")));
 
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<WeatleyContext>()
+                .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(cfg =>
+            {
+                cfg.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = ctx =>
+                    {
+                        if (ctx.Request.Path.StartsWithSegments("/api"))
+                            ctx.Response.StatusCode = (int)System.Net.HttpStatusCode.Unauthorized;
+
+                        return Task.FromResult(0);
+                    }
+                };
+            });
+
             services.AddScoped<IAccountingRepository, AccountingRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IActivityRepository, ActivityRepository>();
             services.AddScoped<IBookedRoomRepository, BookedRoomRepository>();
             services.AddScoped<IBookingRepository, BookingRepository>();
@@ -41,7 +64,6 @@ namespace Weatley.Backend
             services.AddScoped<IReportRepository, ReportRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IServiceRepository, ServiceRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddCors();
 
@@ -78,6 +100,7 @@ namespace Weatley.Backend
                     });
               });
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

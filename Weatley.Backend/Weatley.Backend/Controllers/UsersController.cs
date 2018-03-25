@@ -25,19 +25,19 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<User> GetUsers()
         {
-            return _context.Users.Include(u => u.Hotel);
+            return _context.Users;
         }
 
         // GET: api/Users/username
-        [HttpGet("{username}")]
-        public async Task<IActionResult> GetUserByUsername([FromRoute] String username)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserByUsername([FromRoute] String id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.Users.Include(u => u.Hotel).SingleOrDefaultAsync(m => m.Username == username);
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
 
             if (user == null)
             {
@@ -49,7 +49,7 @@ namespace Weatley.Backend.Controllers
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser([FromRoute] Guid id, [FromBody] User user)
+        public async Task<IActionResult> PutUser([FromRoute] String id, [FromBody] User user)
         {
             if (!ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace Weatley.Backend.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteUser([FromRoute] String id)
         {
             if (!ModelState.IsValid)
             {
@@ -118,7 +118,7 @@ namespace Weatley.Backend.Controllers
             return Ok(user);
         }
 
-        private bool UserExists(Guid id)
+        private bool UserExists(String id)
         {
             return _context.Users.Any(e => e.Id == id);
         }
