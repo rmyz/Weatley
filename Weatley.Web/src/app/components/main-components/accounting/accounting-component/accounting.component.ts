@@ -5,6 +5,7 @@ import { Accounting } from '../../../../core/entities/accounting';
 import { Router } from '@angular/router';
 import { RoutingEnum } from '../../../../core/enums/routing-enum';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 
 @Component({
 	selector: 'app-accounting',
@@ -59,24 +60,5 @@ export class AccountingComponent implements OnInit {
 			this.dataSource.data.splice(index, 1);
 		}
 		this.dataSource = new MatTableDataSource<Accounting>(this.dataSource.data);
-	}
-}
-
-@Component({
-	selector: 'app-dialog',
-	template: `
-	<h1 mat-dialog-title>Confirm</h1>
-	<div mat-dialog-content>Do you want delete this order?</div>
-	<div mat-dialog-actions>
-	  <button mat-button style="color: #fff;background-color: #153961;" (click)="dialogRef.close(true)">Confirm</button>
-	  <button mat-button (click)="dialogRef.close(false)">Cancel</button>
-	</div>
-	`,
-})
-export class DialogComponent {
-	constructor(public dialogRef: MatDialogRef<DialogComponent>,
-		private accountingDataService: AccountingDataService) { }
-
-	dialogAccept() {
 	}
 }

@@ -8,15 +8,17 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { ComponentModule } from './components/components.module';
 import { Http, HttpModule } from '@angular/http';
+import { WidgetsModule } from './widgets/widgets.module';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		ComponentModule,
+		WidgetsModule,
 		HttpModule
 	],
 	providers: [],
