@@ -41,10 +41,6 @@ namespace Weatley.DataAccess
                 .IsRequired();
 
             modelBuilder.Entity<Accounting>()
-                .Property(a => a.Id)
-                .HasDefaultValueSql("NEWID()");
-
-            modelBuilder.Entity<Accounting>()
                .Property(a => a.Date)
                .HasDefaultValue(DateTime.Now);
 
@@ -60,10 +56,6 @@ namespace Weatley.DataAccess
             modelBuilder.Entity<Activity>()
                 .Property(a => a.Id)
                 .IsRequired();
-
-            modelBuilder.Entity<Activity>()
-                .Property(a => a.Id)
-                .HasDefaultValueSql("NEWID()");
 
             modelBuilder.Entity<Activity>()
                 .Property(a => a.StartHour)
@@ -103,10 +95,6 @@ namespace Weatley.DataAccess
                 .IsRequired();
 
             modelBuilder.Entity<Booking>()
-                .Property(b => b.Id)
-                .HasDefaultValueSql("NEWID()");
-
-            modelBuilder.Entity<Booking>()
                 .Property(b => b.StartingDate)
                 .HasDefaultValue(DateTime.Now);
 
@@ -127,10 +115,6 @@ namespace Weatley.DataAccess
             modelBuilder.Entity<Customer>()
                 .Property(c => c.Id)
                 .IsRequired();
-
-            modelBuilder.Entity<Customer>()
-                .Property(c => c.Id)
-                .HasDefaultValueSql("NEWID()");
 
             modelBuilder.Entity<Customer>()
                 .HasMany(c => c.Accountings)
@@ -156,10 +140,6 @@ namespace Weatley.DataAccess
             modelBuilder.Entity<Hotel>()
                 .Property(h => h.Id)
                 .IsRequired();
-
-            modelBuilder.Entity<Hotel>()
-                .Property(h => h.Id)
-                .HasDefaultValueSql("NEWID()");
 
             modelBuilder.Entity<Hotel>()
                 .HasMany(h => h.Activities)
@@ -190,10 +170,6 @@ namespace Weatley.DataAccess
                 .IsRequired();
 
             modelBuilder.Entity<Order>()
-                .Property(o => o.Id)
-                .HasDefaultValueSql("NEWID()");
-
-            modelBuilder.Entity<Order>()
                .Property(o => o.OrderDate)
                .HasDefaultValue(DateTime.Now);
 
@@ -213,10 +189,6 @@ namespace Weatley.DataAccess
             modelBuilder.Entity<Product>()
                 .Property(p => p.Id)
                 .IsRequired();
-
-            modelBuilder.Entity<Product>()
-                .Property(p => p.Id)
-                .HasDefaultValueSql("NEWID()");
 
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Hotel)
@@ -255,10 +227,6 @@ namespace Weatley.DataAccess
                 .IsRequired();
 
             modelBuilder.Entity<Report>()
-                .Property(r => r.Id)
-                .HasDefaultValueSql("NEWID()");
-
-            modelBuilder.Entity<Report>()
                 .HasOne(r => r.Customer)
                 .WithMany(c => c.Reports);
 
@@ -270,10 +238,6 @@ namespace Weatley.DataAccess
             modelBuilder.Entity<Room>()
                 .Property(r => r.Id)
                 .IsRequired();
-
-            modelBuilder.Entity<Room>()
-                .Property(r => r.Id)
-                .HasDefaultValueSql("NEWID()");
 
             modelBuilder.Entity<Room>()
                 .HasOne(r => r.Hotel)
@@ -292,10 +256,6 @@ namespace Weatley.DataAccess
                 .IsRequired();
 
             modelBuilder.Entity<Service>()
-                .Property(s => s.Id)
-                .HasDefaultValueSql("NEWID()");
-
-            modelBuilder.Entity<Service>()
                 .HasOne(s => s.Hotel)
                 .WithMany(h => h.Services);
 
@@ -308,10 +268,6 @@ namespace Weatley.DataAccess
             modelBuilder.Entity<User>()
                 .Property(u => u.Id)
                 .IsRequired();
-
-            modelBuilder.Entity<User>()
-                .Property(u => u.Id)
-                .HasDefaultValueSql("NEWID()");
 
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Hotel)

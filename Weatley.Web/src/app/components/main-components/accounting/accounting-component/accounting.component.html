@@ -14,12 +14,12 @@
             </ng-container>
 
             <ng-container matColumnDef="price">
-                <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.finalPrice }} </mat-cell>
+                <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.finalPrice }} €</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="paymentType">
-                <mat-header-cell *matHeaderCellDef> PaymentType </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Payment type </mat-header-cell>
                 <mat-cell *matCellDef="let item"> {{ item.paymentType }} </mat-cell>
             </ng-container>
 

@@ -12,7 +12,7 @@ namespace Weatley.Backend.Migrations
                 name: "Customer",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     IdentificationDocument = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
@@ -28,7 +28,7 @@ namespace Weatley.Backend.Migrations
                 name: "Hotel",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     Address = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
@@ -45,11 +45,11 @@ namespace Weatley.Backend.Migrations
                 name: "Accounting",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     CustomerId = table.Column<Guid>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 21, 48, 57, 140, DateTimeKind.Local)),
+                    Date = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 25, 20, 1, 21, 316, DateTimeKind.Local)),
                     FinalPrice = table.Column<double>(nullable: false),
-                    PaymentType = table.Column<int>(nullable: false)
+                    PaymentType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -66,12 +66,12 @@ namespace Weatley.Backend.Migrations
                 name: "Booking",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     Comment = table.Column<string>(nullable: true),
                     CustomerId = table.Column<Guid>(nullable: true),
                     EndDate = table.Column<DateTime>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    StartingDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 21, 48, 57, 145, DateTimeKind.Local))
+                    StartingDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 25, 20, 1, 21, 320, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -88,12 +88,12 @@ namespace Weatley.Backend.Migrations
                 name: "Order",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     Comment = table.Column<string>(nullable: true),
                     CustomerId = table.Column<Guid>(nullable: true),
                     DeliveryDate = table.Column<DateTime>(nullable: false),
                     FinalPrice = table.Column<double>(nullable: false),
-                    OrderDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 21, 48, 57, 152, DateTimeKind.Local))
+                    OrderDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 25, 20, 1, 21, 325, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -110,11 +110,11 @@ namespace Weatley.Backend.Migrations
                 name: "Report",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     CustomerId = table.Column<Guid>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: false)
+                    Status = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -131,12 +131,12 @@ namespace Weatley.Backend.Migrations
                 name: "Activity",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     EndHour = table.Column<DateTime>(nullable: false),
                     HotelId = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    StartHour = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 17, 21, 48, 57, 142, DateTimeKind.Local))
+                    StartHour = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 25, 20, 1, 21, 318, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -153,12 +153,12 @@ namespace Weatley.Backend.Migrations
                 name: "Product",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     Available = table.Column<bool>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     HotelId = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    ProductType = table.Column<int>(nullable: false)
+                    ProductType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -175,11 +175,11 @@ namespace Weatley.Backend.Migrations
                 name: "Room",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     FloorNumber = table.Column<int>(nullable: false),
                     HotelId = table.Column<Guid>(nullable: true),
                     RoomNumber = table.Column<int>(nullable: false),
-                    RoomType = table.Column<int>(nullable: false)
+                    RoomType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -196,7 +196,7 @@ namespace Weatley.Backend.Migrations
                 name: "Service",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     HotelId = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(nullable: true)
@@ -216,11 +216,11 @@ namespace Weatley.Backend.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(nullable: false),
                     HotelId = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
-                    UserType = table.Column<int>(nullable: false),
+                    UserType = table.Column<string>(nullable: true),
                     Username = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

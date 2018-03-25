@@ -53,7 +53,6 @@ export class AccountingComponent implements OnInit {
 			const index = this.dataSource.data.findIndex(i =>
 				i.id === item.id
 			);
-			console.log(index);
 			this.accountingDataService.deleteGoal(item.id).subscribe(res => {}, err => {
 				console.log(err);
 			});

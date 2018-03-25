@@ -23,14 +23,13 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Accounting", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("CustomerId");
 
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 3, 23, 17, 33, 19, 951, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 3, 25, 20, 1, 21, 316, DateTimeKind.Local));
 
                     b.Property<double>("FinalPrice");
 
@@ -46,8 +45,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Activity", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 
@@ -59,7 +57,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("StartHour")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 3, 23, 17, 33, 19, 954, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 3, 25, 20, 1, 21, 318, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
@@ -86,8 +84,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Booking", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Comment");
 
@@ -99,7 +96,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("StartingDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 3, 23, 17, 33, 19, 957, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 3, 25, 20, 1, 21, 320, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
@@ -111,8 +108,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Customer", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email");
 
@@ -132,8 +128,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Hotel", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
 
@@ -155,8 +150,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Order", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Comment");
 
@@ -168,7 +162,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 3, 23, 17, 33, 19, 963, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 3, 25, 20, 1, 21, 325, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
@@ -180,8 +174,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<bool?>("Available");
 
@@ -224,8 +217,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Report", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("CustomerId");
 
@@ -245,8 +237,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Room", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("FloorNumber");
 
@@ -266,8 +257,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.Service", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 
@@ -285,8 +275,7 @@ namespace Weatley.Backend.Migrations
             modelBuilder.Entity("Weatley.Model.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("HotelId");
 
