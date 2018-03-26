@@ -1,6 +1,8 @@
 ﻿using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Weatley.Backend.Core;
 using Weatley.DataAccess;
 using Weatley.DataAccess.Abstract;
@@ -29,6 +32,9 @@ namespace Weatley.Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(Configuration);
+
+            services.AddCors();
+            services.AddMvc();
 
             services.AddDbContext<WeatleyContext>(options =>
                 options.UseSqlServer(Configuration["Data:WeatleyConnection:ConnectionString"],
@@ -52,6 +58,19 @@ namespace Weatley.Backend
                 };
             });
 
+            services.AddAuthentication(o => {
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidIssuer = Configuration["JwtSecurityToken:Issuer"],
+                    ValidAudience = Configuration["JwtSecurityToken:Audience"],
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSecurityToken:Key"])),
+                    ValidateLifetime = true
+                });
+
+
             services.AddScoped<IAccountingRepository, AccountingRepository>();
             services.AddScoped<IActivityRepository, ActivityRepository>();
             services.AddScoped<IBookedRoomRepository, BookedRoomRepository>();
@@ -63,15 +82,12 @@ namespace Weatley.Backend
             services.AddScoped<IReportRepository, ReportRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IServiceRepository, ServiceRepository>();
-
-            services.AddCors();
-
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

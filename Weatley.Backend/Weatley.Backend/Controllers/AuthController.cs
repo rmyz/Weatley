@@ -99,7 +99,7 @@ namespace Weatley.Backend.Controllers
                       issuer: _configurationRoot["JwtSecurityToken:Issuer"],
                       audience: _configurationRoot["JwtSecurityToken:Audience"],
                       claims: claims,
-                      expires: DateTime.UtcNow.AddMinutes(60),
+                      expires: DateTime.UtcNow.AddYears(10),
                       signingCredentials: signingCredentials
                       );
 
