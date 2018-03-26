@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AccountingComponent } from './accounting-component/accounting.component';
 import { AccountingDataService } from '../../../core/data-services/accounting-data.service';
@@ -50,7 +51,8 @@ import { AccountingRouter } from './accounting-form/accounting-routing.module';
 		AccountingRouter,
 		MatCardModule,
 		MatGridListModule,
-		MatDividerModule
+		MatDividerModule,
+		MatSnackBarModule
 	],
 	providers: [
 		AccountingDataService

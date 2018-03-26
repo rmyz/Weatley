@@ -1,44 +1,52 @@
 <div>
     <div class="title">Accounting Form Management</div>
+    <div>
+        <button type="button" mat-button (click)="cancel()"><mat-icon>arrow_back</mat-icon>Go back</button>
+    </div>
     <div class="example-container mat-elevation-z8">
         <mat-card class="example-container">
-            <form class="main-div">
+            <form class="main-div" [formGroup]="accountingForm">
                 <mat-form-field *ngIf="!id">
-                    <mat-select placeholder="Customer" [(ngModel)]="accountingById.customer" name="customer">
+                    <mat-select placeholder="Customer" required formControlName="customer" name="customer">
                         <mat-option [value]="customer" *ngFor="let customer of customers">{{ customer.name }}</mat-option>
                     </mat-select>
+                    <mat-error>Please select a customer</mat-error>
                 </mat-form-field>
                 <mat-form-field *ngIf="id">
                     <input matInput placeholder="Customer" [disabled]="true" name="customer" [value]="accountingById.customer.name">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="Price" name="price" [(ngModel)]="accountingById.finalPrice">
+                    <input matInput placeholder="Amount" type="number" required name="amount" formControlName="finalPrice">
+                    <mat-error>Please insert the amount</mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <input matInput [matDatepicker]="picker" 
                         placeholder="Choose a date" 
-                        [(ngModel)]="accountingById.date"
+                        formControlName="date"
+                        required
                         (focus)="picker.open()" 
                         (click)="picker.open()"
                         readonly
                         name="date">
+                        <mat-error>Please select a date</mat-error>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-select placeholder="Payment Type" [(ngModel)]="accountingById.paymentType" name="paymentType">
+                    <mat-select placeholder="Payment Type" required formControlName="paymentType" name="paymentType">
                         <mat-option value="Credit card">Credit card</mat-option>
                         <mat-option value="Cash">Cash</mat-option>
                     </mat-select>
+                    <mat-error>Please choose a payment type</mat-error>
                 </mat-form-field>
             </form>
+            <mat-card-actions>
+                <button type="button" mat-button class="float-right" (click)="submitAccounting()">
+                    Save <mat-icon>save</mat-icon>
+                </button>
+            </mat-card-actions>
         </mat-card>
     </div>
-    <div>
-        <button type="button" mat-icon-button class="float-right" matTooltip="Cancel" matTooltipPosition="left" (click)="cancel()">
-                <mat-icon>cancel</mat-icon>
-            </button>
-        <button type="button" mat-icon-button class="float-right" matTooltip="Save" matTooltipPosition="left" (click)="submitAccounting()">
-            <mat-icon>done</mat-icon>
-        </button>
-    </div>
+    <p></p>
+</div>
+    
