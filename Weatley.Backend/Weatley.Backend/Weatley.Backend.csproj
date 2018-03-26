@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20180317200558_initial.cs" />
-    <Compile Remove="Migrations\20180317200558_initial.Designer.cs" />
-    <Compile Remove="Migrations\20180317201507_initial.cs" />
-    <Compile Remove="Migrations\20180317201507_initial.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

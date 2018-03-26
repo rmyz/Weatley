@@ -12,24 +12,22 @@ import { MatDatepickerModule } from '@angular/material';
 import { MatNativeDateModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AccountingComponent } from './accounting-component/accounting.component';
 import { AccountingDataService } from '../../../core/data-services/accounting-data.service';
 import { AccountingFormComponent } from './accounting-form/accounting-form.component';
 import { AccountingRouter } from './accounting-form/accounting-routing.module';
-import { DialogComponent } from './accounting-component/accounting.component';
 
 @NgModule({
 	declarations: [
 		AccountingComponent,
-		AccountingFormComponent,
-		DialogComponent
+		AccountingFormComponent
 	],
 	imports: [
 		MatTooltipModule,
@@ -44,7 +42,6 @@ import { DialogComponent } from './accounting-component/accounting.component';
 		MatPaginatorModule,
 		MatSortModule,
 		MatProgressSpinnerModule,
-		MatDialogModule,
 		MatFormFieldModule,
 		FormsModule,
 		ReactiveFormsModule,
@@ -54,7 +51,8 @@ import { DialogComponent } from './accounting-component/accounting.component';
 		AccountingRouter,
 		MatCardModule,
 		MatGridListModule,
-		MatDividerModule
+		MatDividerModule,
+		MatSnackBarModule
 	],
 	providers: [
 		AccountingDataService
@@ -67,8 +65,7 @@ import { DialogComponent } from './accounting-component/accounting.component';
 		AccountingFormComponent
 	],
 	entryComponents: [
-		AccountingFormComponent,
-		DialogComponent
+		AccountingFormComponent
 	]
 })
 export class AccountingModule { }
