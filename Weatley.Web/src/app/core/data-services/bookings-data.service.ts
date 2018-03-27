@@ -1,23 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Booking } from '../entities/booking';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class BookingDataService {
-    constructor() {}
+	constructor(private http: Http) {}
 
-    getBookings(): Booking[] {
-        return  [new Booking ({ id: '1', startDate: '5/5/2018', endDate: '5/15/2018', comment: 'Im going to arrive at 7pm.', price: 149.30, room: null, customer: null}),
-        new Booking ({ id: '2', startDate: '4/7/2018', endDate: '4/22/2018', comment: 'Im going to arrive at 8pm.', price: 149.30, room: null, customer: null}),
-        new Booking ({ id: '3', startDate: '6/6/2018', endDate: '6/9/2018', comment: 'Im going to arrive at 10am.', price: 149.30, room: null, customer: null}),
-        new Booking ({ id: '4', startDate: '1/6/2018', endDate: '1/11/2018', comment: 'Im going to arrive at 1pm.', price: 149.30, room: null, customer: null}),
-        new Booking ({ id: '5', startDate: '5/24/2018', endDate: '5/30/2018', comment: 'Im going to arrive at 5am.', price: 149.30, room: null, customer: null}),
-        new Booking ({ id: '6', startDate: '9/16/2018', endDate: '9/27/2018', comment: 'Im going to arrive at 2pm.', price: 149.30, room: null, customer: null}),
-        new Booking ({ id: '7', startDate: '8/5/2018', endDate: '8/17/2018', comment: 'Im going to arrive at 1am.', price: 149.30, room: null, customer: null})];
-    }
+	getAccounting(): Observable<Booking[]> {
+		return this.http
+					.get('http://localhost:5000/api/Bookings')
+					.map((res: Response) => res.json());
+	}
 
-    getBooking(id: string) {
-        const bookings = this.getBookings();
+	getAccountingById(id: string): Observable<Booking> {
+		return this.http
+					.get('http://localhost:5000/api/Bookings/' + id)
+					.map((res: Response) => res.json());
+	}
 
-        return bookings.find( b => id === b.id);
-    }
+	createAccounting(booking: Booking) {
+		return this.http
+			.post('http://localhost:5000/api/Bookings/', booking)
+			.map((res: Response) => {
+				return new Booking(res.json());
+			});
+	}
+
+	updateAccounting(booking: Booking): Observable<any> {
+		return this.http
+			.put('http://localhost:5000/api/Bookings/' + booking.id , booking)
+			.map((res: Response) => {
+				return new Booking(res.json());
+		});
+	}
+
+	deleteGoal(bookingId: string): Observable<any> {
+		return this.http
+			.delete('http://localhost:5000/api/Bookings/' + bookingId)
+			.map((res: Response) => {
+				return res.json();
+			});
+		}
 }
