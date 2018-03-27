@@ -5,10 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AccountingModule } from './main-components/accounting/accounting.module';
 import { MainLayoutModule } from './main-layout/main-layout.module';
+import { CustomerComponent } from './main-components/customer/customer/customer.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [CustomerComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
