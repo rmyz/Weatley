@@ -6,7 +6,7 @@
     right: 0;
     margin: auto;
     width: 400px;
-    height: 600px;
+    height: 700px;
 }
 
 .input-width {
@@ -27,6 +27,9 @@
 }
 
 .image {
-    height: 100%;
-    width: 100%;
+    display: block;
+    margin: auto;
+    padding: 20px;
+    height: 50%;
+    width: 50%;
 }
