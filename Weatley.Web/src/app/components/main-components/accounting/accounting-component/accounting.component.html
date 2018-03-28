@@ -11,7 +11,7 @@
 
             <ng-container matColumnDef="customer">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Customer </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.customer.name }} </mat-cell>
+                <mat-cell *matCellDef="let item"> {{ item.customer.surname }}, {{ item.customer.name }} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="date">

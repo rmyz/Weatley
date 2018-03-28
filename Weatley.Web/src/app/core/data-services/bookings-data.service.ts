@@ -9,19 +9,19 @@ import 'rxjs/add/operator/map';
 export class BookingDataService {
 	constructor(private http: Http) {}
 
-	getAccounting(): Observable<Booking[]> {
+	getBookings(): Observable<Booking[]> {
 		return this.http
 					.get('http://localhost:5000/api/Bookings')
 					.map((res: Response) => res.json());
 	}
 
-	getAccountingById(id: string): Observable<Booking> {
+	getBookingById(id: string): Observable<Booking> {
 		return this.http
 					.get('http://localhost:5000/api/Bookings/' + id)
 					.map((res: Response) => res.json());
 	}
 
-	createAccounting(booking: Booking) {
+	createBooking(booking: Booking) {
 		return this.http
 			.post('http://localhost:5000/api/Bookings/', booking)
 			.map((res: Response) => {
@@ -29,7 +29,7 @@ export class BookingDataService {
 			});
 	}
 
-	updateAccounting(booking: Booking): Observable<any> {
+	updateBooking(booking: Booking): Observable<any> {
 		return this.http
 			.put('http://localhost:5000/api/Bookings/' + booking.id , booking)
 			.map((res: Response) => {
@@ -37,7 +37,7 @@ export class BookingDataService {
 		});
 	}
 
-	deleteGoal(bookingId: string): Observable<any> {
+	deleteBooking(bookingId: string): Observable<any> {
 		return this.http
 			.delete('http://localhost:5000/api/Bookings/' + bookingId)
 			.map((res: Response) => {

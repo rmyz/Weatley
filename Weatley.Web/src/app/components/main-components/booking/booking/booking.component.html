@@ -1,3 +1,69 @@
-<p>
-  booking works!
-</p>
+<div>
+  <div class="title">Booking Management</div>
+  <div class="example-container">
+      <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Type to filter...">
+      </mat-form-field>
+  </div>
+  <div class="example-container mat-elevation-z8">
+          
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="customer">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Customer </mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{ item.customer.surname }}, {{ item.customer.name }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="startingDate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Starting Date </mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{ item.startingDate | date: 'dd-MM-yyyy' }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="endDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> End Date </mat-header-cell>
+            <mat-cell *matCellDef="let item"> {{ item.endDate | date: 'dd-MM-yyyy' }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="comment">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Comments </mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{ item.comment }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+            <mat-cell *matCellDef="let item"> {{ item.price }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="rooms">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Rooms </mat-header-cell>
+            <mat-cell *matCellDef="let item">{{ item.rooms }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="function">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let item">
+                  <button type="button" mat-icon-button class="float-right" matTooltip="Delete" matTooltipPosition="above" (click)="onDelete(item)">
+                          <mat-icon>delete</mat-icon>
+                      </button>
+                  <button type="button" mat-icon-button class="float-right" matTooltip="Edit" matTooltipPosition="above" (click)="goToEdit(item.id)">
+                          <mat-icon>mode_edit</mat-icon>
+                      </button>
+              </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+
+      <mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[4, 8, 12]" [showFirstLastButtons]="true">
+      </mat-paginator>
+  </div>
+  <div>
+      <div style="min-height: 500px">
+          <button type="button" mat-button class="float-right" (click)="goToCreate()">
+              Add new <mat-icon>add</mat-icon>
+          </button>
+      </div>
+  </div>
+</div>

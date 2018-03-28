@@ -66,7 +66,7 @@ export class AccountingComponent implements OnInit {
 			const index = this.dataSource.data.findIndex(i =>
 				i.id === item.id
 			);
-			this.accountingDataService.deleteGoal(item.id).subscribe(res => {
+			this.accountingDataService.deleteAccounting(item.id).subscribe(res => {
 				this.snackBar.open('Accounting deleted succesfully', 'Dismiss', {
 					duration: 3000,
 					verticalPosition: 'top',

@@ -4,12 +4,13 @@ import { BookedRoom } from './bookedRoom';
 
 export class Booking {
 	id: string;
-	startDate: Date;
+	startingDate: Date;
 	endDate: Date;
 	comment: string;
 	price: number;
 	customer: Customer;
 	bookedRooms: BookedRoom[];
+	rooms: string;
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);

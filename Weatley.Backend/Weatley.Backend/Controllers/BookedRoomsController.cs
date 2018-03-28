@@ -93,8 +93,13 @@ namespace Weatley.Backend.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            if (_context.Bookings.Any(b => b.Id == bookedRoom.BookingId))
+            {
+                _context.Bookings.Attach(bookedRoom.Booking);
+            }
+            _context.Rooms.Attach(bookedRoom.Room);
             _context.BookedRooms.Add(bookedRoom);
+
             try
             {
                 await _context.SaveChangesAsync();

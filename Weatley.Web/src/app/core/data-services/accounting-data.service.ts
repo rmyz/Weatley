@@ -37,7 +37,7 @@ export class AccountingDataService {
 		});
 	}
 
-	deleteGoal(accountingId: string): Observable<any> {
+	deleteAccounting(accountingId: string): Observable<any> {
 		return this.http
 			.delete('http://localhost:5000/api/Accountings/' + accountingId)
 			.map((res: Response) => {
