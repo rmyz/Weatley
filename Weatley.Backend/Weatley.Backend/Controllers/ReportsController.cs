@@ -10,6 +10,7 @@ using Weatley.Model.Entities;
 
 namespace Weatley.Backend.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/Reports")]
     public class ReportsController : Controller

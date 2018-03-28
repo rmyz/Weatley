@@ -11,6 +11,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Weatley.Backend.Filters;
 using Weatley.Backend.Models;
 using Weatley.Model.Entities;
 
@@ -70,6 +71,7 @@ namespace Weatley.Backend.Controllers
             return BadRequest(result.Errors);
         }
 
+        [ValidateForm]
         [HttpPost("CreateToken")]
         [Route("token")]
         public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)

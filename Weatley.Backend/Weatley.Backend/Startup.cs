@@ -40,36 +40,24 @@ namespace Weatley.Backend
                 options.UseSqlServer(Configuration["Data:WeatleyConnection:ConnectionString"],
                 b => b.MigrationsAssembly("Weatley.Backend")));
 
-            services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<WeatleyContext>()
-                .AddDefaultTokenProviders();
-
-            services.ConfigureApplicationCookie(cfg =>
+            services.AddIdentity<User, Role>().AddEntityFrameworkStores<WeatleyContext>();
+            services.AddAuthentication((cfg =>
             {
-                cfg.Events = new CookieAuthenticationEvents
-                {
-                    OnRedirectToLogin = ctx =>
-                    {
-                        if (ctx.Request.Path.StartsWithSegments("/api"))
-                            ctx.Response.StatusCode = (int)System.Net.HttpStatusCode.Unauthorized;
+                cfg.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                cfg.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
 
-                        return Task.FromResult(0);
-                    }
-                };
-            });
-
-            services.AddAuthentication(o => {
-                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-                options.TokenValidationParameters = new TokenValidationParameters()
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidIssuer = Configuration["JwtSecurityToken:Issuer"],
                     ValidAudience = Configuration["JwtSecurityToken:Audience"],
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSecurityToken:Key"])),
                     ValidateLifetime = true
-                });
-
+                };
+            });
 
             services.AddScoped<IAccountingRepository, AccountingRepository>();
             services.AddScoped<IActivityRepository, ActivityRepository>();
