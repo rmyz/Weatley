@@ -9,12 +9,14 @@ import { Customer } from '../../../../core/entities/customer';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { CustomerDataService } from '../../../../core/data-services/customer-data.service';
 import { uuidv4 } from 'uuid';
+import { Room } from '../../../../core/entities/room';
+import { RoomDataService } from '../../../../core/data-services/room-data.service';
 
 @Component({
 	selector: 'app-booking-form',
 	templateUrl: './booking-form.component.html',
 	styleUrls: ['./booking-form.component.scss'],
-	providers: [BookingDataService, CustomerDataService]
+	providers: [BookingDataService, CustomerDataService, RoomDataService]
 })
 export class BookingFormComponent implements OnInit {
 
@@ -31,12 +33,14 @@ export class BookingFormComponent implements OnInit {
 	});
 	private id: string;
 	private customers: Customer[] = [];
+	private rooms: Room[] = [];
 
 	constructor(private bookingDataService: BookingDataService,
 				private route: ActivatedRoute,
 				private customerDataService: CustomerDataService,
 				private fb: FormBuilder,
-				private snackBar: MatSnackBar) { }
+				private snackBar: MatSnackBar,
+				private roomDataService: RoomDataService) { }
 
 	ngOnInit() {
 			this.route.params.subscribe(params => {
@@ -46,6 +50,10 @@ export class BookingFormComponent implements OnInit {
 
 			this.customerDataService.getCustomers().subscribe(customers => {
 				this.customers = customers;
+			});
+
+			this.roomDataService.getRooms().subscribe(rooms => {
+				this.rooms = rooms;
 			});
 	}
 
@@ -61,7 +69,8 @@ export class BookingFormComponent implements OnInit {
 					price: [this.bookingById.price, Validators.required],
 					startingDate: [this.bookingById.startingDate, Validators.required],
 					endDate: [this.bookingById.endDate, Validators.required],
-					comments: [this.bookingById.comment, Validators.required]
+					comments: [this.bookingById.comment],
+					Room: [this.bookingById.bookedRooms, Validators.required]
 				});
 			});
 		} else {
@@ -70,7 +79,8 @@ export class BookingFormComponent implements OnInit {
 				price: ['', Validators.required],
 				startingDate: [null, Validators.required],
 				endDate: [null, Validators.required],
-				comments: ['', Validators.required]
+				comments: [''],
+				Room: [[new Room], Validators.required]
 			});
 		}
 	}
@@ -85,7 +95,8 @@ export class BookingFormComponent implements OnInit {
 		this.bookingById.endDate.setDate(this.bookingById.endDate.getDate() - 1);
 	}
 
-	submitAccounting() {
+	submitBooking() {
+		console.log(this.bookingForm.value);
 		if (this.bookingForm.valid) {
 			this.bookingById = this.bookingForm.value;
 			this.dateChange();
