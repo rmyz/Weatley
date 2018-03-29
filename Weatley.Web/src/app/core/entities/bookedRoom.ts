@@ -7,4 +7,8 @@ export class BookedRoom {
 	roomId: string;
 	booking: Booking;
 	bookingId: string;
+
+	constructor(values: Object = {}) {
+		Object.assign(this, values);
+	}
 }

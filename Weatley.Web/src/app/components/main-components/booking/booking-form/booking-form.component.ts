@@ -8,9 +8,11 @@ import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 import { Customer } from '../../../../core/entities/customer';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { CustomerDataService } from '../../../../core/data-services/customer-data.service';
-import { uuidv4 } from 'uuid';
 import { Room } from '../../../../core/entities/room';
 import { RoomDataService } from '../../../../core/data-services/room-data.service';
+import { BookedRoom } from '../../../../core/entities/bookedRoom';
+
+const uuidv4 = require('uuid/v4');
 
 @Component({
 	selector: 'app-booking-form',
@@ -28,12 +30,15 @@ export class BookingFormComponent implements OnInit {
 		comments: new FormControl(),
 		Room: new FormControl()
 	});
+
 	private bookingById: Booking = new Booking({
 		customer: new Customer
 	});
+
 	private id: string;
 	private customers: Customer[] = [];
 	private rooms: Room[] = [];
+	private roomsBooking: Room[] = [];
 
 	constructor(private bookingDataService: BookingDataService,
 				private route: ActivatedRoute,
@@ -64,23 +69,27 @@ export class BookingFormComponent implements OnInit {
 				this.bookingById.startingDate = new Date(this.bookingById.startingDate);
 				this.bookingById.endDate = new Date(this.bookingById.endDate);
 
+				this.bookingById.bookedRooms.forEach(rooms => {
+					this.roomsBooking.push(rooms.room);
+				});
+
 				this.bookingForm = this.fb.group({
 					customer: [this.bookingById.customer, Validators.required],
 					price: [this.bookingById.price, Validators.required],
 					startingDate: [this.bookingById.startingDate, Validators.required],
 					endDate: [this.bookingById.endDate, Validators.required],
 					comments: [this.bookingById.comment],
-					Room: [this.bookingById.bookedRooms, Validators.required]
+					Room: [this.roomsBooking, Validators.required]
 				});
 			});
 		} else {
 			this.bookingForm = this.fb.group({
-				customer: [new Customer, Validators.required],
+				customer: [null, Validators.required],
 				price: ['', Validators.required],
 				startingDate: [null, Validators.required],
 				endDate: [null, Validators.required],
 				comments: [''],
-				Room: [[new Room], Validators.required]
+				Room: [null, Validators.required]
 			});
 		}
 	}
@@ -98,10 +107,29 @@ export class BookingFormComponent implements OnInit {
 	submitBooking() {
 		console.log(this.bookingForm.value);
 		if (this.bookingForm.valid) {
-			this.bookingById = this.bookingForm.value;
+			this.bookingById = new Booking({
+				startingDate: this.bookingForm.value.startingDate,
+				endDate: this.bookingForm.value.endDate,
+				comment: this.bookingForm.value.comments,
+				price: this.bookingForm.value.price,
+				customer: this.bookingForm.value.customer
+			});
+			this.bookingById.bookedRooms = [];
+
+			this.bookingForm.value.Room.forEach(room => {
+				this.bookingById.bookedRooms.push(new BookedRoom({
+					id: uuidv4(),
+					room: room,
+					roomId: room.id,
+					booking: this.bookingById,
+					bookingId: this.bookingById.id
+				}));
+			});
+
 			this.dateChange();
 			if (this.id) {
 				this.bookingById.id = this.id;
+				console.log(this.bookingById.bookedRooms);
 				this.bookingDataService.updateBooking(this.bookingById).subscribe(res => {
 					this.snackBar.open('Booking updated succesfully', 'Dismiss', {
 						duration: 3000,
@@ -137,6 +165,11 @@ export class BookingFormComponent implements OnInit {
 
 	cancel() {
 		history.go(-1);
+	}
+
+	compareWithFunc(a, b) {
+
+		return a.roomNumber === b.roomNumber;
 	}
 
 }

@@ -49,7 +49,7 @@
                 <input matInput placeholder="Comments (Optional)" type="text" name="comments" formControlName="comments">
             </mat-form-field>
             <mat-form-field>
-                <mat-select placeholder="Room" required formControlName="Room" name="Room" multiple>
+                <mat-select placeholder="Room" required formControlName="Room" name="Room" [compareWith]="compareWithFunc" multiple>
                     <mat-option [value]="room" *ngFor="let room of rooms">{{ room.roomNumber }} - {{ room.roomType }}</mat-option>
                 </mat-select>
                 <mat-error>Please select a room</mat-error>
