@@ -11,7 +11,7 @@ using Weatley.Model.Entities;
 
 namespace Weatley.Backend.Controllers
 {
-    [Authorize]
+
     [Produces("application/json")]
     [Route("api/Activities")]
     public class ActivitiesController : Controller

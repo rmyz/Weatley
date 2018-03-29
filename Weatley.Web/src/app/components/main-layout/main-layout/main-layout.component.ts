@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItemsDataService } from '../../../core/data-services/menu-items-data.service';
-import { UserDataService } from '../../../core/data-services/users-data.service';
 import { MenuItem } from '../../../core/entities/menu-item';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
+import { UserService } from '../../../core/Auth-services/user.service';
 import { User } from '../../../core/entities/user';
 
 @Component({
 	selector: 'app-main-layout',
 	templateUrl: './main-layout.component.html',
 	styleUrls: ['./main-layout.component.scss'],
-	providers: [MenuItemsDataService, UserDataService],
+	providers: [MenuItemsDataService],
 	animations: [
 		trigger('sidenav', [
 			state('out',
@@ -32,14 +32,10 @@ export class MainLayoutComponent implements OnInit {
 	user: User;
 
 	constructor(
-		private menuItemsDataService: MenuItemsDataService,
-		private userDataService: UserDataService) { }
+		private menuItemsDataService: MenuItemsDataService, private userService: UserService) { }
 
 	ngOnInit() {
 		this.menuItems = this.menuItemsDataService.getMenuItems();
-		this.userDataService.getUser('C8EE9AFD-F31D-4181-9789-2D573ACF2244').subscribe( user => {
-			this.user = user;
-		});
 	}
 
 	changeTheme() {
@@ -52,5 +48,9 @@ export class MainLayoutComponent implements OnInit {
 
 	animationDone() {
 		this.sidenavItems = !this.sidenavItems;
+	}
+
+	logOut() {
+		this.userService.logout();
 	}
 }

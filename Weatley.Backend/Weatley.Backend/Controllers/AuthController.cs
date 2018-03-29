@@ -108,7 +108,8 @@ namespace Weatley.Backend.Controllers
                     return Ok(new
                     {
                         token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-                        expiration = jwtSecurityToken.ValidTo
+                        expiration = jwtSecurityToken.ValidTo,
+                        Claims = jwtSecurityToken.Claims
                     });
                 }
                 return Unauthorized();
