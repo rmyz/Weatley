@@ -11,12 +11,12 @@ import { CommonService } from '../services/common.service';
 import { UserProfile } from '../Auth-services/User.Profile';
 
 @Injectable()
-export class ProductService {
+export class ServicesDataService {
 	constructor(private http: Http,
 		private authProfile: UserProfile,
 		private commonService: CommonService) { }
 
-	getProducts(): Observable<Service[]> {
+	getServices(): Observable<Service[]> {
 		const url = 'http://localhost:5000/api/Service';
 
 		let options = null;

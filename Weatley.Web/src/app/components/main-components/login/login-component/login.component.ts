@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../../../core/Auth-services/user.service';
 import { Http } from '@angular/http';
+import { IsLoggedService } from '../../../../core/services/isLogged.service';
 
 @Component({
 	selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
 	constructor(private fb: FormBuilder,
 		private authService: UserService,
 		private snackBar: MatSnackBar,
-		private router: Router
+		private router: Router,
+		private isLoggedService: IsLoggedService
 	) { }
 
 	ngOnInit() {
@@ -43,8 +45,7 @@ export class LoginComponent implements OnInit {
 					if (this.authService.redirectUrl) {
 						this.router.navigateByUrl(this.authService.redirectUrl);
 					} else {
-						console.log('It works');
-						// this.router.navigate(['/main']);
+						this.isLoggedService.sendMessage(true);
 					}
 				},
 				error => {

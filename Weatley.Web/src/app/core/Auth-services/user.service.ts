@@ -55,7 +55,6 @@ export class UserService {
 			.map((response: Response) => {
 				const userProfile: IProfile = response.json();
 				this.authProfile.setProfile(userProfile);
-				console.log(userProfile);
 				return response.json();
 			}).catch(this.commonService.handleFullError);
 	}
