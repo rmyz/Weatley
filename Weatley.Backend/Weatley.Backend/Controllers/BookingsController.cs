@@ -67,6 +67,7 @@ namespace Weatley.Backend.Controllers
             }
 
             _context.Entry(booking).State = EntityState.Modified;
+            Console.WriteLine(booking);
 
             try
             {
@@ -95,6 +96,15 @@ namespace Weatley.Backend.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            List<Room> temp = new List<Room>();
+
+            foreach (var room in booking.BookedRooms)
+            {
+                temp.Add(room.Room);
+            }
+
+            _context.Rooms.AttachRange(temp);
             _context.Customers.Attach(booking.Customer);
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();

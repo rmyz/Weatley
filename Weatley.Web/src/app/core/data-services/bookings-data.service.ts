@@ -5,8 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+
 @Injectable()
 export class BookingDataService {
+
 	constructor(private http: Http) {}
 
 	getBookings(): Observable<Booking[]> {
@@ -30,6 +32,7 @@ export class BookingDataService {
 	}
 
 	updateBooking(booking: Booking): Observable<any> {
+
 		return this.http
 			.put('http://localhost:5000/api/Bookings/' + booking.id , booking)
 			.map((res: Response) => {

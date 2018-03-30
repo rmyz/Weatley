@@ -12,6 +12,7 @@ import { Room } from '../../../../core/entities/room';
 import { RoomDataService } from '../../../../core/data-services/room-data.service';
 import { BookedRoom } from '../../../../core/entities/bookedRoom';
 
+
 const uuidv4 = require('uuid/v4');
 
 @Component({
@@ -105,7 +106,6 @@ export class BookingFormComponent implements OnInit {
 	}
 
 	submitBooking() {
-		console.log(this.bookingForm.value);
 		if (this.bookingForm.valid) {
 			this.bookingById = new Booking({
 				startingDate: this.bookingForm.value.startingDate,
@@ -116,31 +116,60 @@ export class BookingFormComponent implements OnInit {
 			});
 			this.bookingById.bookedRooms = [];
 
-			this.bookingForm.value.Room.forEach(room => {
-				this.bookingById.bookedRooms.push(new BookedRoom({
-					id: uuidv4(),
-					room: room,
-					roomId: room.id,
-					booking: this.bookingById,
-					bookingId: this.bookingById.id
-				}));
-			});
 
 			this.dateChange();
 			if (this.id) {
+				this.bookingForm.value.Room.forEach(room => {
+					this.bookingById.bookedRooms.push(({
+						id: uuidv4(),
+						room: room,
+						roomId: room.id,
+						booking: new Booking({
+							startingDate: this.bookingForm.value.startingDate,
+							endDate: this.bookingForm.value.endDate,
+							comment: this.bookingForm.value.comments,
+							price: this.bookingForm.value.price,
+							customer: this.bookingForm.value.customer,
+							id: this.id
+						}),
+						bookingId: this.id
+					}));
+				});
+
 				this.bookingById.id = this.id;
-				console.log(this.bookingById.bookedRooms);
-				this.bookingDataService.updateBooking(this.bookingById).subscribe(res => {
-					this.snackBar.open('Booking updated succesfully', 'Dismiss', {
-						duration: 3000,
-						verticalPosition: 'top',
-						horizontalPosition: 'end'
+				this.bookingDataService.deleteBooking(this.bookingById.id).subscribe(res => {
+					this.bookingDataService.createBooking(this.bookingById).subscribe(ress => {
+						this.snackBar.open('Booking updated succesfully', 'Dismiss', {
+							duration: 3000,
+							verticalPosition: 'top',
+							horizontalPosition: 'end'
+						});
+						this.dateGoBack();
+						this.cancel();
+					}, err => {
+						console.log(err);
 					});
-					this.cancel();
-				}, err => {
-					console.log(err);
 				});
 			} else {
+				this.bookingById.id = uuidv4();
+
+				this.bookingForm.value.Room.forEach(room => {
+					this.bookingById.bookedRooms.push(({
+						id: uuidv4(),
+						room: room,
+						roomId: room.id,
+						booking: new Booking({
+							startingDate: this.bookingForm.value.startingDate,
+							endDate: this.bookingForm.value.endDate,
+							comment: this.bookingForm.value.comments,
+							price: this.bookingForm.value.price,
+							customer: this.bookingForm.value.customer,
+							id: this.bookingById.id
+						}),
+						bookingId: this.bookingById.id
+					}));
+				});
+
 				this.bookingById.id = uuidv4();
 				this.bookingDataService.createBooking(this.bookingById).subscribe(res => {
 					this.snackBar.open('Booking created succesfully', 'Dismiss', {
@@ -148,12 +177,12 @@ export class BookingFormComponent implements OnInit {
 						verticalPosition: 'top',
 						horizontalPosition: 'end'
 					});
+					this.dateGoBack();
 					this.cancel();
 				}, err => {
 					console.log(err);
 				});
 			}
-			this.dateGoBack();
 		} else {
 			this.snackBar.open('The inputs are not valid', 'Dismiss', {
 				duration: 3000,
