@@ -14,25 +14,32 @@ import { CoreModule } from '../../core/core.module';
 
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AccountingModule } from '../main-components/accounting/accounting.module';
+import { UserService } from '../../core/Auth-services/user.service';
+import { UserProfile } from '../../core/Auth-services/User.Profile';
+import { CommonService } from '../../core/services/common.service';
 
 
 @NgModule({
-  declarations: [
-    MainLayoutComponent
-  ],
-  imports: [
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatChipsModule,
-    AccountingModule,
-    RouterModule
-  ],
-  providers: [],
-  exports: [MainLayoutComponent]
+	declarations: [
+		MainLayoutComponent
+	],
+	imports: [
+		MatSidenavModule,
+		MatListModule,
+		MatIconModule,
+		MatButtonModule,
+		BrowserModule,
+		BrowserAnimationsModule,
+		MatToolbarModule,
+		MatChipsModule,
+		AccountingModule,
+		RouterModule,
+	],
+	providers: [
+		UserService,
+		UserProfile,
+		CommonService
+	],
+	exports: [MainLayoutComponent]
 })
 export class MainLayoutModule { }

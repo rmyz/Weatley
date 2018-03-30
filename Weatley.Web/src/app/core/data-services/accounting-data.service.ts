@@ -1,24 +1,55 @@
 import { Injectable } from '@angular/core';
 import { Accounting } from '../entities/accounting';
-import { Http } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Response } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { UserProfile } from '../Auth-services/User.Profile';
+import { CommonService } from '../services/common.service';
 
 @Injectable()
 export class AccountingDataService {
-	constructor(private http: Http) {}
+	constructor(private http: Http,
+		private authProfile: UserProfile,
+		private commonService: CommonService) {}
 
 	getAccounting(): Observable<Accounting[]> {
-		return this.http
-					.get('http://localhost:5000/api/Accountings')
-					.map((res: Response) => res.json());
+		const url = 'http://localhost:5000/api/Accountings';
+
+		let options = null;
+		const profile = this.authProfile.getProfile();
+
+		if (profile != null && profile !== undefined) {
+			const headers = new Headers({ 'Authorization': 'Bearer ' + profile.token });
+			options = new RequestOptions({ headers: headers });
+		}
+		const data: Observable<Accounting[]> = this.http.get(url, options)
+			.map(res => <Accounting[]>res.json())
+			.do(accoutings => {
+				console.log('getAccountings:');
+				console.log(accoutings);
+			});
+
+		return data;
 	}
 
 	getAccountingById(id: string): Observable<Accounting> {
-		return this.http
-					.get('http://localhost:5000/api/Accountings/' + id)
-					.map((res: Response) => res.json());
+		const url = 'http://localhost:5000/api/Accountings/' + id;
+
+		let options = null;
+		const profile = this.authProfile.getProfile();
+
+		if (profile != null && profile !== undefined) {
+			const headers = new Headers({ 'Authorization': 'Bearer ' + profile.token });
+			options = new RequestOptions({ headers: headers });
+		}
+		const data: Observable<Accounting> = this.http.get(url, options)
+			.map(res => <Accounting>res.json())
+			.do(accouting => {
+				console.log('getAccounting:');
+				console.log(accouting);
+			});
+
+		return data;
 	}
 
 	createAccounting(accounting: Accounting) {

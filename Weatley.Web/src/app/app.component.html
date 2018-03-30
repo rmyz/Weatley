@@ -1,2 +1,3 @@
-<app-main-layout class="mat-typography"></app-main-layout>
+<app-login *ngIf="!isLoggedIn" class="mat-typography"></app-login>
+<app-main-layout *ngIf="isLoggedIn" class="mat-typography"></app-main-layout>
 <router-outlet></router-outlet>

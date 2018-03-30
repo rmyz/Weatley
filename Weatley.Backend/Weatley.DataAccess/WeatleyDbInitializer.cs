@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Weatley.Model.Entities;
@@ -8,8 +10,7 @@ namespace Weatley.DataAccess
 {
     public class WeatleyDbInitializer
     {
-
-        public static void Seed(WeatleyContext context)
+        public static void Seed(WeatleyContext context, UserManager<User> userManager)
         {
             #region Customers
             if (!context.Customers.Any())
@@ -415,10 +416,16 @@ namespace Weatley.DataAccess
             #region Users
             if (!context.Users.Any())
             {
-                // JOW
+                var user = new User
+                {
+                    Email = "Admin@admin.com",
+                    UserName = "Admin"
+                };
+                userManager.CreateAsync(user, "Pa$$w0rd");
             }
             #endregion
             context.SaveChanges();
         }
+
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Weatley.DataAccess;
+using Weatley.Model.Entities;
 
 namespace Weatley.Backend
 {
@@ -19,7 +21,8 @@ namespace Weatley.Backend
                 try
                 {
                     var context = services.GetRequiredService<WeatleyContext>();
-                    WeatleyDbInitializer.Seed(context);
+                    var userManager = services.GetRequiredService<UserManager<User>>();
+                    WeatleyDbInitializer.Seed(context, userManager);
                 }
                 catch (Exception ex)
                 {

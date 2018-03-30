@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using Weatley.Model.Entities;
 
 namespace Weatley.DataAccess
 {
-    public class WeatleyContext : DbContext
+    public class WeatleyContext : IdentityDbContext<User>
     {
         public DbSet<Accounting> Accountings { get; set; }
         public DbSet<Activity> Activities { get; set; }
@@ -21,12 +22,13 @@ namespace Weatley.DataAccess
         public DbSet<Report> Reports { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Service> Services { get; set; }
-        public DbSet<User> Users { get; set; }
 
-        public WeatleyContext(DbContextOptions options) : base(options) { }
+        public WeatleyContext(DbContextOptions<WeatleyContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Cascade;
@@ -262,16 +264,24 @@ namespace Weatley.DataAccess
             #endregion
             #region User
 
-            modelBuilder.Entity<User>()
-               .ToTable("User");
+            //modelBuilder.Entity<User>()
+            //   .ToTable("User");
 
-            modelBuilder.Entity<User>()
-                .Property(u => u.Id)
-                .IsRequired();
+            //modelBuilder.Entity<User>()
+            //    .Property(u => u.Id)
+            //    .IsRequired();
 
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Hotel)
-                .WithMany(h => h.Users);
+            //modelBuilder.Entity<User>()
+            //    .HasOne(u => u.Hotel)
+            //    .WithMany(h => h.Users);
+
+            //modelBuilder.Entity<User>()
+            //    .Property(u => u.Id)
+            //    .HasDefaultValueSql("NEWID()");
+
+            //modelBuilder.Entity<User>()
+            //    .HasOne(u => u.Hotel)
+            //    .WithMany(h => h.Users);
 
             #endregion
 

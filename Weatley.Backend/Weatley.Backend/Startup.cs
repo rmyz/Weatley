@@ -1,16 +1,23 @@
 ﻿using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Weatley.Backend.Core;
 using Weatley.DataAccess;
 using Weatley.DataAccess.Abstract;
 using Weatley.DataAccess.Repositories;
+using Weatley.Model.Entities;
 
 namespace Weatley.Backend
 {
@@ -23,18 +30,39 @@ namespace Weatley.Backend
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
+            services.AddSingleton(Configuration);
+
+            services.AddCors();
 
             services.AddDbContext<WeatleyContext>(options =>
-                options.UseSqlServer(Configuration["Data:WeatleyConnection:ConnectionString"],                b => b.MigrationsAssembly("Weatley.Backend")));
+                options.UseSqlServer(Configuration["Data:WeatleyConnection:ConnectionString"],
+                b => b.MigrationsAssembly("Weatley.Backend")));
+
+            services.AddIdentity<User, Role>().AddEntityFrameworkStores<WeatleyContext>();
+            services.AddAuthentication((cfg =>
+            {
+                cfg.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                cfg.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = Configuration["JwtSecurityToken:Issuer"],
+                    ValidAudience = Configuration["JwtSecurityToken:Audience"],
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSecurityToken:Key"])),
+                    ValidateLifetime = true
+                };
+            });
 
             services.AddScoped<IAccountingRepository, AccountingRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IActivityRepository, ActivityRepository>();
             services.AddScoped<IBookedRoomRepository, BookedRoomRepository>();
             services.AddScoped<IBookingRepository, BookingRepository>();
@@ -45,16 +73,12 @@ namespace Weatley.Backend
             services.AddScoped<IReportRepository, ReportRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IServiceRepository, ServiceRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-
-            services.AddCors();
-
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -82,6 +106,7 @@ namespace Weatley.Backend
                     });
               });
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
