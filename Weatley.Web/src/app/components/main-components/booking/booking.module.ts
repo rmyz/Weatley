@@ -18,16 +18,15 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BookingComponent } from './booking/booking.component';
+import { BookingRouter } from './booking-routing.module';
+import { BookingFormComponent } from './booking-form/booking-form.component';
 
-import { AccountingComponent } from './accounting-component/accounting.component';
-import { AccountingDataService } from '../../../core/data-services/accounting-data.service';
-import { AccountingFormComponent } from './accounting-form/accounting-form.component';
-import { AccountingRouter } from './accounting-routing.module';
 
 @NgModule({
 	declarations: [
-		AccountingComponent,
-		AccountingFormComponent
+	BookingComponent,
+	BookingFormComponent
 	],
 	imports: [
 		MatTooltipModule,
@@ -48,24 +47,22 @@ import { AccountingRouter } from './accounting-routing.module';
 		MatNativeDateModule,
 		MatDatepickerModule,
 		MatSelectModule,
-		AccountingRouter,
 		MatCardModule,
 		MatGridListModule,
 		MatDividerModule,
-		MatSnackBarModule
+		MatSnackBarModule,
+		BookingRouter
 	],
 	providers: [
-		AccountingDataService
 	],
 	exports: [
-		AccountingComponent,
 		MatGridListModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
-		AccountingFormComponent
+		BookingComponent,
+		BookingFormComponent
 	],
 	entryComponents: [
-		AccountingFormComponent
 	]
 })
-export class AccountingModule { }
+export class BookingModule { }

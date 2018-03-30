@@ -15,62 +15,52 @@ export class AccountingDataService {
 	getAccounting(): Observable<Accounting[]> {
 		const url = 'http://localhost:5000/api/Accountings';
 
-		let options = null;
-		const profile = this.authProfile.getProfile();
-
-		if (profile != null && profile !== undefined) {
-			const headers = new Headers({ 'Authorization': 'Bearer ' + profile.token });
-			options = new RequestOptions({ headers: headers });
-		}
-		const data: Observable<Accounting[]> = this.http.get(url, options)
-			.map(res => <Accounting[]>res.json())
-			.do(accoutings => {
-				console.log('getAccountings:');
-				console.log(accoutings);
+		const options = this.commonService.checkAuth();
+		return this.http.get(url, options)
+			.map(res => res.json())
+			.do(accouting => {
+				console.log('getAccounting:');
+				console.log(accouting);
 			});
-
-		return data;
 	}
 
 	getAccountingById(id: string): Observable<Accounting> {
 		const url = 'http://localhost:5000/api/Accountings/' + id;
 
-		let options = null;
-		const profile = this.authProfile.getProfile();
-
-		if (profile != null && profile !== undefined) {
-			const headers = new Headers({ 'Authorization': 'Bearer ' + profile.token });
-			options = new RequestOptions({ headers: headers });
-		}
-		const data: Observable<Accounting> = this.http.get(url, options)
+		const options = this.commonService.checkAuth();
+		return this.http.get(url, options)
 			.map(res => <Accounting>res.json())
 			.do(accouting => {
 				console.log('getAccounting:');
 				console.log(accouting);
 			});
-
-		return data;
 	}
 
 	createAccounting(accounting: Accounting) {
+		const options = this.commonService.checkAuth();
+
 		return this.http
-			.post('http://localhost:5000/api/Accountings/', accounting)
+			.post('http://localhost:5000/api/Accountings/', accounting, options)
 			.map((res: Response) => {
 				return new Accounting(res.json());
 			});
 	}
 
 	updateAccounting(accounting: Accounting): Observable<any> {
+		const options = this.commonService.checkAuth();
+
 		return this.http
-			.put('http://localhost:5000/api/Accountings/' + accounting.id , accounting)
+			.put('http://localhost:5000/api/Accountings/' + accounting.id , accounting, options)
 			.map((res: Response) => {
 				return new Accounting(res.json());
 		});
 	}
 
-	deleteGoal(accountingId: string): Observable<any> {
+	deleteAccounting(accountingId: string): Observable<any> {
+		const options = this.commonService.checkAuth();
+
 		return this.http
-			.delete('http://localhost:5000/api/Accountings/' + accountingId)
+			.delete('http://localhost:5000/api/Accountings/' + accountingId, options)
 			.map((res: Response) => {
 				return res.json();
 			});

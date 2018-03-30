@@ -6,22 +6,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AccountingModule } from './main-components/accounting/accounting.module';
 import { MainLayoutModule } from './main-layout/main-layout.module';
 import { LoginModule } from './main-components/login/login.module';
+import { BookingModule } from './main-components/booking/booking.module';
 
 
 @NgModule({
-	declarations: [],
+declarations: [],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
 		AccountingModule,
 		MainLayoutModule,
-		LoginModule
+		LoginModule,
+		BookingModule
 	],
 	providers: [],
 	exports: [
 		AccountingModule,
 		MainLayoutModule,
-		LoginModule
+		LoginModule,
+		BookingModule
 	]
 })
 export class ComponentModule { }

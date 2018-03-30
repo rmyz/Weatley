@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AccountingFormComponent } from './accounting-form.component';
-import { RoutingEnum } from '../../../../core/enums/routing-enum';
+import { AccountingFormComponent } from './accounting-form/accounting-form.component';
+import { RoutingEnum } from '../../../core/enums/routing-enum';
 
 
 const routes: Routes = [

@@ -95,8 +95,8 @@ namespace Weatley.Backend.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             _context.BookedRooms.Add(bookedRoom);
+
             try
             {
                 await _context.SaveChangesAsync();

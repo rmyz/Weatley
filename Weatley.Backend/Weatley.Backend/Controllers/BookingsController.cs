@@ -28,7 +28,8 @@ namespace Weatley.Backend.Controllers
         public IEnumerable<Booking> GetBookings()
         {
             return _context.Bookings.Include(b => b.Customer)
-                                    .Include(b => b.BookedRooms);
+                                    .Include(b => b.BookedRooms)
+                                        .ThenInclude(br => br.Room);
         }
 
         // GET: api/Bookings/5
@@ -42,6 +43,7 @@ namespace Weatley.Backend.Controllers
 
             var booking = await _context.Bookings.Include(b => b.Customer)
                                                  .Include(b => b.BookedRooms)
+                                                    .ThenInclude(br => br.Room)
                                                  .SingleOrDefaultAsync(m => m.Id == id);
 
             if (booking == null)
@@ -67,6 +69,7 @@ namespace Weatley.Backend.Controllers
             }
 
             _context.Entry(booking).State = EntityState.Modified;
+            Console.WriteLine(booking);
 
             try
             {
@@ -96,6 +99,15 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
+            List<Room> temp = new List<Room>();
+
+            foreach (var room in booking.BookedRooms)
+            {
+                temp.Add(room.Room);
+            }
+
+            _context.Rooms.AttachRange(temp);
+            _context.Customers.Attach(booking.Customer);
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
 
