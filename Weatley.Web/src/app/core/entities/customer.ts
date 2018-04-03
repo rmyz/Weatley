@@ -3,7 +3,7 @@ export class Customer {
     name: string;
     surname: string;
     identificationDocument: string;
-    phone: string;
+    phoneNumber: string;
     email: string;
 
     constructor(values: Object = {}) {

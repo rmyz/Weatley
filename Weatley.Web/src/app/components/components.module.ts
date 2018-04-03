@@ -5,20 +5,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AccountingModule } from './main-components/accounting/accounting.module';
 import { MainLayoutModule } from './main-layout/main-layout.module';
-import { CustomerComponent } from './main-components/customer/customer/customer.component';
+import { CustomerModule } from './main-components/customer/customer.module';
 
 
 @NgModule({
-  declarations: [CustomerComponent],
+  declarations: [],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AccountingModule,
+    CustomerModule,
     MainLayoutModule
   ],
   providers: [],
   exports: [
     AccountingModule,
+    CustomerModule,
     MainLayoutModule
   ]
 })

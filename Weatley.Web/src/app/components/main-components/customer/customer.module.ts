@@ -1,10 +1,51 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material';
+import { MatProgressSpinnerModule } from '@angular/material';
+import { MatSortModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+
+import { CustomerComponent } from './customer-component/customer.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: []
+	declarations: [
+    CustomerComponent
+	],
+	imports: [
+		MatTooltipModule,
+		MatIconModule,
+		BrowserModule,
+		MatButtonModule,
+		BrowserAnimationsModule,
+		MatTableModule,
+		BrowserAnimationsModule,
+		MatInputModule,
+		MatTableModule,
+		MatPaginatorModule,
+		MatSortModule,
+		MatProgressSpinnerModule,
+		MatFormFieldModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatSelectModule,
+		MatFormFieldModule,
+    	MatCardModule
+	],
+	providers: [
+		
+	],
+	exports: [
+	],
+	entryComponents: [
+	]
 })
 export class CustomerModule { }
