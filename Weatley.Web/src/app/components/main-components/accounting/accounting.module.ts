@@ -48,7 +48,7 @@ import { AccountingRouter } from './accounting-routing.module';
 		MatNativeDateModule,
 		MatDatepickerModule,
 		MatSelectModule,
-		AccountingRouter,
+		// AccountingRouter,
 		MatCardModule,
 		MatGridListModule,
 		MatDividerModule,

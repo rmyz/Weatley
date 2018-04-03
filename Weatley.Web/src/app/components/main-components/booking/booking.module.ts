@@ -51,7 +51,7 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
 		MatGridListModule,
 		MatDividerModule,
 		MatSnackBarModule,
-		BookingRouter
+		// BookingRouter
 	],
 	providers: [
 	],

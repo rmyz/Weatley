@@ -6,6 +6,8 @@ import { UserService } from '../../../core/Auth-services/user.service';
 import { User } from '../../../core/entities/user';
 import { Router } from '@angular/router';
 import { ServicesDataService } from '../../../core/data-services/services-data.service';
+import { RoutingEnum } from '../../../core/enums/routing-enum';
+import { IsLoggedService } from '../../../core/services/isLogged.service';
 
 @Component({
 	selector: 'app-main-layout',
@@ -37,6 +39,7 @@ export class MainLayoutComponent implements OnInit {
 		private menuItemsDataService: MenuItemsDataService,
 		private userService: UserService,
 		private servicesDataService: ServicesDataService,
+		private isLoggedService: IsLoggedService,
 		private router: Router) { }
 
 	ngOnInit() {
@@ -57,5 +60,7 @@ export class MainLayoutComponent implements OnInit {
 
 	logOut() {
 		this.userService.logout();
+		this.isLoggedService.sendMessage(true);
+		this.router.navigate([RoutingEnum.LOGIN_ROUTE]);
 	}
 }
