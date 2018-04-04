@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { UserService } from '../Auth-services/user.service';
+import { RoutingEnum } from '../enums/routing-enum';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -12,7 +13,7 @@ export class AuthGuard implements CanActivate {
 		}
 
 		this.authService.redirectUrl = state.url;
-		this.router.navigate(['']);
+		this.router.navigate([RoutingEnum.LOGIN_ROUTE]);
 		return false;
 	}
 }

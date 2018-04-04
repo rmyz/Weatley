@@ -22,7 +22,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccountingComponent } from './accounting-component/accounting.component';
 import { AccountingDataService } from '../../../core/data-services/accounting-data.service';
 import { AccountingFormComponent } from './accounting-form/accounting-form.component';
-import { AccountingRouter } from './accounting-routing.module';
 
 @NgModule({
 	declarations: [
@@ -48,7 +47,7 @@ import { AccountingRouter } from './accounting-routing.module';
 		MatNativeDateModule,
 		MatDatepickerModule,
 		MatSelectModule,
-		AccountingRouter,
+		// AccountingRouter,
 		MatCardModule,
 		MatGridListModule,
 		MatDividerModule,

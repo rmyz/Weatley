@@ -9,6 +9,7 @@ import { CommonService } from '../services/common.service';
 import { contentHeaders } from '../common/headers';
 import { UserProfile } from './User.Profile';
 import { IProfile } from '../models/user-model';
+import { RoutingEnum } from '../enums/routing-enum';
 
 @Injectable()
 export class UserService {

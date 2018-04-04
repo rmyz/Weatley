@@ -27,7 +27,7 @@
 						</mat-chip-list>
 						<mat-divider class="chip-margin"></mat-divider>
 					</div>
-				<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route" >
+				<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="['/' + menuItem.route]" >
 					<mat-icon color="accent" mat-list-icon>{{ menuItem.icon }}</mat-icon>
 					<p matLine *ngIf="sidenavItems">{{ menuItem.name }}</p>
 				</mat-list-item>
