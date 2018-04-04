@@ -13,6 +13,7 @@ import { HotelManagementComponent } from './components/main-components/hotel-man
 import { RoomsComponent } from './components/main-components/hotel-management/rooms/rooms.component';
 import { ProductsComponent } from './components/main-components/hotel-management/products/products.component';
 import { HotelCardComponent } from './components/main-components/hotel-management/hotel-card/hotel-card.component';
+import { InternalsComponent } from './components/main-components/hotel-management/internals/internals.component';
 
 const routes: Routes = [
 	{
@@ -65,6 +66,10 @@ const routes: Routes = [
 					{
 						path: RoutingEnum.HOTEL_MANAGEMENT_PRODUCTS,
 						component: ProductsComponent
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_INTERNAL,
+						component: InternalsComponent
 					}
 				]
 			}

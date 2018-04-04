@@ -9,13 +9,15 @@ import { RouterModule } from '@angular/router';
 import { RoomsComponent } from './rooms/rooms.component';
 import { ProductsComponent } from './products/products.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
+import { InternalsComponent } from './internals/internals.component';
 
 @NgModule({
 	declarations: [
 		HotelManagementComponent,
 		RoomsComponent,
 		ProductsComponent,
-		HotelCardComponent
+		HotelCardComponent,
+		InternalsComponent
 	],
 	imports: [
 		BrowserAnimationsModule,
@@ -28,7 +30,8 @@ import { HotelCardComponent } from './hotel-card/hotel-card.component';
 	exports: [
 		HotelManagementComponent,
 		RoomsComponent,
-		HotelCardComponent
+		HotelCardComponent,
+		InternalsComponent
 	],
 	entryComponents: [
 	]
