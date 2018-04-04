@@ -2,10 +2,10 @@
 	<mat-toolbar color="primary">
 		<h2>Header</h2>
 		<div class="flex-spacer"></div>
-		<button mat-icon-button (click)="changeTheme()">
+		<button class="header-spacer" mat-icon-button (click)="changeTheme()">
 			<mat-icon>wb_sunny</mat-icon>
 		</button>
-		<button mat-icon-button (click)="logOut()">Log out</button>
+		<button class="header-spacer" mat-button (click)="logOut()">Log out</button>
 	</mat-toolbar>
 	<mat-sidenav-container class="sidenav-container" autosize>
 		<mat-sidenav #sidenav mode="side" opened="true" 

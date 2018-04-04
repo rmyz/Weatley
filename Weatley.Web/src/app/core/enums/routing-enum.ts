@@ -5,5 +5,6 @@ export enum RoutingEnum {
 	BOOKING_ROUTE = 'booking',
 	BOOKING_CREATE_ROUTE = 'booking/create',
 	BOOKING_EDIT_ROUTE = 'booking/edit',
-	LOGIN_ROUTE = 'login'
+	LOGIN_ROUTE = 'login',
+	NOT_FOUND_ROUTE = '404'
 }

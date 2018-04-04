@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout/main-layout.component';
 import { BookingFormComponent } from './components/main-components/booking/booking-form/booking-form.component';
 import { AccountingFormComponent } from './components/main-components/accounting/accounting-form/accounting-form.component';
+import { NotFoundComponent } from './widgets/not-found/not-found.component';
 
 const routes: Routes = [
 	{
@@ -51,6 +52,14 @@ const routes: Routes = [
 	{
 		path: RoutingEnum.LOGIN_ROUTE,
 		component: LoginComponent
+	},
+	{
+		path: RoutingEnum.NOT_FOUND_ROUTE,
+		component: NotFoundComponent
+	},
+	{
+		path: '**',
+		redirectTo: RoutingEnum.NOT_FOUND_ROUTE
 	}
 ];
 
