@@ -7,13 +7,14 @@
 		</button>
 		<button mat-icon-button (click)="logOut()">Log out</button>
 	</mat-toolbar>
-	<mat-sidenav-container class="sidenav-container">
+	<mat-sidenav-container class="sidenav-container" autosize>
 		<mat-sidenav #sidenav mode="side" opened="true" 
 			[@sidenav]="sidenavStatus"
-			(@sidenav.done)="animationDone()">
+			(@sidenav.done)="animationDone()"
+			[disableClose]="true">
 			<mat-nav-list>
-				<mat-list-item>
-					<button mat-icon-button (click)="toggleState()">
+				<mat-list-item (click)="toggleState()">
+					<button mat-icon-button>
 						<mat-icon *ngIf="!sidenavItems">chevron_right</mat-icon>
 						<mat-icon *ngIf="sidenavItems">chevron_left</mat-icon>
 					</button>
