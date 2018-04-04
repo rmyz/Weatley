@@ -19,7 +19,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BookingComponent } from './booking/booking.component';
-import { BookingRouter } from './booking-routing.module';
 import { BookingFormComponent } from './booking-form/booking-form.component';
 
 
