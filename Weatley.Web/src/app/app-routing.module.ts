@@ -9,6 +9,10 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout/main-layout.component';
 import { BookingFormComponent } from './components/main-components/booking/booking-form/booking-form.component';
 import { AccountingFormComponent } from './components/main-components/accounting/accounting-form/accounting-form.component';
+import { HotelManagementComponent } from './components/main-components/hotel-management/hotel-management/hotel-management.component';
+import { RoomsComponent } from './components/main-components/hotel-management/rooms/rooms.component';
+import { ProductsComponent } from './components/main-components/hotel-management/products/products.component';
+import { HotelCardComponent } from './components/main-components/hotel-management/hotel-card/hotel-card.component';
 
 const routes: Routes = [
 	{
@@ -45,6 +49,25 @@ const routes: Routes = [
 				component: BookingFormComponent,
 				canActivate: [AuthGuard]
 			},
+			{
+				path: RoutingEnum.HOTEL_MANAGEMENT,
+				component: HotelManagementComponent,
+				canActivate: [AuthGuard],
+				children: [
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_HOTEL,
+						component: HotelCardComponent,
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_ROOMS,
+						component: RoomsComponent,
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_PRODUCTS,
+						component: ProductsComponent
+					}
+				]
+			}
 		],
 		canActivate: [AuthGuard]
 	},

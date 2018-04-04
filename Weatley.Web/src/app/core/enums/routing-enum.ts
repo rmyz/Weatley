@@ -5,5 +5,10 @@ export enum RoutingEnum {
 	BOOKING_ROUTE = 'booking',
 	BOOKING_CREATE_ROUTE = 'booking/create',
 	BOOKING_EDIT_ROUTE = 'booking/edit',
-	LOGIN_ROUTE = 'login'
+	LOGIN_ROUTE = 'login',
+	HOTEL_MANAGEMENT = 'hotel-management',
+	HOTEL_MANAGEMENT_HOTEL = 'hotel',
+	HOTEL_MANAGEMENT_ROOMS = 'rooms',
+	HOTEL_MANAGEMENT_PRODUCTS = 'products',
+	HOTEL_MANAGEMENT_INTERNAL = 'internal'
 }
