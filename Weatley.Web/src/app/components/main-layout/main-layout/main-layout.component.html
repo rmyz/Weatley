@@ -12,8 +12,8 @@
 			[@sidenav]="sidenavStatus"
 			(@sidenav.done)="animationDone()">
 			<mat-nav-list>
-				<mat-list-item>
-					<button mat-icon-button (click)="toggleState()">
+				<mat-list-item (click)="toggleState()">
+					<button mat-icon-button>
 						<mat-icon *ngIf="!sidenavItems">chevron_right</mat-icon>
 						<mat-icon *ngIf="sidenavItems">chevron_left</mat-icon>
 					</button>
