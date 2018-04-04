@@ -15,10 +15,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 
 import { CustomerComponent } from './customer-component/customer.component';
+import { CustomerFormComponent } from './customer-form/customer-form.component';
 
 @NgModule({
 	declarations: [
-    CustomerComponent
+    CustomerComponent,
+    CustomerFormComponent
 	],
 	imports: [
 		MatTooltipModule,

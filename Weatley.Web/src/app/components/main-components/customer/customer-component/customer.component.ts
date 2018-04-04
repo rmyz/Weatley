@@ -16,7 +16,7 @@ import { Customer } from '../../../../core/entities/customer';
 })
 export class CustomerComponent implements OnInit {
 
-    displayedColumns = ['name', 'surname', 'email', 'phoneNumber', 'dni'];
+    displayedColumns = ['name', 'surname', 'dni', 'function', 'function_edit'];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
