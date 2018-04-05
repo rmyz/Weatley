@@ -33,4 +33,11 @@ export class CustomerDataService {
 				return new Customer(res.json());
 			});
 	}
+	deleteGoal(customerId: string): Observable<any> {
+		return this.http
+			.delete('http://localhost:5000/api/Customers/' + customerId)
+			.map((res: Response) => {
+				return res.json();
+			});
+		}
 }

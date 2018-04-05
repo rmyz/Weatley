@@ -53,5 +53,32 @@ export class CustomerComponent implements OnInit {
     }
     goToCreate() {
 		this.router.navigate([RoutingEnum.CUSTOMER_CREATE_ROUTE]);
+    }
+    onDelete(item) {
+		const dialogRef = this.dialog.open(DialogComponent);
+
+		dialogRef.afterClosed().subscribe(result => {
+			this.deleteRow(item, result);
+		});
+    }
+    deleteRow(item, isDeleteable) {
+		if (isDeleteable) {
+			const index = this.dataSource.data.findIndex(i =>
+				i.id === item.id
+			);
+			this.customerDataService.deleteGoal(item.id).subscribe(res => {
+				this.snackBar.open('Customer deleted succesfully', 'Dismiss', {
+					duration: 3000,
+					verticalPosition: 'top',
+					horizontalPosition: 'end'
+				});
+			}, err => {
+				console.log(err);
+			});
+			this.dataSource.data.splice(index, 1);
+		}
+		this.dataSource = new MatTableDataSource<Customer>(this.dataSource.data);
+		this.dataSource.sort = this.sort;
+		this.dataSource.paginator = this.paginator;
 	}
 }
