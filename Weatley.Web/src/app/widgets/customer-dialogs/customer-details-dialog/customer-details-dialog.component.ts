@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Customer } from "../../../core/entities/customer";
+import { Customer } from '../../../core/entities/customer';
+import { MatPaginator, MatTableDataSource, MatSort, MatSnackBarConfig } from '@angular/material';
 
 @Component({
 	selector: 'app-customer-details-dialog',

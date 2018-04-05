@@ -81,9 +81,9 @@ export class CustomerComponent implements OnInit {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
     }
-    goToBookingDialog(customer) {
+    goToDetailsDialog(customer) {
         const dialogRef = this.dialog.open(CustomerDetailsDialogComponent, {
-            width: '250px',
+            width: '500px',
             data: {customer: customer}
           });
     }
