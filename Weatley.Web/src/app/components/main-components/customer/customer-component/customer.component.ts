@@ -35,7 +35,6 @@ export class CustomerComponent implements OnInit {
             this.dataSource = new MatTableDataSource<Customer>(this.dataCustomer);
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;
-            console.log(this.dataCustomer);
         });
     }
 
@@ -47,8 +46,6 @@ export class CustomerComponent implements OnInit {
     }
 
     goToEdit(id) {
-        console.log(id);
-        
 		this.router.navigate([RoutingEnum.CUSTOMER_EDIT_ROUTE + '/' + id]);
     }
     goToCreate() {

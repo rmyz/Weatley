@@ -22,9 +22,7 @@ export class CustomerFormComponent implements OnInit {
         phoneNumber: new FormControl(),
         email: new FormControl()
     });
-    private customerById: Customer = new Customer({
-        customer: new Customer
-    });
+    private customerById: Customer = new Customer();
     private id: string;
     private customers: Customer[] = [];
 
@@ -69,41 +67,41 @@ export class CustomerFormComponent implements OnInit {
     }
 
     submitCustomer() {
-        console.log(this.id);
-        // if (this.customerForm.valid) {
-        //     this.customerById = this.customerForm.value;
-        //     if (this.id) {
-        //         this.customerById.id = this.id;
-        //         this.customerDataService.updateCustomers(this.customerById).subscribe(res => {
-        //             this.snackBar.open('Customers updated succesfully', 'Dismiss', {
-        //                 duration: 3000,
-        //                 verticalPosition: 'top',
-        //                 horizontalPosition: 'end'
-        //             });
-        //             this.cancel();
-        //         }, err => {
-        //             console.log(err);
-        //         });
-        //     } else {
-        //         this.customerById.id = uuidv4();
-        //         this.customerDataService.createCustomer(this.customerById).subscribe(res => {
-        //             this.snackBar.open('Customer created succesfully', 'Dismiss', {
-        //                 duration: 3000,
-        //                 verticalPosition: 'top',
-        //                 horizontalPosition: 'end'
-        //             });
-        //             this.cancel();
-        //         }, err => {
-        //             console.log(err);
-        //         });
-        //     }
-        // } else {
-        //     this.snackBar.open('The inputs are not valid', 'Dismiss', {
-        //         duration: 3000,
-        //         verticalPosition: 'top',
-        //         horizontalPosition: 'end'
-        //     });
-        // }
+        
+        if (this.customerForm.valid) {
+            this.customerById = this.customerForm.value;
+            if (this.id) {
+                this.customerById.id = this.id;
+                this.customerDataService.updateCustomers(this.customerById).subscribe(res => {
+                    this.snackBar.open('Customers updated succesfully', 'Dismiss', {
+                        duration: 3000,
+                        verticalPosition: 'top',
+                        horizontalPosition: 'end'
+                    });
+                    this.cancel();
+                }, err => {
+                    console.log(err);
+                });
+            } else {
+                this.customerById.id = uuidv4();
+                this.customerDataService.createCustomer(this.customerById).subscribe(res => {
+                    this.snackBar.open('Customer created succesfully', 'Dismiss', {
+                        duration: 3000,
+                        verticalPosition: 'top',
+                        horizontalPosition: 'end'
+                    });
+                    this.cancel();
+                }, err => {
+                    console.log(err);
+                });
+            }
+        } else {
+            this.snackBar.open('The inputs are not valid', 'Dismiss', {
+                duration: 3000,
+                verticalPosition: 'top',
+                horizontalPosition: 'end'
+            });
+        }
     }
 
     cancel() {
