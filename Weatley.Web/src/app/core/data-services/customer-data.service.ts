@@ -14,4 +14,23 @@ export class CustomerDataService {
 					.get('http://localhost:5000/api/Customers')
 					.map((res: Response) => res.json());
 	}
+	getCustomerById(id: string): Observable<Customer> {
+		return this.http
+					.get('http://localhost:5000/api/Customers/' + id)
+					.map((res: Response) => res.json());
+	}
+	updateCustomers(customer: Customer): Observable<any> {
+		return this.http
+			.put('http://localhost:5000/api/Customers/' + customer.id , customer)
+			.map((res: Response) => {
+				return new Customer(res.json());
+		});
+	}
+	createCustomer(customer: Customer) {
+		return this.http
+			.post('http://localhost:5000/api/Customers/', customer)
+			.map((res: Response) => {
+				return new Customer(res.json());
+			});
+	}
 }

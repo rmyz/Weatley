@@ -40,6 +40,7 @@ export class AccountingComponent implements OnInit {
 
 	goToEdit(id) {
 		this.router.navigate([RoutingEnum.ACCOUNTING_EDIT_ROUTE + '/' + id]);
+		console.log(id);
 	}
 
 	goToCreate() {

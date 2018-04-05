@@ -45,4 +45,13 @@ export class CustomerComponent implements OnInit {
         filterValue = filterValue.toLowerCase();
         this.dataSource.filter = filterValue;
     }
+
+    goToEdit(id) {
+        console.log(id);
+        
+		this.router.navigate([RoutingEnum.CUSTOMER_EDIT_ROUTE + '/' + id]);
+    }
+    goToCreate() {
+		this.router.navigate([RoutingEnum.CUSTOMER_CREATE_ROUTE]);
+	}
 }

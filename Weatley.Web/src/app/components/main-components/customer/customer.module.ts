@@ -16,6 +16,8 @@ import { MatCardModule } from '@angular/material/card';
 
 import { CustomerComponent } from './customer-component/customer.component';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
+import { CustomerDataService } from '../../../core/data-services/customer-data.service';
+import { CustomerRouter } from './customer-form/customer-routing.module';
 
 @NgModule({
 	declarations: [
@@ -40,14 +42,18 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
 		ReactiveFormsModule,
 		MatSelectModule,
 		MatFormFieldModule,
-    	MatCardModule
+		MatCardModule,
+		CustomerRouter
 	],
 	providers: [
-		
+		CustomerDataService
 	],
 	exports: [
+		CustomerComponent,
+		CustomerFormComponent
 	],
 	entryComponents: [
+		CustomerFormComponent
 	]
 })
 export class CustomerModule { }
