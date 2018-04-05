@@ -28,7 +28,7 @@
                 <ng-container matColumnDef="function">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <button type="button" mat-icon-button class="float-right" matTooltip="Bookings" matTooltipPosition="above" (click)="goToEdit(item.id)">
+                        <button type="button" mat-icon-button class="float-right" matTooltip="Bookings" matTooltipPosition="above" (click)="goToBookingDialog(item)">
                             <mat-icon>book</mat-icon>
                         </button>
                         <button type="button" mat-icon-button class="float-right" matTooltip="Orders" matTooltipPosition="above" (click)="goToEdit(item.id)">

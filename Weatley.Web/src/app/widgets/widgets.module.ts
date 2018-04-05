@@ -22,10 +22,12 @@ import { CustomerDetailsDialogComponent } from './customer-dialogs/customer-deta
 	],
 	providers: [],
 	exports: [
-		DialogComponent
+		DialogComponent,
+		CustomerDetailsDialogComponent
 	],
 	entryComponents: [
-		DialogComponent
+		DialogComponent,
+		CustomerDetailsDialogComponent
 	]
 	})
 export class WidgetsModule { }

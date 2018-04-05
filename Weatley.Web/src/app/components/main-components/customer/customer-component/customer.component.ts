@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RoutingEnum } from '../../../../core/enums/routing-enum';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
+import { CustomerDetailsDialogComponent } from '../../../../widgets/customer-dialogs/customer-details-dialog/customer-details-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Customer } from '../../../../core/entities/customer';
 
@@ -20,6 +21,8 @@ export class CustomerComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+
+    customer: object;
 
     dataSource: MatTableDataSource<Customer>;
     dataCustomer: Customer[] = [];
@@ -77,5 +80,11 @@ export class CustomerComponent implements OnInit {
 		this.dataSource = new MatTableDataSource<Customer>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-	}
+    }
+    goToBookingDialog(customer) {
+        const dialogRef = this.dialog.open(CustomerDetailsDialogComponent, {
+            width: '250px',
+            data: {customer: customer}
+          });
+    }
 }
