@@ -1,3 +1,33 @@
-<p>
-  customer-order-dialog works!
-</p>
+<h1 mat-dialog-title>{{ customer.name }} {{ customer.surname }} Accounting</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+	<mat-table #table [dataSource]="dataSource" matSort>
+
+		<ng-container matColumnDef="comment">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Product </mat-header-cell>
+			<mat-cell *matCellDef="let item"> {{ item.comment }} </mat-cell>
+		</ng-container>
+
+		<ng-container matColumnDef="finalPrice">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+			<mat-cell *matCellDef="let item"> {{ item.finalPrice }} €</mat-cell>
+		</ng-container>
+
+		<ng-container matColumnDef="orderDate">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Order Date </mat-header-cell>
+			<mat-cell *matCellDef="let item"> {{ item.orderDate | date: 'dd-MM-yyyy' }}</mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="deliveryDate">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Delivery Date </mat-header-cell>
+			<mat-cell *matCellDef="let item"> {{ item.deliveryDate | date: 'dd-MM-yyyy' }}</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+	</mat-table>
+
+	<mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[4, 8, 12]" [showFirstLastButtons]="true">
+	</mat-paginator>
+</div>

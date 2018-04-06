@@ -5,10 +5,21 @@ import { Router } from '@angular/router';
 import { RoutingEnum } from '../../../../core/enums/routing-enum';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
-import { CustomerDetailsDialogComponent } from '../../../../widgets/customer-dialogs/customer-details-dialog/customer-details-dialog.component';
-import { CustomerBookingDialogComponent } from '../../../../widgets/customer-dialogs/customer-booking-dialog/customer-booking-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Customer } from '../../../../core/entities/customer';
+
+import {
+	CustomerDetailsDialogComponent
+} from '../../../../widgets/customer-dialogs/customer-details-dialog/customer-details-dialog.component';
+import {
+	CustomerBookingDialogComponent
+} from '../../../../widgets/customer-dialogs/customer-booking-dialog/customer-booking-dialog.component';
+import {
+	CustomerAccoutingDialogComponent
+} from '../../../../widgets/customer-dialogs/customer-accouting-dialog/customer-accouting-dialog.component';
+import {
+	CustomerOrderDialogComponent
+} from '../../../../widgets/customer-dialogs/customer-order-dialog/customer-order-dialog.component';
 
 @Component({
 	selector: 'app-customer',
@@ -91,6 +102,18 @@ export class CustomerComponent implements OnInit {
 	}
 	goToBookingDialog(customer) {
 		const dialogRef = this.dialog.open(CustomerBookingDialogComponent, {
+			width: '1000px',
+			data: { customer: customer}
+		});
+	}
+	goToAccountingDialog(customer) {
+		const dialogRef = this.dialog.open(CustomerAccoutingDialogComponent, {
+			width: '750px',
+			data: { customer: customer}
+		});
+	}
+	goToOrderDialog(customer) {
+		const dialogRef = this.dialog.open(CustomerOrderDialogComponent, {
 			width: '1000px',
 			data: { customer: customer}
 		});
