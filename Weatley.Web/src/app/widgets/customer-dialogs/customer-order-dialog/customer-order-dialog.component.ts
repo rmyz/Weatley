@@ -27,7 +27,6 @@ export class CustomerOrderDialogComponent implements OnInit, AfterViewInit {
 		this.dataOrder = this.customer.orders;
 		this.dataSource = new MatTableDataSource<Order>(this.dataOrder);
 		this.dataSource.paginator = this.paginator;
-		console.log(this.dataOrder);
 	}
 
 	ngAfterViewInit() {

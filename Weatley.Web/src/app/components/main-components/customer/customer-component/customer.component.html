@@ -28,7 +28,7 @@
             <ng-container matColumnDef="function">
                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
                 <mat-cell *matCellDef="let item">
-                    <button type="button" mat-icon-button class="float-right" matTooltip="Reports" matTooltipPosition="above" (click)="goToEdit(item.id)">
+                    <button type="button" mat-icon-button class="float-right" matTooltip="Reports" matTooltipPosition="above" (click)="goToReportDialog(item)">
                         <mat-icon>report</mat-icon>
                     </button>
                     <button type="button" mat-icon-button class="float-right" matTooltip="Accouting" matTooltipPosition="above" (click)="goToAccountingDialog(item)">

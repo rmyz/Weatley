@@ -28,7 +28,6 @@ export class CustomerAccoutingDialogComponent implements OnInit, AfterViewInit {
 		this.dataAccounting = this.customer.accountings;
 		this.dataSource = new MatTableDataSource<Accounting>(this.dataAccounting);
 		this.dataSource.paginator = this.paginator;
-		console.log(this.customer);
 	}
 
 	ngAfterViewInit() {

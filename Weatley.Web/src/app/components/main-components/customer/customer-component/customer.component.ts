@@ -20,6 +20,10 @@ import {
 import {
 	CustomerOrderDialogComponent
 } from '../../../../widgets/customer-dialogs/customer-order-dialog/customer-order-dialog.component';
+import {
+	CustomerReportDialogComponent
+} from '../../../../widgets/customer-dialogs/customer-report-dialog/customer-report-dialog.component';
+
 
 @Component({
 	selector: 'app-customer',
@@ -50,7 +54,6 @@ export class CustomerComponent implements OnInit {
 			this.dataSource = new MatTableDataSource<Customer>(this.dataCustomer);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
-			console.log(this.dataSource);
 		});
 	}
 
@@ -115,6 +118,12 @@ export class CustomerComponent implements OnInit {
 	goToOrderDialog(customer) {
 		const dialogRef = this.dialog.open(CustomerOrderDialogComponent, {
 			width: '1000px',
+			data: { customer: customer}
+		});
+	}
+	goToReportDialog(customer) {
+		const dialogRef = this.dialog.open(CustomerReportDialogComponent, {
+			width: '750px',
 			data: { customer: customer}
 		});
 	}

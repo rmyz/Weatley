@@ -17,7 +17,6 @@ export class CustomerDetailsDialogComponent implements OnInit {
 
 	ngOnInit() {
 		this.customer = this.data.customer;
-		console.log(this.customer.id);
 	}
 
 }

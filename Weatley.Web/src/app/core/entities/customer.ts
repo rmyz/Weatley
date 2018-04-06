@@ -1,6 +1,7 @@
 import { Booking } from './booking';
 import { Accounting } from './accounting';
 import { Order } from './order';
+import { Report } from './report';
 
 export class Customer {
 	id: string;
@@ -12,6 +13,7 @@ export class Customer {
 	bookings: Booking[];
 	accountings: Accounting[];
 	orders: Order[];
+	reports: Report[];
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);

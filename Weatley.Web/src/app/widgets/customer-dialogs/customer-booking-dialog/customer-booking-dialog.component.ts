@@ -27,7 +27,6 @@ export class CustomerBookingDialogComponent implements OnInit, AfterViewInit {
 		this.dataBooking = this.customer.bookings;
 		this.dataSource = new MatTableDataSource<Booking>(this.dataBooking);
 		this.dataSource.paginator = this.paginator;
-		console.log(this.dataSource);
 	}
 
 	ngAfterViewInit() {

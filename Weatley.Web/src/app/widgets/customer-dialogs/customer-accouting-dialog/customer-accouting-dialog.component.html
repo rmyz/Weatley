@@ -15,12 +15,7 @@
 
 		<ng-container matColumnDef="paymentType">
 			<mat-header-cell *matHeaderCellDef mat-sort-header> Payment Type </mat-header-cell>
-			<mat-cell *matCellDef="let item"> {{ item.price }}</mat-cell>
-		</ng-container>
-
-		<ng-container matColumnDef="comment">
-			<mat-header-cell *matHeaderCellDef mat-sort-header> Comment </mat-header-cell>
-			<mat-cell *matCellDef="let item"> {{ item.comment }} </mat-cell>
+			<mat-cell *matCellDef="let item"> {{ item.paymentType }}</mat-cell>
 		</ng-container>
 
 		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
