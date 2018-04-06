@@ -1,2 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+body {
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(120deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.Absolute-Center {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 400px;
+    height: 700px;
+}
+
+.image {
+    display: block;
+    margin: auto;
+    padding: 20px;
+    height: 70%;
+    width: 70%;
+}

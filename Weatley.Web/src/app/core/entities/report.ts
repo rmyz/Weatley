@@ -3,7 +3,11 @@ import { Customer } from './customer';
 export class Report {
     id: number;
     description: string;
-    date: string;
+    date: Date;
     fixed: boolean;
-    customer: Customer;
+    customerId: string;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

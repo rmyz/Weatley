@@ -1,12 +1,18 @@
 import { Customer } from './customer';
 import { Room } from './room';
+import { BookedRoom } from './bookedRoom';
 
 export class Booking {
-    id: number;
-    startDate: string;
-    endDate: string;
-    comment: string;
-    price: number;
-    room: Room[];
-    customer: Customer;
+	id: string;
+	startingDate: Date;
+	endDate: Date;
+	comment: string;
+	price: number;
+	customer: Customer;
+	bookedRooms: BookedRoom[];
+	rooms: string;
+
+	constructor(values: Object = {}) {
+		Object.assign(this, values);
+	}
 }

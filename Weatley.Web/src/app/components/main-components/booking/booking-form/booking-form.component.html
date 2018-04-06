@@ -1,0 +1,66 @@
+<div>
+  <div class="title">Booking Form Management</div>
+  <div>
+      <button type="button" mat-button (click)="cancel()"><mat-icon>arrow_back</mat-icon>Go back</button>
+  </div>
+  <div class="example-container mat-elevation-z8">
+      <mat-card class="example-container">
+          <form class="main-div" [formGroup]="bookingForm">
+              <mat-form-field *ngIf="!id">
+                  <mat-select placeholder="Customer" required formControlName="customer" name="customer">
+                      <mat-option [value]="customer" *ngFor="let customer of customers">{{ customer.name }}</mat-option>
+                  </mat-select>
+                  <mat-error>Please select a customer</mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="id">
+                  <input matInput placeholder="Customer" [disabled]="true" name="customer" [value]="bookingById.customer.name">
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput placeholder="Amount" type="number" required name="amount" formControlName="price">
+                  <mat-error>Please insert the amount</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput [matDatepicker]="picker" 
+                      placeholder="Choose a starting date" 
+                      formControlName="startingDate"
+                      required
+                      (focus)="picker.open()" 
+                      (click)="picker.open()"
+                      readonly
+                      name="date">
+                      <mat-error>Please select a starting date</mat-error>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker2" 
+                    placeholder="Choose an end date" 
+                    formControlName="endDate"
+                    required
+                    (focus)="picker2.open()" 
+                    (click)="picker2.open()"
+                    readonly
+                    name="date">
+                    <mat-error>Please select an end date</mat-error>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Comments (Optional)" type="text" name="comments" formControlName="comments">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Room" required formControlName="Room" name="Room" [compareWith]="compareWithFunc" multiple>
+                    <mat-option [value]="room" *ngFor="let room of rooms">{{ room.roomNumber }} - {{ room.roomType }}</mat-option>
+                </mat-select>
+                <mat-error>Please select a room</mat-error>
+            </mat-form-field>
+          </form>
+          <mat-card-actions>
+              <button type="button" mat-button class="float-right" (click)="submitBooking()">
+                  Save <mat-icon>save</mat-icon>
+              </button>
+          </mat-card-actions>
+      </mat-card>
+  </div>
+  <p></p>
+</div>
