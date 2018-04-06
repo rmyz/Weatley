@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Customer {{ customer.name }} {{ customer.surname }} Bookings</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+	<mat-table #table [dataSource]="dataSource" matSort>
+
+		<ng-container matColumnDef="startingDate">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Starting Date </mat-header-cell>
+			<mat-cell *matCellDef="let item"> {{ item.startingDate }} </mat-cell>
+		</ng-container>
+
+		<ng-container matColumnDef="endDate">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> End Date </mat-header-cell>
+			<mat-cell *matCellDef="let item"> {{ item.endDate }} </mat-cell>
+		</ng-container>
+
+		<ng-container matColumnDef="price">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+			<mat-cell *matCellDef="let item"> {{ item.price }} </mat-cell>
+		</ng-container>
+
+		<ng-container matColumnDef="comment">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Comment </mat-header-cell>
+			<mat-cell *matCellDef="let item"> {{ item.comment }} </mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+	</mat-table>
+
+	<mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[4, 8, 12]" [showFirstLastButtons]="true">
+	</mat-paginator>
+</div>

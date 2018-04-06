@@ -1,12 +1,15 @@
-export class Customer {
-    id: string;
-    name: string;
-    surname: string;
-    identificationDocument: string;
-    phoneNumber: string;
-    email: string;
+import { Booking } from './booking';
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-    }
+export class Customer {
+	id: string;
+	name: string;
+	surname: string;
+	identificationDocument: string;
+	phoneNumber: string;
+	email: string;
+	bookings: Booking[];
+
+	constructor(values: Object = {}) {
+		Object.assign(this, values);
+	}
 }
