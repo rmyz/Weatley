@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material';
 import { MatTableModule } from '@angular/material';
 import { MatSortModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
+import { CommonModule } from '@angular/common';
 
 import { CustomerOrderDialogComponent } from './customer-dialogs/customer-order-dialog/customer-order-dialog.component';
 import { CustomerReportDialogComponent } from './customer-dialogs/customer-report-dialog/customer-report-dialog.component';
@@ -33,7 +34,8 @@ import { CustomerBookingDialogComponent } from './customer-dialogs/customer-book
 		MatCardModule,
 		MatTableModule,
 		MatSortModule,
-		MatPaginatorModule
+		MatPaginatorModule,
+		CommonModule
 	],
 	providers: [],
 	exports: [
