@@ -32,27 +32,35 @@ export class CustomerDataService {
 		return data;
 	}
 	getCustomerById(id: string): Observable<Customer> {
+
+		const options = this.commonService.checkAuth();
+
 		return this.http
-					.get('http://localhost:5000/api/Customers/' + id)
+					.get('http://localhost:5000/api/Customers/' + id, options)
 					.map((res: Response) => res.json());
 	}
 	updateCustomers(customer: Customer): Observable<any> {
+		const options = this.commonService.checkAuth();
+
 		return this.http
-			.put('http://localhost:5000/api/Customers/' + customer.id , customer)
+			.put('http://localhost:5000/api/Customers/' + customer.id , customer, options)
 			.map((res: Response) => {
 				return new Customer(res.json());
 		});
 	}
 	createCustomer(customer: Customer) {
+		const options = this.commonService.checkAuth();
+
 		return this.http
-			.post('http://localhost:5000/api/Customers/', customer)
+			.post('http://localhost:5000/api/Customers/', customer, options)
 			.map((res: Response) => {
 				return new Customer(res.json());
 			});
 	}
 	deleteGoal(customerId: string): Observable<any> {
+		const options = this.commonService.checkAuth();
 		return this.http
-			.delete('http://localhost:5000/api/Customers/' + customerId)
+			.delete('http://localhost:5000/api/Customers/' + customerId, options)
 			.map((res: Response) => {
 				return res.json();
 			});

@@ -11,6 +11,7 @@ import { MainLayoutComponent } from './components/main-layout/main-layout/main-l
 import { BookingFormComponent } from './components/main-components/booking/booking-form/booking-form.component';
 import { AccountingFormComponent } from './components/main-components/accounting/accounting-form/accounting-form.component';
 import { NotFoundComponent } from './widgets/not-found/not-found.component';
+import { CustomerFormComponent } from './components/main-components/customer/customer-form/customer-form.component';
 
 const routes: Routes = [
 	{
@@ -20,6 +21,21 @@ const routes: Routes = [
 			{
 				path: RoutingEnum.ACCOUNTING_ROUTE,
 				component: AccountingComponent,
+				canActivate: [AuthGuard]
+			},
+			{
+				path: RoutingEnum.CUSTOMER_ROUTE,
+				component: CustomerComponent,
+				canActivate: [AuthGuard]
+			},
+			{
+				path: RoutingEnum.CUSTOMER_CREATE_ROUTE,
+				component: CustomerFormComponent,
+				canActivate: [AuthGuard]
+			},
+			{
+				path: RoutingEnum.CUSTOMER_EDIT_ROUTE + '/:id',
+				component: CustomerFormComponent,
 				canActivate: [AuthGuard]
 			},
 			{
@@ -61,10 +77,6 @@ const routes: Routes = [
 	{
 		path: '**',
 		redirectTo: RoutingEnum.NOT_FOUND_ROUTE
-	},
-	{
-		path: RoutingEnum.CUSTOMER_ROUTE,
-		component: CustomerComponent
 	}
 ];
 
