@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
 
 
 import { HotelManagementComponent } from './hotel-management/hotel-management.component';
@@ -23,7 +24,8 @@ import { InternalsComponent } from './internals/internals.component';
 		BrowserAnimationsModule,
 		BrowserModule,
 		MatTabsModule,
-		RouterModule
+		RouterModule,
+		MatCardModule
 	],
 	providers: [
 	],
