@@ -7,6 +7,7 @@ import { AccountingModule } from './main-components/accounting/accounting.module
 import { MainLayoutModule } from './main-layout/main-layout.module';
 import { LoginModule } from './main-components/login/login.module';
 import { BookingModule } from './main-components/booking/booking.module';
+import { CustomerModule } from './main-components/customer/customer.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ declarations: [],
 		AccountingModule,
 		MainLayoutModule,
 		LoginModule,
+		CustomerModule,
 		BookingModule
 	],
 	providers: [],
@@ -24,7 +26,9 @@ declarations: [],
 		AccountingModule,
 		MainLayoutModule,
 		LoginModule,
+		CustomerModule,
 		BookingModule
 	]
+
 })
 export class ComponentModule { }

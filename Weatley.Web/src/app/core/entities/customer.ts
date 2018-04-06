@@ -1,12 +1,21 @@
-export class Customer {
-    id: number;
-    name: string;
-    surname: string;
-    identificationDocument: string;
-    phone: string;
-    email: string;
+import { Booking } from './booking';
+import { Accounting } from './accounting';
+import { Order } from './order';
+import { Report } from './report';
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-    }
+export class Customer {
+	id: string;
+	name: string;
+	surname: string;
+	identificationDocument: string;
+	phoneNumber: string;
+	email: string;
+	bookings: Booking[];
+	accountings: Accounting[];
+	orders: Order[];
+	reports: Report[];
+
+	constructor(values: Object = {}) {
+		Object.assign(this, values);
+	}
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { AccountingComponent } from './components/main-components/accounting/accounting-component/accounting.component';
+import { CustomerComponent } from './components/main-components/customer/customer-component/customer.component';
 import { RoutingEnum } from './core/enums/routing-enum';
 import { AuthGuard } from './core/guards/auth.guard';
 import { BookingComponent } from './components/main-components/booking/booking/booking.component';
@@ -60,6 +61,10 @@ const routes: Routes = [
 	{
 		path: '**',
 		redirectTo: RoutingEnum.NOT_FOUND_ROUTE
+	},
+	{
+		path: RoutingEnum.CUSTOMER_ROUTE,
+		component: CustomerComponent
 	}
 ];
 
