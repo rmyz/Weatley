@@ -9,5 +9,6 @@ export enum RoutingEnum {
 	NOT_FOUND_ROUTE = '404',
 	CUSTOMER_ROUTE = 'customers',
 	CUSTOMER_CREATE_ROUTE = 'customers/create',
-	CUSTOMER_EDIT_ROUTE = 'customers/edit'
+	CUSTOMER_EDIT_ROUTE = 'customers/edit',
+	CALENDAR_ROUTE = 'calendar',
 }

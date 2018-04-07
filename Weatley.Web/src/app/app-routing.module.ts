@@ -12,6 +12,7 @@ import { BookingFormComponent } from './components/main-components/booking/booki
 import { AccountingFormComponent } from './components/main-components/accounting/accounting-form/accounting-form.component';
 import { NotFoundComponent } from './widgets/not-found/not-found.component';
 import { CustomerFormComponent } from './components/main-components/customer/customer-form/customer-form.component';
+import { CalendarComponent } from './components/main-components/calendar/calendar-component/calendar.component';
 
 const routes: Routes = [
 	{
@@ -61,6 +62,11 @@ const routes: Routes = [
 			{
 				path: RoutingEnum.BOOKING_CREATE_ROUTE,
 				component: BookingFormComponent,
+				canActivate: [AuthGuard]
+			},
+			{
+				path: RoutingEnum.CALENDAR_ROUTE,
+				component: CalendarComponent,
 				canActivate: [AuthGuard]
 			},
 		],
