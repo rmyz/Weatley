@@ -13,5 +13,7 @@ export enum RoutingEnum {
 	HOTEL_MANAGEMENT_ROOMS_EDIT = 'rooms/edit',
 	HOTEL_MANAGEMENT_ROOMS_CREATE = 'rooms/create',
 	HOTEL_MANAGEMENT_PRODUCTS = 'products',
+	HOTEL_MANAGEMENT_PRODUCTS_CREATE = 'products/create',
+	HOTEL_MANAGEMENT_PRODUCTS_EDIT = 'products/edit',
 	HOTEL_MANAGEMENT_INTERNAL = 'internal'
 }

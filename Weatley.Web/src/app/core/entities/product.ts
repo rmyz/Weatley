@@ -1,12 +1,14 @@
-export class Product {
-    id: number;
-    name: string;
-    description: string;
-    type: string;
-    available: boolean;
-    hotelId: string;
+import { Hotel } from './hotel';
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-    }
+export class Product {
+	id: string;
+	name: string;
+	description: string;
+	productType: string;
+	available: boolean;
+	hotel: Hotel;
+
+	constructor(values: Object = {}) {
+		Object.assign(this, values);
+	}
 }
