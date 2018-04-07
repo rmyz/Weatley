@@ -1,24 +1,16 @@
 .example-container {
     display: flex;
     flex-direction: column;
-    max-height: 550px;
-    min-width: 1150px;
     padding-top: auto;
     padding-bottom: auto;
   }
-  
-  .mat-table {
-    overflow: auto;
-    max-height: 2000px;
-  }
 
   .main-div{
-    height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    width: 100%;
   }
-  
+
   .title {
     font-family: Arial, Helvetica, sans-serif;
     padding-top: 20px;

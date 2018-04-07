@@ -14,6 +14,8 @@ import { RoomsComponent } from './components/main-components/hotel-management/ro
 import { ProductsComponent } from './components/main-components/hotel-management/products/products.component';
 import { HotelCardComponent } from './components/main-components/hotel-management/hotel-card/hotel-card.component';
 import { InternalsComponent } from './components/main-components/hotel-management/internals/internals.component';
+import { RoomFormComponent } from './components/main-components/hotel-management/rooms/room-form/room-form.component';
+import { HotelFormComponent } from './components/main-components/hotel-management/hotel-card/hotel-form/hotel-form.component';
 
 const routes: Routes = [
 	{
@@ -60,8 +62,20 @@ const routes: Routes = [
 						component: HotelCardComponent,
 					},
 					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_HOTEL_EDIT + '/:id',
+						component: HotelFormComponent,
+					},
+					{
 						path: RoutingEnum.HOTEL_MANAGEMENT_ROOMS,
 						component: RoomsComponent,
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_ROOMS_CREATE,
+						component: RoomFormComponent,
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_ROOMS_EDIT + '/:id',
+						component: RoomFormComponent,
 					},
 					{
 						path: RoutingEnum.HOTEL_MANAGEMENT_PRODUCTS,

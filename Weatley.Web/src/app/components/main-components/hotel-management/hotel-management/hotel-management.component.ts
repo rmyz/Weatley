@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelDataService } from '../../../../core/data-services/hotel-data.service';
 import { MatTabLink } from '@angular/material/tabs';
 import { RoutingEnum } from '../../../../core/enums/routing-enum';
 
 @Component({
 	selector: 'app-hotel-management',
 	templateUrl: './hotel-management.component.html',
-	styleUrls: ['./hotel-management.component.scss'],
-	providers: [HotelDataService]
+	styleUrls: ['./hotel-management.component.scss']
 })
 export class HotelManagementComponent implements OnInit {
 
@@ -18,12 +16,9 @@ export class HotelManagementComponent implements OnInit {
 		{ label: 'Internals', path:  RoutingEnum.HOTEL_MANAGEMENT_INTERNAL }
 	];
 
-	constructor(private hotelDataSerice: HotelDataService) { }
+	constructor() { }
 
 	ngOnInit() {
-		this.hotelDataSerice.getHotel().subscribe(hotel => {
-			console.log(hotel);
-		});
 	}
 
 }

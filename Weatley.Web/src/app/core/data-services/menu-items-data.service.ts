@@ -14,6 +14,7 @@ export class MenuItemsDataService {
 		new MenuItem ({ name: 'Accounting', icon: 'payment', route: RoutingEnum.ACCOUNTING_ROUTE}),
 		new MenuItem ({ name: 'Customers', icon: 'people', route: 'customers'}),
 		new MenuItem ({ name: 'App Management', icon: 'smartphone', route: 'app-management'}),
-		new MenuItem ({ name: 'Hotel Management', icon: 'business', route: 'hotel-management'})];
+		new MenuItem ({ name: 'Hotel Management', icon: 'business',
+		route: RoutingEnum.HOTEL_MANAGEMENT + '/' + RoutingEnum.HOTEL_MANAGEMENT_HOTEL})];
 	}
 }

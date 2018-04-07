@@ -1,0 +1,33 @@
+<div>
+  <div class="title">Room Form Management</div>
+  <div>
+      <button type="button" mat-button (click)="cancel()"><mat-icon>arrow_back</mat-icon>Go back</button>
+  </div>
+  <div class="example-container mat-elevation-z8">
+      <mat-card class="example-container">
+          <form class="main-div" [formGroup]="roomForm">
+              <mat-form-field>
+                  <mat-select placeholder="Room type" required formControlName="roomType" name="roomType">
+                      <mat-option value="Single">Single</mat-option>
+                      <mat-option value="Suite">Suite</mat-option>
+                      <mat-option value="Double">Double</mat-option>
+                  </mat-select>
+                  <mat-error>Please choose a payment type</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput placeholder="Room Number" type="number" required name="roomNumber" formControlName="roomNumber">
+                  <mat-error>Please insert the room number</mat-error>
+              </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Floor Number" type="text" required name="floorNumber" formControlName="floorNumber">
+            </mat-form-field>
+          </form>
+          <mat-card-actions>
+              <button type="button" mat-button class="float-right" (click)="submitRoom()">
+                  Save <mat-icon>save</mat-icon>
+              </button>
+          </mat-card-actions>
+      </mat-card>
+  </div>
+  <p></p>
+</div>

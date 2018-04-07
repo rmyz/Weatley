@@ -8,7 +8,10 @@ export enum RoutingEnum {
 	LOGIN_ROUTE = 'login',
 	HOTEL_MANAGEMENT = 'hotel-management',
 	HOTEL_MANAGEMENT_HOTEL = 'hotel',
+	HOTEL_MANAGEMENT_HOTEL_EDIT = 'hotel/edit',
 	HOTEL_MANAGEMENT_ROOMS = 'rooms',
+	HOTEL_MANAGEMENT_ROOMS_EDIT = 'rooms/edit',
+	HOTEL_MANAGEMENT_ROOMS_CREATE = 'rooms/create',
 	HOTEL_MANAGEMENT_PRODUCTS = 'products',
 	HOTEL_MANAGEMENT_INTERNAL = 'internal'
 }
