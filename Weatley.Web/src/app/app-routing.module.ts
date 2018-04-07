@@ -12,6 +12,14 @@ import { BookingFormComponent } from './components/main-components/booking/booki
 import { AccountingFormComponent } from './components/main-components/accounting/accounting-form/accounting-form.component';
 import { NotFoundComponent } from './widgets/not-found/not-found.component';
 import { CustomerFormComponent } from './components/main-components/customer/customer-form/customer-form.component';
+import { HotelManagementComponent } from './components/main-components/hotel-management/hotel-management/hotel-management.component';
+import { RoomsComponent } from './components/main-components/hotel-management/rooms/rooms.component';
+import { ProductsComponent } from './components/main-components/hotel-management/products/products.component';
+import { HotelCardComponent } from './components/main-components/hotel-management/hotel-card/hotel-card.component';
+import { InternalsComponent } from './components/main-components/hotel-management/internals/internals.component';
+import { RoomFormComponent } from './components/main-components/hotel-management/rooms/room-form/room-form.component';
+import { HotelFormComponent } from './components/main-components/hotel-management/hotel-card/hotel-form/hotel-form.component';
+import { ProductFormComponent } from './components/main-components/hotel-management/products/product-form/product-form.component';
 
 const routes: Routes = [
 	{
@@ -63,6 +71,49 @@ const routes: Routes = [
 				component: BookingFormComponent,
 				canActivate: [AuthGuard]
 			},
+			{
+				path: RoutingEnum.HOTEL_MANAGEMENT,
+				component: HotelManagementComponent,
+				canActivate: [AuthGuard],
+				children: [
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_HOTEL,
+						component: HotelCardComponent,
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_HOTEL_EDIT + '/:id',
+						component: HotelFormComponent,
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_ROOMS,
+						component: RoomsComponent,
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_ROOMS_CREATE,
+						component: RoomFormComponent,
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_ROOMS_EDIT + '/:id',
+						component: RoomFormComponent,
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_PRODUCTS,
+						component: ProductsComponent
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_PRODUCTS_CREATE,
+						component: ProductFormComponent
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_PRODUCTS_EDIT + '/:id',
+						component: ProductFormComponent
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_INTERNAL,
+						component: InternalsComponent
+					}
+				]
+			}
 		],
 		canActivate: [AuthGuard]
 	},

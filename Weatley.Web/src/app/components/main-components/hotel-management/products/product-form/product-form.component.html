@@ -1,0 +1,41 @@
+<div>
+  <div class="title">Product Form Management</div>
+  <div>
+      <button type="button" mat-button (click)="cancel()"><mat-icon>arrow_back</mat-icon>Go back</button>
+  </div>
+  <div class="example-container mat-elevation-z8">
+      <mat-card class="example-container">
+          <form class="main-div" [formGroup]="productForm">
+              <mat-form-field>
+                  <input matInput placeholder="Name" type="text" required name="name" formControlName="name">
+                  <mat-error>Please insert the name</mat-error>
+              </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Description" type="text" required name="description" formControlName="description">
+                <mat-error>Please insert the name</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Available" required formControlName="available" name="available">
+                    <mat-option [value]="false">No</mat-option>
+                    <mat-option [value]="true">Yes</mat-option>
+                </mat-select>
+                <mat-error>Please choose if it is available</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder="Product Type" required formControlName="productType" name="productType">
+                  <mat-option value="Food">Food</mat-option>
+                  <mat-option value="Drink">Drink</mat-option>
+                  <mat-option value="Service">Service</mat-option>
+              </mat-select>
+              <mat-error>Please choose the product type</mat-error>
+          </mat-form-field>
+          </form>
+          <mat-card-actions>
+              <button type="button" mat-button class="float-right" (click)="submitRoom()">
+                  Save <mat-icon>save</mat-icon>
+              </button>
+          </mat-card-actions>
+      </mat-card>
+  </div>
+  <p></p>
+</div>

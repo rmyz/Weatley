@@ -9,5 +9,15 @@ export enum RoutingEnum {
 	NOT_FOUND_ROUTE = '404',
 	CUSTOMER_ROUTE = 'customers',
 	CUSTOMER_CREATE_ROUTE = 'customers/create',
-	CUSTOMER_EDIT_ROUTE = 'customers/edit'
+	CUSTOMER_EDIT_ROUTE = 'customers/edit',
+	HOTEL_MANAGEMENT = 'hotel-management',
+	HOTEL_MANAGEMENT_HOTEL = 'hotel',
+	HOTEL_MANAGEMENT_HOTEL_EDIT = 'hotel/edit',
+	HOTEL_MANAGEMENT_ROOMS = 'rooms',
+	HOTEL_MANAGEMENT_ROOMS_EDIT = 'rooms/edit',
+	HOTEL_MANAGEMENT_ROOMS_CREATE = 'rooms/create',
+	HOTEL_MANAGEMENT_PRODUCTS = 'products',
+	HOTEL_MANAGEMENT_PRODUCTS_CREATE = 'products/create',
+	HOTEL_MANAGEMENT_PRODUCTS_EDIT = 'products/edit',
+	HOTEL_MANAGEMENT_INTERNAL = 'internal'
 }

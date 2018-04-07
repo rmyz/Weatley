@@ -1,11 +1,13 @@
-export class Room {
-    id: number;
-    roomNumber: number;
-    floor: number;
-    type: string;
-    hotelId: string;
+import { Hotel } from './hotel';
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-    }
+export class Room {
+	id: string;
+	roomNumber: number;
+	floorNumber: number;
+	roomType: string;
+	hotel: Hotel;
+
+	constructor(values: Object = {}) {
+		Object.assign(this, values);
+	}
 }

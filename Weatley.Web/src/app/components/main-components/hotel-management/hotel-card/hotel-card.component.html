@@ -1,0 +1,28 @@
+<div class="card-wrapper">
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title><h2 class="centered">{{ hotel.name }}</h2></mat-card-title>
+  </mat-card-header>
+  <img mat-card-image class="photo" src="../../../../../assets/hotel.jpg" alt="Photo of the hotel">
+  <mat-card-content>
+    <p>
+      Description: {{ hotel.description }}
+    </p>
+
+    <p>
+      Address: {{ hotel.address }}
+    </p>
+
+    <p>
+      Phone Number: {{ hotel.phoneNumber }}
+    </p>
+
+    <p>
+      Website: {{ hotel.website }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+      <button mat-button (click)="goToEdit()"><mat-icon>mode_edit</mat-icon>Edit</button>
+    </mat-card-actions>
+</mat-card>
+</div>
