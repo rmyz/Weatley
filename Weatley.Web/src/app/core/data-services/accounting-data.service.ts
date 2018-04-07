@@ -16,7 +16,7 @@ export class AccountingDataService {
 		const options = this.commonService.checkAuth();
 
 		return this.http
-					.get('http://localhost:5000/api/Accounting', options)
+					.get('http://localhost:5000/api/Accountings', options)
 					.map((res: Response) => res.json());
 	}
 
@@ -24,7 +24,7 @@ export class AccountingDataService {
 		const options = this.commonService.checkAuth();
 
 		return this.http
-					.get('http://localhost:5000/api/Accounting/' + id, options)
+					.get('http://localhost:5000/api/Accountings/' + id, options)
 					.map((res: Response) => res.json());
 	}
 
