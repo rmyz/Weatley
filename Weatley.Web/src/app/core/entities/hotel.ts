@@ -10,8 +10,8 @@ export class Hotel {
 	description: string;
 	address: string;
 	email: string;
-	phone: string;
-	web: string;
+	phoneNumber: string;
+	website: string;
 	activities: Activity[];
 	rooms: Room[];
 	products: Product[];
