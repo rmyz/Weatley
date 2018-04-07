@@ -30,6 +30,7 @@ import { InternalsComponent } from './internals/internals.component';
 import { RoomFormComponent } from './rooms/room-form/room-form.component';
 import { HotelFormComponent } from './hotel-card/hotel-form/hotel-form.component';
 import { ProductFormComponent } from './products/product-form/product-form.component';
+import { InternalFormComponent } from './internals/internal-form/internal-form.component';
 
 @NgModule({
 	declarations: [
@@ -40,7 +41,8 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
 		InternalsComponent,
 		RoomFormComponent,
 		HotelFormComponent,
-		ProductFormComponent
+		ProductFormComponent,
+		InternalFormComponent
 	],
 	imports: [
 		BrowserAnimationsModule,
@@ -79,7 +81,8 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
 		InternalsComponent,
 		RoomFormComponent,
 		HotelFormComponent,
-		ProductFormComponent
+		ProductFormComponent,
+		InternalFormComponent
 	],
 	entryComponents: [
 	]
