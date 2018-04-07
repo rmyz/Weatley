@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CalendarModule as CalendarPlugin } from 'angular-calendar';
+import { CalendarModule } from 'angular-calendar';
 import { CommonModule } from '@angular/common';
 import { CalendarComponent } from './calendar-component/calendar.component';
 
@@ -8,7 +8,7 @@ import { CalendarComponent } from './calendar-component/calendar.component';
 	imports: [
 		CommonModule,
 		BrowserAnimationsModule,
-		CalendarPlugin.forRoot(),
+		CalendarModule.forRoot(),
 	],
 	declarations: [
 		CalendarComponent
@@ -17,4 +17,4 @@ import { CalendarComponent } from './calendar-component/calendar.component';
 		CalendarComponent
 	]
 })
-export class CalendarModule { }
+export class FullCalendarModule { }

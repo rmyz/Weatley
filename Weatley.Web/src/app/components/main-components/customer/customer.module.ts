@@ -21,8 +21,8 @@ import { CustomerRouter } from './customer-form/customer-routing.module';
 
 @NgModule({
 	declarations: [
-    CustomerComponent,
-    CustomerFormComponent
+		CustomerComponent,
+		CustomerFormComponent
 	],
 	imports: [
 		MatTooltipModule,
