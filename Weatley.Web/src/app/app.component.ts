@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './core/Auth-services/user.service';
-import { IsLoggedService } from './core/services/isLogged.service';
 
 @Component({
 	selector: 'app-root',
@@ -9,10 +7,7 @@ import { IsLoggedService } from './core/services/isLogged.service';
 })
 export class AppComponent implements OnInit {
 
-	constructor (
-		private authService: UserService,
-		private isLoggedService: IsLoggedService) {}
+	constructor () {}
 
-	ngOnInit() {
-	}
+	ngOnInit() { }
 }
