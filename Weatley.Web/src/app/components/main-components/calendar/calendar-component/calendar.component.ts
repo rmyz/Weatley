@@ -29,37 +29,33 @@ export class CalendarComponent implements OnInit {
 		},
 	};
 
-	actions: CalendarEventAction[] = [
-		{
-			label: '<mat-icon>delete</mat-icon>',
-			onClick: ({ event }: { event: CalendarEvent }): void => {
-				this.events = this.events.filter(iEvent => iEvent !== event);
-			}
-		}
-	];
-
-	view = 'month';
+	view = 'week';
 	viewDate: Date = new Date();
 	events: CalendarEvent[] = [];
 
 	refresh: Subject<any> = new Subject();
-	activeDayIsOpen = true;
+	activeDayIsOpen = false;
 
 	constructor(private bookingDataService: BookingDataService) { }
 
 	ngOnInit() {
 		this.bookingDataService.getBookings().subscribe(bookings => {
 			for (const booking of bookings) {
-				const event: CalendarEvent = {
+				const entryEvent: CalendarEvent = {
 					start: new Date(booking.startingDate),
-					end: new Date(booking.endDate),
 					color: this.colors.default,
-					actions: this.actions,
-					title: booking.customer.name + ' ' + booking.customer.surname + ' booking'
+					title: booking.customer.name + ' ' + booking.customer.surname + ' Checking in at ' + this.getTime(new Date(booking.startingDate))
 				};
-				this.events.push(event);
-				this.refresh.next();
+
+				const leaveEvent: CalendarEvent = {
+					start: new Date(booking.endDate),
+					color: this.colors.default,
+					title: booking.customer.name + ' ' + booking.customer.surname + ' Checking Out at ' + this.getTime(new Date(booking.endDate))
+				};
+				this.events.push(entryEvent);
+				this.events.push(leaveEvent);
 			}
+			this.refresh.next();
 		});
 	}
 
@@ -75,5 +71,13 @@ export class CalendarComponent implements OnInit {
 				this.viewDate = date;
 			}
 		}
+	}
+
+	getTime(date: Date) {
+
+		const h = date.getHours();
+		const m = date.getMinutes();
+
+		return h + ':' + m;
 	}
 }
