@@ -16,23 +16,47 @@ export class ServicesDataService {
 		private authProfile: UserProfile,
 		private commonService: CommonService) { }
 
-	getServices(): Observable<Service[]> {
-		const url = 'http://localhost:5000/api/Services';
-
-		let options = null;
-		const profile = this.authProfile.getProfile();
-
-		if (profile != null && profile !== undefined) {
-			const headers = new Headers({ 'Authorization': 'Bearer ' + profile.token });
-			options = new RequestOptions({ headers: headers });
+		getServices(): Observable<Service[]> {
+			const options = this.commonService.checkAuth();
+			return this.http
+						.get('http://localhost:5000/api/Services', options)
+						.map((res: Response) => res.json());
 		}
-		const data: Observable<Service[]> = this.http.get(url, options)
-			.map(res => <Service[]>res.json())
-			.do(services => {
-				console.log('getAccountings:');
-				console.log(services);
-			});
 
-		return data;
-	}
+		getServiceById(id: string): Observable<Service> {
+			const options = this.commonService.checkAuth();
+			return this.http
+						.get('http://localhost:5000/api/Services/' + id, options)
+						.map((res: Response) => res.json());
+		}
+
+		createService(service: Service) {
+			const options = this.commonService.checkAuth();
+
+			return this.http
+				.post('http://localhost:5000/api/Services/', service, options)
+				.map((res: Response) => {
+					return new Service(res.json());
+				});
+		}
+
+		updateService(service: Service): Observable<any> {
+			const options = this.commonService.checkAuth();
+
+			return this.http
+				.put('http://localhost:5000/api/Services/' + service.id , service, options)
+				.map((res: Response) => {
+					return new Service(res.json());
+			});
+		}
+
+		deleteService(serviceId: string): Observable<any> {
+			const options = this.commonService.checkAuth();
+
+			return this.http
+				.delete('http://localhost:5000/api/Services/' + serviceId, options)
+				.map((res: Response) => {
+					return res.json();
+				});
+		}
 }
