@@ -1,3 +1,61 @@
-<p>
-  events-form works!
-</p>
+<div>
+    <div class="title">Events Form Management</div>
+    <div>
+        <button type="button" mat-button (click)="cancel()"><mat-icon>arrow_back</mat-icon>Go back</button>
+    </div>
+    <div class="example-container mat-elevation-z8">
+        <mat-card class="example-container">
+            <form class="main-div" [formGroup]="eventsForm">
+                <mat-form-field>
+                    <input matInput placeholder="Name" required name="name" formControlName="name">
+                    <mat-error>Please insert the name</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput placeholder="Description" required matTextareaAutosize name="description" formControlName="description"></textarea>
+                    <mat-error>Please insert the description</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <input matInput [matDatepicker]="picker" 
+                          placeholder="Choose a starting date" 
+                          formControlName="startDate"
+                          required
+                          (focus)="picker.open()" 
+                          (click)="picker.open()"
+                          readonly
+                          name="startDate">
+                          <mat-error>Please select a date</mat-error>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <input matInput placeholder="Start Hour" type="time" required name="startHour" formControlName="timeStart">
+                      <mat-error>Please insert the starting hour</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <input matInput [matDatepicker]="picker2" 
+                          placeholder="Choose a end date" 
+                          formControlName="endDate"
+                          required
+                          (focus)="picker2.open()" 
+                          (click)="picker2.open()"
+                          readonly
+                          name="endDate">
+                          <mat-error>Please select a date</mat-error>
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <input matInput placeholder="End Hour" type="time" required name="endHour" formControlName="timeEnd">
+                      <mat-error>Please insert the ending hour</mat-error>
+                  </mat-form-field>
+            </form>
+            <mat-card-actions>
+                <button type="button" mat-button class="float-right" (click)="submitEvent()">
+                    Save <mat-icon>save</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <p></p>
+  </div>
+  
