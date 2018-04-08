@@ -1,4 +1,4 @@
-export class Activities {
+export class Activity {
     id: string;
     name: string;
     description: string;

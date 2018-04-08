@@ -3,22 +3,17 @@ import { Booking } from '../../../../core/entities/booking';
 import { BookingDataService } from '../../../../core/data-services/bookings-data.service';
 import { CalendarEvent, CalendarEventAction } from 'angular-calendar';
 import { Subject } from 'rxjs/Subject';
-import {
-	startOfDay,
-	endOfDay,
-	subDays,
-	addDays,
-	endOfMonth,
-	isSameDay,
-	isSameMonth,
-	addHours
-} from 'date-fns';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
+import { ActivitiesDataService } from '../../../../core/data-services/activities-data.service';
 
 @Component({
 	selector: 'app-calendar',
 	templateUrl: './calendar.component.html',
 	styleUrls: ['./calendar.component.scss'],
-	providers: [BookingDataService]
+	providers: [
+		BookingDataService,
+		ActivitiesDataService
+	]
 })
 export class CalendarComponent implements OnInit {
 
@@ -36,7 +31,10 @@ export class CalendarComponent implements OnInit {
 	refresh: Subject<any> = new Subject();
 	activeDayIsOpen = false;
 
-	constructor(private bookingDataService: BookingDataService) { }
+	constructor(
+		private bookingDataService: BookingDataService,
+		private activitiesDataService: ActivitiesDataService
+	) { }
 
 	ngOnInit() {
 		this.bookingDataService.getBookings().subscribe(bookings => {
@@ -44,16 +42,32 @@ export class CalendarComponent implements OnInit {
 				const entryEvent: CalendarEvent = {
 					start: new Date(booking.startingDate),
 					color: this.colors.default,
-					title: booking.customer.name + ' ' + booking.customer.surname + ' Checking in at ' + this.getTime(new Date(booking.startingDate))
+					title: booking.customer.name + ' ' + booking.customer.surname + ' Checking in',
+					meta: booking
 				};
 
 				const leaveEvent: CalendarEvent = {
 					start: new Date(booking.endDate),
 					color: this.colors.default,
-					title: booking.customer.name + ' ' + booking.customer.surname + ' Checking Out at ' + this.getTime(new Date(booking.endDate))
+					title: booking.customer.name + ' ' + booking.customer.surname + ' Checking Out',
+					meta: booking
 				};
 				this.events.push(entryEvent);
 				this.events.push(leaveEvent);
+			}
+			this.refresh.next();
+		});
+
+		this.activitiesDataService.getActivity().subscribe( activities => {
+			for (const activity of activities) {
+				const event: CalendarEvent = {
+					start: new Date(activity.startHour),
+					end: new Date(activity.endHour),
+					color: this.colors.default,
+					title: activity.name,
+					meta: activity
+				};
+				this.events.push(event);
 			}
 			this.refresh.next();
 		});
@@ -71,6 +85,10 @@ export class CalendarComponent implements OnInit {
 				this.viewDate = date;
 			}
 		}
+	}
+
+	handleEvent(action: string, event: CalendarEvent): void {
+		console.log(event);
 	}
 
 	getTime(date: Date) {
