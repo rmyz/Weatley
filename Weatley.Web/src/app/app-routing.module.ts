@@ -20,6 +20,11 @@ import { InternalsComponent } from './components/main-components/hotel-managemen
 import { RoomFormComponent } from './components/main-components/hotel-management/rooms/room-form/room-form.component';
 import { HotelFormComponent } from './components/main-components/hotel-management/hotel-card/hotel-form/hotel-form.component';
 import { ProductFormComponent } from './components/main-components/hotel-management/products/product-form/product-form.component';
+import { AppManagementComponent } from './components/main-components/app-management/app-management/app-management.component';
+import { ServicesComponent } from './components/main-components/app-management/services/services.component';
+import { EventsComponent } from './components/main-components/app-management/events/events.component';
+import { ServicesFormComponent } from './components/main-components/app-management/services/services-form/services-form.component';
+import { EventsFormComponent } from './components/main-components/app-management/events/events-form/events-form.component';
 
 const routes: Routes = [
 	{
@@ -112,6 +117,36 @@ const routes: Routes = [
 						path: RoutingEnum.HOTEL_MANAGEMENT_INTERNAL,
 						component: InternalsComponent
 					}
+				]
+			},
+			{
+				path: RoutingEnum.APP_MANAGEMENT,
+				component: AppManagementComponent,
+				children: [
+					{
+						path: RoutingEnum.APP_MANAGEMENT_SERVICES,
+						component: ServicesComponent
+					},
+					{
+						path: RoutingEnum.APP_MANAGEMENT_SERVICES_CREATE,
+						component: ServicesFormComponent
+					},
+					{
+						path: RoutingEnum.APP_MANAGEMENT_SERVICES_EDIT + '/:id',
+						component: ServicesFormComponent
+					},
+					{
+						path: RoutingEnum.APP_MANAGEMENT_EVENTS,
+						component: EventsComponent
+					},
+					{
+						path: RoutingEnum.APP_MANAGEMENT_EVENTS_CREATE,
+						component: EventsFormComponent
+					},
+					{
+						path: RoutingEnum.APP_MANAGEMENT_EVENTS_EDIT + '/:id',
+						component: EventsFormComponent
+					},
 				]
 			}
 		],

@@ -6,55 +6,55 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
-import { Service } from '../entities/service';
 import { CommonService } from '../services/common.service';
 import { UserProfile } from '../Auth-services/User.Profile';
+import { Activity } from '../entities/activity';
 
 @Injectable()
-export class ServicesDataService {
+export class ActivitiesDataService {
 	constructor(private http: Http,
 		private authProfile: UserProfile,
 		private commonService: CommonService) { }
 
-		getServices(): Observable<Service[]> {
+		getActivity(): Observable<Activity[]> {
 			const options = this.commonService.checkAuth();
 			return this.http
-						.get('http://localhost:5000/api/Services', options)
+						.get('http://localhost:5000/api/Activities', options)
 						.map((res: Response) => res.json());
 		}
 
-		getServiceById(id: string): Observable<Service> {
+		getActivityById(id: string): Observable<Activity> {
 			const options = this.commonService.checkAuth();
 			return this.http
-						.get('http://localhost:5000/api/Services/' + id, options)
+						.get('http://localhost:5000/api/Activities/' + id, options)
 						.map((res: Response) => res.json());
 		}
 
-		createService(service: Service) {
+		createActivity(activity: Activity) {
 			const options = this.commonService.checkAuth();
 
 			return this.http
-				.post('http://localhost:5000/api/Services/', service, options)
+				.post('http://localhost:5000/api/Activities/', activity, options)
 				.map((res: Response) => {
-					return new Service(res.json());
+					return new Activity(res.json());
 				});
 		}
 
-		updateService(service: Service): Observable<any> {
+		updateActivity(activity: Activity): Observable<any> {
 			const options = this.commonService.checkAuth();
 
 			return this.http
-				.put('http://localhost:5000/api/Services/' + service.id , service, options)
+				.put('http://localhost:5000/api/Activities/' + activity.id , activity, options)
 				.map((res: Response) => {
-					return new Service(res.json());
+					return new Activity(res.json());
 			});
 		}
 
-		deleteService(serviceId: string): Observable<any> {
+		deleteActivity(activityId: string): Observable<any> {
 			const options = this.commonService.checkAuth();
 
 			return this.http
-				.delete('http://localhost:5000/api/Services/' + serviceId, options)
+				.delete('http://localhost:5000/api/Activities/' + activityId, options)
 				.map((res: Response) => {
 					return res.json();
 				});

@@ -1,10 +1,12 @@
-export class Service {
-    id: number;
-    name: string;
-    description: string;
-    hotelId: string;
+import { Hotel } from './hotel';
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-    }
+export class Service {
+	id: string;
+	name: string;
+	description: string;
+	hotel: Hotel;
+
+	constructor(values: Object = {}) {
+		Object.assign(this, values);
+	}
 }
