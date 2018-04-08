@@ -19,5 +19,12 @@ export enum RoutingEnum {
 	HOTEL_MANAGEMENT_PRODUCTS = 'products',
 	HOTEL_MANAGEMENT_PRODUCTS_CREATE = 'products/create',
 	HOTEL_MANAGEMENT_PRODUCTS_EDIT = 'products/edit',
-	HOTEL_MANAGEMENT_INTERNAL = 'internal'
+	HOTEL_MANAGEMENT_INTERNAL = 'internal',
+	APP_MANAGEMENT = 'app-management',
+	APP_MANAGEMENT_SERVICES = 'services',
+	APP_MANAGEMENT_SERVICES_CREATE = 'services/create',
+	APP_MANAGEMENT_SERVICES_EDIT = 'services/edit',
+	APP_MANAGEMENT_EVENTS = 'events',
+	APP_MANAGEMENT_EVENTS_CREATE = 'events/create',
+	APP_MANAGEMENT_EVENTS_EDIT = 'events/edit',
 }
