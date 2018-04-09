@@ -7,7 +7,7 @@ export class MenuItemsDataService {
 	constructor() {}
 
 	getMenuItems(): MenuItem[] {
-		return  [new MenuItem ({ name: 'Dashboard', icon: 'dashboard', route: ''}),
+		return  [new MenuItem ({ name: 'Dashboard', icon: 'dashboard', route: RoutingEnum.DASHBOARD_ROUTE}),
 		new MenuItem ({ name: 'Calendar', icon: 'today', route: 'calendar'}),
 		new MenuItem ({ name: 'Bookings', icon: 'book', route: RoutingEnum.BOOKING_ROUTE}),
 		new MenuItem ({ name: 'Notifications', icon: 'announcement', route: 'notifications'}),

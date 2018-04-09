@@ -25,12 +25,18 @@ import { ServicesComponent } from './components/main-components/app-management/s
 import { EventsComponent } from './components/main-components/app-management/events/events.component';
 import { ServicesFormComponent } from './components/main-components/app-management/services/services-form/services-form.component';
 import { EventsFormComponent } from './components/main-components/app-management/events/events-form/events-form.component';
+import { DashboardComponent } from './components/main-components/dashboard/dashboard-component/dashboard.component';
 
 const routes: Routes = [
 	{
 		path: '',
 		component: MainLayoutComponent,
 		children: [
+			{
+				path: RoutingEnum.DASHBOARD_ROUTE,
+				component: DashboardComponent,
+				canActivate: [AuthGuard]
+			},
 			{
 				path: RoutingEnum.ACCOUNTING_ROUTE,
 				component: AccountingComponent,
