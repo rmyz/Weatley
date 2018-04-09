@@ -19,8 +19,8 @@ export class CalendarComponent implements OnInit {
 
 	colors: any = {
 		default: {
-			primary: '#ad2121',
-			secondary: '#FAE3E3'
+			primary: '#2962FF',
+			secondary: '#BBDEFB'
 		},
 	};
 

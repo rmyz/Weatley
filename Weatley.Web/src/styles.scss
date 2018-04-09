@@ -32,3 +32,13 @@ body {
     height: 70%;
     width: 70%;
 }
+
+
+// Calendar css
+.cal-month-view .cal-day-badge {
+    background-color: #00BCD4 !important;
+}
+
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+    color: #EF9A9A;
+}
