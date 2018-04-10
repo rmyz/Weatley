@@ -35,10 +35,63 @@ body {
 
 
 // Calendar css
+
+//month
+.darkTheme .cal-month-view .cal-header .cal-cell:hover {
+    background-color: lighten($color: #303030, $amount: 10%);
+}
+
+.darkTheme .cal-month-view .cal-header .cal-cell-row:hover {
+    background-color: lighten($color: #303030, $amount: 20%);
+}
+
 .cal-month-view .cal-day-badge {
     background-color: #00BCD4 !important;
 }
 
 .cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
     color: #EF9A9A;
+}
+
+.darkTheme .cal-month-view .cal-day-cell.cal-today {
+    background-color: #009688;
+}
+
+.cal-month-view .cal-day-cell.cal-today {
+    color: black;
+}
+
+.darkTheme .cal-month-view .cal-day-cell:not(:last-child):hover {
+    background-color: lighten($color: #303030, $amount: 10%);
+}
+
+.darkTheme .cal-month-view .cal-day-cell.cal-in-month:hover {
+    background-color: lighten($color: #303030, $amount: 10%);
+}
+
+.darkTheme .cal-month-view .cal-days .cal-cell-row:hover {
+    background-color: lighten($color: #303030, $amount: 20%);
+    color: white;
+}
+
+//week
+.cal-week-view .cal-header.cal-weekend span {
+    color: #EF9A9A;
+}
+
+.darkTheme .cal-week-view .cal-day-headers .cal-header:hover {
+    background-color: lighten($color: #303030, $amount: 20%);
+}
+
+.cal-week-view .cal-header.cal-today {
+    color: black;
+}
+
+//day
+.cal-day-view .cal-hour:nth-child(odd) {
+    background-color: transparent !important;
+}
+
+.darkTheme .cal-day-view .cal-hour:not(:last-child) .cal-hour-segment:hover, .cal-day-view.cal-hour:last-child :not(:last-child) .cal-hour-segment:hover {
+    background-color: lighten($color: #303030, $amount: 20%);
 }
