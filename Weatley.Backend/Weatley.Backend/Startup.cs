@@ -1,13 +1,10 @@
 ﻿using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +35,8 @@ namespace Weatley.Backend
             services.AddSingleton(Configuration);
 
             services.AddCors();
+
+            services.AddSignalR();
 
             services.AddDbContext<WeatleyContext>(options =>
                 options.UseSqlServer(Configuration["Data:WeatleyConnection:ConnectionString"],
@@ -83,6 +82,11 @@ namespace Weatley.Backend
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<NotificationsPusher>("/notifications");
+            });
 
             app.UseCors(builder =>
                builder.AllowAnyOrigin()

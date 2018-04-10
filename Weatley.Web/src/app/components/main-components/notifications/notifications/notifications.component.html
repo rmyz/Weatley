@@ -1,0 +1,91 @@
+<div>
+    <div class="title">Notifications</div>
+    <div class="row">
+        <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Order from {{ customer.name }}</mat-card-title>
+              <mat-card-subtitle></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              {{ productOrdered.Quantity }} x {{ product.name }}
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>Deny</button>
+              <button mat-button>Accept</button>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+    <div class="example-container">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Type to filter...">
+        </mat-form-field>
+    </div>
+    <div class="example-container mat-elevation-z8">
+
+        <mat-table #table [dataSource]="dataSource" matSort on-mouseleave="hoveredIndex=null">
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.name }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="surname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.surname }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dni">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Dni/Nif </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.identificationDocument }} </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="function">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let item">
+                    <button type="button" mat-icon-button class="float-right" matTooltip="Reports" matTooltipPosition="above" (click)="goToReportDialog(item)">
+                        <mat-icon>report</mat-icon>
+                    </button>
+                    <button type="button" mat-icon-button class="float-right" matTooltip="Accouting" matTooltipPosition="above" (click)="goToAccountingDialog(item)">
+                        <mat-icon>account_balance_wallet</mat-icon>
+                    </button>
+                    <button type="button" mat-icon-button class="float-right" matTooltip="Orders" matTooltipPosition="above" (click)="goToOrderDialog(item)">
+                        <mat-icon>receipt</mat-icon>
+                    </button>
+                    <button type="button" mat-icon-button class="float-right" matTooltip="Bookings" matTooltipPosition="above" (click)="goToBookingDialog(item)">
+                        <mat-icon>book</mat-icon>
+                    </button>
+                    <button type="button" mat-icon-button class="float-right" matTooltip="Details" matTooltipPosition="above" (click)="goToDetailsDialog(item)">
+                        <mat-icon>perm_identity</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="function_edit">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let item">
+                    <button type="button" mat-icon-button class="float-right" matTooltip="Delete" matTooltipPosition="above" (click)="onDelete(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                    <button type="button" mat-icon-button class="float-right" matTooltip="Edit" matTooltipPosition="above" (click)="goToEdit(item.id)">
+                                <mat-icon>mode_edit</mat-icon>
+                            </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+
+        <mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[4, 8, 12]" [showFirstLastButtons]="true">
+        </mat-paginator>
+    </div>
+    <div>
+        <div style="min-height: 500px">
+            <button type="button" mat-button class="float-right" (click)="goToCreate()">
+              Add new <mat-icon>add</mat-icon>
+          </button>
+        </div>
+    </div>
+</div>

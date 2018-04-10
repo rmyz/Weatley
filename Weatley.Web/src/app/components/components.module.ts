@@ -10,6 +10,7 @@ import { BookingModule } from './main-components/booking/booking.module';
 import { CustomerModule } from './main-components/customer/customer.module';
 import { HotelManagementModule } from './main-components/hotel-management/hotel-management.module';
 import { AppManagementModule } from './main-components/app-management/app-management.module';
+import { NotificationsModule } from './main-components/notifications/notifications.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ declarations: [],
 		BookingModule,
 		BookingModule,
 		HotelManagementModule,
-		AppManagementModule
+		AppManagementModule,
+		NotificationsModule
 	],
 	providers: [],
 	exports: [
@@ -34,7 +36,8 @@ declarations: [],
 		CustomerModule,
 		BookingModule,
 		HotelManagementModule,
-		AppManagementModule
+		AppManagementModule,
+		NotificationsModule
 	]
 
 })

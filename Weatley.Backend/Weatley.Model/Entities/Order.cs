@@ -12,6 +12,7 @@ namespace Weatley.Model.Entities
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
         public Customer Customer { get; set; }
+        public string Status { get; set; }
 
         //Relation with Product
         public ICollection<ProductOrdered> ProductsOrdered { get; set; }

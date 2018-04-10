@@ -25,6 +25,7 @@ import { ServicesComponent } from './components/main-components/app-management/s
 import { EventsComponent } from './components/main-components/app-management/events/events.component';
 import { ServicesFormComponent } from './components/main-components/app-management/services/services-form/services-form.component';
 import { EventsFormComponent } from './components/main-components/app-management/events/events-form/events-form.component';
+import { NotificationsComponent } from './components/main-components/notifications/notifications/notifications.component';
 
 const routes: Routes = [
 	{
@@ -74,6 +75,11 @@ const routes: Routes = [
 			{
 				path: RoutingEnum.BOOKING_CREATE_ROUTE,
 				component: BookingFormComponent,
+				canActivate: [AuthGuard]
+			},
+			{
+				path: RoutingEnum.NOTIFICATIONS_ROUTE,
+				component: NotificationsComponent,
 				canActivate: [AuthGuard]
 			},
 			{
