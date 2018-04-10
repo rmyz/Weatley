@@ -37,6 +37,11 @@ body {
 // Calendar css
 
 //month
+
+.cal-month-view .cal-cell-row:hover {
+    background-color: transparent;
+   }
+
 .darkTheme .cal-month-view .cal-header .cal-cell:hover {
     background-color: lighten($color: #303030, $amount: 10%);
 }
@@ -57,10 +62,6 @@ body {
     background-color: #009688;
 }
 
-.cal-month-view .cal-day-cell.cal-today {
-    color: black;
-}
-
 .darkTheme .cal-month-view .cal-day-cell:not(:last-child):hover {
     background-color: lighten($color: #303030, $amount: 10%);
 }
@@ -73,6 +74,15 @@ body {
     background-color: lighten($color: #303030, $amount: 20%);
     color: white;
 }
+
+.darkTheme .cal-month-view .cal-day-cell:not(:last-child) {
+    border-right: 1px solid transparent;
+}
+
+.darkTheme .cal-month-view .cal-cell.cal-has-events.cal-open {
+    background-color: lighten($color: #303030, $amount: 10%)
+ }
+  
 
 //week
 .cal-week-view .cal-header.cal-weekend span {
