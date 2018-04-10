@@ -5,6 +5,8 @@ import { CalendarEvent, CalendarEventAction } from 'angular-calendar';
 import { Subject } from 'rxjs/Subject';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { ActivitiesDataService } from '../../../../core/data-services/activities-data.service';
+import { MatDialog } from '@angular/material';
+import { EventDialogComponent } from '../../../../widgets/event-dialog/event-dialog.component';
 
 @Component({
 	selector: 'app-calendar',
@@ -33,7 +35,8 @@ export class CalendarComponent implements OnInit {
 
 	constructor(
 		private bookingDataService: BookingDataService,
-		private activitiesDataService: ActivitiesDataService
+		private activitiesDataService: ActivitiesDataService,
+		private dialog: MatDialog
 	) { }
 
 	ngOnInit() {
@@ -88,7 +91,10 @@ export class CalendarComponent implements OnInit {
 	}
 
 	handleEvent(action: string, event: CalendarEvent): void {
-		console.log(event);
+		const dialogRef = this.dialog.open(EventDialogComponent, {
+			width: '500px',
+			data: { event: event }
+		});
 	}
 
 	getTime(date: Date) {
