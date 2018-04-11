@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DialogComponent } from './dialog/dialog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule, MatToolbarModule } from '@angular/material';
 import { MatDividerModule } from '@angular/material';
 import { MatListModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
@@ -41,6 +41,7 @@ import { EventDialogComponent } from './event-dialog/event-dialog.component';
 		MatSortModule,
 		MatPaginatorModule,
 		CommonModule,
+		MatToolbarModule,
 
 	],
 	providers: [],

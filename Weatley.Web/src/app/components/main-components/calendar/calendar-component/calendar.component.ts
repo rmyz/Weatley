@@ -93,6 +93,7 @@ export class CalendarComponent implements OnInit {
 	handleEvent(action: string, event: CalendarEvent): void {
 		const dialogRef = this.dialog.open(EventDialogComponent, {
 			width: '500px',
+			panelClass: 'event-dialog',
 			data: { event: event }
 		});
 	}

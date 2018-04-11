@@ -2,7 +2,6 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/angular-calendar/css/angular-calendar.css';
 
-
 body {
     overflow: hidden;
 }
@@ -33,6 +32,12 @@ body {
     width: 70%;
 }
 
+.event-dialog {
+    .mat-dialog-container {
+		padding: 0;
+        
+     }
+}
 
 // Calendar css
 

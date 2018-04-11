@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Booking } from '../../core/entities/booking';
+import { Activity } from '../../core/entities/activity';
 
 @Component({
 	selector: 'app-event-dialog',
@@ -9,18 +10,24 @@ import { Booking } from '../../core/entities/booking';
 })
 export class EventDialogComponent implements OnInit {
 
-	rawData: Booking;
+	booking: Booking;
+	activity: Activity;
+
+	isBooking = false;
+	isActivity = false;
 
 	constructor(public dialogRef: MatDialogRef<EventDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any) { }
 
 	ngOnInit() {
-		this.rawData = <Booking> this.data.event.meta;
-		console.log(this.rawData);
+		const rawData = this.data.event.meta;
 
-		if (this.rawData instanceof Booking) {
-			console.log('lmao');
+		if (rawData.description) {
+			this.activity = rawData;
+			this.isActivity = true;
+		} else {
+			this.booking = rawData;
+			this.isBooking = true;
 		}
 	}
-
 }
