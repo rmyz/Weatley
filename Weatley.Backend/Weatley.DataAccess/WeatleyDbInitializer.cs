@@ -246,7 +246,8 @@ namespace Weatley.DataAccess
                     OrderDate = DateTime.Now,
                     DeliveryDate = DateTime.Now.AddMinutes(10),
                     Customer = context.Customers.FirstOrDefault(),
-                    ProductsOrdered = new List<ProductOrdered>()
+                    ProductsOrdered = new List<ProductOrdered>(),
+                    Status = "new"
                 };
 
                 Order or_02 = new Order
@@ -257,11 +258,25 @@ namespace Weatley.DataAccess
                     OrderDate = DateTime.Now,
                     DeliveryDate = DateTime.Now.AddMinutes(10),
                     Customer = context.Customers.LastOrDefault(),
-                    ProductsOrdered = new List<ProductOrdered>()
+                    ProductsOrdered = new List<ProductOrdered>(),
+                    Status = "new"
+                };
+
+                Order or_03 = new Order
+                {
+                    Id = Guid.NewGuid(),
+                    FinalPrice = 300,
+                    Comment = "-",
+                    OrderDate = DateTime.Now,
+                    DeliveryDate = DateTime.Now.AddMinutes(10),
+                    Customer = context.Customers.LastOrDefault(),
+                    ProductsOrdered = new List<ProductOrdered>(),
+                    Status = "delivered"
                 };
 
                 context.Orders.Add(or_01);
                 context.Orders.Add(or_02);
+                context.Orders.Add(or_03);
 
                 context.SaveChanges();
             }
@@ -335,8 +350,21 @@ namespace Weatley.DataAccess
                     Order = context.Orders.LastOrDefault(),
                     OrderId = context.Orders.LastOrDefault().Id
                 };
+
+                ProductOrdered po_03 = new ProductOrdered
+                {
+                    Id = Guid.NewGuid(),
+                    Product = context.Products.LastOrDefault(),
+                    ProductId = context.Products.LastOrDefault().Id,
+                    Comments = "Towell should be clean",
+                    Quantity = 2,
+                    Price = 10,
+                    Order = context.Orders.FirstOrDefault(),
+                    OrderId = context.Orders.FirstOrDefault().Id
+                };
                 context.ProductsOrdered.Add(po_01);
                 context.ProductsOrdered.Add(po_02);
+                context.ProductsOrdered.Add(po_03);
 
                 context.SaveChanges();
             }
