@@ -11,12 +11,17 @@ import { MatTableModule } from '@angular/material';
 import { MatSortModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
+import { MatRadioModule } from '@angular/material/radio';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material';
 
 import { CustomerOrderDialogComponent } from './customer-dialogs/customer-order-dialog/customer-order-dialog.component';
 import { CustomerReportDialogComponent } from './customer-dialogs/customer-report-dialog/customer-report-dialog.component';
 import { CustomerAccoutingDialogComponent } from './customer-dialogs/customer-accouting-dialog/customer-accouting-dialog.component';
 import { CustomerDetailsDialogComponent } from './customer-dialogs/customer-details-dialog/customer-details-dialog.component';
 import { CustomerBookingDialogComponent } from './customer-dialogs/customer-booking-dialog/customer-booking-dialog.component';
+import { DenyOrderComponent } from './deny-order/deny-order.component';
+import { DetailsOrderDialogComponent } from './details-order-dialog/details-order-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -26,7 +31,9 @@ import { CustomerBookingDialogComponent } from './customer-dialogs/customer-book
 		CustomerAccoutingDialogComponent,
 		CustomerDetailsDialogComponent,
 		CustomerBookingDialogComponent,
-		CustomerOrderDialogComponent
+		CustomerOrderDialogComponent,
+		DenyOrderComponent,
+		DetailsOrderDialogComponent
 	],
 	imports: [
 		MatDialogModule,
@@ -38,7 +45,11 @@ import { CustomerBookingDialogComponent } from './customer-dialogs/customer-book
 		MatTableModule,
 		MatSortModule,
 		MatPaginatorModule,
-		CommonModule
+		CommonModule,
+		MatRadioModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatFormFieldModule
 	],
 	providers: [],
 	exports: [
@@ -47,7 +58,9 @@ import { CustomerBookingDialogComponent } from './customer-dialogs/customer-book
 		CustomerDetailsDialogComponent,
 		CustomerReportDialogComponent,
 		CustomerAccoutingDialogComponent,
-		CustomerBookingDialogComponent
+		CustomerBookingDialogComponent,
+		DenyOrderComponent,
+		DetailsOrderDialogComponent
 	],
 	entryComponents: [
 		DialogComponent,
@@ -55,7 +68,8 @@ import { CustomerBookingDialogComponent } from './customer-dialogs/customer-book
 		CustomerDetailsDialogComponent,
 		CustomerReportDialogComponent,
 		CustomerAccoutingDialogComponent,
-		CustomerBookingDialogComponent
+		CustomerBookingDialogComponent,
+		DenyOrderComponent
 	]
 	})
 export class WidgetsModule { }

@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotificationsComponent } from './notifications/notifications.component';
 
@@ -47,7 +48,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 		MatCardModule,
 		MatGridListModule,
 		MatDividerModule,
-		MatSnackBarModule
+		MatSnackBarModule,
+		MatTabsModule
 	],
 	exports: [
 		NotificationsComponent

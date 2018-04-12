@@ -1,7 +1,9 @@
 <div>
+    <mat-tab-group>
+            <mat-tab label="Notifications">              
     <div class="title">New notifications</div>
     <div class="grid" layout="horizontal" layout-align="center center">
-        <mat-card class="card-wrapper" *ngFor="let order of newOrders">
+        <mat-card class="card-wrapper" *ngFor="let order of newOrders, let i of index">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>Order from {{ order.customer.name }} {{order.customer.surname }}</mat-card-title>
@@ -14,11 +16,13 @@
              </div>
             </mat-card-content>
             <mat-card-actions class="action-buttons">
-              <button mat-button color="warn" (click)="denyOrder(order)">Deny</button>
-              <button mat-button color="primary" (click)="acceptOrder(order)">Accept</button>
+              <button mat-button color="warn" (click)="denyOrder(order, i)">Deny</button>
+              <button mat-button color="primary" (click)="acceptOrder(order, i)">Accept</button>
             </mat-card-actions>
           </mat-card>
     </div>
+</mat-tab>
+<mat-tab label="Historic">
     <div class="title">Past notifications</div>
     <div class="example-container">
         <mat-form-field>
@@ -53,14 +57,6 @@
                     </button>
                 </mat-cell>
             </ng-container>
-            <ng-container matColumnDef="function_edit">
-                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                <mat-cell *matCellDef="let item">
-                    <button type="button" mat-icon-button class="float-right" matTooltip="Delete" matTooltipPosition="above" (click)="onDelete(item)">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                </mat-cell>
-            </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -73,4 +69,6 @@
     <div>
         <p></p>
     </div>
+</mat-tab>
+</mat-tab-group>
 </div>

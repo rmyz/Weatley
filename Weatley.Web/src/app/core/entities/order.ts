@@ -7,10 +7,11 @@ export class Order {
 	finalPrice: number;
 	comment: string;
 	orderDate: Date;
-	deliveryDate: Date;
 	customer: Customer;
 	productsOrdered: ProductOrdered[];
 	status: string;
+	statusComment: string;
+	signalRId: string;
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);

@@ -5,6 +5,7 @@ import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar } fro
 import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 import { Report } from '../../../../core/entities/report';
 import { HubConnection } from '@aspnet/signalr-client';
+import { DenyOrderComponent } from '../../../../widgets/deny-order/deny-order.component';
 @Component({
 	selector: 'app-notifications',
 	templateUrl: './notifications.component.html',
@@ -13,7 +14,7 @@ import { HubConnection } from '@aspnet/signalr-client';
 })
 export class NotificationsComponent implements OnInit {
 
-displayedColumns = ['customer', 'finalPrice', 'status', 'function', 'function_edit'];
+displayedColumns = ['customer', 'finalPrice', 'status', 'function'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
@@ -27,21 +28,7 @@ displayedColumns = ['customer', 'finalPrice', 'status', 'function', 'function_ed
 				public snackBar: MatSnackBar) { }
 
 	ngOnInit() {
-
-		this.ordersDataService.getOrders().subscribe(orders => {
-			orders.forEach(order => {
-				if (order.status === 'new') {
-					this.newOrders.push(order);
-				} else {
-					this.olderOrders.push(order);
-				}
-			});
-
-			this.dataSource = new MatTableDataSource<Order>(this.olderOrders);
-			this.dataSource.sort = this.sort;
-			this.dataSource.paginator = this.paginator;
-		});
-
+		this.loadData();
 		this.hubConnection = new HubConnection('http://localhost:5000/chat');
 		this.hubConnection
 		.start()
@@ -56,6 +43,22 @@ displayedColumns = ['customer', 'finalPrice', 'status', 'function', 'function_ed
 
 	}
 
+	loadData() {
+		this.ordersDataService.getOrders().subscribe(orders => {
+			orders.forEach(order => {
+				if (order.status === 'new') {
+					this.newOrders.push(order);
+				} else {
+					this.olderOrders.push(order);
+				}
+			});
+
+			this.dataSource = new MatTableDataSource<Order>(this.olderOrders);
+			this.dataSource.sort = this.sort;
+			this.dataSource.paginator = this.paginator;
+		});
+	}
+
 	applyFilter(filterValue: string) {
 
 		filterValue = filterValue.trim();
@@ -63,41 +66,52 @@ displayedColumns = ['customer', 'finalPrice', 'status', 'function', 'function_ed
 		this.dataSource.filter = filterValue;
 	}
 
-	onDelete(item) {
-		const dialogRef = this.dialog.open(DialogComponent);
-
-		dialogRef.afterClosed().subscribe(result => {
-			this.deleteRow(item, result);
+	acceptOrder(order: Order, i: number) {
+		// Set status to accepted
+		order.status = 'accepted';
+		this.newOrders.splice(i, 1);
+		this.ordersDataService.updateOrder(order).subscribe(updated => {
+			this.snackBar.open('Order accepted succesfully', 'Dismiss', {
+				duration: 3000,
+				verticalPosition: 'top',
+				horizontalPosition: 'end'
+			});
+			this.addOrderToTable(order);
+			// Send notification to the phone
+		}, err => {
+			console.log(err);
 		});
 	}
 
-	deleteRow(item, isDeleteable) {
-		if (isDeleteable) {
-			const index = this.dataSource.data.findIndex(i =>
-				i.id === item.id
-			);
-			this.ordersDataService.deleteOrder(item.id).subscribe(res => {
-				this.snackBar.open('Order deleted succesfully', 'Dismiss', {
-					duration: 3000,
-					verticalPosition: 'top',
-					horizontalPosition: 'end'
-				});
-			}, err => {
-				console.log(err);
-			});
-			this.dataSource.data.splice(index, 1);
-		}
+	addOrderToTable(order) {
+		this.dataSource.data.push(order);
 		this.dataSource = new MatTableDataSource<Order>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 	}
+	denyOrder(order: Order, i: number) {
+		order.status = 'denied';
 
-	acceptOrder(order: Order) {
-		// Set status to accepted
-	}
+		const dialogRef = this.dialog.open(DenyOrderComponent, {
+			width: '300px',
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			this.newOrders.splice(i, 1);
+			order.statusComment = result;
 
-	denyOrder(order: Order) {
-		// Show dialog to send comments and set the status to denied
+			this.ordersDataService.updateOrder(order).subscribe(updated => {
+				this.snackBar.open('Order denied succesfully', 'Dismiss', {
+					duration: 3000,
+					verticalPosition: 'top',
+					horizontalPosition: 'end'
+				});
+				this.addOrderToTable(order);
+				// Send notification to the phone
+			}, err => {
+				console.log(err);
+			});
+
+		});
 	}
 
 	goToDetailsDialog(order: Order) {

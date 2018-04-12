@@ -244,10 +244,11 @@ namespace Weatley.DataAccess
                     FinalPrice = 139.35,
                     Comment = "Cola without lemon",
                     OrderDate = DateTime.Now,
-                    DeliveryDate = DateTime.Now.AddMinutes(10),
                     Customer = context.Customers.FirstOrDefault(),
                     ProductsOrdered = new List<ProductOrdered>(),
-                    Status = "new"
+                    Status = "new",
+                    StatusComment = String.Empty,
+                    signalRId = String.Empty
                 };
 
                 Order or_02 = new Order
@@ -256,10 +257,11 @@ namespace Weatley.DataAccess
                     FinalPrice = 250.25,
                     Comment = "No ice on lemonade",
                     OrderDate = DateTime.Now,
-                    DeliveryDate = DateTime.Now.AddMinutes(10),
                     Customer = context.Customers.LastOrDefault(),
                     ProductsOrdered = new List<ProductOrdered>(),
-                    Status = "new"
+                    Status = "new",
+                    StatusComment = String.Empty,
+                    signalRId = String.Empty
                 };
 
                 Order or_03 = new Order
@@ -268,10 +270,11 @@ namespace Weatley.DataAccess
                     FinalPrice = 300,
                     Comment = "-",
                     OrderDate = DateTime.Now,
-                    DeliveryDate = DateTime.Now.AddMinutes(10),
                     Customer = context.Customers.LastOrDefault(),
                     ProductsOrdered = new List<ProductOrdered>(),
-                    Status = "delivered"
+                    Status = "accepted",
+                    StatusComment = String.Empty,
+                    signalRId = String.Empty
                 };
 
                 context.Orders.Add(or_01);
