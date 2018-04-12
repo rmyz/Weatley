@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^5.2.9",
     "@angular/router": "^5.2.9",
     "angular-calendar": "^0.23.7",
+    "angularx-qrcode": "^1.1.0",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.7",

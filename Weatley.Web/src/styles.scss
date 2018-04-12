@@ -118,3 +118,12 @@ a {
 .darkTheme .cal-day-view .cal-hour:not(:last-child) .cal-hour-segment:hover, .cal-day-view.cal-hour:last-child :not(:last-child) .cal-hour-segment:hover {
     background-color: lighten($color: #303030, $amount: 20%);
 }
+
+.qr-image img {
+    position: relative;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

@@ -12,9 +12,11 @@ export class EventDialogComponent implements OnInit {
 
 	booking: Booking;
 	activity: Activity;
+	customerID: string;
 
 	isBooking = false;
 	isActivity = false;
+	isQr = false;
 
 	daysDiff: number;
 	isCheckIn: boolean;
@@ -38,10 +40,15 @@ export class EventDialogComponent implements OnInit {
 			} else {
 				this.isCheckIn = false;
 			}
+			this.customerID = this.booking.customer.id;
 		}
 	}
 
 	dialogClose() {
 		this.dialogRef.close();
+	}
+
+	generateQr() {
+		this.isQr = true;
 	}
 }

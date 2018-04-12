@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material';
 import { MatTableModule } from '@angular/material';
 import { MatSortModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
+import { QRCodeModule } from 'angularx-qrcode';
 import { CommonModule } from '@angular/common';
 
 import { CustomerOrderDialogComponent } from './customer-dialogs/customer-order-dialog/customer-order-dialog.component';
@@ -42,6 +43,7 @@ import { EventDialogComponent } from './event-dialog/event-dialog.component';
 		MatPaginatorModule,
 		CommonModule,
 		MatToolbarModule,
+		QRCodeModule
 
 	],
 	providers: [],

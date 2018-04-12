@@ -7,7 +7,7 @@
 	</span>
 </mat-toolbar>
 
-<div class="container" *ngIf="isBooking">
+<div class="container" *ngIf="isBooking && !isQr">
 	<div class="row row-padding">
 		<h4>Reservation Summary</h4>
 		<span class="stay-days font-weight-light">{{daysDiff}} nights stay</span>
@@ -47,7 +47,7 @@
 	</div>
 	<div *ngIf="isCheckIn">
 		<div class="float-right button-padding">
-			<button mat-raised-button color="primary">Generate QR</button>
+			<button mat-raised-button color="primary" (click)="generateQr()">Generate QR</button>
 			<button mat-raised-button color="warn" (click)="dialogClose()">Cancel</button>
 		</div>
 	</div>
@@ -70,7 +70,7 @@
 	</div>
 </div>
 
-<div class="container" *ngIf="isActivity">
+<div class="container" *ngIf="isActivity && !isQr">
 	<div class="row row-padding">
 		<h4>Activity Date</h4>
 		<div class="row">
@@ -94,6 +94,15 @@
 	<mat-divider class="row-padding"></mat-divider>
 	<div class="row">
 		{{activity.description}}
+	</div>
+	<div class="float-right button-padding">
+		<button mat-raised-button color="warn" (click)="dialogClose()">Dimiss</button>
+	</div>
+</div>
+
+<div class="container" *ngIf="isQr">
+	<div class="float-center">
+		<qrcode class="qr-image"[qrdata]="customerID" [size]="384" [level]="'M'"></qrcode>
 	</div>
 	<div class="float-right button-padding">
 		<button mat-raised-button color="warn" (click)="dialogClose()">Dimiss</button>
