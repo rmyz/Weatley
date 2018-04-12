@@ -41,6 +41,14 @@ body {
 
 // Calendar css
 
+a {
+    color: black !important;
+}
+
+.darkTheme a {
+    color: white !important;
+}
+
 //month
 
 .cal-month-view .cal-cell-row:hover {

@@ -20,10 +20,18 @@ import { EventDialogComponent } from '../../../../widgets/event-dialog/event-dia
 export class CalendarComponent implements OnInit {
 
 	colors: any = {
-		default: {
-			primary: '#2962FF',
+		checkIn: {
+			primary: '#2196F3',
 			secondary: '#BBDEFB'
 		},
+		checkOut: {
+			primary: '#f44336',
+			secondary: '#EF9A9A'
+		},
+		event: {
+			primary: '#00BCD4',
+			secondary: '#B2EBF2'
+		}
 	};
 
 	view = 'week';
@@ -44,14 +52,14 @@ export class CalendarComponent implements OnInit {
 			for (const booking of bookings) {
 				const entryEvent: CalendarEvent = {
 					start: new Date(booking.startingDate),
-					color: this.colors.default,
-					title: booking.customer.name + ' ' + booking.customer.surname + ' Checking in',
+					color: this.colors.checkIn,
+					title: booking.customer.name + ' ' + booking.customer.surname + ' Checking In',
 					meta: booking
 				};
 
 				const leaveEvent: CalendarEvent = {
 					start: new Date(booking.endDate),
-					color: this.colors.default,
+					color: this.colors.checkOut,
 					title: booking.customer.name + ' ' + booking.customer.surname + ' Checking Out',
 					meta: booking
 				};
@@ -66,7 +74,7 @@ export class CalendarComponent implements OnInit {
 				const event: CalendarEvent = {
 					start: new Date(activity.startHour),
 					end: new Date(activity.endHour),
-					color: this.colors.default,
+					color: this.colors.event,
 					title: activity.name,
 					meta: activity
 				};
