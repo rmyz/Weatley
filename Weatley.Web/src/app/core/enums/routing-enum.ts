@@ -27,4 +27,5 @@ export enum RoutingEnum {
 	APP_MANAGEMENT_EVENTS = 'events',
 	APP_MANAGEMENT_EVENTS_CREATE = 'events/create',
 	APP_MANAGEMENT_EVENTS_EDIT = 'events/edit',
+	CALENDAR_ROUTE = 'calendar',
 }

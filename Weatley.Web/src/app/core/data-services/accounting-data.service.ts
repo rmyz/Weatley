@@ -13,27 +13,19 @@ export class AccountingDataService {
 		private commonService: CommonService) {}
 
 	getAccounting(): Observable<Accounting[]> {
-		const url = 'http://localhost:5000/api/Accountings';
-
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
-			.map(res => res.json())
-			.do(accouting => {
-				console.log('getAccounting:');
-				console.log(accouting);
-			});
+
+		return this.http
+					.get('http://localhost:5000/api/Accountings', options)
+					.map((res: Response) => res.json());
 	}
 
 	getAccountingById(id: string): Observable<Accounting> {
-		const url = 'http://localhost:5000/api/Accountings/' + id;
-
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
-			.map(res => <Accounting>res.json())
-			.do(accouting => {
-				console.log('getAccounting:');
-				console.log(accouting);
-			});
+
+		return this.http
+					.get('http://localhost:5000/api/Accountings/' + id, options)
+					.map((res: Response) => res.json());
 	}
 
 	createAccounting(accounting: Accounting) {

@@ -25,8 +25,6 @@ export class CustomerDataService {
 		const data: Observable<Customer[]> = this.http.get(url, options)
 			.map(res => <Customer[]>res.json())
 			.do(customers => {
-				console.log('getCustomers:');
-				console.log(customers);
 			});
 
 		return data;

@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DialogComponent } from './dialog/dialog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule, MatToolbarModule } from '@angular/material';
 import { MatDividerModule } from '@angular/material';
 import { MatListModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
@@ -17,6 +17,7 @@ import { CustomerReportDialogComponent } from './customer-dialogs/customer-repor
 import { CustomerAccoutingDialogComponent } from './customer-dialogs/customer-accouting-dialog/customer-accouting-dialog.component';
 import { CustomerDetailsDialogComponent } from './customer-dialogs/customer-details-dialog/customer-details-dialog.component';
 import { CustomerBookingDialogComponent } from './customer-dialogs/customer-booking-dialog/customer-booking-dialog.component';
+import { EventDialogComponent } from './event-dialog/event-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -26,7 +27,8 @@ import { CustomerBookingDialogComponent } from './customer-dialogs/customer-book
 		CustomerAccoutingDialogComponent,
 		CustomerDetailsDialogComponent,
 		CustomerBookingDialogComponent,
-		CustomerOrderDialogComponent
+		CustomerOrderDialogComponent,
+		EventDialogComponent
 	],
 	imports: [
 		MatDialogModule,
@@ -38,7 +40,9 @@ import { CustomerBookingDialogComponent } from './customer-dialogs/customer-book
 		MatTableModule,
 		MatSortModule,
 		MatPaginatorModule,
-		CommonModule
+		CommonModule,
+		MatToolbarModule,
+
 	],
 	providers: [],
 	exports: [
@@ -47,7 +51,9 @@ import { CustomerBookingDialogComponent } from './customer-dialogs/customer-book
 		CustomerDetailsDialogComponent,
 		CustomerReportDialogComponent,
 		CustomerAccoutingDialogComponent,
-		CustomerBookingDialogComponent
+		CustomerBookingDialogComponent,
+		EventDialogComponent
+
 	],
 	entryComponents: [
 		DialogComponent,
@@ -55,7 +61,9 @@ import { CustomerBookingDialogComponent } from './customer-dialogs/customer-book
 		CustomerDetailsDialogComponent,
 		CustomerReportDialogComponent,
 		CustomerAccoutingDialogComponent,
-		CustomerBookingDialogComponent
+		CustomerBookingDialogComponent,
+		EventDialogComponent
+
 	]
 	})
 export class WidgetsModule { }
