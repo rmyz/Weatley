@@ -29,7 +29,6 @@ export class DenyOrderComponent implements OnInit {
 
 	onClick() {
 		if (this.reason === 'Other') {
-			console.log(this.reason);
 			this.dialogRef.close(this.comment);
 		} else {
 			this.dialogRef.close(this.reason);

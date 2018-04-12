@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { CustomerOrderDialogComponent } from './customer-dialogs/customer-order-dialog/customer-order-dialog.component';
 import { CustomerReportDialogComponent } from './customer-dialogs/customer-report-dialog/customer-report-dialog.component';
 import { CustomerAccoutingDialogComponent } from './customer-dialogs/customer-accouting-dialog/customer-accouting-dialog.component';
@@ -22,6 +22,8 @@ import { CustomerDetailsDialogComponent } from './customer-dialogs/customer-deta
 import { CustomerBookingDialogComponent } from './customer-dialogs/customer-booking-dialog/customer-booking-dialog.component';
 import { DenyOrderComponent } from './deny-order/deny-order.component';
 import { DetailsOrderDialogComponent } from './details-order-dialog/details-order-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
 	declarations: [
@@ -49,7 +51,9 @@ import { DetailsOrderDialogComponent } from './details-order-dialog/details-orde
 		MatRadioModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MatFormFieldModule
+		MatFormFieldModule,
+		MatToolbarModule,
+		MatIconModule
 	],
 	providers: [],
 	exports: [
@@ -69,7 +73,8 @@ import { DetailsOrderDialogComponent } from './details-order-dialog/details-orde
 		CustomerReportDialogComponent,
 		CustomerAccoutingDialogComponent,
 		CustomerBookingDialogComponent,
-		DenyOrderComponent
+		DenyOrderComponent,
+		DetailsOrderDialogComponent
 	]
 	})
 export class WidgetsModule { }

@@ -6,6 +6,7 @@ import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 import { Report } from '../../../../core/entities/report';
 import { HubConnection } from '@aspnet/signalr-client';
 import { DenyOrderComponent } from '../../../../widgets/deny-order/deny-order.component';
+import { DetailsOrderDialogComponent } from '../../../../widgets/details-order-dialog/details-order-dialog.component';
 @Component({
 	selector: 'app-notifications',
 	templateUrl: './notifications.component.html',
@@ -38,7 +39,10 @@ displayedColumns = ['customer', 'finalPrice', 'status', 'function'];
 		.catch(err => console.log('Error while establishing connection :('));
 
 		this.hubConnection.on('sendToAllReport', (report: Report) => {
-			alert('test');
+		});
+
+		this.hubConnection.on('sendToAllOrder', (order: Order) => {
+			this.newOrders.push(order);
 		});
 
 	}
@@ -115,7 +119,11 @@ displayedColumns = ['customer', 'finalPrice', 'status', 'function'];
 	}
 
 	goToDetailsDialog(order: Order) {
-		// Show dialog with details
+		const dialogRef = this.dialog.open(DetailsOrderDialogComponent, {
+			width: '500px',
+			panelClass: 'details-order-dialog',
+			data: { order: order}
+		});
 	}
 
 	sendMessage() {

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Order } from '../../core/entities/order';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
 	selector: 'app-details-order-dialog',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsOrderDialogComponent implements OnInit {
 
-	constructor() { }
+	order: Order;
+	constructor(public dialogRef: MatDialogRef<DetailsOrderDialogComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: any) { }
 
 	ngOnInit() {
+		this.order = this.data.order;
 	}
 
 }
