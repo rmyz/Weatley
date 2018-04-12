@@ -3,7 +3,8 @@ import { OrdersDataService } from '../../../../core/data-services/orders-data.se
 import { Order } from '../../../../core/entities/order';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
-
+import { Report } from '../../../../core/entities/report';
+import { HubConnection } from '@aspnet/signalr-client';
 @Component({
 	selector: 'app-notifications',
 	templateUrl: './notifications.component.html',
@@ -17,6 +18,7 @@ displayedColumns = ['customer', 'finalPrice', 'status', 'function', 'function_ed
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 	dataSource: MatTableDataSource<Order>;
+	private hubConnection: HubConnection;
 
 	newOrders: Order[] = [];
 	olderOrders: Order[] = [];
@@ -25,6 +27,7 @@ displayedColumns = ['customer', 'finalPrice', 'status', 'function', 'function_ed
 				public snackBar: MatSnackBar) { }
 
 	ngOnInit() {
+
 		this.ordersDataService.getOrders().subscribe(orders => {
 			orders.forEach(order => {
 				if (order.status === 'new') {
@@ -38,6 +41,19 @@ displayedColumns = ['customer', 'finalPrice', 'status', 'function', 'function_ed
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
 		});
+
+		this.hubConnection = new HubConnection('http://localhost:5000/chat');
+		this.hubConnection
+		.start()
+		.then(() => {
+			console.log('Connection started!');
+		})
+		.catch(err => console.log('Error while establishing connection :('));
+
+		this.hubConnection.on('sendToAllReport', (report: Report) => {
+			alert('test');
+		});
+
 	}
 
 	applyFilter(filterValue: string) {
@@ -87,5 +103,11 @@ displayedColumns = ['customer', 'finalPrice', 'status', 'function', 'function_ed
 	goToDetailsDialog(order: Order) {
 		// Show dialog with details
 	}
+
+	sendMessage() {
+		this.hubConnection
+			.invoke('sendToAllReport', new Report)
+			.catch(err => console.error(err));
+		}
 
 }

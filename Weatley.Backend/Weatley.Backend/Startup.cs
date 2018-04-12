@@ -83,15 +83,16 @@ namespace Weatley.Backend
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<NotificationsPusher>("/notifications");
-            });
-
             app.UseCors(builder =>
                builder.AllowAnyOrigin()
                .AllowAnyHeader()
                .AllowAnyMethod());
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<NotificationsPusher>("chat");
+            });
+
 
             app.UseExceptionHandler(
               builder =>
