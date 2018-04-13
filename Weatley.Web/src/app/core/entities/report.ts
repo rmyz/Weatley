@@ -1,13 +1,13 @@
 import { Customer } from './customer';
 
 export class Report {
-    id: number;
-    description: string;
-    date: Date;
-    fixed: boolean;
-    customerId: string;
+	id: string;
+	description: string;
+	date: Date;
+	status: string;
+	customer: Customer;
 
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-    }
+	constructor(values: Object = {}) {
+		Object.assign(this, values);
+	}
 }

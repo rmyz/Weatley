@@ -68,7 +68,7 @@ namespace Weatley.DataAccess
 
                 Hotel hot_02 = new Hotel
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("782A6441-7A9D-4C1C-9B9F-27E13ABD7CD1"),
                     Name = "Hotel Two",
                     Description = "Just a test hotel2",
                     Address = "Fake Street 321",
@@ -246,7 +246,7 @@ namespace Weatley.DataAccess
                     OrderDate = DateTime.Now,
                     Customer = context.Customers.FirstOrDefault(),
                     ProductsOrdered = new List<ProductOrdered>(),
-                    Status = "new",
+                    Status = "pending",
                     StatusComment = String.Empty,
                     signalRId = String.Empty
                 };
@@ -259,7 +259,7 @@ namespace Weatley.DataAccess
                     OrderDate = DateTime.Now,
                     Customer = context.Customers.LastOrDefault(),
                     ProductsOrdered = new List<ProductOrdered>(),
-                    Status = "new",
+                    Status = "pending",
                     StatusComment = String.Empty,
                     signalRId = String.Empty
                 };
@@ -380,7 +380,7 @@ namespace Weatley.DataAccess
                     Id = Guid.NewGuid(),
                     Description = "Bathroom is not clean",
                     Date = DateTime.Now,
-                    Status = ReportStatusEnum.Waiting,
+                    Status = "pending",
                     Customer = context.Customers.FirstOrDefault()
                 };
 
@@ -389,7 +389,7 @@ namespace Weatley.DataAccess
                     Id = Guid.NewGuid(),
                     Description = "No toilet paper left",
                     Date = DateTime.Now,
-                    Status = ReportStatusEnum.Delivered,
+                    Status = "pending",
                     Customer = context.Customers.FirstOrDefault()
                 };
 
@@ -398,7 +398,7 @@ namespace Weatley.DataAccess
                     Id = Guid.NewGuid(),
                     Description = "Broken glass at pool",
                     Date = DateTime.Now,
-                    Status = ReportStatusEnum.Accepted,
+                    Status = "seen",
                     Customer = context.Customers.FirstOrDefault()
                 };
 
@@ -407,7 +407,7 @@ namespace Weatley.DataAccess
                     Id = Guid.NewGuid(),
                     Description = "No waiters at bar",
                     Date = DateTime.Now,
-                    Status = ReportStatusEnum.Cancelled,
+                    Status = "seen",
                     Customer = context.Customers.FirstOrDefault()
                 };
 

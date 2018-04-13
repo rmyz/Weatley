@@ -8,6 +8,13 @@
   padding-bottom: 20px;
 }
 
+.icons {
+  margin-bottom: 5px;
+  margin-right: 5px;
+  vertical-align: middle;
+  font-size: 35px;
+}
+
 .example-container {
     display: flex;
     flex-direction: column;
@@ -17,6 +24,10 @@
 
   mat-card-content {
     height: 40px;
+  }
+
+  .report-card {
+    height: 69px !important;
   }
 
 .card-wrapper {
