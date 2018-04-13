@@ -1,0 +1,37 @@
+
+<mat-toolbar color="primary">
+  <span>Order Details</span>
+</mat-toolbar>
+<div class="container">
+<div mat-dialog-content>
+		<div>
+		<h6><mat-icon color="primary" class="icons">face</mat-icon>Customer Name</h6>
+			<h4>{{ order.customer.name }} {{order.customer.surname}}</h4>
+		</div>
+    <mat-divider></mat-divider>
+    <div>
+			<h6><mat-icon color="primary" class="icons">shopping_card</mat-icon>Products</h6>
+			<h4 *ngFor="let product of order.productsOrdered">{{ product.quantity}} x {{ product.product.name }}</h4>
+		</div>
+		<mat-divider></mat-divider>
+		<div>
+			<h6><mat-icon color="primary" class="icons">access_time</mat-icon>Order Date</h6>
+			<h4>{{ order.orderDate | date: 'MM/dd/yyyy hh:mm' }}</h4>
+		</div>
+		<mat-divider></mat-divider>
+		<div>
+			<h6><mat-icon color="primary" class="icons">comment</mat-icon>Comment</h6>
+			<h4>{{ order.comment }}</h4>
+		</div>
+		<mat-divider></mat-divider>
+		<div>
+			<h6><mat-icon color="primary" class="icons">priority_high</mat-icon>Status</h6>
+			<h4>{{ order.status }}</h4>
+		</div>
+		<mat-divider></mat-divider>
+		<div>
+			<h6><mat-icon color="primary" class="icons">chat_bubble_outline</mat-icon>Status comment</h6>
+			<h4>{{ order.statusComment }}</h4>
+		</div>
+</div>
+</div>

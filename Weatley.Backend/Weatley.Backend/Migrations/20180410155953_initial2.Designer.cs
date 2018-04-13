@@ -11,9 +11,10 @@ using Weatley.DataAccess;
 namespace Weatley.Backend.Migrations
 {
     [DbContext(typeof(WeatleyContext))]
-    partial class WeatleyContextModelSnapshot : ModelSnapshot
+    [Migration("20180410155953_initial2")]
+    partial class initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,7 +138,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 4, 12, 20, 38, 42, 62, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 4, 10, 17, 59, 53, 217, DateTimeKind.Local));
 
                     b.Property<double>("FinalPrice");
 
@@ -165,7 +166,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("StartHour")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 4, 12, 20, 38, 42, 64, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 4, 10, 17, 59, 53, 220, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
@@ -204,7 +205,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("StartingDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 4, 12, 20, 38, 42, 66, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 4, 10, 17, 59, 53, 222, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
@@ -264,17 +265,15 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<Guid?>("CustomerId");
 
+                    b.Property<DateTime>("DeliveryDate");
+
                     b.Property<double>("FinalPrice");
 
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 4, 12, 20, 38, 42, 71, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 4, 10, 17, 59, 53, 228, DateTimeKind.Local));
 
                     b.Property<string>("Status");
-
-                    b.Property<string>("StatusComment");
-
-                    b.Property<string>("signalRId");
 
                     b.HasKey("Id");
 

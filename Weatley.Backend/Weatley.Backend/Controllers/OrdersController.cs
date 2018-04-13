@@ -28,7 +28,8 @@ namespace Weatley.Backend.Controllers
         public IEnumerable<Order> GetOrders()
         {
             return _context.Orders.Include(o => o.Customer)
-                                  .Include(o => o.ProductsOrdered);
+                                  .Include(o => o.ProductsOrdered)
+                                    .ThenInclude(po => po.Product); 
         }
 
         // GET: api/Orders/5
@@ -42,6 +43,7 @@ namespace Weatley.Backend.Controllers
 
             var order = await _context.Orders.Include(o => o.Customer)
                                              .Include(o => o.ProductsOrdered)
+                                                .ThenInclude(po => po.Product)
                                              .SingleOrDefaultAsync(m => m.Id == id);
 
             if (order == null)
@@ -95,6 +97,8 @@ namespace Weatley.Backend.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            _context.Customers.Attach(order.Customer);
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
