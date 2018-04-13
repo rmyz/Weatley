@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Weatley.Backend.Migrations
 {
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -83,7 +83,7 @@ namespace Weatley.Backend.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     CustomerId = table.Column<Guid>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 30, 5, 45, 14, 913, DateTimeKind.Local)),
+                    Date = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 4, 13, 18, 45, 11, 708, DateTimeKind.Local)),
                     FinalPrice = table.Column<double>(nullable: false),
                     PaymentType = table.Column<string>(nullable: true)
                 },
@@ -107,7 +107,7 @@ namespace Weatley.Backend.Migrations
                     CustomerId = table.Column<Guid>(nullable: true),
                     EndDate = table.Column<DateTime>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    StartingDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 30, 5, 45, 14, 919, DateTimeKind.Local))
+                    StartingDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 4, 13, 18, 45, 11, 712, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -127,9 +127,11 @@ namespace Weatley.Backend.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Comment = table.Column<string>(nullable: true),
                     CustomerId = table.Column<Guid>(nullable: true),
-                    DeliveryDate = table.Column<DateTime>(nullable: false),
                     FinalPrice = table.Column<double>(nullable: false),
-                    OrderDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 30, 5, 45, 14, 925, DateTimeKind.Local))
+                    OrderDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 4, 13, 18, 45, 11, 717, DateTimeKind.Local)),
+                    Status = table.Column<string>(nullable: true),
+                    StatusComment = table.Column<string>(nullable: true),
+                    signalRId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -172,7 +174,7 @@ namespace Weatley.Backend.Migrations
                     EndHour = table.Column<DateTime>(nullable: false),
                     HotelId = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    StartHour = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 3, 30, 5, 45, 14, 916, DateTimeKind.Local))
+                    StartHour = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2018, 4, 13, 18, 45, 11, 710, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {

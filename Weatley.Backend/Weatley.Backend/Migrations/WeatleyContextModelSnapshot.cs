@@ -137,7 +137,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 4, 12, 20, 38, 42, 62, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 4, 13, 18, 45, 11, 708, DateTimeKind.Local));
 
                     b.Property<double>("FinalPrice");
 
@@ -165,7 +165,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("StartHour")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 4, 12, 20, 38, 42, 64, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 4, 13, 18, 45, 11, 710, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
@@ -204,7 +204,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("StartingDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 4, 12, 20, 38, 42, 66, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 4, 13, 18, 45, 11, 712, DateTimeKind.Local));
 
                     b.HasKey("Id");
 
@@ -268,7 +268,7 @@ namespace Weatley.Backend.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2018, 4, 12, 20, 38, 42, 71, DateTimeKind.Local));
+                        .HasDefaultValue(new DateTime(2018, 4, 13, 18, 45, 11, 717, DateTimeKind.Local));
 
                     b.Property<string>("Status");
 
