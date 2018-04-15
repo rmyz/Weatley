@@ -14,46 +14,54 @@ export class ReportDataService {
 		private commonService: CommonService) {}
 
 	getReports(): Observable<Report[]> {
-		const url = 'http://localhost:5000/api/Reports';
 
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
+		const url = this.commonService.getBaseUrl();
+
+		return this.http.get(url + 'Reports', options)
 			.map(res => res.json());
 	}
 
 	getReportById(id: string): Observable<Report> {
-		const url = 'http://localhost:5000/api/Reports/' + id;
 
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
+		const url = this.commonService.getBaseUrl();
+
+		return this.http.get(url + 'Reports/' + id, options)
 			.map(res => <Report>res.json());
 	}
 
 	createReports(report: Report) {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post('http://localhost:5000/api/Reports/', report, options)
+			.post(url + 'Reports/', report, options)
 			.map((res: Response) => {
 				return new Report(res.json());
 			});
 	}
 
 	updateReport(report: Report): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put('http://localhost:5000/api/Reports/' + report.id , report, options)
+			.put(url + 'Reports/' + report.id , report, options)
 			.map((res: Response) => {
 				return new Report(res.json());
 		});
 	}
 
 	deleteReport(reportId: string): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete('http://localhost:5000/api/Reports/' + reportId, options)
+			.delete(url + 'Reports/' + reportId, options)
 			.map((res: Response) => {
 				return res.json();
 		});

@@ -13,46 +13,56 @@ export class AccountingDataService {
 		private commonService: CommonService) {}
 
 	getAccounting(): Observable<Accounting[]> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get('http://localhost:5000/api/Accountings', options)
+					.get(url + 'Accountings', options)
 					.map((res: Response) => res.json());
 	}
 
 	getAccountingById(id: string): Observable<Accounting> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get('http://localhost:5000/api/Accountings/' + id, options)
+					.get(url + 'Accountings/' + id, options)
 					.map((res: Response) => res.json());
 	}
 
 	createAccounting(accounting: Accounting) {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post('http://localhost:5000/api/Accountings/', accounting, options)
+			.post(url + 'Accountings/', accounting, options)
 			.map((res: Response) => {
 				return new Accounting(res.json());
 			});
 	}
 
 	updateAccounting(accounting: Accounting): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put('http://localhost:5000/api/Accountings/' + accounting.id , accounting, options)
+			.put(url + 'Accountings/' + accounting.id , accounting, options)
 			.map((res: Response) => {
 				return new Accounting(res.json());
 		});
 	}
 
 	deleteAccounting(accountingId: string): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete('http://localhost:5000/api/Accountings/' + accountingId, options)
+			.delete(url + 'Accountings/' + accountingId, options)
 			.map((res: Response) => {
 				return res.json();
 			});

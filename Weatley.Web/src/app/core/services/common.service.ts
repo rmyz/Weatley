@@ -6,7 +6,7 @@ import { UserProfile } from '../Auth-services/User.Profile';
 
 @Injectable()
 export class CommonService {
-	private baseUrl = 'http://localhost:5000/api';
+	private baseUrl = 'http://weatleywebapi.azurewebsites.net/api/';
 
 	constructor(private authProfile: UserProfile) { }
 

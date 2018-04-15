@@ -14,17 +14,19 @@ export class HotelDataService {
 	getHotel(): Observable<Hotel> {
 
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.get('http://localhost:5000/api/Hotels/782A6441-7A9D-4C1C-9B9F-27E13ABD7CD1', options)
+			.get(url + 'Hotels/782A6441-7A9D-4C1C-9B9F-27E13ABD7CD1', options)
 			.map((res: Response) => res.json());
 	}
 
 	updateHotel(hotel: Hotel): Observable<any> {
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put('http://localhost:5000/api/Hotels/' + hotel.id , hotel, options)
+			.put(url + 'Hotels/' + hotel.id , hotel, options)
 			.map((res: Response) => {
 				return new Hotel(res.json());
 		});

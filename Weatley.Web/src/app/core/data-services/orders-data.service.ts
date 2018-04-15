@@ -14,46 +14,53 @@ export class OrdersDataService {
 		private commonService: CommonService) {}
 
 	getOrders(): Observable<Order[]> {
-		const url = 'http://localhost:5000/api/Orders';
-
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
+		const url = this.commonService.getBaseUrl();
+
+		return this.http.get(url + 'Orders', options)
 			.map(res => res.json());
 	}
 
 	getOrderById(id: string): Observable<Order> {
-		const url = 'http://localhost:5000/api/Orders/' + id;
 
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
+		const url = this.commonService.getBaseUrl();
+
+		return this.http.get(url + 'Orders/' + id, options)
 			.map(res => <Order>res.json());
 	}
 
 	createOrders(order: Order) {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post('http://localhost:5000/api/Orders/', order, options)
+			.post(url + 'Orders/', order, options)
 			.map((res: Response) => {
 				return new Order(res.json());
 			});
 	}
 
 	updateOrder(order: Order): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put('http://localhost:5000/api/Orders/' + order.id , order, options)
+			.put(url + 'Orders/' + order.id , order, options)
 			.map((res: Response) => {
 				return new Order(res.json());
 		});
 	}
 
 	deleteOrder(orderId: string): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete('http://localhost:5000/api/Orders/' + orderId, options)
+			.delete(url + 'Orders/' + orderId, options)
 			.map((res: Response) => {
 				return res.json();
 		});

@@ -17,44 +17,56 @@ export class ActivitiesDataService {
 		private commonService: CommonService) { }
 
 		getActivity(): Observable<Activity[]> {
+
 			const options = this.commonService.checkAuth();
+			const url = this.commonService.getBaseUrl();
+
 			return this.http
-						.get('http://localhost:5000/api/Activities', options)
+						.get(url + 'Activities', options)
 						.map((res: Response) => res.json());
 		}
 
 		getActivityById(id: string): Observable<Activity> {
+
 			const options = this.commonService.checkAuth();
+			const url = this.commonService.getBaseUrl();
+
 			return this.http
-						.get('http://localhost:5000/api/Activities/' + id, options)
+						.get(url + 'Activities/' + id, options)
 						.map((res: Response) => res.json());
 		}
 
 		createActivity(activity: Activity) {
+
 			const options = this.commonService.checkAuth();
+			const url = this.commonService.getBaseUrl();
 
 			return this.http
-				.post('http://localhost:5000/api/Activities/', activity, options)
+				.post(url + 'Activities/', activity, options)
 				.map((res: Response) => {
 					return new Activity(res.json());
 				});
 		}
 
 		updateActivity(activity: Activity): Observable<any> {
+
 			const options = this.commonService.checkAuth();
+			const url = this.commonService.getBaseUrl();
 
 			return this.http
-				.put('http://localhost:5000/api/Activities/' + activity.id , activity, options)
+				.put(url + 'Activities/' + activity.id , activity, options)
 				.map((res: Response) => {
 					return new Activity(res.json());
 			});
 		}
 
 		deleteActivity(activityId: string): Observable<any> {
+
 			const options = this.commonService.checkAuth();
+			const url = this.commonService.getBaseUrl();
 
 			return this.http
-				.delete('http://localhost:5000/api/Activities/' + activityId, options)
+				.delete(url + 'Activities/' + activityId, options)
 				.map((res: Response) => {
 					return res.json();
 				});

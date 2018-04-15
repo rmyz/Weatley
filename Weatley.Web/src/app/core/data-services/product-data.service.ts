@@ -13,46 +13,54 @@ export class ProductDataService {
 		private commonService: CommonService) {}
 
 	getProduct(): Observable<Product[]> {
-		const url = 'http://localhost:5000/api/Products';
 
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
+		const url = this.commonService.getBaseUrl();
+
+		return this.http.get(url + 'Products', options)
 			.map(res => res.json());
 	}
 
 	getProductById(id: string): Observable<Product> {
-		const url = 'http://localhost:5000/api/Products/' + id;
 
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
+		const url = this.commonService.getBaseUrl();
+
+		return this.http.get(url + 'Products/' + id, options)
 			.map(res => <Product>res.json());
 	}
 
 	createProduct(product: Product) {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post('http://localhost:5000/api/Products/', product, options)
+			.post(url + 'Products/', product, options)
 			.map((res: Response) => {
 				return new Product(res.json());
 			});
 	}
 
 	updateProduct(product: Product): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put('http://localhost:5000/api/Products/' + product.id , product, options)
+			.put(url + 'Products/' + product.id , product, options)
 			.map((res: Response) => {
 				return new Product(res.json());
 		});
 	}
 
 	deleteProduct(productId: string): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete('http://localhost:5000/api/Products/' + productId, options)
+			.delete(url + 'Products/' + productId, options)
 			.map((res: Response) => {
 				return res.json();
 		});

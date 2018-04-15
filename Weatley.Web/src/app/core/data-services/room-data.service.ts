@@ -14,45 +14,54 @@ export class RoomDataService {
 	getRooms(): Observable<Room[]> {
 
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get('http://localhost:5000/api/Rooms', options)
+					.get(url + 'Rooms', options)
 					.map((res: Response) => res.json());
 	}
 
 	getRoomById(id: string): Observable<Room> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get('http://localhost:5000/api/Rooms/' + id, options)
+					.get(url + 'Rooms/' + id, options)
 					.map((res: Response) => res.json());
 	}
 
 	createRoom(room: Room) {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post('http://localhost:5000/api/Rooms/', room, options)
+			.post(url + 'Rooms/', room, options)
 			.map((res: Response) => {
 				return new Room(res.json());
 			});
 	}
 
 	updateRoom(room: Room): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put('http://localhost:5000/api/Rooms/' + room.id , room, options)
+			.put(url + 'Rooms/' + room.id , room, options)
 			.map((res: Response) => {
 				return new Room(res.json());
 		});
 	}
 
 	deleteRoom(roomId: string): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete('http://localhost:5000/api/Rooms/' + roomId, options)
+			.delete(url + 'Rooms/' + roomId, options)
 			.map((res: Response) => {
 				return res.json();
 			});
