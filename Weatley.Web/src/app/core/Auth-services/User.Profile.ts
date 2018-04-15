@@ -30,7 +30,6 @@ export class UserProfile {
 		const name = profile.claims.filter(p => p.type === 'sub')[1].value;
 		const surname = profile.claims.filter(p => p.type === 'sub')[2].value;
 		const userType = profile.claims.filter(p => p.type === 'sub')[3].value;
-		const hotel = profile.claims.filter(p => p.type === 'sub')[4].value;
 
 		sessionStorage.setItem('access_token', profile.token);
 		sessionStorage.setItem('expires_in', profile.expiration);
@@ -40,7 +39,6 @@ export class UserProfile {
 		sessionStorage.setItem('name', name);
 		sessionStorage.setItem('surname', surname);
 		sessionStorage.setItem('userType', userType);
-		sessionStorage.setItem('hotel', hotel);
 
 	}
 
