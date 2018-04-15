@@ -27,6 +27,7 @@ import { ServicesFormComponent } from './components/main-components/app-manageme
 import { EventsFormComponent } from './components/main-components/app-management/events/events-form/events-form.component';
 import { CalendarComponent } from './components/main-components/calendar/calendar-component/calendar.component';
 import { NotificationsComponent } from './components/main-components/notifications/notifications/notifications.component';
+import { InternalFormComponent } from './components/main-components/hotel-management/internals/internal-form/internal-form.component';
 
 const routes: Routes = [
 	{
@@ -123,7 +124,15 @@ const routes: Routes = [
 					{
 						path: RoutingEnum.HOTEL_MANAGEMENT_INTERNAL,
 						component: InternalsComponent
-					}
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_INTERNAL_CREATE,
+						component: InternalFormComponent
+					},
+					{
+						path: RoutingEnum.HOTEL_MANAGEMENT_INTERNAL_EDIT + '/:id',
+						component: InternalFormComponent
+					},
 				]
 			},
 			{

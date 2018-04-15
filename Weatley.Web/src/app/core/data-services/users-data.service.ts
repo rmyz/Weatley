@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { UserProfile } from '../Auth-services/User.Profile';
 import { CommonService } from '../services/common.service';
-import { User } from '../entities/User';
+import { IUser } from '../models/user-model';
 
 
 @Injectable()
@@ -13,7 +13,7 @@ export class UsersDataService {
 		private authProfile: UserProfile,
 		private commonService: CommonService) { }
 
-	getUsers(): Observable<User[]> {
+	getUsers(): Observable<IUser[]> {
 		const url = 'http://localhost:5000/api/Users';
 
 		const options = this.commonService.checkAuth();
@@ -21,19 +21,29 @@ export class UsersDataService {
 			.map(res => res.json());
 	}
 
-	getUserById(id: string): Observable<User> {
+	getUserById(id: string): Observable<IUser> {
 		const url = 'http://localhost:5000/api/Users/' + id;
 
 		const options = this.commonService.checkAuth();
 		return this.http.get(url, options)
-			.map(res => <User>res.json());
+			.map(res => <IUser>res.json());
 	}
 
-	deleteUser(serviceId: string): Observable<any> {
+	updateUser(user: IUser): Observable<any> {
 		const options = this.commonService.checkAuth();
 
 		return this.http
-			.delete('http://localhost:5000/api/Users/' + serviceId, options)
+			.put('http://localhost:5000/api/Services/' + user.id , user, options)
+			.map((res: Response) => {
+				return (res.json());
+		});
+	}
+
+	deleteUser(userId: string): Observable<any> {
+		const options = this.commonService.checkAuth();
+
+		return this.http
+			.delete('http://localhost:5000/api/Users/' + userId, options)
 			.map((res: Response) => {
 				return res.json();
 			});

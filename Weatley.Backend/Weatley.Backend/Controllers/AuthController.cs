@@ -58,7 +58,7 @@ namespace Weatley.Backend.Controllers
                 UserName = model.UserName,
                 Name = model.Name,
                 Surname = model.Surname,
-                UserType = model.Role,
+                UserType = model.UserType,
                 Email = model.Email
             };
             var result = await _userManager.CreateAsync(user, model.Password);

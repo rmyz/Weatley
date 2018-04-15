@@ -11,7 +11,7 @@ export class UserProfile {
 		expiration: '',
 		currentUser: {
 			id: '',
-			username: '',
+			userName: '',
 			email: '',
 			userType: '',
 			name: '',
@@ -50,7 +50,7 @@ export class UserProfile {
 			this.userProfile.expiration = sessionStorage.getItem('expires_in');
 			if (this.userProfile.currentUser == null) {
 				this.userProfile.currentUser = { id: '',
-					username: '',
+					userName: '',
 					email: '',
 					userType: '',
 					name: '',
@@ -59,7 +59,7 @@ export class UserProfile {
 				};
 			}
 			this.userProfile.currentUser.id = sessionStorage.getItem('nameid');
-			this.userProfile.currentUser.username = sessionStorage.getItem('username');
+			this.userProfile.currentUser.userName = sessionStorage.getItem('username');
 			this.userProfile.currentUser.email = sessionStorage.getItem('email');
 			this.userProfile.currentUser.name = sessionStorage.getItem('name');
 			this.userProfile.currentUser.surname = sessionStorage.getItem('surname');

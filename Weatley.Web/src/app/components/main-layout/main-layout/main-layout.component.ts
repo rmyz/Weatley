@@ -47,7 +47,6 @@ export class MainLayoutComponent implements OnInit {
 	ngOnInit() {
 		this.menuItems = this.menuItemsDataService.getMenuItems();
 		this.user =  this.userProfile.getProfile().currentUser;
-		console.log(this.user);
 	}
 
 	changeTheme() {

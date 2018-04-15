@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import { CommonService } from '../services/common.service';
 import { contentHeaders } from '../common/headers';
 import { UserProfile } from './User.Profile';
-import { IProfile } from '../models/user-model';
+import { IProfile, IUser } from '../models/user-model';
 import { RoutingEnum } from '../enums/routing-enum';
 
 @Injectable()
@@ -59,15 +59,19 @@ export class UserService {
 				return response.json();
 			}).catch(this.commonService.handleFullError);
 	}
-	register(username: string, password: string, confirmPassword: string) {
-		if (!username || !password) {
+	register(user: IUser, password: string, confirmPassword: string) {
+		if (!user.email || !password) {
 			return;
 		}
 		const options = new RequestOptions(
 			{ headers: contentHeaders });
 
 		const credentials = {
-			email: username,
+			userName: user.userName,
+			name: user.name,
+			surname: user.surname,
+			userType: user.userType,
+			email: user.email,
 			password: password,
 			confirmPassword: confirmPassword
 		};

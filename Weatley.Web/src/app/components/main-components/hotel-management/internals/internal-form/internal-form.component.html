@@ -1,3 +1,55 @@
-<p>
-  internal-form works!
-</p>
+<div>
+	<div class="title">Internal Register</div>
+	<div>
+		<button type="button" mat-button (click)="cancel()">
+			<mat-icon>arrow_back</mat-icon>Go back
+		</button>
+	</div>
+	<div class="example-container mat-elevation-z8">
+		<mat-card class="example-container">
+			<form class="main-div" [formGroup]="InternalsForm">
+				<mat-form-field>
+					<input matInput placeholder="UserName" type="text" required name="userName" formControlName="userName">
+					<mat-error>Please insert your UserName</mat-error>
+				</mat-form-field>
+				<mat-form-field>
+					<input matInput placeholder="Name" type="text" required name="name" formControlName="name">
+					<mat-error>Please insert your name</mat-error>
+				</mat-form-field>
+				<mat-form-field>
+					<input matInput placeholder="Surname" type="text" required name="surname" formControlName="surname">
+					<mat-error>Please insert your surname</mat-error>
+				</mat-form-field>
+				<mat-form-field>
+					<input matInput placeholder="Email" type="text" required name="email" formControlName="email">
+					<mat-error>Please insert your email</mat-error>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-select placeholder="Internal Role" required formControlName="userType" name="userType">
+						<mat-option value="Manager">Manager</mat-option>
+						<mat-option value="Receptionist">Receptionist</mat-option>
+					</mat-select>
+					<mat-error>Please choose a Role</mat-error>
+				</mat-form-field>
+				<mat-form-field>
+					<input matInput placeholder="Password" [type]="hideP ? 'text' : 'password'" required name="password" formControlName="password">
+					<mat-icon matSuffix (click)="hideP = !hideP">{{hideP ? 'visibility_off' : 'visibility'}}</mat-icon>
+					<mat-error>Please insert a password</mat-error>
+				</mat-form-field>
+				<mat-form-field>
+					<input matInput placeholder="Password confirmation" [type]="hideC ? 'text' : 'password'" required name="confirmPassword"
+					 formControlName="confirmPassword">
+					<mat-icon matSuffix (click)="hideC = !hideC">{{hideC ? 'visibility_off' : 'visibility'}}</mat-icon>
+					<mat-error>Please confirm your password</mat-error>
+				</mat-form-field>
+			</form>
+			<mat-card-actions>
+				<button type="button" mat-button class="float-right" (click)="submitInternal()">
+					Register
+					<mat-icon>save</mat-icon>
+				</button>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+	<p></p>
+</div>

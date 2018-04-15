@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from '../../../../core/entities/User';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { UsersDataService } from '../../../../core/data-services/users-data.service';
 import { Router } from '@angular/router';
 import { RoutingEnum } from '../../../../core/enums/routing-enum';
 import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
+import { IUser } from '../../../../core/models/user-model';
 
 @Component({
 	selector: 'app-internals',
@@ -17,8 +17,8 @@ export class InternalsComponent implements OnInit {
 
 	displayedColumns = ['name', 'surname', 'userType', 'email', 'function'];
 
-	dataSource: MatTableDataSource<User>;
-	dataAccount: User[] = [];
+	dataSource: MatTableDataSource<IUser>;
+	dataAccount: IUser[] = [];
 
 	private temp = '';
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,7 +33,7 @@ export class InternalsComponent implements OnInit {
 	ngOnInit() {
 		this.usersDataService.getUsers().subscribe(user => {
 			this.dataAccount = user;
-			this.dataSource = new MatTableDataSource<User>(this.dataAccount);
+			this.dataSource = new MatTableDataSource<IUser>(this.dataAccount);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
 		});
@@ -78,7 +78,7 @@ export class InternalsComponent implements OnInit {
 			});
 			this.dataSource.data.splice(index, 1);
 		}
-		this.dataSource = new MatTableDataSource<User>(this.dataSource.data);
+		this.dataSource = new MatTableDataSource<IUser>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 	}

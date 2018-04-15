@@ -2,7 +2,7 @@ import { Service } from './service';
 import { Product } from './product';
 import { Activity } from './activity';
 import { Room } from './room';
-import { User } from './user';
+import { IUser } from '../models/user-model';
 
 export class Hotel {
 	id: string;
@@ -16,7 +16,7 @@ export class Hotel {
 	rooms: Room[];
 	products: Product[];
 	services: Service[];
-	users: User[];
+	users: IUser[];
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);
