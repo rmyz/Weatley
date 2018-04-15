@@ -12,11 +12,12 @@ interface IClaim {
 	value: string;
 }
 
-interface IUser {
+export interface IUser {
 	id: string;
 	username: string;
 	email;
 	userType: string;
 	name: string;
+	surname: string;
 	hotel: Hotel;
 }

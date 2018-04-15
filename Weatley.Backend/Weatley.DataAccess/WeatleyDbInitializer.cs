@@ -454,7 +454,7 @@ namespace Weatley.DataAccess
                     Name = "Admin",
                     Surname = "Test",
                     UserType = UserTypeEnum.Admin,
-                    Hotel = context.Hotels.FirstOrDefault() 
+                    Hotel = context.Hotels.FirstOrDefault()
                 };
                 userManager.CreateAsync(user, "Pa$$w0rd");
             }

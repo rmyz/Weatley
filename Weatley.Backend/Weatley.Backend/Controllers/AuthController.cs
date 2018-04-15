@@ -99,6 +99,7 @@ namespace Weatley.Backend.Controllers
                           new Claim(JwtRegisteredClaimNames.Sub, user.Surname),
                           new Claim(JwtRegisteredClaimNames.Sub, user.UserType)
 
+
                         }.Union(userClaims);
 
                     var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configurationRoot["JwtSecurityToken:Key"]));
