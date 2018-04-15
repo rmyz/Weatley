@@ -262,29 +262,6 @@ namespace Weatley.DataAccess
                 .WithMany(h => h.Services);
 
             #endregion
-            #region User
-
-            //modelBuilder.Entity<User>()
-            //   .ToTable("User");
-
-            //modelBuilder.Entity<User>()
-            //    .Property(u => u.Id)
-            //    .IsRequired();
-
-            //modelBuilder.Entity<User>()
-            //    .HasOne(u => u.Hotel)
-            //    .WithMany(h => h.Users);
-
-            //modelBuilder.Entity<User>()
-            //    .Property(u => u.Id)
-            //    .HasDefaultValueSql("NEWID()");
-
-            //modelBuilder.Entity<User>()
-            //    .HasOne(u => u.Hotel)
-            //    .WithMany(h => h.Users);
-
-            #endregion
-
         }
     }
 }
