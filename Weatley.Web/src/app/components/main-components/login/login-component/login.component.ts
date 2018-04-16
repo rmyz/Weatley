@@ -50,7 +50,11 @@ export class LoginComponent implements OnInit {
 					}
 				},
 				error => {
-					console.error(error);
+					this.snackBar.open('Username or password is incorrect', 'Dismiss', {
+									duration: 3000,
+									verticalPosition: 'top',
+									horizontalPosition: 'end',
+								});
 				});
 		} else {
 			this.errorMessage = 'Please enter a user name and password.';

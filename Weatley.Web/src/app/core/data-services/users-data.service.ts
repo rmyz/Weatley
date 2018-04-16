@@ -33,7 +33,7 @@ export class UsersDataService {
 		const options = this.commonService.checkAuth();
 
 		return this.http
-			.put('http://localhost:5000/api/Services/' + user.id , user, options)
+			.put('http://localhost:5000/api/Users/' + user.id , user, options)
 			.map((res: Response) => {
 				return (res.json());
 		});

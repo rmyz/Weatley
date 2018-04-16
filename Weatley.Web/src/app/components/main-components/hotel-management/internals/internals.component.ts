@@ -39,10 +39,6 @@ export class InternalsComponent implements OnInit {
 		});
 	}
 
-	goToEdit(id) {
-		this.router.navigate([RoutingEnum.HOTEL_MANAGEMENT + '/' + RoutingEnum.HOTEL_MANAGEMENT_INTERNAL_EDIT + '/' + id]);
-	}
-
 	goToCreate() {
 		this.router.navigate([RoutingEnum.HOTEL_MANAGEMENT + '/' + RoutingEnum.HOTEL_MANAGEMENT_INTERNAL_CREATE]);
 	}
