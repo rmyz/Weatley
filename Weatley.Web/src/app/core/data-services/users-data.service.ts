@@ -14,36 +14,44 @@ export class UsersDataService {
 		private commonService: CommonService) { }
 
 	getUsers(): Observable<IUser[]> {
-		const url = 'http://localhost:5000/api/Users';
 
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
+		const url = this.commonService.getBaseUrl();
+
+		return this.http
+			.get(url + 'Users', options)
 			.map(res => res.json());
 	}
 
 	getUserById(id: string): Observable<IUser> {
-		const url = 'http://localhost:5000/api/Users/' + id;
 
 		const options = this.commonService.checkAuth();
-		return this.http.get(url, options)
+		const url = this.commonService.getBaseUrl();
+
+		return this.http
+			.get(url + 'Users/' + id, options)
 			.map(res => <IUser>res.json());
 	}
 
 	updateUser(user: IUser): Observable<any> {
+
 		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put('http://localhost:5000/api/Users/' + user.id , user, options)
+			.put(url + 'Users/' + user.id , user, options)
 			.map((res: Response) => {
 				return (res.json());
 		});
 	}
 
 	deleteUser(userId: string): Observable<any> {
+
+		const url = this.commonService.getBaseUrl();
 		const options = this.commonService.checkAuth();
 
 		return this.http
-			.delete('http://localhost:5000/api/Users/' + userId, options)
+			.delete(url + 'Users/' + userId, options)
 			.map((res: Response) => {
 				return res.json();
 			});
