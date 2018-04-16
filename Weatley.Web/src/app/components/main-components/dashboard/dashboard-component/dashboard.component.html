@@ -1,0 +1,130 @@
+<div class="test">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="card card-stats">
+					<div class="card-header" data-background-color="orange">
+						<i class="material-icons">hotel</i>
+					</div>
+					<div class="card-content">
+						<p class="category">Free rooms</p>
+						<h3 class="title">{{ customerCount }}/300</h3>
+					</div>
+					<div class="card-footer">
+						<div class="stats">
+							Rooms occupied at this time
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="card card-stats">
+					<div class="card-header" data-background-color="green">
+						<i class="material-icons">store</i>
+					</div>
+					<div class="card-content">
+						<p class="category">Products Revenue</p>
+						<h3 class="title">{{ ordersRevenue }} €</h3>
+					</div>
+					<div class="card-footer">
+						<div class="stats">
+							Total
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="card card-stats">
+					<div class="card-header" data-background-color="red">
+						<i class="material-icons">info_outline</i>
+					</div>
+					<div class="card-content">
+						<p class="category">Notifications Alerts</p>
+						<h3 class="title">{{ notification }}</h3>
+					</div>
+					<div class="card-footer">
+						<div class="stats">
+							Notifications pending
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row center">
+
+			<div class="col-lg-6 col-md-12">
+				<div class="card">
+					<div class="card-header" data-background-color="blue">
+						<h4 class="title">Clients</h4>
+						<p class="category">Last customers</p>
+					</div>
+					<div class="card-content table-responsive">
+						<table class="table table-hover">
+							<thead class="text">
+								<tr>
+									<th>Name</th>
+									<th>Surname</th>
+									<th>DNI</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{{ customer1?.name }}</td>
+									<td>{{ customer1?.surname }}</td>
+									<td>{{ customer1?.identificationDocument }}</td>
+								</tr>
+								<tr>
+									<td>{{ customer2?.name }}</td>
+									<td>{{ customer2?.surname }}</td>
+									<td>{{ customer2?.identificationDocument }}</td>
+								</tr>
+								<tr>
+									<td>{{ customer3?.name }}</td>
+									<td>{{ customer3?.surname }}</td>
+									<td>{{ customer3?.identificationDocument }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-md-12">
+				<div class="card">
+					<div class="card-header" data-background-color="purple">
+						<h4 class="title">Products</h4>
+						<p class="category">Last orders</p>
+					</div>
+					<div class="card-content table-responsive">
+						<table class="table table-hover">
+							<thead class="text">
+								<tr>
+									<th>Comment</th>
+									<th>Date</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{{ order1?.comment }}</td>
+									<td>{{ order1?.orderDate | date: 'dd-MM-yyyy' }}</td>
+									<td>{{ order1?.finalPrice }} €</td>
+								</tr>
+								<tr>
+									<td>{{ order2?.comment }}</td>
+									<td>{{ order2?.orderDate | date: 'dd-MM-yyyy' }}</td>
+									<td>{{ order2?.finalPrice }} €</td>
+								</tr>
+									<td>{{ order3?.comment }}</td>
+									<td>{{ order3?.orderDate | date: 'dd-MM-yyyy' }}</td>
+									<td>{{ order3?.finalPrice }}</td>
+								<tr>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -28,12 +28,18 @@ import { EventsFormComponent } from './components/main-components/app-management
 import { CalendarComponent } from './components/main-components/calendar/calendar-component/calendar.component';
 import { NotificationsComponent } from './components/main-components/notifications/notifications/notifications.component';
 import { InternalFormComponent } from './components/main-components/hotel-management/internals/internal-form/internal-form.component';
+import { DashboardComponent } from './components/main-components/dashboard/dashboard-component/dashboard.component';
 
 const routes: Routes = [
 	{
 		path: '',
 		component: MainLayoutComponent,
 		children: [
+			{
+				path: RoutingEnum.DASHBOARD_ROUTE,
+				component: DashboardComponent,
+				canActivate: [AuthGuard]
+			},
 			{
 				path: RoutingEnum.ACCOUNTING_ROUTE,
 				component: AccountingComponent,

@@ -12,6 +12,7 @@ import { HotelManagementModule } from './main-components/hotel-management/hotel-
 import { AppManagementModule } from './main-components/app-management/app-management.module';
 import { FullCalendarModule } from './main-components/calendar/calendar.module';
 import { NotificationsModule } from './main-components/notifications/notifications.module';
+import { DashboardModule } from './main-components/dashboard/dashboard.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ declarations: [],
 		HotelManagementModule,
 		AppManagementModule,
 		FullCalendarModule,
-		NotificationsModule
+		NotificationsModule,
+		DashboardModule
 	],
 	providers: [],
 	exports: [
@@ -40,7 +42,8 @@ declarations: [],
 		HotelManagementModule,
 		AppManagementModule,
 		FullCalendarModule,
-		NotificationsModule
+		NotificationsModule,
+		DashboardModule
 	]
 
 })
