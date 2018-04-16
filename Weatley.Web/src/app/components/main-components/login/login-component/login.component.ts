@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
 			const result = this.authService.login(username, password).subscribe(
 				response => {
 					if (this.authService.redirectUrl) {
-						console.log(this.authService.redirectUrl);
 						this.router.navigateByUrl(this.authService.redirectUrl);
 					} else {
 						this.isLoggedService.sendMessage(true);
@@ -51,7 +50,11 @@ export class LoginComponent implements OnInit {
 					}
 				},
 				error => {
-					console.error(error);
+					this.snackBar.open('Username or password is incorrect', 'Dismiss', {
+									duration: 3000,
+									verticalPosition: 'top',
+									horizontalPosition: 'end',
+								});
 				});
 		} else {
 			this.errorMessage = 'Please enter a user name and password.';

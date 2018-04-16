@@ -450,7 +450,11 @@ namespace Weatley.DataAccess
                 var user = new User
                 {
                     Email = "Admin@admin.com",
-                    UserName = "Admin"
+                    UserName = "Admin",
+                    Name = "Admin",
+                    Surname = "Test",
+                    UserType = UserTypeEnum.Admin,
+                    Hotel = context.Hotels.FirstOrDefault()
                 };
                 userManager.CreateAsync(user, "Pa$$w0rd");
             }

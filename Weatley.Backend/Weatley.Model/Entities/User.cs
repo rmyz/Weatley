@@ -10,6 +10,7 @@ namespace Weatley.Model.Entities
     {
         public string UserType { get; set; }
         public string Name { get; set; }
+        public string Surname { get; set; }
         public Hotel Hotel { get; set; }
     }
 }

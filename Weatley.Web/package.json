@@ -23,11 +23,12 @@
     "@angular/platform-browser": "^5.2.9",
     "@angular/platform-browser-dynamic": "^5.2.9",
     "@angular/router": "^5.2.9",
+    "@aspnet/signalr-client": "^1.0.0-alpha2-final",
     "angular-calendar": "^0.23.7",
     "angularx-qrcode": "^1.1.0",
-    "@aspnet/signalr-client": "^1.0.0-alpha2-final",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
+    "npm": "^5.8.0",
     "rxjs": "^5.5.7",
     "uuid": "^3.2.1",
     "zone.js": "^0.8.19"

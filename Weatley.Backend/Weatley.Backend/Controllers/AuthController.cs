@@ -55,7 +55,10 @@ namespace Weatley.Backend.Controllers
             }
             var user = new User()
             {
-                UserName = model.Email,
+                UserName = model.UserName,
+                Name = model.Name,
+                Surname = model.Surname,
+                UserType = model.UserType,
                 Email = model.Email
             };
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -89,9 +92,14 @@ namespace Weatley.Backend.Controllers
 
                     var claims = new[]
                     {
-                          new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                           new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                          new Claim(JwtRegisteredClaimNames.Email, user.Email)
+                          new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                          new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                          new Claim(JwtRegisteredClaimNames.Sub, user.Name),
+                          new Claim(JwtRegisteredClaimNames.Sub, user.Surname),
+                          new Claim(JwtRegisteredClaimNames.Sub, user.UserType)
+
+
                         }.Union(userClaims);
 
                     var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configurationRoot["JwtSecurityToken:Key"]));

@@ -3,11 +3,12 @@ import { MenuItemsDataService } from '../../../core/data-services/menu-items-dat
 import { MenuItem } from '../../../core/entities/menu-item';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 import { UserService } from '../../../core/Auth-services/user.service';
-import { User } from '../../../core/entities/user';
 import { Router } from '@angular/router';
 import { ServicesDataService } from '../../../core/data-services/services-data.service';
 import { RoutingEnum } from '../../../core/enums/routing-enum';
 import { IsLoggedService } from '../../../core/services/isLogged.service';
+import { UserProfile } from '../../../core/Auth-services/User.Profile';
+import { IUser } from '../../../core/models/user-model';
 
 @Component({
 	selector: 'app-main-layout',
@@ -33,10 +34,11 @@ export class MainLayoutComponent implements OnInit {
 	menuItems: MenuItem[] = [];
 	sidenavStatus = 'out';
 	sidenavItems = true;
-	user: User;
+	user: IUser;
 
 	constructor(
 		private menuItemsDataService: MenuItemsDataService,
+		private userProfile: UserProfile,
 		private userService: UserService,
 		private servicesDataService: ServicesDataService,
 		private isLoggedService: IsLoggedService,
@@ -44,6 +46,7 @@ export class MainLayoutComponent implements OnInit {
 
 	ngOnInit() {
 		this.menuItems = this.menuItemsDataService.getMenuItems();
+		this.user =  this.userProfile.getProfile().currentUser;
 	}
 
 	changeTheme() {
