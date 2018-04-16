@@ -50,7 +50,7 @@ export class UserService {
 			email: username,
 			password: password
 		};
-		const url = this.commonService.getBaseUrl() + '/auth/token';
+		const url = this.commonService.getBaseUrl() + 'auth/token';
 
 		return this.http.post(url, credentials, options)
 			.map((response: Response) => {
@@ -75,7 +75,7 @@ export class UserService {
 			password: password,
 			confirmPassword: confirmPassword
 		};
-		const url = this.commonService.getBaseUrl() + '/auth/register';
+		const url = this.commonService.getBaseUrl() + 'auth/register';
 		return this.http.post(url, credentials, options)
 			.map((response: Response) => {
 				return response.json();
