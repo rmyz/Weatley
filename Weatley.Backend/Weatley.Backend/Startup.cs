@@ -85,12 +85,13 @@ namespace Weatley.Backend
 
             app.UseCors(builder =>
                builder.AllowAnyOrigin()
+               .AllowCredentials()
                .AllowAnyHeader()
                .AllowAnyMethod());
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<NotificationsPusher>("chat");
+                routes.MapHub<NotificationsPusher>("/chat");
             });
 
 

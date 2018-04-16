@@ -4,7 +4,7 @@ import { Order } from '../../../../core/entities/order';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 import { Report } from '../../../../core/entities/report';
-import { HubConnection } from '@aspnet/signalr-client';
+import { HubConnection } from '@aspnet/signalr';
 import { DenyOrderComponent } from '../../../../widgets/deny-order/deny-order.component';
 import { DetailsOrderDialogComponent } from '../../../../widgets/details-order-dialog/details-order-dialog.component';
 import { ReportDataService } from '../../../../core/data-services/report-data.service';
@@ -40,7 +40,7 @@ displayedColumnsReport = ['customer', 'description', 'status'];
 
 	ngOnInit() {
 		this.loadData();
-		this.hubConnection = new HubConnection('http://localhost:5000/chat');
+		this.hubConnection = new HubConnection('http://weatleywebapi.azurewebsites.net/chat');
 		this.hubConnection
 		.start()
 		.then(() => {
@@ -49,6 +49,7 @@ displayedColumnsReport = ['customer', 'description', 'status'];
 		.catch(err => console.log('Error while establishing connection :('));
 
 		this.hubConnection.on('sendToAllReport', (report: Report) => {
+			alert('test');
 		});
 
 		this.hubConnection.on('sendToAllOrder', (order: Order) => {
