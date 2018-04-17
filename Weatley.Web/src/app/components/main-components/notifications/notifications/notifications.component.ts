@@ -8,6 +8,7 @@ import { HubConnection } from '@aspnet/signalr';
 import { DenyOrderComponent } from '../../../../widgets/deny-order/deny-order.component';
 import { DetailsOrderDialogComponent } from '../../../../widgets/details-order-dialog/details-order-dialog.component';
 import { ReportDataService } from '../../../../core/data-services/report-data.service';
+import { SignalRService } from '../../../../core/services/signalR.service';
 @Component({
 	selector: 'app-notifications',
 	templateUrl: './notifications.component.html',
@@ -25,7 +26,6 @@ displayedColumnsReport = ['customer', 'description', 'status'];
 	@ViewChild(MatSort) sortReport: MatSort;
 	dataSourceReport: MatTableDataSource<Report>;
 	dataSource: MatTableDataSource<Order>;
-	private hubConnection: HubConnection;
 
 	newOrders: Order[] = [];
 	olderOrders: Order[] = [];
@@ -36,27 +36,20 @@ displayedColumnsReport = ['customer', 'description', 'status'];
 	constructor(private ordersDataService: OrdersDataService,
 				private reportDataService: ReportDataService,
 				private dialog: MatDialog,
-				public snackBar: MatSnackBar) { }
+				public snackBar: MatSnackBar,
+				private signalRService: SignalRService) { }
 
 	ngOnInit() {
 		this.loadData();
-		this.hubConnection = new HubConnection('http://weatleywebapi.azurewebsites.net/chat');
-		this.hubConnection
-		.start()
-		.then(() => {
-			console.log('Connection started!');
-		})
-		.catch(err => console.log('Error while establishing connection :('));
+		this.signalRService.getMessage().subscribe(message => {
 
-		this.hubConnection.on('sendToAllReport', (report: Report, id) => {
-			this.newReports.push(report);
-			// notify user who send the report
+			if (message[0].description) {
+				// Report
+				console.log(message);
+			} else {
+				// Order
+			}
 		});
-
-		this.hubConnection.on('sendToAllOrder', (order: Order, id) => {
-			this.newOrders.push(order);
-		});
-
 	}
 
 	loadData() {
@@ -177,11 +170,5 @@ displayedColumnsReport = ['customer', 'description', 'status'];
 			data: { order: order}
 		});
 	}
-
-	sendMessage() {
-		this.hubConnection
-			.invoke('sendToAllReport', new Report)
-			.catch(err => console.error(err));
-		}
 
 }

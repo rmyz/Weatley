@@ -6,6 +6,7 @@ import { Report } from '../../../../core/entities/report';
 import { OrdersDataService } from '../../../../core/data-services/orders-data.service';
 import { CustomerDataService } from '../../../../core/data-services/customer-data.service';
 import { ReportDataService } from '../../../../core/data-services/reports-data.service';
+import { SignalRService } from '../../../../core/services/signalR.service';
 
 
 @Component({
@@ -34,10 +35,15 @@ export class DashboardComponent implements OnInit {
 	constructor(
 		private ordersDataService: OrdersDataService,
 		private customerDataService: CustomerDataService,
-		private reportDataService: ReportDataService
+		private reportDataService: ReportDataService,
+		private signalRService: SignalRService
 	) { }
 
 	ngOnInit() {
+
+		this.signalRService.getMessage().subscribe(message => {
+			this.notification = this.notification + 1;
+		});
 
 		this.ordersDataService.getOrders().subscribe(orders => {
 			const order: Order[] = orders;
@@ -46,7 +52,9 @@ export class DashboardComponent implements OnInit {
 				this.order1 = order[0];
 				this.order2 = order[1];
 				this.order3 = order[2];
-				this.notification = this.notification + order.length;
+				if (order[i].status === 'pending') {
+					this.notification = this.notification + 1;
+				}
 			}
 		});
 
@@ -61,8 +69,11 @@ export class DashboardComponent implements OnInit {
 		});
 
 		this.reportDataService.getReports().subscribe(reports => {
-			const report: Report[] = reports;
-			this.notification = this.notification + report.length;
+			reports.forEach(r => {
+				if (r.status === 'pending') {
+					this.notification = this.notification + 1;
+				}
+			});
 		});
 	}
 
