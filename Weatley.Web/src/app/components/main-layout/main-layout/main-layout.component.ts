@@ -86,7 +86,6 @@ export class MainLayoutComponent implements OnInit {
 
 	changeTheme() {
 		this.theme = !this.theme;
-		this.hubConnection.invoke('sendToAllOrder', new Order);
 	}
 
 	toggleState() {
