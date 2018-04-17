@@ -12,6 +12,7 @@ namespace Weatley.Model.Entities
         public string Description { get; set; }
         public string ProductType { get; set; }
         public Boolean? Available { get; set; }
+        public double Price { get; set; }
         public Hotel Hotel { get; set; }
 
         //Relation with Order

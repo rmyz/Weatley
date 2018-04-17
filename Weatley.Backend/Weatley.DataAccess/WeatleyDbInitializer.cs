@@ -295,6 +295,7 @@ namespace Weatley.DataAccess
                     Description = "Cold drink with cola flavour",
                     ProductType = ProductTypeEnum.Drink,
                     Available = true,
+                    Price = 1.50,
                     ProductsOrdered = new List<ProductOrdered>()
                 };
 
@@ -306,6 +307,7 @@ namespace Weatley.DataAccess
                     Description = "A towell for your needs",
                     ProductType = ProductTypeEnum.Service,
                     Available = true,
+                    Price = 3,
                     ProductsOrdered = new List<ProductOrdered>()
                 };
 
@@ -317,6 +319,7 @@ namespace Weatley.DataAccess
                     Description = "Handmade pizza with peperoni and mozarella",
                     ProductType = ProductTypeEnum.Food,
                     Available = false,
+                    Price = 5.90,
                     ProductsOrdered = new List<ProductOrdered>()
                 };
 
