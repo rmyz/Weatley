@@ -33,6 +33,9 @@ displayedColumnsReport = ['customer', 'description', 'status'];
 	newReports: Report[] = [];
 	olderReports: Report[] = [];
 
+
+	isLoading = true;
+
 	constructor(private ordersDataService: OrdersDataService,
 				private reportDataService: ReportDataService,
 				private dialog: MatDialog,
@@ -84,6 +87,8 @@ displayedColumnsReport = ['customer', 'description', 'status'];
 			this.dataSourceReport = new MatTableDataSource<Report>(this.olderReports);
 			this.dataSourceReport.sort = this.sortReport;
 			this.dataSourceReport.paginator = this.paginatorReport;
+
+			this.isLoading = false;
 		});
 
 	}

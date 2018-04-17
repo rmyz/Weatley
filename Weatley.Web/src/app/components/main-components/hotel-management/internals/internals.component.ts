@@ -24,6 +24,8 @@ export class InternalsComponent implements OnInit {
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 
+	isLoading = true;
+
 	constructor(
 		private usersDataService: UsersDataService,
 		private router: Router,
@@ -36,6 +38,8 @@ export class InternalsComponent implements OnInit {
 			this.dataSource = new MatTableDataSource<IUser>(this.dataAccount);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
+
+			this.isLoading = false;
 		});
 	}
 

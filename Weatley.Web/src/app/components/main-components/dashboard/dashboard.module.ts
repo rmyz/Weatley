@@ -6,13 +6,15 @@ import { DashboardComponent } from './dashboard-component/dashboard.component';
 import { OrdersDataService } from '../../../core/data-services/orders-data.service';
 import { CustomerDataService } from '../../../core/data-services/customer-data.service';
 import { ReportDataService } from '../../../core/data-services/reports-data.service';
+import { PageLoaderModule } from '../../../widgets/page-loader/page-loader.module';
 
 
 @NgModule({
 	imports: [
 		CommonModule,
 		MatGridListModule,
-		CommonModule
+		CommonModule,
+		PageLoaderModule
 	],
 	declarations: [
 		DashboardComponent

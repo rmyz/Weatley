@@ -20,6 +20,7 @@ import { MatDividerModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { PageLoaderModule } from '../../../widgets/page-loader/page-loader.module';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 		MatGridListModule,
 		MatDividerModule,
 		MatSnackBarModule,
-		MatTabsModule
+		MatTabsModule,
+		PageLoaderModule
 	],
 	exports: [
 		NotificationsComponent

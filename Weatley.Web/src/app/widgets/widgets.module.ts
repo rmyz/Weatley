@@ -26,7 +26,6 @@ import { DenyOrderComponent } from './deny-order/deny-order.component';
 import { DetailsOrderDialogComponent } from './details-order-dialog/details-order-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 
-
 @NgModule({
 	declarations: [
 		DialogComponent,
@@ -38,7 +37,7 @@ import { MatIconModule } from '@angular/material/icon';
 		CustomerOrderDialogComponent,
 		EventDialogComponent,
 		DenyOrderComponent,
-		DetailsOrderDialogComponent
+		DetailsOrderDialogComponent,
 	],
 	imports: [
 		MatDialogModule,
@@ -70,7 +69,7 @@ import { MatIconModule } from '@angular/material/icon';
 		CustomerBookingDialogComponent,
 		EventDialogComponent,
 		DenyOrderComponent,
-		DetailsOrderDialogComponent
+		DetailsOrderDialogComponent,
 	],
 	entryComponents: [
 		DialogComponent,

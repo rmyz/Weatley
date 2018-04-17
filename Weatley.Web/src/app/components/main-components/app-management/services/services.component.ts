@@ -22,6 +22,8 @@ export class ServicesComponent implements OnInit {
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 
+	isLoading = true;
+
 	constructor(private servicesDataService: ServicesDataService,
 				private router: Router,
 				private dialog: MatDialog,
@@ -33,6 +35,8 @@ export class ServicesComponent implements OnInit {
 			this.dataSource = new MatTableDataSource<Service>(this.dataAccount);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
+
+			this.isLoading = false;
 		});
 	}
 

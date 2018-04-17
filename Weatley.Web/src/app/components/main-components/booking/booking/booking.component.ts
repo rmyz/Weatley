@@ -23,6 +23,8 @@ export class BookingComponent implements OnInit {
 	dataSource: MatTableDataSource<Booking>;
 	dataAccount: Booking[] = [];
 
+	isLoading = true;
+
 	constructor(private bookingDataService: BookingDataService,
 		private router: Router,
 		private dialog: MatDialog,
@@ -44,6 +46,8 @@ export class BookingComponent implements OnInit {
 			this.dataSource = new MatTableDataSource<Booking>(this.dataAccount);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
+
+			this.isLoading = false;
 		});
 	}
 

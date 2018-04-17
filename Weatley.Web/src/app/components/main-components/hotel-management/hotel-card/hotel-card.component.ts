@@ -14,12 +14,17 @@ import { Router } from '@angular/router';
 	export class HotelCardComponent implements OnInit {
 
 	private hotel: Hotel = new Hotel;
+
+	isLoading = true;
+
 	constructor(private hotelDataService: HotelDataService,
 				private router: Router) { }
 
 	ngOnInit() {
 		this.hotelDataService.getHotel().subscribe(hotel => {
 			this.hotel = hotel;
+
+			this.isLoading = false;
 		});
 	}
 

@@ -18,6 +18,7 @@ import { CustomerComponent } from './customer-component/customer.component';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
 import { CustomerDataService } from '../../../core/data-services/customer-data.service';
 import { CustomerRouter } from './customer-form/customer-routing.module';
+import { PageLoaderModule } from '../../../widgets/page-loader/page-loader.module';
 
 @NgModule({
 	declarations: [
@@ -43,7 +44,8 @@ import { CustomerRouter } from './customer-form/customer-routing.module';
 		MatSelectModule,
 		MatFormFieldModule,
 		MatCardModule,
-		CustomerRouter
+		CustomerRouter,
+		PageLoaderModule
 	],
 	providers: [
 		CustomerDataService

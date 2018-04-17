@@ -20,7 +20,7 @@ import { MatDividerModule } from '@angular/material';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BookingComponent } from './booking/booking.component';
 import { BookingFormComponent } from './booking-form/booking-form.component';
-
+import { PageLoaderModule } from '../../../widgets/page-loader/page-loader.module';
 
 @NgModule({
 	declarations: [
@@ -50,6 +50,7 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
 		MatGridListModule,
 		MatDividerModule,
 		MatSnackBarModule,
+		PageLoaderModule
 		// BookingRouter
 	],
 	providers: [

@@ -31,6 +31,8 @@ export class DashboardComponent implements OnInit {
 
 	notification = 0;
 
+	isLoading = true;
+
 	constructor(
 		private ordersDataService: OrdersDataService,
 		private customerDataService: CustomerDataService,
@@ -58,12 +60,15 @@ export class DashboardComponent implements OnInit {
 				this.customer3 = customer[2];
 			}
 			this.customerCount = customer.length;
+
+			this.isLoading = false;
 		});
 
 		this.reportDataService.getReports().subscribe(reports => {
 			const report: Report[] = reports;
 			this.notification = this.notification + report.length;
 		});
+
 	}
 
 }

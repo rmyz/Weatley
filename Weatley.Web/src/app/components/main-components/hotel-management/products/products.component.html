@@ -1,5 +1,8 @@
-<div>
-		<div class="title">Product Management</div>
+<div *ngIf="isLoading">
+	<app-page-loader></app-page-loader>
+</div>
+<div *ngIf="!isLoading">
+	<div class="title">Product Management</div>
 	<div class="example-container">
 		<mat-form-field>
 		<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Type to filter...">
