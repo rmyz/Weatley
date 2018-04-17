@@ -26,6 +26,19 @@
     height: 40px;
   }
 
+  ::ng-deep .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition {
+    opacity: 0;
+  }
+
+  ::ng-deep .mat-sort-header-pointer-left.ng-trigger.ng-trigger-leftPointer {
+    transform: rotate(-45deg);
+  }
+
+  ::ng-deep .mat-sort-header-pointer-right.ng-trigger.ng-trigger-rightPointer {
+    transform: rotate(45deg);
+  }
+
+
   .report-card {
     height: 69px !important;
   }

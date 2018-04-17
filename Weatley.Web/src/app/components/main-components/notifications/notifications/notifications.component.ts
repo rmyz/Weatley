@@ -48,11 +48,12 @@ displayedColumnsReport = ['customer', 'description', 'status'];
 		})
 		.catch(err => console.log('Error while establishing connection :('));
 
-		this.hubConnection.on('sendToAllReport', (report: Report) => {
-			alert('test');
+		this.hubConnection.on('sendToAllReport', (report: Report, id) => {
+			this.newReports.push(report);
+			// notify user who send the report
 		});
 
-		this.hubConnection.on('sendToAllOrder', (order: Order) => {
+		this.hubConnection.on('sendToAllOrder', (order: Order, id) => {
 			this.newOrders.push(order);
 		});
 

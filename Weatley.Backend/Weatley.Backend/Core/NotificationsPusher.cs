@@ -9,11 +9,11 @@ namespace Weatley.Backend.Core
     {
         public void sendToAllReport(Report report)
         {
-            Clients.All.SendAsync("sendToAllReport", report);
+            Clients.All.SendAsync("sendToAllReport", report, Context.ConnectionId);
         }
         public void sendToAllOrder(Order order)
         {
-            Clients.All.SendAsync("sendToAllOrder", order);
+            Clients.All.SendAsync("sendToAllOrder", order, Context.ConnectionId);
         }
     }
 }
