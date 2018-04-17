@@ -23,6 +23,10 @@
     "no-forward-ref": true,
     "no-implicit-dependencies": false,
     "no-input-rename": true,
+    "indent": [
+      true,
+      "tabs"
+    ],
     "no-irregular-whitespace": true,
     "no-output-on-prefix": true,
     "no-output-rename": true,

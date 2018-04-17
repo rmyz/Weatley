@@ -93,30 +93,30 @@
 			<div class="col-lg-6 col-md-12">
 				<div class="card">
 					<div class="card-header" data-background-color="purple">
-						<h4 class="title">Products</h4>
+						<h4 class="title">Orders</h4>
 						<p class="category">Last orders</p>
 					</div>
 					<div class="card-content table-responsive">
 						<table class="table table-hover">
 							<thead class="text">
 								<tr>
-									<th>Comment</th>
+									<th>Customer</th>
 									<th>Date</th>
 									<th>Price</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>{{ order1?.comment }}</td>
+									<td>{{ order1?.customer.name }} {{ order1?.customer.surname }}</td>
 									<td>{{ order1?.orderDate | date: 'dd-MM-yyyy' }}</td>
 									<td>{{ order1?.finalPrice }} €</td>
 								</tr>
 								<tr>
-									<td>{{ order2?.comment }}</td>
+									<td>{{ order2?.customer.name }} {{ order2?.customer.surname }}</td>
 									<td>{{ order2?.orderDate | date: 'dd-MM-yyyy' }}</td>
 									<td>{{ order2?.finalPrice }} €</td>
 								</tr>
-									<td>{{ order3?.comment }}</td>
+									<td>{{ order3?.customer.name }} {{ order3?.customer.surname }}</td>
 									<td>{{ order3?.orderDate | date: 'dd-MM-yyyy' }}</td>
 									<td>{{ order3?.finalPrice }} €</td>
 								<tr>
