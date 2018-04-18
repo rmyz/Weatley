@@ -12,7 +12,7 @@ export class CommonService {
 	constructor(private authProfile: UserProfile) { }
 
 	getBaseUrl(): string {
-		return this.localUrl;
+		return this.baseUrl;
 	}
 
 	handleFullError(error: Response) {
