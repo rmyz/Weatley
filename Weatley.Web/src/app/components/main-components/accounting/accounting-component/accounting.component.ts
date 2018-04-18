@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Customer } from '../../../../core/entities/customer';
+import { FilterAccounting } from '../../../../core/filterEntities/filterAccounting';
 
 @Component({
 	selector: 'app-accounting',
@@ -17,13 +18,13 @@ import { Customer } from '../../../../core/entities/customer';
 })
 export class AccountingComponent implements OnInit {
 
-	displayedColumns = ['customer.name', 'customer.surname', 'date', 'finalPrice', 'paymentType', 'function'];
+	displayedColumns = ['name', 'surname', 'date', 'finalPrice', 'paymentType', 'function'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 
-	dataSource: MatTableDataSource<Accounting>;
-	dataAccount: Accounting[] = [];
+	dataSource: MatTableDataSource<FilterAccounting>;
+	dataAccount: FilterAccounting[] = [];
 	isLoading = true;
 
 	constructor(private accountingDataService: AccountingDataService,
@@ -33,8 +34,17 @@ export class AccountingComponent implements OnInit {
 
 	ngOnInit() {
 		this.accountingDataService.getAccounting().subscribe(accountings => {
-			this.dataAccount = accountings;
-			this.dataSource = new MatTableDataSource<Accounting>(this.dataAccount);
+			accountings.forEach(accounting => {
+				this.dataAccount.push(new FilterAccounting({
+					id: accounting.id,
+					finalPrice: accounting.finalPrice,
+					date: accounting.date,
+					paymentType: accounting.paymentType,
+					name: accounting.customer.name,
+					surname: accounting.customer.surname
+				}));
+			});
+			this.dataSource = new MatTableDataSource<FilterAccounting>(this.dataAccount);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
 
@@ -81,7 +91,7 @@ export class AccountingComponent implements OnInit {
 			});
 			this.dataSource.data.splice(index, 1);
 		}
-		this.dataSource = new MatTableDataSource<Accounting>(this.dataSource.data);
+		this.dataSource = new MatTableDataSource<FilterAccounting>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 	}

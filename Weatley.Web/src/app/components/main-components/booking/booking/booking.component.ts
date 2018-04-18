@@ -5,6 +5,7 @@ import { BookingDataService } from '../../../../core/data-services/bookings-data
 import { Router } from '@angular/router';
 import { RoutingEnum } from '../../../../core/enums/routing-enum';
 import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
+import { FilterBooking } from '../../../../core/filterEntities/filterBooking';
 
 @Component({
 	selector: 'app-booking',
@@ -14,14 +15,14 @@ import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 })
 export class BookingComponent implements OnInit {
 
-	displayedColumns = ['customer.name', 'customer.surname', 'startingDate', 'endDate', 'comment', 'price', 'rooms', 'function'];
+	displayedColumns = ['name', 'surname', 'startingDate', 'endDate', 'comment', 'price', 'rooms', 'function'];
 
 	private temp = '';
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 
-	dataSource: MatTableDataSource<Booking>;
-	dataAccount: Booking[] = [];
+	dataSource: MatTableDataSource<FilterBooking>;
+	dataAccount: FilterBooking[] = [];
 
 	isLoading = true;
 
@@ -32,9 +33,8 @@ export class BookingComponent implements OnInit {
 
 	ngOnInit() {
 		this.bookingDataService.getBookings().subscribe(bookings => {
-			this.dataAccount = bookings;
-			this.dataAccount.forEach(booking => {
-				if (booking.comment === null) {
+			bookings.forEach(booking => {
+				if (booking.comment === null || booking.comment === '') {
 					booking.comment = '-';
 				}
 				booking.bookedRooms.forEach(bk => {
@@ -42,8 +42,20 @@ export class BookingComponent implements OnInit {
 				});
 				booking.rooms = this.temp;
 				this.temp = '';
+
+				this.dataAccount.push( new FilterBooking({
+					id: booking.id,
+					startingDate: booking.startingDate,
+					endDate: booking.endDate,
+					comment: booking.comment,
+					price: booking.price,
+					name: booking.customer.name,
+					surname: booking.customer.surname,
+					rooms: booking.rooms
+				}));
 			});
-			this.dataSource = new MatTableDataSource<Booking>(this.dataAccount);
+
+			this.dataSource = new MatTableDataSource<FilterBooking>(this.dataAccount);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
 
@@ -90,7 +102,7 @@ export class BookingComponent implements OnInit {
 			});
 			this.dataSource.data.splice(index, 1);
 		}
-		this.dataSource = new MatTableDataSource<Booking>(this.dataSource.data);
+		this.dataSource = new MatTableDataSource<FilterBooking>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 	}

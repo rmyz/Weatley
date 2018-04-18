@@ -9,6 +9,8 @@ import { DenyOrderComponent } from '../../../../widgets/deny-order/deny-order.co
 import { DetailsOrderDialogComponent } from '../../../../widgets/details-order-dialog/details-order-dialog.component';
 import { ReportDataService } from '../../../../core/data-services/report-data.service';
 import { SignalRService } from '../../../../core/services/signalR.service';
+import { FilterOrder } from '../../../../core/filterEntities/filterOrders';
+import { FilterReport } from '../../../../core/filterEntities/filterReport';
 @Component({
 	selector: 'app-notifications',
 	templateUrl: './notifications.component.html',
@@ -17,21 +19,21 @@ import { SignalRService } from '../../../../core/services/signalR.service';
 })
 export class NotificationsComponent implements OnInit {
 
-displayedColumns = ['customer.name', 'customer.surname', 'finalPrice', 'status', 'function'];
-displayedColumnsReport = ['customer.name', 'customer.surname', 'description', 'status'];
+displayedColumns = ['name', 'surname', 'finalPrice', 'status', 'function'];
+displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginatorReport: MatPaginator;
 	@ViewChild(MatSort) sortReport: MatSort;
-	dataSourceReport: MatTableDataSource<Report>;
-	dataSource: MatTableDataSource<Order>;
+	dataSourceReport: MatTableDataSource<FilterReport>;
+	dataSource: MatTableDataSource<FilterOrder>;
 
 	newOrders: Order[] = [];
-	olderOrders: Order[] = [];
+	olderOrders: FilterOrder[] = [];
 
 	newReports: Report[] = [];
-	olderReports: Report[] = [];
+	olderReports: FilterReport[] = [];
 
 
 	isLoading = true;
@@ -61,10 +63,16 @@ displayedColumnsReport = ['customer.name', 'customer.surname', 'description', 's
 				if (order.status === 'pending') {
 					this.newOrders.push(order);
 				} else {
-					this.olderOrders.push(order);
+					this.olderOrders.push(new FilterOrder({
+						id: order.id,
+						finalPrice: order.finalPrice,
+						name: order.customer.name,
+						surname: order.customer.surname,
+						status: order.status
+					}));
 				}
 			});
-			this.dataSource = new MatTableDataSource<Order>(this.olderOrders);
+			this.dataSource = new MatTableDataSource<FilterOrder>(this.olderOrders);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
 		});
@@ -74,11 +82,18 @@ displayedColumnsReport = ['customer.name', 'customer.surname', 'description', 's
 				if (report.status === 'pending') {
 					this.newReports.push(report);
 				} else {
-					this.olderReports.push(report);
+					this.olderReports.push(new FilterReport({
+						id: report.id,
+						description: report.description,
+						date: report.date,
+						status: report.status,
+						name: report.customer.name,
+						surname: report.customer.surname
+					}));
 				}
 			});
 
-			this.dataSourceReport = new MatTableDataSource<Report>(this.olderReports);
+			this.dataSourceReport = new MatTableDataSource<FilterReport>(this.olderReports);
 			this.dataSourceReport.sort = this.sortReport;
 			this.dataSourceReport.paginator = this.paginatorReport;
 
@@ -113,14 +128,14 @@ displayedColumnsReport = ['customer.name', 'customer.surname', 'description', 's
 
 	addOrderToTableOrder(order) {
 		this.dataSource.data.push(order);
-		this.dataSource = new MatTableDataSource<Order>(this.dataSource.data);
+		this.dataSource = new MatTableDataSource<FilterOrder>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 	}
 
 	addReportToTableReport(report) {
 		this.dataSourceReport.data.push(report);
-		this.dataSourceReport = new MatTableDataSource<Report>(this.dataSourceReport.data);
+		this.dataSourceReport = new MatTableDataSource<FilterReport>(this.dataSourceReport.data);
 		this.dataSourceReport.sort = this.sortReport;
 		this.dataSourceReport.paginator = this.paginatorReport;
 	}
