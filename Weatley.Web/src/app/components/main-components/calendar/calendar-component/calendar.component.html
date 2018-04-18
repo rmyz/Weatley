@@ -1,4 +1,7 @@
-<div class="container">
+<div *ngIf="isLoading">
+		<app-page-loader></app-page-loader>
+</div>
+<div *ngIf="!isLoading" class="container">
 	<div class="header-spacing">
 		<div class="row text-center">
 			<div class="col-md-4">

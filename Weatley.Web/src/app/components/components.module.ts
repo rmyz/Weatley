@@ -30,7 +30,7 @@ declarations: [],
 		AppManagementModule,
 		FullCalendarModule,
 		NotificationsModule,
-		DashboardModule
+		DashboardModule,
 	],
 	providers: [],
 	exports: [

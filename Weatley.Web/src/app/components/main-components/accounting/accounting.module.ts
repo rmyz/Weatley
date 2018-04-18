@@ -22,6 +22,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccountingComponent } from './accounting-component/accounting.component';
 import { AccountingDataService } from '../../../core/data-services/accounting-data.service';
 import { AccountingFormComponent } from './accounting-form/accounting-form.component';
+import { PageLoaderModule } from '../../../widgets/page-loader/page-loader.module';
 
 @NgModule({
 	declarations: [
@@ -51,7 +52,8 @@ import { AccountingFormComponent } from './accounting-form/accounting-form.compo
 		MatCardModule,
 		MatGridListModule,
 		MatDividerModule,
-		MatSnackBarModule
+		MatSnackBarModule,
+		PageLoaderModule
 	],
 	providers: [
 		AccountingDataService

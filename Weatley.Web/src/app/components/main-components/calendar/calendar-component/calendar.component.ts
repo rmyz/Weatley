@@ -41,6 +41,7 @@ export class CalendarComponent implements OnInit {
 	refresh: Subject<any> = new Subject();
 	activeDayIsOpen = false;
 
+	isLoading = true;
 	constructor(
 		private bookingDataService: BookingDataService,
 		private activitiesDataService: ActivitiesDataService,
@@ -67,6 +68,7 @@ export class CalendarComponent implements OnInit {
 				this.events.push(leaveEvent);
 			}
 			this.refresh.next();
+			this.isLoading = false;
 		});
 
 		this.activitiesDataService.getActivity().subscribe( activities => {

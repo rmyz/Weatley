@@ -22,6 +22,8 @@ export class EventsComponent implements OnInit {
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 
+	isLoading = true;
+
 	constructor(private activitiesDataService: ActivitiesDataService,
 				private router: Router,
 				private dialog: MatDialog,
@@ -33,6 +35,8 @@ export class EventsComponent implements OnInit {
 			this.dataSource = new MatTableDataSource<Activity>(this.dataAccount);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
+
+			this.isLoading = false;
 		});
 	}
 

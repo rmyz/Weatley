@@ -24,6 +24,8 @@ export class AccountingComponent implements OnInit {
 	dataSource: MatTableDataSource<Accounting>;
 	dataAccount: Accounting[] = [];
 
+	isLoading = true;
+
 	constructor(private accountingDataService: AccountingDataService,
 		private router: Router,
 		private dialog: MatDialog,
@@ -35,6 +37,8 @@ export class AccountingComponent implements OnInit {
 			this.dataSource = new MatTableDataSource<Accounting>(this.dataAccount);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
+
+			this.isLoading = false;
 		});
 	}
 

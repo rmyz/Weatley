@@ -25,6 +25,7 @@ import { ServicesComponent } from './services/services.component';
 import { EventsComponent } from './events/events.component';
 import { EventsFormComponent } from './events/events-form/events-form.component';
 import { ServicesFormComponent } from './services/services-form/services-form.component';
+import { PageLoaderModule } from '../../../widgets/page-loader/page-loader.module';
 
 @NgModule({
 	declarations: [
@@ -60,7 +61,8 @@ import { ServicesFormComponent } from './services/services-form/services-form.co
 		MatDividerModule,
 		MatSnackBarModule,
 		MatTooltipModule,
-		MatIconModule
+		MatIconModule,
+		PageLoaderModule
 	],
 	providers: [
 	],

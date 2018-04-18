@@ -23,6 +23,8 @@ export class RoomsComponent implements OnInit {
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 
+	isLoading = true;
+
 	constructor(private roomDataService: RoomDataService,
 				private router: Router,
 				private dialog: MatDialog,
@@ -34,6 +36,8 @@ export class RoomsComponent implements OnInit {
 			this.dataSource = new MatTableDataSource<Room>(this.dataAccount);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
+
+			this.isLoading = false;
 		});
 	}
 

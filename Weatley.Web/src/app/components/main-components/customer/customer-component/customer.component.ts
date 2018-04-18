@@ -43,6 +43,7 @@ export class CustomerComponent implements OnInit {
 	dataSource: MatTableDataSource<Customer>;
 	dataCustomer: Customer[] = [];
 
+	isLoading = true;
 	constructor(private customerDataService: CustomerDataService,
 		private router: Router,
 		private dialog: MatDialog,
@@ -54,6 +55,8 @@ export class CustomerComponent implements OnInit {
 			this.dataSource = new MatTableDataSource<Customer>(this.dataCustomer);
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
+
+			this.isLoading = false;
 		});
 	}
 

@@ -1,4 +1,7 @@
-<div class="test">
+<div *ngIf="isLoading">
+	<app-page-loader></app-page-loader>
+</div>
+<div *ngIf="!isLoading" class="test">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-4 col-md-6 col-sm-6">

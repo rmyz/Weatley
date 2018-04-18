@@ -1,129 +1,138 @@
-<div>
-    <mat-tab-group>
-            <mat-tab label="Notifications">              
-    <div class="title">New notifications</div>
-    <div class="grid" layout="horizontal" layout-align="center center">
-        <mat-card class="card-wrapper" *ngFor="let order of newOrders, let i of index">
-            <mat-card-header>
-              <div mat-card-avatar><mat-icon color="primary" class="icons">shopping_card</mat-icon></div>
-              <mat-card-title>Order from {{ order.customer.name }} {{order.customer.surname }}</mat-card-title>
-              <mat-card-subtitle>Total Import: {{ order.finalPrice }} €</mat-card-subtitle>
-              <mat-card-subtitle>Date: {{ order.orderDate | date: 'MM/dd/yyyy HH:mm' }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-             <div *ngFor="let product of order.productsOrdered">
-               {{ product.quantity }}  x {{ product.product.name }}
-             </div>
-            </mat-card-content>
-            <mat-card-actions class="action-buttons">
-              <button mat-button color="warn" (click)="denyOrder(order, i)">Deny</button>
-              <button mat-button color="primary" (click)="acceptOrder(order, i)">Accept</button>
-            </mat-card-actions>
-          </mat-card>
-          <mat-card class="card-wrapper" *ngFor="let report of newReports, let i of index">
-            <mat-card-header>
-              <div mat-card-avatar><mat-icon color="primary" class="icons">report_problem</mat-icon></div>
-              <mat-card-title>Report from {{ report.customer.name }} {{report.customer.surname }}</mat-card-title>
-              <mat-card-subtitle>Date: {{ report.date | date: 'MM/dd/yyyy HH:mm' }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content class="report-card">
-                {{ report.description }}
-            </mat-card-content>
-            <mat-card-actions class="action-buttons">
-              <button mat-button color="warn" (click)="dismissReport(report, i)">Dismiss</button>
-            </mat-card-actions>
-          </mat-card>
-    </div>
-</mat-tab>
-<mat-tab label="Orders historical">
-    <div class="container">
-    <div class="title">Past Orders</div>
-    <div class="example-container">
-        <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Type to filter...">
-        </mat-form-field>
-    </div>
-    <div class="example-container mat-elevation-z8">
-
-        <mat-table #table [dataSource]="dataSource" matSort on-mouseleave="hoveredIndex=null">
-
-            <ng-container matColumnDef="customer">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Customer </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.customer.name }} {{ item.customer.surname }} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="finalPrice">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Final Price </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.finalPrice }} €</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="status">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.status }} </mat-cell>
-            </ng-container>
-
-
-            <ng-container matColumnDef="function">
-                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                <mat-cell *matCellDef="let item">
-                    <button type="button" mat-icon-button class="float-right" matTooltip="Details" matTooltipPosition="above" (click)="goToDetailsDialog(item)">
-                        <mat-icon>find_in_page</mat-icon>
-                    </button>
-                </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-        </mat-table>
-
-        <mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[4, 8, 12]" [showFirstLastButtons]="true">
-        </mat-paginator>
-    </div>
-    <div>
-        <p></p>
-    </div>
-    </div>
-</mat-tab>
-<mat-tab label="Reports historical">
-        <div class="container">
-    <div class="title">Past reports</div>
-    <div class="example-container">
-        <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Type to filter...">
-        </mat-form-field>
-    </div>
-    <div class="example-container mat-elevation-z8">
-
-        <mat-table #table [dataSource]="dataSourceReport" matSort on-mouseleave="hoveredIndex=null">
-
-            <ng-container matColumnDef="customer">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Customer </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.customer.name }} {{ item.customer.surname }} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="description">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.description }} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="status">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.status }} </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumnsReport"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumnsReport;"></mat-row>
-
-        </mat-table>
-
-        <mat-paginator #paginatorReport [pageSize]="8" [pageSizeOptions]="[4, 8, 12]" [showFirstLastButtons]="true">
-        </mat-paginator>
-    </div>
-    <div>
-        <p></p>
-    </div>
-    </div>
-</mat-tab>
-</mat-tab-group>
+<div *ngIf="isLoading">
+	<app-page-loader></app-page-loader>
+</div>
+<div *ngIf="!isLoading">
+	<mat-tab-group>
+		<mat-tab label="Notifications">
+			<div class="container">
+				<div class="title">New notifications</div>
+				<div class="grid" layout="horizontal" layout-align="center center">
+					<mat-card class="card-wrapper" *ngFor="let order of newOrders, let i of index">
+						<mat-card-header>
+							<div mat-card-avatar>
+								<mat-icon color="primary" class="icons">shopping_card</mat-icon>
+							</div>
+							<mat-card-title>Order from {{ order.customer.name }} {{order.customer.surname }}</mat-card-title>
+							<mat-card-subtitle>Total Import: {{ order.finalPrice }} €</mat-card-subtitle>
+							<mat-card-subtitle>Date: {{ order.orderDate | date: 'MM/dd/yyyy HH:mm' }}</mat-card-subtitle>
+						</mat-card-header>
+						<mat-card-content>
+							<div *ngFor="let product of order.productsOrdered">
+								{{ product.quantity }} x {{ product.product.name }}
+							</div>
+						</mat-card-content>
+						<mat-card-actions class="action-buttons">
+							<button mat-button color="warn" (click)="denyOrder(order, i)">Deny</button>
+							<button mat-button color="primary" (click)="acceptOrder(order, i)">Accept</button>
+						</mat-card-actions>
+					</mat-card>
+					<mat-card class="card-wrapper" *ngFor="let report of newReports, let i of index">
+						<mat-card-header>
+							<div mat-card-avatar>
+								<mat-icon color="primary" class="icons">report_problem</mat-icon>
+							</div>
+							<mat-card-title>Report from {{ report.customer.name }} {{report.customer.surname }}</mat-card-title>
+							<mat-card-subtitle>Date: {{ report.date | date: 'MM/dd/yyyy HH:mm' }}</mat-card-subtitle>
+						</mat-card-header>
+						<mat-card-content class="report-card">
+							{{ report.description }}
+						</mat-card-content>
+						<mat-card-actions class="action-buttons">
+							<button mat-button color="warn" (click)="dismissReport(report, i)">Dismiss</button>
+						</mat-card-actions>
+					</mat-card>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab label="Orders historical">
+			<div class="container">
+				<div class="title">Past Orders</div>
+				<div class="example-container">
+					<mat-form-field>
+						<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Type to filter...">
+					</mat-form-field>
+				</div>
+				<div class="example-container mat-elevation-z8">
+	
+					<mat-table #table [dataSource]="dataSource" matSort on-mouseleave="hoveredIndex=null">
+	
+						<ng-container matColumnDef="customer">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Customer </mat-header-cell>
+							<mat-cell *matCellDef="let item"> {{ item.customer.name }} {{ item.customer.surname }} </mat-cell>
+						</ng-container>
+	
+						<ng-container matColumnDef="finalPrice">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Final Price </mat-header-cell>
+							<mat-cell *matCellDef="let item"> {{ item.finalPrice }} €</mat-cell>
+						</ng-container>
+	
+						<ng-container matColumnDef="status">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+							<mat-cell *matCellDef="let item"> {{ item.status }} </mat-cell>
+						</ng-container>
+	
+	
+						<ng-container matColumnDef="function">
+							<mat-header-cell *matHeaderCellDef></mat-header-cell>
+							<mat-cell *matCellDef="let item">
+								<button type="button" mat-icon-button class="float-right" matTooltip="Details" matTooltipPosition="above" (click)="goToDetailsDialog(item)">
+									<mat-icon>find_in_page</mat-icon>
+								</button>
+							</mat-cell>
+						</ng-container>
+	
+						<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+						<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+	
+					</mat-table>
+	
+					<mat-paginator #paginator [pageSize]="8" [pageSizeOptions]="[4, 8, 12]" [showFirstLastButtons]="true">
+					</mat-paginator>
+				</div>
+				<div>
+					<p></p>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab label="Reports historical">
+			<div class="container">
+				<div class="title">Past reports</div>
+				<div class="example-container">
+					<mat-form-field>
+						<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Type to filter...">
+					</mat-form-field>
+				</div>
+				<div class="example-container mat-elevation-z8">
+	
+					<mat-table #table [dataSource]="dataSourceReport" matSort on-mouseleave="hoveredIndex=null">
+	
+						<ng-container matColumnDef="customer">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Customer </mat-header-cell>
+							<mat-cell *matCellDef="let item"> {{ item.customer.name }} {{ item.customer.surname }} </mat-cell>
+						</ng-container>
+	
+						<ng-container matColumnDef="description">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+							<mat-cell *matCellDef="let item"> {{ item.description }} </mat-cell>
+						</ng-container>
+	
+						<ng-container matColumnDef="status">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+							<mat-cell *matCellDef="let item"> {{ item.status }} </mat-cell>
+						</ng-container>
+	
+						<mat-header-row *matHeaderRowDef="displayedColumnsReport"></mat-header-row>
+						<mat-row *matRowDef="let row; columns: displayedColumnsReport;"></mat-row>
+	
+					</mat-table>
+	
+					<mat-paginator #paginatorReport [pageSize]="8" [pageSizeOptions]="[4, 8, 12]" [showFirstLastButtons]="true">
+					</mat-paginator>
+				</div>
+				<div>
+					<p></p>
+				</div>
+			</div>
+		</mat-tab>
+	</mat-tab-group>
 </div>
