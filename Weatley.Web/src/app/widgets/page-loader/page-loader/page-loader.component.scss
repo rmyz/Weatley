@@ -1,4 +1,10 @@
-.container {
-    height: 100%;
-    width: 100%;
+.test {
+    display: flex;
+    align-items: center;
+
+    position: fixed !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
 }

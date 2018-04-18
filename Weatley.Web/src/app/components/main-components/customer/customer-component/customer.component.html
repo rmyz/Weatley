@@ -1,7 +1,7 @@
-<div *ngIf="isLoading">
+<div *ngIf="!isLoading">
 		<app-page-loader></app-page-loader>
 </div>
-<div *ngIf="!isLoading">
+<div *ngIf="isLoading" class="container">
 	<div class="title">Customer Management</div>
 	<div class="example-container">
 		<mat-form-field>
