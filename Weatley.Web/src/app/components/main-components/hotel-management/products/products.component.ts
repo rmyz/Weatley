@@ -16,7 +16,7 @@ const uuidv4 = require('uuid/v4');
 })
 export class ProductsComponent implements OnInit {
 
-	displayedColumns = ['name', 'description', 'productType', 'available', 'function'];
+	displayedColumns = ['name', 'description', 'productType', 'price', 'available', 'function'];
 
 	dataSource: MatTableDataSource<Product>;
 	dataAccount: Product[] = [];

@@ -15,6 +15,10 @@
                 <mat-error>Please insert the name</mat-error>
               </mat-form-field>
               <mat-form-field>
+                <input matInput placeholder="Price" type="number" required name="price" formControlName="price">
+                <mat-error>Please insert the price</mat-error>
+            </mat-form-field>
+              <mat-form-field>
                 <mat-select placeholder="Available" required formControlName="available" name="available">
                     <mat-option [value]="false">No</mat-option>
                     <mat-option [value]="true">Yes</mat-option>

@@ -14,7 +14,7 @@ import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 })
 export class RoomsComponent implements OnInit {
 
-	displayedColumns = ['roomType', 'roomNumber', 'floorNumber', 'function'];
+	displayedColumns = ['roomType', 'roomNumber', 'floorNumber', 'price', 'function'];
 
 	dataSource: MatTableDataSource<Room>;
 	dataAccount: Room[] = [];

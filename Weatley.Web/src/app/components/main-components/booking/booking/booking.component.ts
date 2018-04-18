@@ -14,7 +14,7 @@ import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 })
 export class BookingComponent implements OnInit {
 
-	displayedColumns = ['customer', 'startingDate', 'endDate', 'comment', 'price', 'rooms', 'function'];
+	displayedColumns = ['customer.name', 'customer.surname', 'startingDate', 'endDate', 'comment', 'price', 'rooms', 'function'];
 
 	private temp = '';
 	@ViewChild(MatPaginator) paginator: MatPaginator;

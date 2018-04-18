@@ -22,6 +22,10 @@
                 <input matInput placeholder="Floor Number" type="text" required name="floorNumber" formControlName="floorNumber">
                 <mat-error>Please insert the floor number</mat-error>
               </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Price" type="number" required name="price" formControlName="price">
+                <mat-error>Please insert the price</mat-error>
+              </mat-form-field>
           </form>
           <mat-card-actions>
               <button type="button" mat-button class="float-right" (click)="submitRoom()">

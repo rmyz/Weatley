@@ -18,8 +18,9 @@ export class ProductFormComponent implements OnInit {
 	private productForm = new FormGroup ({
 		name: new FormControl(),
 		description: new FormControl(),
+		price: new FormControl(),
 		available: new FormControl(),
-		productType: new FormControl(),
+		productType: new FormControl()
 	});
 	private productById: Product = new Product({
 	});
@@ -46,6 +47,7 @@ export class ProductFormComponent implements OnInit {
 				this.productForm = this.fb.group({
 					name: [this.productById.name, Validators.required],
 					description: [this.productById.description, Validators.required],
+					price: [this.productById.price, Validators.required],
 					available: [this.productById.available, Validators.required],
 					productType: [this.productById.productType, Validators.required]
 				});
@@ -54,6 +56,7 @@ export class ProductFormComponent implements OnInit {
 			this.productForm = this.fb.group({
 				name: ['', Validators.required],
 				description: ['', Validators.required],
+				price: ['', Validators.required],
 				available: [null, Validators.required],
 				productType: [null, Validators.required]
 			});

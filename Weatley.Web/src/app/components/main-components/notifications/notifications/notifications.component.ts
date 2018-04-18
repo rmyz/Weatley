@@ -17,8 +17,8 @@ import { SignalRService } from '../../../../core/services/signalR.service';
 })
 export class NotificationsComponent implements OnInit {
 
-displayedColumns = ['customer', 'finalPrice', 'status', 'function'];
-displayedColumnsReport = ['customer', 'description', 'status'];
+displayedColumns = ['customer.name', 'customer.surname', 'finalPrice', 'status', 'function'];
+displayedColumnsReport = ['customer.name', 'customer.surname', 'description', 'status'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;

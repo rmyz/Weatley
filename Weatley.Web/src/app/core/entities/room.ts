@@ -5,6 +5,7 @@ export class Room {
 	roomNumber: number;
 	floorNumber: number;
 	roomType: string;
+	price: number;
 	hotel: Hotel;
 
 	constructor(values: Object = {}) {

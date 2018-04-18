@@ -6,6 +6,7 @@ export class Product {
 	description: string;
 	productType: string;
 	available: boolean;
+	price: number;
 	hotel: Hotel;
 
 	constructor(values: Object = {}) {

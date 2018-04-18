@@ -12,9 +12,14 @@
             
         <mat-table #table [dataSource]="dataSource" matSort>
 
-            <ng-container matColumnDef="customer">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Customer </mat-header-cell>
-                <mat-cell *matCellDef="let item"> {{ item.customer.surname }}, {{ item.customer.name }} </mat-cell>
+            <ng-container matColumnDef="customer.name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.customer.name }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="customer.surname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
+                <mat-cell *matCellDef="let item"> {{ item.customer.surname }} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="date">

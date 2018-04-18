@@ -27,6 +27,11 @@
             <mat-cell *matCellDef="let item"> {{ item.floorNumber }} </mat-cell>
           </ng-container>
 
+          <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+            <mat-cell *matCellDef="let item"> {{ item.price }} €</mat-cell>
+          </ng-container>
+
           <ng-container matColumnDef="function">
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
               <mat-cell *matCellDef="let item">

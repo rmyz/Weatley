@@ -177,6 +177,7 @@ namespace Weatley.DataAccess
                     RoomNumber = 129,
                     RoomType = RoomTypeEnum.Single,
                     FloorNumber = 1,
+                    Price = 25,
                     Hotel = context.Hotels.FirstOrDefault(),
                     BookedRooms = new List<BookedRoom>()
                 };
@@ -185,6 +186,7 @@ namespace Weatley.DataAccess
                 {
                     Id = Guid.NewGuid(),
                     RoomNumber = 241,
+                    Price = 40,
                     RoomType = RoomTypeEnum.Double,
                     FloorNumber = 2,
                     Hotel = context.Hotels.FirstOrDefault(),
@@ -195,6 +197,7 @@ namespace Weatley.DataAccess
                 {
                     Id = Guid.NewGuid(),
                     RoomNumber = 312,
+                    Price = 100,
                     RoomType = RoomTypeEnum.Suite,
                     FloorNumber = 3,
                     Hotel = context.Hotels.FirstOrDefault(),

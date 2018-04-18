@@ -11,6 +11,7 @@ namespace Weatley.Model.Entities
         public int RoomNumber { get; set; }
         public int FloorNumber { get; set; }
         public string RoomType { get; set; }
+        public double Price { get; set; }
         public Hotel Hotel { get; set; }
 
         //Relation with Booking

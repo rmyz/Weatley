@@ -7,6 +7,7 @@ import { RoutingEnum } from '../../../../core/enums/routing-enum';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../../../../widgets/dialog/dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Customer } from '../../../../core/entities/customer';
 
 @Component({
 	selector: 'app-accounting',
@@ -16,14 +17,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AccountingComponent implements OnInit {
 
-	displayedColumns = ['customer', 'date', 'finalPrice', 'paymentType', 'function'];
+	displayedColumns = ['customer.name', 'customer.surname', 'date', 'finalPrice', 'paymentType', 'function'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 
 	dataSource: MatTableDataSource<Accounting>;
 	dataAccount: Accounting[] = [];
-
 	isLoading = true;
 
 	constructor(private accountingDataService: AccountingDataService,

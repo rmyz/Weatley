@@ -8,7 +8,7 @@
           <form class="main-div" [formGroup]="bookingForm">
               <mat-form-field *ngIf="!id">
                   <mat-select placeholder="Customer" required formControlName="customer" name="customer">
-                      <mat-option [value]="customer" *ngFor="let customer of customers">{{ customer.name }}</mat-option>
+                      <mat-option [value]="customer" *ngFor="let customer of customers">{{ customer.name }} {{ customer.surname }}</mat-option>
                   </mat-select>
                   <mat-error>Please select a customer</mat-error>
               </mat-form-field>

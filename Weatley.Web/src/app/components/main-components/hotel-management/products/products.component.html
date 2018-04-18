@@ -22,6 +22,11 @@
 			<mat-cell *matCellDef="let item"> {{ item.description }} </mat-cell>
 		</ng-container>
 
+		<ng-container matColumnDef="price">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+			<mat-cell *matCellDef="let item"> {{ item.price }} €</mat-cell>
+		</ng-container>
+
 		<ng-container matColumnDef="productType">
 			<mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
 			<mat-cell *matCellDef="let item"> {{ item.productType }} </mat-cell>

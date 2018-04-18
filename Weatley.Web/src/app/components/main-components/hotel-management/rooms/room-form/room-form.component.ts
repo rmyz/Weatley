@@ -18,7 +18,8 @@ export class RoomFormComponent implements OnInit {
 	private roomForm = new FormGroup ({
 		roomType: new FormControl(),
 		roomNumber: new FormControl(),
-		floorNumber: new FormControl()
+		floorNumber: new FormControl(),
+		price: new FormControl()
 	});
 	private roomById: Room = new Room({
 	});
@@ -44,14 +45,16 @@ export class RoomFormComponent implements OnInit {
 				this.roomForm = this.fb.group({
 					roomType: [this.roomById.roomType, Validators.required],
 					roomNumber: [this.roomById.roomNumber, Validators.required],
-					floorNumber: [this.roomById.floorNumber, Validators.required]
+					floorNumber: [this.roomById.floorNumber, Validators.required],
+					price: [this.roomById.price, Validators.required]
 				});
 			});
 		} else {
 			this.roomForm = this.fb.group({
 				roomType: [null, Validators.required],
 				roomNumber: ['', Validators.required],
-				floorNumber: ['', Validators.required]
+				floorNumber: ['', Validators.required],
+				price: ['', Validators.required]
 			});
 		}
 	}
