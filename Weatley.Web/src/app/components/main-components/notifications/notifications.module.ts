@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PageLoaderModule } from '../../../widgets/page-loader/page-loader.module';
+import { WidgetsModule } from '../../../widgets/widgets.module';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { PageLoaderModule } from '../../../widgets/page-loader/page-loader.modul
 		MatDividerModule,
 		MatSnackBarModule,
 		MatTabsModule,
-		PageLoaderModule
+		PageLoaderModule,
+		WidgetsModule
 	],
 	exports: [
 		NotificationsComponent

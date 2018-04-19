@@ -33,7 +33,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 	olderOrders: FilterOrder[] = [];
 
 	newReports: Report[] = [];
-	olderReports: FilterReport[] = [];
 
 
 	isLoading = true;
@@ -68,7 +67,8 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 						finalPrice: order.finalPrice,
 						name: order.customer.name,
 						surname: order.customer.surname,
-						status: order.status
+						status: order.status,
+						order: order
 					}));
 				}
 			});
@@ -81,21 +81,8 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 			reports.forEach(report => {
 				if (report.status === 'pending') {
 					this.newReports.push(report);
-				} else {
-					this.olderReports.push(new FilterReport({
-						id: report.id,
-						description: report.description,
-						date: report.date,
-						status: report.status,
-						name: report.customer.name,
-						surname: report.customer.surname
-					}));
 				}
 			});
-
-			this.dataSourceReport = new MatTableDataSource<FilterReport>(this.olderReports);
-			this.dataSourceReport.sort = this.sortReport;
-			this.dataSourceReport.paginator = this.paginatorReport;
 
 			this.isLoading = false;
 		});
@@ -133,13 +120,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 		this.dataSource.paginator = this.paginator;
 	}
 
-	addReportToTableReport(report) {
-		this.dataSourceReport.data.push(report);
-		this.dataSourceReport = new MatTableDataSource<FilterReport>(this.dataSourceReport.data);
-		this.dataSourceReport.sort = this.sortReport;
-		this.dataSourceReport.paginator = this.paginatorReport;
-	}
-
 	denyOrder(order: Order, i: number) {
 		order.status = 'denied';
 
@@ -175,7 +155,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 				verticalPosition: 'top',
 				horizontalPosition: 'end'
 			});
-			this.addReportToTableReport(report);
 			// Send notification to the phone
 		}, err => {
 			console.log(err);
@@ -183,11 +162,11 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 
 	}
 
-	goToDetailsDialog(order: Order) {
+	goToDetailsDialog(order) {
 		const dialogRef = this.dialog.open(DetailsOrderDialogComponent, {
 			width: '500px',
 			panelClass: 'details-order-dialog',
-			data: { order: order}
+			data: { order: order.order}
 		});
 	}
 
