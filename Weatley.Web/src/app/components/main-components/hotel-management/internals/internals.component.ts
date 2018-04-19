@@ -37,7 +37,7 @@ export class InternalsComponent implements OnInit {
 			this.dataAccount = user;
 			this.dataSource = new MatTableDataSource<IUser>(this.dataAccount);
 			this.dataSource.sort = this.sort;
-			this.dataSource.paginator = this.paginator;
+			setTimeout(() => this.dataSource.paginator = this.paginator);
 
 			this.isLoading = false;
 		});
@@ -80,6 +80,6 @@ export class InternalsComponent implements OnInit {
 		}
 		this.dataSource = new MatTableDataSource<IUser>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
+		setTimeout(() => this.dataSource.paginator = this.paginator);
 	}
 }

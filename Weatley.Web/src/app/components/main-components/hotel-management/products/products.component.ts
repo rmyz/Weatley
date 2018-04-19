@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
 			this.dataAccount = product;
 			this.dataSource = new MatTableDataSource<Product>(this.dataAccount);
 			this.dataSource.sort = this.sort;
-			this.dataSource.paginator = this.paginator;
+			setTimeout(() => this.dataSource.paginator = this.paginator);
 
 			this.isLoading = false;
 		});
@@ -84,7 +84,7 @@ export class ProductsComponent implements OnInit {
 		}
 		this.dataSource = new MatTableDataSource<Product>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
+		setTimeout(() => this.dataSource.paginator = this.paginator);
 	}
 
 }

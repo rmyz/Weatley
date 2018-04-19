@@ -34,7 +34,7 @@ export class EventsComponent implements OnInit {
 			this.dataAccount = activities;
 			this.dataSource = new MatTableDataSource<Activity>(this.dataAccount);
 			this.dataSource.sort = this.sort;
-			this.dataSource.paginator = this.paginator;
+			setTimeout(() => this.dataSource.paginator = this.paginator);
 
 			this.isLoading = false;
 		});
@@ -81,7 +81,7 @@ export class EventsComponent implements OnInit {
 		}
 		this.dataSource = new MatTableDataSource<Activity>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
+		setTimeout(() => this.dataSource.paginator = this.paginator);
 	}
 
 }

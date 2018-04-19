@@ -56,9 +56,8 @@ export class BookingComponent implements OnInit {
 			});
 
 			this.dataSource = new MatTableDataSource<FilterBooking>(this.dataAccount);
+			setTimeout(() => this.dataSource.paginator = this.paginator);
 			this.dataSource.sort = this.sort;
-			this.dataSource.paginator = this.paginator;
-
 			this.isLoading = false;
 		});
 	}

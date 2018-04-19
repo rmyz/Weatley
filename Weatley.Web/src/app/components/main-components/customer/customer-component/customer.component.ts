@@ -54,7 +54,7 @@ export class CustomerComponent implements OnInit {
 			this.dataCustomer = customers;
 			this.dataSource = new MatTableDataSource<Customer>(this.dataCustomer);
 			this.dataSource.sort = this.sort;
-			this.dataSource.paginator = this.paginator;
+			setTimeout(() => this.dataSource.paginator = this.paginator);
 
 			this.isLoading = false;
 		});

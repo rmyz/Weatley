@@ -34,7 +34,7 @@ export class ServicesComponent implements OnInit {
 			this.dataAccount = services;
 			this.dataSource = new MatTableDataSource<Service>(this.dataAccount);
 			this.dataSource.sort = this.sort;
-			this.dataSource.paginator = this.paginator;
+			setTimeout(() => this.dataSource.paginator = this.paginator);
 
 			this.isLoading = false;
 		});
@@ -81,7 +81,7 @@ export class ServicesComponent implements OnInit {
 		}
 		this.dataSource = new MatTableDataSource<Service>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
+		setTimeout(() => this.dataSource.paginator = this.paginator);
 	}
 
 }

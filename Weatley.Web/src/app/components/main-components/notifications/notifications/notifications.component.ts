@@ -73,8 +73,9 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 				}
 			});
 			this.dataSource = new MatTableDataSource<FilterOrder>(this.olderOrders);
+			setTimeout(() => this.dataSource.paginator = this.paginator);
 			this.dataSource.sort = this.sort;
-			this.dataSource.paginator = this.paginator;
+
 		});
 
 		this.reportDataService.getReports().subscribe(reports => {
@@ -117,7 +118,7 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 		this.dataSource.data.push(order);
 		this.dataSource = new MatTableDataSource<FilterOrder>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
+		setTimeout(() => this.dataSource.paginator = this.paginator);
 	}
 
 	denyOrder(order: Order, i: number) {
