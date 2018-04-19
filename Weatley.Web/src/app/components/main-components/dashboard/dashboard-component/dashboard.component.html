@@ -27,7 +27,7 @@
 					</div>
 					<div class="card-content">
 						<p class="category">Products Revenue</p>
-						<h3 class="title">{{ ordersRevenue }} €</h3>
+						<h3 class="title">{{ ordersRevenue | number: '1.2-2' }} €</h3>
 					</div>
 					<div class="card-footer">
 						<div class="stats">
@@ -105,23 +105,23 @@
 								<tr>
 									<th>Customer</th>
 									<th>Date</th>
-									<th>Price</th>
+									<th class="th-price">Price</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td>{{ order1?.customer.name }} {{ order1?.customer.surname }}</td>
 									<td>{{ order1?.orderDate | date: 'dd-MM-yyyy' }}</td>
-									<td>{{ order1?.finalPrice }} €</td>
+									<td class="td-number">{{ order1?.finalPrice }} €</td>
 								</tr>
 								<tr>
 									<td>{{ order2?.customer.name }} {{ order2?.customer.surname }}</td>
 									<td>{{ order2?.orderDate | date: 'dd-MM-yyyy' }}</td>
-									<td>{{ order2?.finalPrice }} €</td>
+									<td class="td-number">{{ order2?.finalPrice }} €</td>
 								</tr>
 									<td>{{ order3?.customer.name }} {{ order3?.customer.surname }}</td>
 									<td>{{ order3?.orderDate | date: 'dd-MM-yyyy' }}</td>
-									<td>{{ order3?.finalPrice }} €</td>
+									<td class="td-number">{{ order3?.finalPrice }} €</td>
 								<tr>
 								</tr>
 							</tbody>
