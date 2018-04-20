@@ -14,6 +14,7 @@ import { Report } from '../../../core/entities/report';
 import { Order } from '../../../core/entities/order';
 import { SignalRService } from '../../../core/services/signalR.service';
 import { MatSnackBar } from '@angular/material';
+import { UserTypeEnum } from '../../../core/enums/userType-enum';
 
 @Component({
 	selector: 'app-main-layout',
@@ -80,8 +81,13 @@ export class MainLayoutComponent implements OnInit {
 			});
 		});
 
-		this.menuItems = this.menuItemsDataService.getMenuItems();
 		this.user =  this.userProfile.getProfile().currentUser;
+
+		if (this.user.userType === UserTypeEnum.MANAGER_TYPE || this.user.userType === UserTypeEnum.ADMIN_TYPE) {
+			this.menuItems = this.menuItemsDataService.getManagerMenu();
+		} else {
+			this.menuItems = this.menuItemsDataService.getInternalMenu();
+		}
 	}
 
 	changeTheme() {
