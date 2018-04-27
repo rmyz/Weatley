@@ -6,7 +6,7 @@
   "nativescript": {
     "id": "org.nativescript.WeatleyApp",
     "tns-android": {
-      "version": "4.0.0"
+      "version": "4.0.1"
     }
   },
   "scripts": {
@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~5.2.0",
     "@angular/router": "~5.2.0",
     "nativescript-angular": "~5.3.0",
+    "nativescript-material-icons": "1.0.3",
+    "nativescript-ngx-fonticon": "4.1.0",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-ui-sidedrawer": "~4.0.0",
     "reflect-metadata": "~0.1.10",

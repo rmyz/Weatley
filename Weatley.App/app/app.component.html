@@ -5,7 +5,7 @@ http://docs.telerik.com/devtools/nativescript-ui/Controls/NativeScript/SideDrawe
 -->
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
     <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
-        <StackLayout row="0" class="sidedrawer-header">
+        <StackLayout row="0" class="sidedrawer-header" (tap)="onNavItemTap('/profile')">
             <Label class="sidedrawer-header-image fa" text="&#xf2bd;"></Label>
             <Label class="sidedrawer-header-brand" text="User Name"></Label>
             <Label class="footnote" text="username@mail.com"></Label>
@@ -18,19 +18,14 @@ http://docs.telerik.com/devtools/nativescript-ui/Controls/NativeScript/SideDrawe
                     <Label col="1" text="Home" class="p-r-10"></Label>
                 </GridLayout>
 
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('Browse')" (tap)="onNavItemTap('/browse')">
-                    <Label col="0" text="&#xf1ea;" class="fa"></Label>
-                    <Label col="1" text="Browse" class="p-r-10"></Label>
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('/orderList')" (tap)="onNavItemTap('/orderList')">
+                    <Label col="0" class="mdi" [text]="'mdi-shopping-cart' | fonticon"></Label>
+                    <Label col="1" text="Orders" class="p-r-10"></Label>
                 </GridLayout>
 
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('Search')" (tap)="onNavItemTap('/search')">
-                    <Label col="0" text="&#xf002;" class="fa"></Label>
-                    <Label col="1" text="Search" class="p-r-10"></Label>
-                </GridLayout>
-
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('Featured')" (tap)="onNavItemTap('/featured')">
-                    <Label col="0" text="&#xf005;" class="fa"></Label>
-                    <Label col="1" text="Featured" class="p-r-10"></Label>
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('/info')" (tap)="onNavItemTap('/info')">
+                    <Label col="0" class="mdi" [text]="'mdi-info' | fonticon"></Label>
+                    <Label col="1" text="Info" class="p-r-10"></Label>
                 </GridLayout>
     
                 <StackLayout class="hr-light"></StackLayout>

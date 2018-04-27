@@ -3,6 +3,8 @@ import * as app from "application";
 import { RouterExtensions } from "nativescript-angular/router";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 
+import { TNSFontIconService } from "nativescript-ngx-fonticon";
+
 @Component({
 	selector: "ns-app",
 	templateUrl: "app.component.html"
@@ -11,7 +13,7 @@ export class AppComponent implements OnInit {
 	private _selectedPage: string;
 	private _sideDrawerTransition: DrawerTransitionBase;
 
-	constructor(private routerExtensions: RouterExtensions) {
+	constructor(private routerExtensions: RouterExtensions, private tnsFontIconService: TNSFontIconService) {
 		// Use the component constructor to inject services.
 	}
 
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit {
 			}
 		});
 
+		this._selectedPage = navItemRoute;
 		const sideDrawer = <RadSideDrawer>app.getRootView();
 		sideDrawer.closeDrawer();
 	}
