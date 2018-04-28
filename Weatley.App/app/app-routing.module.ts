@@ -1,15 +1,19 @@
 import { NgModule } from "@angular/core";
-import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+
+import { Routes } from "@angular/router";
 
 import { InfoComponent } from "~/pages/info/info.component";
 import { OrderListComponent } from "~/pages/order-list/order-list.component";
 import { ProfileComponent } from "~/pages/profile/profile.component";
 
+import { HomeComponent } from "~/pages/home/home.component";
+import { SettingsComponent } from "~/pages/settings/settings.component";
+
 const routes: Routes = [
 	{ path: "", redirectTo: "/home", pathMatch: "full" },
-	{ path: "home", loadChildren: "./pages/home/home.module#HomeModule" },
-	{ path: "settings", loadChildren: "./pages/settings/settings.module#SettingsModule" },
+	{ path: "home", component: HomeComponent },
+	{ path: "settings", component: SettingsComponent },
 	{ path: "orderList", component: OrderListComponent },
 	{ path: "info", component: InfoComponent },
 	{ path: "profile", component: ProfileComponent }

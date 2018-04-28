@@ -2,6 +2,8 @@ import { NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from "@angular/core
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 
+import { HttpClientModule } from "@angular/common/http";
+
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
@@ -11,6 +13,12 @@ import { InfoModule } from "~/pages/info/info.module";
 import { OrderListModule } from "~/pages/order-list/order-list.module";
 import { ProfileModule } from "~/pages/profile/profile.module";
 
+import { CoreModule } from "./core/core.module";
+
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { HomeModule } from "~/pages/home/home.module";
+import { SettingsModule } from "~/pages/settings/settings.module";
+
 @NgModule({
 	bootstrap: [
 		AppComponent
@@ -18,6 +26,11 @@ import { ProfileModule } from "~/pages/profile/profile.module";
 	imports: [
 		AppRoutingModule,
 		NativeScriptModule,
+		HttpClientModule,
+		NativeScriptHttpClientModule,
+		CoreModule,
+		HomeModule,
+		SettingsModule,
 		NativeScriptUISideDrawerModule,
 		OrderListModule,
 		InfoModule,
@@ -29,6 +42,10 @@ import { ProfileModule } from "~/pages/profile/profile.module";
 	],
 	declarations: [
 		AppComponent
+	],
+	providers: [
+		HttpClientModule,
+		NativeScriptHttpClientModule
 	],
 	schemas: [
 		NO_ERRORS_SCHEMA
