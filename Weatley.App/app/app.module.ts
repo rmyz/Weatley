@@ -12,6 +12,7 @@ import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 import { InfoModule } from "~/pages/info/info.module";
 import { OrderListModule } from "~/pages/order-list/order-list.module";
 import { ProfileModule } from "~/pages/profile/profile.module";
+import { LoginModule } from "~/utils/Login/Login.module";
 
 import { CoreModule } from "./core/core.module";
 
@@ -35,6 +36,7 @@ import { SettingsModule } from "~/pages/settings/settings.module";
 		OrderListModule,
 		InfoModule,
 		ProfileModule,
+		LoginModule,
 		TNSFontIconModule.forRoot({
 			// tslint:disable-next-line:object-literal-key-quotes
 			"mdi": "material-design-icons.css"
