@@ -1,4 +1,16 @@
+.logo {
+    height: 40%;
+    width: 40%;
+    margin-bottom: 50px;
+}
+
+.center-layout {
+    vertical-align: center;
+}
+
 .gradient {
     background-image: url("res://loginbg");
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }

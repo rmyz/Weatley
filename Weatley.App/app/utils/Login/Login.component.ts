@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
+import { BarcodeScanner } from "nativescript-barcodescanner";
 import { Page } from "ui/page";
+
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
 * global app router module. Add the following object to the global array of routes:
@@ -20,31 +22,35 @@ export class LoginComponent implements OnInit {
 
 	constructor(
 		private page: Page,
-		private routerExtensions: RouterExtensions) {
-
-	}
+		private routerExtensions: RouterExtensions,
+		private barcodeScanner: BarcodeScanner) { }
 
 	ngOnInit(): void {
 		this.page.actionBarHidden = true;
 	}
 
-	onLoginWithSocialProviderButtonTap(): void {
-		/* ***********************************************************
-		* For log in with social provider you can add your custom logic or
-		* use NativeScript plugin for log in with Facebook
-		* http://market.nativescript.org/plugins/nativescript-facebook
-		*************************************************************/
+	onQrScannButtonTap(): void {
+		this.barcodeScanner.scan({
+			formats: "QR_CODE",
+			message: "Use the volume buttons for extra light",
+			showFlipCameraButton: true,
+			showTorchButton: true
+		}).then((result) => {
+			alert({
+				title: "Scan result",
+				message: "Format: " + result.format + ",\nValue: " + result.text,
+				okButtonText: "OK"
+			});
+		}, (errorMessage) => {
+			console.log("No scan. " + errorMessage);
+		});
 	}
 
-	onSigninButtonTap(): void {
-		const email = this.email;
-		const password = this.password;
-
-	}
-
-	onForgotPasswordTap(): void {
-		/* ***********************************************************
-		* Call your Forgot Password logic here.
-		*************************************************************/
+	navigateHome() {
+		this.routerExtensions.navigate(["/home"], {
+			transition: {
+				name: "fade"
+			}
+		});
 	}
 }

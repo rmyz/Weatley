@@ -1,5 +1,6 @@
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NgModule, NO_ERRORS_SCHEMA, ValueProvider } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { BarcodeScanner } from "nativescript-barcodescanner";
 
 import { LoginRoutingModule } from "./Login-routing.module";
 import { LoginComponent } from "./Login.component";
@@ -14,6 +15,9 @@ import { LoginComponent } from "./Login.component";
 	],
 	schemas: [
 		NO_ERRORS_SCHEMA
+	],
+	providers: [
+		BarcodeScanner
 	]
 })
 export class LoginModule { }
