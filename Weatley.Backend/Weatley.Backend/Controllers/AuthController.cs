@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -13,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Weatley.Backend.Filters;
 using Weatley.Backend.Models;
+using Weatley.DataAccess;
 using Weatley.Model.Entities;
 
 namespace Weatley.Backend.Controllers
@@ -21,6 +23,7 @@ namespace Weatley.Backend.Controllers
     [Route("api/Auth")]
     public class AuthController : Controller
     {
+        private readonly WeatleyContext _context;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<Role> _roleManager;
@@ -33,7 +36,8 @@ namespace Weatley.Backend.Controllers
                 RoleManager<Role> roleManager,
                 IPasswordHasher<User> passwordHasher,
                 IConfiguration configurationRoot,
-                ILogger<AuthController> logger
+                ILogger<AuthController> logger,
+                WeatleyContext context
             )
         {
             _userManager = userManager;
@@ -42,6 +46,8 @@ namespace Weatley.Backend.Controllers
             _logger = logger;
             _passwordHasher = passwordHasher;
             _configurationRoot = configurationRoot;
+            _context = context;
+
         }
 
         [AllowAnonymous]
@@ -129,5 +135,47 @@ namespace Weatley.Backend.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpPost("CreateGuestToken")]
+        [Route("guestToken")]
+        public async Task<IActionResult> CreateGuestToken([FromBody] GuestViewModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var customer = await _context.Customers.Include(c => c.Accountings)
+                                                   .Include(c => c.Bookings)
+                                                   .Include(c => c.Reports)
+                                                   .Include(c => c.Orders)
+                                                   .SingleOrDefaultAsync(m => m.Id == model.Id);
+
+                var tokenTime = customer.Bookings.FirstOrDefault().StartingDate - customer.Bookings.FirstOrDefault().EndDate;
+
+                var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configurationRoot["JwtSecurityToken:Key"]));
+                var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+
+                var jwtSecurityToken = new JwtSecurityToken(
+                    issuer: _configurationRoot["JwtSecurityToken:Issuer"],
+                    audience: _configurationRoot["JwtSecurityToken:Audience"],
+                    expires: DateTime.UtcNow.Add(tokenTime),
+                    signingCredentials: signingCredentials
+                    );
+
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+                    expiration = jwtSecurityToken.ValidTo,
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"error while creating token: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, "error while creating token");
+            }
+        }
     }
 }

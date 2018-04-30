@@ -22,9 +22,11 @@ export class OrderListComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		/* ***********************************************************
-		* Use the "ngOnInit" handler to initialize data for this component.
-		*************************************************************/
+		this.customerDataService.getCustomers().subscribe((customer) => {
+			console.log("works");
+		}, (error)  => {
+			console.log(error);
+		});
 	}
 
 	onDrawerButtonTap(): void {
