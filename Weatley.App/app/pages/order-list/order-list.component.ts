@@ -10,17 +10,24 @@ import { Customer } from "../../core/entities/customer";
 	selector: "OrderList",
 	moduleId: module.id,
 	templateUrl: "./order-list.component.html",
-	providers: [CustomerDataService]
+	providers: [CustomerDataService],
+	styleUrls: ["./order-list.component.scss"]
 })
 export class OrderListComponent implements OnInit {
-	private customer: Customer;
+	private customer: Customer = new Customer();
+	private customerId = "ed90a54c-d224-49aa-8046-f88ba013f854";
 
 	constructor(private customerDataService: CustomerDataService) { }
 
 	ngOnInit(): void {
-		this.customerDataService.getCustomers().subscribe((customer) => {
+		this.customerDataService.getCustomerById(this.customerId).subscribe((customer) => {
 			console.log("works");
+			this.customer = customer;
 		});
+	}
+
+	test(order) {
+		console.log(order.finalPrice);
 	}
 
 	onDrawerButtonTap(): void {

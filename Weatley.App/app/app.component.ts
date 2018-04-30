@@ -3,6 +3,10 @@ import * as app from "application";
 import { RouterExtensions } from "nativescript-angular/router";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 
+import { registerElement } from "nativescript-angular/element-registry";
+
+registerElement("CardView", () => require("nativescript-cardview").CardView);
+
 import { TNSFontIconService } from "nativescript-ngx-fonticon";
 
 @Component({
