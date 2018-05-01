@@ -21,8 +21,6 @@
 			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'denied'" [text]="'mdi-highlight-off' | fonticon"></Label>
 			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'pending'" [text]="'mdi-autorenew' | fonticon"></Label>
 			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'seen'" [text]="'mdi-visibility' | fonticon"></Label>
-			<!--<Label [text]="order.orderDate | date:'d MMM'" class="p-15 date" textWrap="true" row="0" rowSpan="2" col="0"></Label>
-			-->
 			<Label [text]="order.totalProducts" class="p-10" textWrap="true" row="0" col="1"></Label>
 			<Label [text]="order.status | titlecase" textWrap="true" class="p-10" row="1" col="1"></Label>
 			<Label [text]="order.orderDate | date:'d MMM'" class="p-10" textWrap="true" row="0" col="2"></Label>

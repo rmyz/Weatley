@@ -4,6 +4,19 @@
     <Label class="action-bar-title" text="Order Details"></Label>
 </ActionBar>
 
-<StackLayout class="page">
-	<Label [text]="id"></Label>
+<StackLayout class="p-15">
+	<Label text="Final Price" class="headers"></Label>
+	<Label [text]="order?.finalPrice | currency" class="data"></Label>
+	<Label text="Order Date" class="headers"></Label>
+	<Label [text]="order?.orderDate | date:' dd-MM-yyy HH:mm'" class="data"></Label>
+	<Label text="Comment" class="headers"></Label>
+	<Label [text]="order?.comment | titlecase" class="data"></Label>
+	<Label text="Products Ordered" class="headers"></Label>
+	<StackLayout>
+		<Label *ngFor="let product of order.productsOrdered" class="data" text="{{ product.quantity}} x {{ product.product.name }}"></Label>
+	</StackLayout>
+	<Label text="Status" class="headers"></Label>
+	<Label [text]="order?.status | titlecase" class="data"></Label>
+	<Label text="Denial Reason" class="headers" *ngIf="order?.status === 'denied'"></Label>
+	<Label [text]="order?.statusComment | titlecase" class="data" *ngIf="order?.status === 'denied'"></Label>
 </StackLayout>

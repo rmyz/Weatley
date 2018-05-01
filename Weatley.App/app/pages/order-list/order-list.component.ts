@@ -8,7 +8,6 @@ import { Customer } from "../../core/entities/customer";
 
 import { TNSFontIconService } from "nativescript-ngx-fonticon";
 import { RouterExtensions } from "nativescript-angular/router";
-import { Order } from "tns-core-modules/ui/layouts/flexbox-layout/flexbox-layout";
 
 @Component({
 	selector: "OrderList",
