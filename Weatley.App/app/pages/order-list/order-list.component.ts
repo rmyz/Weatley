@@ -6,6 +6,8 @@ import { CustomerDataService } from "../../core/data-services/customer-data.serv
 
 import { Customer } from "../../core/entities/customer";
 
+import { TNSFontIconService } from "nativescript-ngx-fonticon";
+
 @Component({
 	selector: "OrderList",
 	moduleId: module.id,
@@ -17,16 +19,23 @@ export class OrderListComponent implements OnInit {
 	private customer: Customer = new Customer();
 	private customerId = "ed90a54c-d224-49aa-8046-f88ba013f854";
 
-	constructor(private customerDataService: CustomerDataService) { }
+	constructor(private customerDataService: CustomerDataService, private tnsFontIconService: TNSFontIconService) { }
 
 	ngOnInit(): void {
 		this.customerDataService.getCustomerById(this.customerId).subscribe((customer) => {
 			console.log("works");
 			this.customer = customer;
+			this.customer.orders.forEach((order) => {
+				order.countProducts = 0;
+				order.productsOrdered.forEach((product) => {
+					order.countProducts += product.quantity;
+				});
+				order.totalProducts = order.countProducts + " Items";
+			});
 		});
 	}
 
-	test(order) {
+	goToOrder(order) {
 		console.log(order.finalPrice);
 	}
 

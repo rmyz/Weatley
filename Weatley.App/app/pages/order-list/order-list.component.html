@@ -13,15 +13,19 @@
 
    <StackLayout width="100%" *ngFor="let order of customer?.orders">
 
-       <CardView class="innerCardStyle" margin="5" elevation="10" radius="10" (tap)="test(order)">
+       <CardView class="innerCardStyle" margin="5" elevation="10" radius="10" (tap)="goToOrder(order)">
 
-          <GridLayout rows="50, 50" columns="65, auto, auto, *"> <!--2 rows, 4-->
+          <GridLayout rows="40, 40" columns="65, 200, 65"> <!--2 rows, 4-->
 
-			<Label [text]="order.orderDate | date:'d MMM'" class="p-15 date" textWrap="true" row="0" rowSpan="2" col="0"></Label>
-
-			<Label [text]="order.finalPrice | currency:'USD'" class="p-10" textWrap="true" row="0" col="1"></Label>
-
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'accepted'" [text]="'mdi-shopping-basket' | fonticon"></Label>
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'denied'" [text]="'mdi-highlight-off' | fonticon"></Label>
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'pending'" [text]="'mdi-autorenew' | fonticon"></Label>
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'seen'" [text]="'mdi-visibility' | fonticon"></Label>
+			<!--<Label [text]="order.orderDate | date:'d MMM'" class="p-15 date" textWrap="true" row="0" rowSpan="2" col="0"></Label>
+			-->
+			<Label [text]="order.totalProducts" class="p-10" textWrap="true" row="0" col="1"></Label>
 			<Label [text]="order.status | titlecase" textWrap="true" class="p-10" row="1" col="1"></Label>
+			<Label [text]="order.orderDate | date:'d MMM'" class="p-10" textWrap="true" row="0" col="2"></Label>
 			
 			
 

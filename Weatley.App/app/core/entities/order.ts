@@ -13,6 +13,7 @@ export class Order {
 	statusComment: string;
 	signalRId: string;
 	countProducts: number;
+	totalProducts: string;
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);
