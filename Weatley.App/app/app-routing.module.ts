@@ -11,6 +11,8 @@ import { LoginComponent } from "~/utils/Login/Login.component";
 import { HomeComponent } from "~/pages/home/home.component";
 import { SettingsComponent } from "~/pages/settings/settings.component";
 
+import { OrderDetailsComponent } from "~/pages/order-details/order-details.component";
+
 const routes: Routes = [
 	{ path: "", redirectTo: "/login", pathMatch: "full" },
 	{ path: "login", component: LoginComponent },
@@ -18,7 +20,8 @@ const routes: Routes = [
 	{ path: "settings", component: SettingsComponent },
 	{ path: "orderList", component: OrderListComponent },
 	{ path: "info", component: InfoComponent },
-	{ path: "profile", component: ProfileComponent }
+	{ path: "profile", component: ProfileComponent },
+	{ path: "order/:id", component: OrderDetailsComponent }
 ];
 
 @NgModule({

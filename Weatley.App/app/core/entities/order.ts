@@ -12,6 +12,8 @@ export class Order {
 	status: string;
 	statusComment: string;
 	signalRId: string;
+	countProducts: number;
+	totalProducts: string;
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);

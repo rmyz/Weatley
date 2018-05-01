@@ -46,6 +46,7 @@ namespace Weatley.Backend.Controllers
                                                    .Include(c => c.Bookings)
                                                    .Include(c => c.Reports)
                                                    .Include(c => c.Orders)
+                                                        .ThenInclude(o => o.ProductsOrdered)
                                                    .SingleOrDefaultAsync(m => m.Id == id);
 
             if (customer == null)
