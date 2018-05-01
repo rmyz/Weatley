@@ -38,27 +38,20 @@ export class UserService {
 		return expiration < new Date();
 	}
 
-	login(username: string, password: string) {
-		if (!username || !password) {
-			return;
-		}
+	login(id: string) {
 		const options = new RequestOptions(
 			{ headers: contentHeaders });
 
-		const credentials = {
-			grant_type: 'password',
-			email: username,
-			password: password
-		};
-		const url = this.commonService.getBaseUrl() + 'auth/token';
+		const url = this.commonService.getBaseUrl() + 'auth/guestToken';
 
-		return this.http.post(url, credentials, options)
+		return this.http.post(url, id, options)
 			.map((response: Response) => {
 				const userProfile: IProfile = response.json();
 				this.authProfile.setProfile(userProfile);
 				return response.json();
 			}).catch(this.commonService.handleFullError);
 	}
+
 	register(user: IUser, password: string, confirmPassword: string) {
 		if (!user.email || !password) {
 			return;
