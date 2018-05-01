@@ -147,13 +147,11 @@ namespace Weatley.Backend.Controllers
                     return BadRequest(ModelState);
                 }
 
-                var customer = await _context.Customers.Include(c => c.Accountings)
-                                                   .Include(c => c.Bookings)
-                                                   .Include(c => c.Reports)
-                                                   .Include(c => c.Orders)
-                                                   .SingleOrDefaultAsync(m => m.Id == model.Id);
+                var customer = await _context.Customers
+                    .Include(o => o.Bookings)
+                    .SingleOrDefaultAsync(m => m.Id == model.Id);
 
-                var tokenTime = customer.Bookings.FirstOrDefault().StartingDate - customer.Bookings.FirstOrDefault().EndDate;
+                var tokenDays = (customer.Bookings.FirstOrDefault().EndDate - customer.Bookings.FirstOrDefault().StartingDate).TotalDays;
 
                 var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configurationRoot["JwtSecurityToken:Key"]));
                 var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
@@ -161,7 +159,7 @@ namespace Weatley.Backend.Controllers
                 var jwtSecurityToken = new JwtSecurityToken(
                     issuer: _configurationRoot["JwtSecurityToken:Issuer"],
                     audience: _configurationRoot["JwtSecurityToken:Audience"],
-                    expires: DateTime.UtcNow.Add(tokenTime),
+                    expires: DateTime.UtcNow.AddDays(tokenDays),
                     signingCredentials: signingCredentials
                     );
 
