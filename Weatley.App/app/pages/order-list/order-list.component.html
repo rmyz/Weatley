@@ -13,7 +13,7 @@
 
    <StackLayout width="100%" *ngFor="let order of customer?.orders">
 
-       <CardView class="innerCardStyle" margin="5" elevation="10" radius="10" (tap)="goToOrder(order)">
+       <CardView class="innerCardStyle" margin="5" elevation="10" radius="10" (tap)="goToOrder(order.id)">
 
           <GridLayout rows="40, 40" columns="65, 200, 65"> <!--2 rows, 4-->
 

@@ -7,6 +7,8 @@ import { CustomerDataService } from "../../core/data-services/customer-data.serv
 import { Customer } from "../../core/entities/customer";
 
 import { TNSFontIconService } from "nativescript-ngx-fonticon";
+import { RouterExtensions } from "nativescript-angular/router";
+import { Order } from "tns-core-modules/ui/layouts/flexbox-layout/flexbox-layout";
 
 @Component({
 	selector: "OrderList",
@@ -19,7 +21,8 @@ export class OrderListComponent implements OnInit {
 	private customer: Customer = new Customer();
 	private customerId = "ed90a54c-d224-49aa-8046-f88ba013f854";
 
-	constructor(private customerDataService: CustomerDataService, private tnsFontIconService: TNSFontIconService) { }
+	constructor(private customerDataService: CustomerDataService, private tnsFontIconService: TNSFontIconService,
+				private routerExtensions: RouterExtensions) { }
 
 	ngOnInit(): void {
 		this.customerDataService.getCustomerById(this.customerId).subscribe((customer) => {
@@ -35,8 +38,8 @@ export class OrderListComponent implements OnInit {
 		});
 	}
 
-	goToOrder(order) {
-		console.log(order.finalPrice);
+	goToOrder(order: string) {
+		this.routerExtensions.navigate(["/order", order]);
 	}
 
 	onDrawerButtonTap(): void {
