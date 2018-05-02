@@ -5,11 +5,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
-import { CommonService } from '../services/common.service';
-import { contentHeaders } from '../common/headers';
-import { UserProfile } from './User.Profile';
-import { IProfile, IUser } from '../models/user-model';
-import { RoutingEnum } from '../enums/routing-enum';
+import { CommonService } from "../services/common.service";
+import { contentHeaders } from "../common/headers";
+import { UserProfile } from "./User.Profile";
+import { IProfile, IUser } from "../models/user-model";
+import { RoutingEnum } from "../enums/routing-enum";
+import { Token } from "../entities/token";
 
 @Injectable()
 export class UserService {
@@ -38,15 +39,17 @@ export class UserService {
 		return expiration < new Date();
 	}
 
-	login(id: string) {
-		const options = new RequestOptions(
-			{ headers: contentHeaders });
+	login(incomingId: string) {
+		const options = contentHeaders;
+		const url = this.commonService.getBaseUrl() + "auth/guestToken";
+		const credentials = {
+			id: incomingId
+		};
 
-		const url = this.commonService.getBaseUrl() + 'auth/guestToken';
-
-		return this.http.post(url, id, options)
-			.map((response: Response) => {
-				const userProfile: IProfile = response.json();
+		return this.http.post<Token>(url, credentials, {headers: options})
+			.subscribe((res) => {
+				const userProfile = res;
+				console.log(userProfile);
 				this.authProfile.setProfile(userProfile);
 				return response.json();
 			}).catch(this.commonService.handleFullError);
@@ -58,20 +61,11 @@ export class UserService {
 		const options = new RequestOptions(
 			{ headers: contentHeaders });
 
-		const credentials = {
-			userName: user.userName,
-			name: user.name,
-			surname: user.surname,
-			userType: user.userType,
-			email: user.email,
-			password: password,
-			confirmPassword: confirmPassword
-		};
-		const url = this.commonService.getBaseUrl() + 'auth/register';
-		return this.http.post(url, credentials, options)
-			.map((response: Response) => {
-				return response.json();
-			}).catch(this.commonService.handleFullError);
+				return res;
+			}, ((error) => {
+				console.log(error);
+			})
+		);
 	}
 
 	logout(): void {
