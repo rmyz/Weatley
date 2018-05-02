@@ -6,6 +6,7 @@ import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nat
 import { registerElement } from "nativescript-angular/element-registry";
 
 registerElement("CardView", () => require("nativescript-cardview").CardView);
+registerElement("FAB", () => require("nativescript-floatingactionbutton").Fab);
 
 import { TNSFontIconService } from "nativescript-ngx-fonticon";
 

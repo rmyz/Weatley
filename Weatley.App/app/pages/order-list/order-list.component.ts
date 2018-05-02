@@ -45,4 +45,8 @@ export class OrderListComponent implements OnInit {
 		const sideDrawer = <RadSideDrawer>app.getRootView();
 		sideDrawer.showDrawer();
 	}
+
+	fabTap(): void {
+		console.log("test");
+	}
 }
