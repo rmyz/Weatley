@@ -4,23 +4,29 @@ import { Router } from "@angular/router";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/catch";
+import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
 
 import { CommonService } from "../services/common.service";
 import { contentHeaders } from "../common/headers";
 import { UserProfile } from "./User.Profile";
-import { IProfile, IUser } from "../models/user-model";
 import { RoutingEnum } from "../enums/routing-enum";
 import { Token } from "../entities/token";
 
 @Injectable()
 export class UserService {
+
 	redirectUrl: string;
 	errorMessage: string;
+
+	private _SnackBar: SnackBar;
+
 	constructor(
 		private http: HttpClient,
 		private router: Router,
 		private authProfile: UserProfile,
-		private commonService: CommonService) { }
+		private commonService: CommonService) {
+			this._SnackBar = new SnackBar();
+		}
 
 	isAuthenticated() {
 		const profile = this.authProfile.getProfile();
@@ -36,7 +42,7 @@ export class UserService {
 
 		return validToken && !isTokenExpired;
 	}
-	isTokenExpired(profile: IProfile) {
+	isTokenExpired(profile: Token) {
 		const expiration = new Date(profile.expiration);
 
 		return expiration < new Date();
@@ -52,9 +58,9 @@ export class UserService {
 		return this.http.post<Token>(url, credentials, {headers: options})
 			.subscribe((res) => {
 				const userProfile = res;
-				console.log(userProfile);
 				this.authProfile.setProfile(userProfile);
-
+				this._SnackBar.simple("Snackbar", "red", "#fff");
+				
 				return res;
 			}, ((error) => {
 				console.log(error);

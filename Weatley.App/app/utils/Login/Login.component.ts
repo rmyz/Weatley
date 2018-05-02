@@ -39,11 +39,8 @@ export class LoginComponent implements OnInit {
 			showFlipCameraButton: true,
 			showTorchButton: true
 		}).then((result) => {
-			alert({
-				title: "Scan result",
-				message: "Format: " + result.format + ",\nValue: " + result.text,
-				okButtonText: "OK"
-			});
+			console.log(result.text)
+			this.userService.login(result.text);
 		}, (errorMessage) => {
 			console.log("No scan. " + errorMessage);
 		});

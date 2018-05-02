@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Headers } from '@angular/http';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { Headers } from "@angular/http";
 import {
 	getBoolean,
 	setBoolean,
@@ -13,12 +13,12 @@ import {
 	clear
 } from "application-settings";
 
-import { Token } from '../entities/token';
+import { Token } from "../entities/token";
 
 @Injectable()
 export class UserProfile {
 	userProfile: Token = {
-		token: '',
+		token: "",
 		expiration: null,
 	};
 	constructor(
@@ -26,27 +26,27 @@ export class UserProfile {
 
 	setProfile(profile: Token): void {
 
-		setString('access_token', profile.token);
-		setString('expires_in', profile.expiration);
+		setString("access_token", profile.token);
+		setString("expires_in", profile.expiration.toDateString());
 
 	}
 
 	getProfile(authorizationOnly: boolean = false): Token {
-		const accessToken = getString('access_token');
+		const accessToken = getString("access_token");
 
 		if (accessToken) {
 			this.userProfile.token = accessToken;
-			this.userProfile.expiration = getString('expires_in');
+			this.userProfile.expiration = new Date(getString("expires_in"));
 		}
 
 		return this.userProfile;
 	}
 
 	resetProfile(): Token {
-		remove('access_token');
-		remove('expires_in');
+		remove("access_token");
+		remove("expires_in");
 		this.userProfile = {
-			token: '',
+			token: "",
 			expiration: null,
 		};
 
