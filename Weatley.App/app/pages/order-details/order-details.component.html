@@ -13,7 +13,7 @@
 	<Label [text]="order?.comment | titlecase" class="data"></Label>
 	<Label text="Products Ordered" class="headers"></Label>
 	<StackLayout>
-		<Label *ngFor="let product of order.productsOrdered" class="data" text="{{ product.quantity}} x {{ product.product.name }}"></Label>
+		<Label *ngFor="let product of order?.productsOrdered" class="data" text="{{ product.quantity}} x {{ product.product.name }}"></Label>
 	</StackLayout>
 	<Label text="Status" class="headers"></Label>
 	<Label [text]="order?.status | titlecase" class="data"></Label>
