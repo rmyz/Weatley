@@ -7,7 +7,34 @@
     <Label class="action-bar-title" text="Orders"></Label>
 </ActionBar>
 
-<GridLayout class="page page-content" tkMainContent>
-    <Label class="page-icon fa" text="&#xf002;"></Label>
-    <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+
+ <ScrollView>
+  <StackLayout>
+
+   <StackLayout width="100%" *ngFor="let order of customer?.orders">
+
+       <CardView class="innerCardStyle" margin="5" elevation="10" radius="10" (tap)="goToOrder(order.id)">
+
+          <GridLayout rows="40, 40" columns="65, 200, 65"> <!--2 rows, 4-->
+
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'accepted'" [text]="'mdi-shopping-basket' | fonticon"></Label>
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'denied'" [text]="'mdi-highlight-off' | fonticon"></Label>
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'pending'" [text]="'mdi-autorenew' | fonticon"></Label>
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'seen'" [text]="'mdi-visibility' | fonticon"></Label>
+			<Label [text]="order.totalProducts" class="p-10" textWrap="true" row="0" col="1"></Label>
+			<Label [text]="order.status | titlecase" textWrap="true" class="p-10" row="1" col="1"></Label>
+			<Label [text]="order.orderDate | date:'d MMM'" class="p-10" textWrap="true" row="0" col="2"></Label>
+			
+			
+
+          </GridLayout>
+
+       </CardView>
+
+   </StackLayout>
+
+
+
+  </StackLayout>
+
+</ScrollView>

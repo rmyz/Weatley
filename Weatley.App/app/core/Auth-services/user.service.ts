@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Router } from '@angular/router';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Router } from "@angular/router";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/catch";
 
 import { CommonService } from "../services/common.service";
 import { contentHeaders } from "../common/headers";
@@ -17,25 +17,28 @@ export class UserService {
 	redirectUrl: string;
 	errorMessage: string;
 	constructor(
-		private http: Http,
+		private http: HttpClient,
 		private router: Router,
 		private authProfile: UserProfile,
 		private commonService: CommonService) { }
 
 	isAuthenticated() {
 		const profile = this.authProfile.getProfile();
-		const validToken = profile.token !== '' && profile.token !== null;
+		const validToken = profile.token !== "" && profile.token !== null;
 		const isTokenExpired = this.isTokenExpired(profile);
+
 		return validToken && !isTokenExpired;
 	}
 	isAuthorized() {
 		const profile = this.authProfile.getProfile();
-		const validToken = profile.token !== '' && profile.token !== null;
+		const validToken = profile.token !== "" && profile.token !== null;
 		const isTokenExpired = this.isTokenExpired(profile);
+
 		return validToken && !isTokenExpired;
 	}
 	isTokenExpired(profile: IProfile) {
 		const expiration = new Date(profile.expiration);
+
 		return expiration < new Date();
 	}
 
@@ -51,15 +54,6 @@ export class UserService {
 				const userProfile = res;
 				console.log(userProfile);
 				this.authProfile.setProfile(userProfile);
-				return response.json();
-			}).catch(this.commonService.handleFullError);
-	}
-	register(user: IUser, password: string, confirmPassword: string) {
-		if (!user.email || !password) {
-			return;
-		}
-		const options = new RequestOptions(
-			{ headers: contentHeaders });
 
 				return res;
 			}, ((error) => {

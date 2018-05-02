@@ -1,20 +1,27 @@
 import { NgModule } from "@angular/core";
-import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+
+import { Routes } from "@angular/router";
 
 import { InfoComponent } from "~/pages/info/info.component";
 import { OrderListComponent } from "~/pages/order-list/order-list.component";
 import { ProfileComponent } from "~/pages/profile/profile.component";
 import { LoginComponent } from "~/utils/Login/Login.component";
 
+import { HomeComponent } from "~/pages/home/home.component";
+import { SettingsComponent } from "~/pages/settings/settings.component";
+
+import { OrderDetailsComponent } from "~/pages/order-details/order-details.component";
+
 const routes: Routes = [
 	{ path: "", redirectTo: "/login", pathMatch: "full" },
 	{ path: "login", component: LoginComponent },
-	{ path: "home", loadChildren: "./pages/home/home.module#HomeModule" },
-	{ path: "settings", loadChildren: "./pages/settings/settings.module#SettingsModule" },
+	{ path: "home", component: HomeComponent },
+	{ path: "settings", component: SettingsComponent },
 	{ path: "orderList", component: OrderListComponent },
 	{ path: "info", component: InfoComponent },
-	{ path: "profile", component: ProfileComponent }
+	{ path: "profile", component: ProfileComponent },
+	{ path: "order/:id", component: OrderDetailsComponent }
 ];
 
 @NgModule({
