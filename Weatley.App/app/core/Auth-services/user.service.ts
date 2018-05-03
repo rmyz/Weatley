@@ -8,13 +8,15 @@ import "rxjs/add/operator/catch";
 import { CommonService } from "../services/common.service";
 import { contentHeaders } from "../common/headers";
 import { UserProfile } from "./User.Profile";
-import { IProfile, IUser } from "../models/user-model";
 import { RoutingEnum } from "../enums/routing-enum";
+import { Token } from "../entities/token";
 
 @Injectable()
 export class UserService {
+
 	redirectUrl: string;
 	errorMessage: string;
+
 	constructor(
 		private http: HttpClient,
 		private router: Router,
@@ -35,24 +37,29 @@ export class UserService {
 
 		return validToken && !isTokenExpired;
 	}
-	isTokenExpired(profile: IProfile) {
+	isTokenExpired(profile: Token) {
 		const expiration = new Date(profile.expiration);
 
 		return expiration < new Date();
 	}
 
-	login(id: string) {
+	login(incomingId: string) {
 		const options = contentHeaders;
 		const url = this.commonService.getBaseUrl() + "auth/guestToken";
+		const credentials = {
+			id: incomingId
+		};
 
-		return this.http.post(url, id, {headers: options})
-			.map((res: Response) => {
-				const userProfile = (<any>res).res.json();
-				console.log(userProfile);
+		this.http.post<Token>(url, credentials, {headers: options})
+			.subscribe((res) => {
+				const userProfile = res;
 				this.authProfile.setProfile(userProfile);
 
-				return res.json();
-			}).catch(this.commonService.handleFullError);
+				return res;
+			}, ((error) => {
+				console.error(error);
+			})
+		);
 	}
 
 	logout(): void {

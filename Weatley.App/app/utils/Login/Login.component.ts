@@ -18,8 +18,6 @@ import { UserService } from "~/core/Auth-services/user.service";
 	templateUrl: "./Login.component.html"
 })
 export class LoginComponent implements OnInit {
-	email: string;
-	password: string;
 
 	constructor(
 		private page: Page,
@@ -30,6 +28,15 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.page.actionBarHidden = true;
+
+		if (this.userService.isAuthenticated()) {
+			this.routerExtensions.navigate(["/home"], {
+				transition: {
+					name: "fade"
+				},
+				clearHistory: true
+			});
+		}
 	}
 
 	onQrScannButtonTap(): void {
@@ -39,10 +46,12 @@ export class LoginComponent implements OnInit {
 			showFlipCameraButton: true,
 			showTorchButton: true
 		}).then((result) => {
-			alert({
-				title: "Scan result",
-				message: "Format: " + result.format + ",\nValue: " + result.text,
-				okButtonText: "OK"
+			this.userService.login(result.text);
+			this.routerExtensions.navigate(["/home"], {
+				transition: {
+					name: "fade"
+				},
+				clearHistory: true
 			});
 		}, (errorMessage) => {
 			console.log("No scan. " + errorMessage);
@@ -52,9 +61,22 @@ export class LoginComponent implements OnInit {
 	navigateHome() {
 		this.userService.login("ED90A54C-D224-49AA-8046-F88BA013F854");
 		this.routerExtensions.navigate(["/home"], {
-			transition: {
-				name: "fade"
-			}
-		});
+				transition: {
+					name: "fade"
+				},
+				clearHistory: true
+			});
 	}
+
+	// showSnackbar(text: string) {
+	// 	const options: SnackBarOptions = {
+	// 		actionText: "Dismiss",
+	// 		snackText: text,
+	// 		hideDelay: 3000,
+	// 		textColor: "#ffffff",
+	// 		backgroundColor: "#2196F3"
+	// 	};
+
+	// 	this._SnackBar.action(options);
+	// }
 }

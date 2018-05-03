@@ -15,7 +15,6 @@ import { ProfileModule } from "~/pages/profile/profile.module";
 import { LoginModule } from "~/utils/Login/Login.module";
 
 import { CoreModule } from "./core/core.module";
-
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { HomeModule } from "~/pages/home/home.module";
 import { SettingsModule } from "~/pages/settings/settings.module";

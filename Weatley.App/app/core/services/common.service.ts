@@ -34,12 +34,10 @@ export class CommonService {
 
 		let options = null;
 
-		const headers = new HttpHeaders({ "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4YTE5OGRlNy03ZTdkLTQzNjEtOTM3Zi0xYTNkNzI3NmEwNWUiLCJlbWFpbCI6IkFkbWluQGFkbWluLmNvbSIsInN1YiI6WyJBZG1pbiIsIkFkbWluIiwiVGVzdCIsIkFkbWluIl0sImV4cCI6MTg0MDU1NTM1MywiaXNzIjoiaHR0cDovL3dlYXRsZXl3ZWJhcGkuYXp1cmV3ZWJzaXRlcy5uZXQiLCJhdWQiOiJodHRwOi8vd2VhdGxleXdlYmFwaS5henVyZXdlYnNpdGVzLm5ldCJ9.M8jQcDNJGXX0PAtFV5nR6IaCprMcmErKKlJTNbZ6Zl0"});
-		return headers;
-		// const profile = this.authProfile.getProfile();
-
-		// if (profile != null && profile !== undefined) {
-		// 	return new HttpHeaders({ 'Authorization': 'Bearer ' + profile.token });
-		// }
+		// const headers = new HttpHeaders({ "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4YTE5OGRlNy03ZTdkLTQzNjEtOTM3Zi0xYTNkNzI3NmEwNWUiLCJlbWFpbCI6IkFkbWluQGFkbWluLmNvbSIsInN1YiI6WyJBZG1pbiIsIkFkbWluIiwiVGVzdCIsIkFkbWluIl0sImV4cCI6MTg0MDU1NTM1MywiaXNzIjoiaHR0cDovL3dlYXRsZXl3ZWJhcGkuYXp1cmV3ZWJzaXRlcy5uZXQiLCJhdWQiOiJodHRwOi8vd2VhdGxleXdlYmFwaS5henVyZXdlYnNpdGVzLm5ldCJ9.M8jQcDNJGXX0PAtFV5nR6IaCprMcmErKKlJTNbZ6Zl0"});
+		// return headers;
+		const profile = this.authProfile.getProfile();
+		
+		return new HttpHeaders({ 'Authorization': 'Bearer ' + profile.token });
 	}
 }
