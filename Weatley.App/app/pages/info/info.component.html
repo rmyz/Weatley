@@ -7,7 +7,15 @@
     <Label class="action-bar-title" text="Info"></Label>
 </ActionBar>
 
-<GridLayout class="page page-content" tkMainContent>
-    <Label class="page-icon fa" text="&#xf002;"></Label>
-    <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+<StackLayout orientation="vertical" class="p-15">
+    <Image src="res://hotel"></Image> 
+    <Label></Label>
+    <Label text="Hotel" class="headers"></Label>
+	<Label [text]="hotel?.name" class="data"></Label>
+	<Label text="Address" class="headers"></Label>
+	<Label [text]="hotel?.address" class="data"></Label>
+	<Label text="Email" class="headers"></Label>
+	<Label [text]="hotel?.email" class="data"></Label>
+    <Label text="Phone Number" class="headers"></Label>
+    <Label [text]="hotel?.phoneNumber" class="data"></Label>
+</StackLayout>

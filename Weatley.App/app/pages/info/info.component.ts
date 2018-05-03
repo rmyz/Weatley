@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import * as app from "application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import { HotelDataService } from "~/core/data-services/hotel-data.service";
+import { Hotel } from "~/core/entities/hotel";
 
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
@@ -12,19 +14,20 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 @Component({
 	selector: "Info",
 	moduleId: module.id,
-	templateUrl: "./info.component.html"
+	templateUrl: "./info.component.html",
+	styleUrls: ["./info.component.scss"],
+	providers: [HotelDataService]
 })
 export class InfoComponent implements OnInit {
-	constructor() {
-		/* ***********************************************************
-		* Use the constructor to inject app services that you need in this component.
-		*************************************************************/
-	}
+
+	private hotel: Hotel = new Hotel();
+
+	constructor(private hotelDataService: HotelDataService) { }
 
 	ngOnInit(): void {
-		/* ***********************************************************
-		* Use the "ngOnInit" handler to initialize data for this component.
-		*************************************************************/
+		this.hotelDataService.getHotel().subscribe((hotel) => {
+			this.hotel = hotel;
+		});
 	}
 
 	onDrawerButtonTap(): void {
