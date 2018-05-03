@@ -47,6 +47,6 @@ export class OrderListComponent implements OnInit {
 	}
 
 	fabTap(): void {
-		console.log("test");
+		this.routerExtensions.navigate(["/order"]);
 	}
 }

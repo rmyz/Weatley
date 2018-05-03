@@ -3,11 +3,16 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
 import { OrderNewRoutingModule } from "./order-new-routing.module";
 import { OrderNewComponent } from "./order-new.component";
+import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 
 @NgModule({
     imports: [
         NativeScriptModule,
-        OrderNewRoutingModule
+		OrderNewRoutingModule,
+		TNSFontIconModule.forRoot({
+			// tslint:disable-next-line:object-literal-key-quotes
+			"mdi": "material-design-icons.css"
+		})
     ],
     declarations: [
         OrderNewComponent

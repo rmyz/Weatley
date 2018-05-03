@@ -12,6 +12,7 @@ import { HomeComponent } from "~/pages/home/home.component";
 import { SettingsComponent } from "~/pages/settings/settings.component";
 
 import { OrderDetailsComponent } from "~/pages/order-details/order-details.component";
+import { OrderNewComponent } from "~/pages/order-new/order-new.component";
 
 const routes: Routes = [
 	{ path: "", redirectTo: "/login", pathMatch: "full" },
@@ -21,7 +22,8 @@ const routes: Routes = [
 	{ path: "orderList", component: OrderListComponent },
 	{ path: "info", component: InfoComponent },
 	{ path: "profile", component: ProfileComponent },
-	{ path: "order/:id", component: OrderDetailsComponent }
+	{ path: "order/:id", component: OrderDetailsComponent },
+	{ path: "order", component: OrderNewComponent }
 ];
 
 @NgModule({
