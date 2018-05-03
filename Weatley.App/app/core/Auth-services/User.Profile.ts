@@ -1,16 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { Headers } from "@angular/http";
+import { Router } from "@angular/router";
 import {
-	getBoolean,
-	setBoolean,
-	getNumber,
-	setNumber,
+	clear,
 	getString,
-	setString,
-	hasKey,
 	remove,
-	clear
+	setString
 } from "application-settings";
 
 import { Token } from "../entities/token";
@@ -19,7 +14,7 @@ import { Token } from "../entities/token";
 export class UserProfile {
 	userProfile: Token = {
 		token: "",
-		expiration: null,
+		expiration: null
 	};
 	constructor(
 		private router: Router) { }
@@ -27,7 +22,7 @@ export class UserProfile {
 	setProfile(profile: Token): void {
 
 		setString("access_token", profile.token);
-		setString("expires_in", profile.expiration.toDateString());
+		setString("expires_in", profile.expiration.toString());
 
 	}
 
@@ -47,9 +42,10 @@ export class UserProfile {
 		remove("expires_in");
 		this.userProfile = {
 			token: "",
-			expiration: null,
+			expiration: null
 		};
 
 		return this.userProfile;
 	}
+
 }

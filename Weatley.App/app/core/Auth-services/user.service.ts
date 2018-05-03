@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/catch";
-import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
 
 import { CommonService } from "../services/common.service";
 import { contentHeaders } from "../common/headers";
@@ -18,15 +17,11 @@ export class UserService {
 	redirectUrl: string;
 	errorMessage: string;
 
-	private _SnackBar: SnackBar;
-
 	constructor(
 		private http: HttpClient,
 		private router: Router,
 		private authProfile: UserProfile,
-		private commonService: CommonService) {
-			this._SnackBar = new SnackBar();
-		}
+		private commonService: CommonService) { }
 
 	isAuthenticated() {
 		const profile = this.authProfile.getProfile();
@@ -55,15 +50,14 @@ export class UserService {
 			id: incomingId
 		};
 
-		return this.http.post<Token>(url, credentials, {headers: options})
+		this.http.post<Token>(url, credentials, {headers: options})
 			.subscribe((res) => {
 				const userProfile = res;
 				this.authProfile.setProfile(userProfile);
-				this._SnackBar.simple("Snackbar", "red", "#fff");
-				
+
 				return res;
 			}, ((error) => {
-				console.log(error);
+				console.error(error);
 			})
 		);
 	}
