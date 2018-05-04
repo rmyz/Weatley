@@ -27,13 +27,6 @@ http://docs.telerik.com/devtools/nativescript-ui/Controls/NativeScript/SideDrawe
                     <Label col="0" class="mdi" [text]="'mdi-info' | fonticon"></Label>
                     <Label col="1" text="Info" class="p-r-10"></Label>
                 </GridLayout>
-    
-                <StackLayout class="hr-light"></StackLayout>
-
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('Settings')" (tap)="onNavItemTap('/settings')">
-                    <Label col="0" text="&#xf013;" class="fa"></Label>
-                    <Label col="1" text="Settings" class="p-r-10"></Label>
-                </GridLayout>
             </StackLayout>
         </ScrollView>
     </GridLayout>

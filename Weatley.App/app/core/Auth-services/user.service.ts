@@ -53,7 +53,7 @@ export class UserService {
 		this.http.post<Token>(url, credentials, {headers: options})
 			.subscribe((res) => {
 				const userProfile = res;
-				this.authProfile.setProfile(userProfile);
+				this.authProfile.setProfile(userProfile, incomingId);
 
 				return res;
 			}, ((error) => {
