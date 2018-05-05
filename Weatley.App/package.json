@@ -30,6 +30,7 @@
     "nativescript-material-icons": "1.0.3",
     "nativescript-ngx-fonticon": "4.1.0",
     "nativescript-nodeify": "^0.7.0",
+    "nativescript-snackbar": "3.0.0",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-ui-sidedrawer": "~4.0.0",
     "reflect-metadata": "~0.1.10",
