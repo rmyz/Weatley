@@ -6,7 +6,7 @@
 
 <StackLayout class="p-15">
 	<Label text="Final Price" class="headers"></Label>
-	<Label [text]="order?.finalPrice | currency" class="data"></Label>
+	<Label text=" {{order?.finalPrice | number}} €" class="data"></Label>
 	<Label text="Order Date" class="headers"></Label>
 	<Label [text]="order?.orderDate | date:' dd-MM-yyy HH:mm'" class="data"></Label>
 	<Label text="Comment" class="headers"></Label>

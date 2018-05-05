@@ -1,14 +1,56 @@
 <ActionBar class="action-bar">
-	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" 
-	(tap)="goBack()"></NavigationButton>
-<Label class="action-bar-title" text="New Order"></Label>
+	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="goBack()"></NavigationButton>
+	<Label class="action-bar-title" text="New Order"></Label>
 </ActionBar>
 
 <TabView selectedTabTextColor="#FFFFFF" tabBackgroundColor="#448AFF" androidSelectedTabHighlightColor="#FFFFFF">
-    <StackLayout *tabItem="{title: 'Products'}" >
-       <Label text="Products list here"></Label>
-    </StackLayout>
-    <StackLayout *tabItem="{title: 'Cart'}">
-        <Label text="Cart here"></Label>
-    </StackLayout>
+	<StackLayout *tabItem="{title: 'Products'}">
+		<TabView selectedTabTextColor="#448AFF" tabBackgroundColor="#FFFFFF" androidSelectedTabHighlightColor="#448AFF">
+			<StackLayout *tabItem="{title: 'Food'}">
+				<ListView [items]="foodItems" (itemTap)="onTapFood($event)" class="list-group">
+					<ng-template let-food="item" let-i="index" let-odd="odd" let-even="even">
+						<GridLayout columns="265, 65" class="list-group-item">
+
+							<Label class="title" [text]="food.name" col="0"></Label>
+							<Label class="price" text=" {{food.price | number }} €" col="1"></Label>
+
+						</GridLayout>
+
+					</ng-template>
+
+				</ListView>
+			</StackLayout>
+			<StackLayout *tabItem="{title: 'Drinks'}">
+				<ListView [items]="drinkItems" (itemTap)="onTapDrink($event)" class="list-group">
+					<ng-template let-drink="item" let-i="index" let-odd="odd" let-even="even">
+						<GridLayout columns="265, 65" class="list-group-item">
+
+							<Label class="title" [text]="drink.name" col="0"></Label>
+							<Label class="price" text=" {{drink.price | number }} €" col="1"></Label>
+
+						</GridLayout>
+
+					</ng-template>
+
+				</ListView>
+			</StackLayout>
+			<StackLayout *tabItem="{title: 'Services'}">
+				<ListView [items]="serviceItems" (itemTap)="onTapService($event)" class="list-group">
+					<ng-template let-service="item" let-i="index" let-odd="odd" let-even="even">
+						<GridLayout columns="265, 65" class="list-group-item">
+
+							<Label class="title" [text]="service.name" col="0"></Label>
+							<Label class="price" text=" {{service.price | number }} €" col="1"></Label>
+
+						</GridLayout>
+
+					</ng-template>
+
+				</ListView>
+			</StackLayout>
+		</TabView>
+	</StackLayout>
+	<StackLayout *tabItem="{title: 'Cart'}">
+		<Label text="Cart here"></Label>
+	</StackLayout>
 </TabView>
