@@ -12,7 +12,7 @@
 						<GridLayout columns="265, 65" class="list-group-item">
 
 							<Label class="title" [text]="food.name" col="0"></Label>
-							<Label class="price" text=" {{food.price | number }} €" col="1"></Label>
+							<Label class="price" text=" {{food.price | number: '1.2-2' }} €" col="1"></Label>
 
 						</GridLayout>
 
@@ -26,7 +26,7 @@
 						<GridLayout columns="265, 65" class="list-group-item">
 
 							<Label class="title" [text]="drink.name" col="0"></Label>
-							<Label class="price" text=" {{drink.price | number }} €" col="1"></Label>
+							<Label class="price" text=" {{drink.price | number: '1.2-2' }} €" col="1"></Label>
 
 						</GridLayout>
 
@@ -40,7 +40,7 @@
 						<GridLayout columns="265, 65" class="list-group-item">
 
 							<Label class="title" [text]="service.name" col="0"></Label>
-							<Label class="price" text=" {{service.price | number }} €" col="1"></Label>
+							<Label class="price" text=" {{service.price | number: '1.2-2' }} €" col="1"></Label>
 
 						</GridLayout>
 
@@ -51,6 +51,18 @@
 		</TabView>
 	</StackLayout>
 	<StackLayout *tabItem="{title: 'Cart'}">
-		<Label text="Cart here"></Label>
+		<ListView [items]="orderItems.productsOrdered" (itemTap)="onTapCartItem($event)" class="list-group">
+			<ng-template let-product="item" let-i="index" let-odd="odd" let-even="even">
+				<GridLayout columns="265, 35, 35" class="list-group-item">
+
+					<Label class="title" [text]="product.product.name" col="0"></Label>
+					<Label class="price" [text]="product.quantity" col="1"></Label>
+					<Label [text]="orderItems.finalPrice" col="2"></Label>
+
+				</GridLayout>
+
+			</ng-template>
+
+		</ListView>
 	</StackLayout>
 </TabView>
