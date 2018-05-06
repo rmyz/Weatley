@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Weatley.Backend.Core;
 using Weatley.DataAccess;
 using Weatley.Model.Entities;
 
@@ -96,6 +97,11 @@ namespace Weatley.Backend.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            foreach (var product in order.ProductsOrdered)
+            {
+                _context.Products.Attach(product.Product);
             }
 
             _context.Customers.Attach(order.Customer);

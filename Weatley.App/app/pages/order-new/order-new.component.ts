@@ -8,6 +8,10 @@ import { Customer } from "~/core/entities/customer";
 import { CustomerDataService } from "~/core/data-services/customer-data.service";
 
 import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
+import { TextField } from "ui/text-field";
+
+import { confirm } from "ui/dialogs";
+import { OrdersDataService } from "~/core/data-services/orders-data.service";
 
 const uuidv4 = require("uuid/v4");
 
@@ -16,7 +20,7 @@ const uuidv4 = require("uuid/v4");
 	moduleId: module.id,
 	templateUrl: "./order-new.component.html",
 	styleUrls: ["./order-new.component.scss"],
-	providers: [ProductDataService, CustomerDataService]
+	providers: [ProductDataService, CustomerDataService, OrdersDataService]
 })
 export class OrderNewComponent implements OnInit {
 	_SnackBar: SnackBar = new SnackBar();
@@ -33,7 +37,8 @@ export class OrderNewComponent implements OnInit {
 
 	constructor(private routerExtensions: RouterExtensions,
 				private productDataService: ProductDataService,
-				private customerDataService: CustomerDataService) { }
+				private customerDataService: CustomerDataService,
+				private orderDataService: OrdersDataService) { }
 
 	ngOnInit(): void {
 		this.productDataService.getProduct().subscribe((products) => {
@@ -191,27 +196,37 @@ export class OrderNewComponent implements OnInit {
 	}
 
 	updateOrder() {
-		// this.orderItems.customer = this.customer;
-		// this.orderItems.id = this.orderId;
-		// this.orderItems.comment = this.comment;
-		// this.orderItems.status = "pending";
 
 		this.orderItems.finalPrice = this.finalPrice;
-		this.orderItems.productsOrdered.forEach(order => {
+		this.orderItems.productsOrdered.forEach((order) => {
 			order.order.finalPrice = this.finalPrice;
+			order.order.comment = this.comment;
+			order.order.status = "pending";
 		});
 	}
 
 	showSnackbar(text: string) {
 		const options: SnackBarOptions = {
-		actionText: "Dismiss",
+			actionText: "Dismiss",
 			snackText: text,
 			hideDelay: 3000,
 			textColor: "#ffffff",
 			backgroundColor: "#2196F3"
 		};
 
-  		this._SnackBar.action(options);
+		this._SnackBar.action(options);
+	}
+
+	showSnackbarError(text: string) {
+		const options: SnackBarOptions = {
+			actionText: "Dismiss",
+			snackText: text,
+			hideDelay: 3000,
+			textColor: "#ffffff",
+			backgroundColor: "#FF5555"
+		};
+
+		this._SnackBar.action(options);
 	}
 
 	addQuantity(item) {
@@ -231,5 +246,44 @@ export class OrderNewComponent implements OnInit {
 		}
 
 		this.updateOrder();
+	}
+
+	onTextChange(args) {
+		const textField = <TextField>args.object;
+		this.comment = textField.text;
+	}
+
+	submitOrder() {
+		if (this.finalPrice > 0) {
+
+			const options = {
+				title: "Confirm order",
+				message: "Are you sure?",
+				okButtonText: "Yes",
+				cancelButtonText: "No"
+			};
+
+			confirm(options).then((result: boolean) => {
+				if (result) {
+					this.orderItems.customer = this.customer;
+					this.orderItems.id = this.orderId;
+					this.orderItems.comment = this.comment;
+					this.orderItems.status = "pending";
+					this.orderItems.orderDate = new Date();
+					this.updateOrder();
+					console.log(this.orderItems);
+
+					this.orderDataService.createOrders(this.orderItems).subscribe((res) => {
+						this.showSnackbar("Ordered succesfully");
+						this.routerExtensions.navigate(["/orderList"]);
+					}, (err) => {
+						console.log(err);
+					});
+				}
+			});
+
+		} else {
+			this.showSnackbarError("You must select a product");
+		}
 	}
 }

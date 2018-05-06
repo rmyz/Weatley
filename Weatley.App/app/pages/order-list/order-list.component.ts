@@ -25,7 +25,6 @@ export class OrderListComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.customerDataService.getCustomerById(this.customerId).subscribe((customer) => {
-			console.log("works");
 			this.customer = customer;
 			this.customer.orders.forEach((order) => {
 				order.countProducts = 0;
