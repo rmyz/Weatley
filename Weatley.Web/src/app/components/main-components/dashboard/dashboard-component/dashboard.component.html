@@ -112,16 +112,16 @@
 								<tr>
 									<td>{{ order1?.customer.name }} {{ order1?.customer.surname }}</td>
 									<td>{{ order1?.orderDate | date: 'dd-MM-yyyy' }}</td>
-									<td class="td-number">{{ order1?.finalPrice }} €</td>
+									<td class="td-number">{{ order1?.finalPrice | number: '1.2-2' }} €</td>
 								</tr>
 								<tr>
 									<td>{{ order2?.customer.name }} {{ order2?.customer.surname }}</td>
 									<td>{{ order2?.orderDate | date: 'dd-MM-yyyy' }}</td>
-									<td class="td-number">{{ order2?.finalPrice }} €</td>
+									<td class="td-number">{{ order2?.finalPrice | number: '1.2-2' }} €</td>
 								</tr>
 									<td>{{ order3?.customer.name }} {{ order3?.customer.surname }}</td>
 									<td>{{ order3?.orderDate | date: 'dd-MM-yyyy' }}</td>
-									<td class="td-number">{{ order3?.finalPrice }} €</td>
+									<td class="td-number">{{ order3?.finalPrice | number: '1.2-2'}} €</td>
 								<tr>
 								</tr>
 							</tbody>

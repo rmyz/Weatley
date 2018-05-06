@@ -10,7 +10,7 @@
 
 		<ng-container matColumnDef="finalPrice">
 			<mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-			<mat-cell *matCellDef="let item"> {{ item.finalPrice }} €</mat-cell>
+			<mat-cell *matCellDef="let item"> {{ item.finalPrice | number: '1.2-2'}} €</mat-cell>
 		</ng-container>
 
 		<ng-container matColumnDef="orderDate">
