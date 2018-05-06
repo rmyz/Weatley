@@ -201,6 +201,7 @@ export class OrderNewComponent implements OnInit {
 		this.orderItems.productsOrdered.forEach((order) => {
 			order.order.finalPrice = this.finalPrice;
 			order.order.comment = this.comment;
+			order.order.id = this.orderId;
 			order.order.status = "pending";
 		});
 	}
@@ -274,10 +275,12 @@ export class OrderNewComponent implements OnInit {
 					console.log(this.orderItems);
 
 					this.orderDataService.createOrders(this.orderItems).subscribe((res) => {
+						this.orderId = uuidv4();
 						this.showSnackbar("Ordered succesfully");
 						this.routerExtensions.navigate(["/orderList"]);
 					}, (err) => {
 						console.log(err);
+						this.orderId = uuidv4();
 					});
 				}
 			});

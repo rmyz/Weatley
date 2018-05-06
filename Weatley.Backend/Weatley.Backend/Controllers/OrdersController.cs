@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Weatley.Backend.Core;
 using Weatley.DataAccess;
 using Weatley.Model.Entities;
 
@@ -105,7 +104,6 @@ namespace Weatley.Backend.Controllers
             }
 
             _context.Customers.Attach(order.Customer);
-
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
