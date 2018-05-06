@@ -13,6 +13,8 @@ import { TextField } from "ui/text-field";
 import { confirm } from "ui/dialogs";
 import { OrdersDataService } from "~/core/data-services/orders-data.service";
 
+import { getString } from "tns-core-modules/application-settings/application-settings";
+
 const uuidv4 = require("uuid/v4");
 
 @Component({
@@ -33,7 +35,7 @@ export class OrderNewComponent implements OnInit {
 	private orderId = uuidv4();
 	private orderItems: Order = new Order();
 	private customer: Customer;
-	private customerId = "ed90a54c-d224-49aa-8046-f88ba013f854";
+	private customerId = getString("customer_id");
 
 	constructor(private routerExtensions: RouterExtensions,
 				private productDataService: ProductDataService,
@@ -41,6 +43,7 @@ export class OrderNewComponent implements OnInit {
 				private orderDataService: OrdersDataService) { }
 
 	ngOnInit(): void {
+		console.log(this.customerId);
 		this.productDataService.getProduct().subscribe((products) => {
 			products.forEach(product => {
 				if (product.available) {

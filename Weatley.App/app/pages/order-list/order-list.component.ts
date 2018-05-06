@@ -8,6 +8,7 @@ import { Customer } from "../../core/entities/customer";
 
 import { TNSFontIconService } from "nativescript-ngx-fonticon";
 import { RouterExtensions } from "nativescript-angular/router";
+import { getString } from "tns-core-modules/application-settings/application-settings";
 
 @Component({
 	selector: "OrderList",
@@ -18,7 +19,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 })
 export class OrderListComponent implements OnInit {
 	private customer: Customer = new Customer();
-	private customerId = "ed90a54c-d224-49aa-8046-f88ba013f854";
+	private customerId = getString("customer_id");
 
 	constructor(private customerDataService: CustomerDataService, private tnsFontIconService: TNSFontIconService,
 				private routerExtensions: RouterExtensions) { }

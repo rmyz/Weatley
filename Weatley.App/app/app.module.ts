@@ -17,7 +17,6 @@ import { LoginModule } from "~/utils/Login/Login.module";
 import { CoreModule } from "./core/core.module";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { HomeModule } from "~/pages/home/home.module";
-import { SettingsModule } from "~/pages/settings/settings.module";
 
 import { OrderDetailsModule } from "~/pages/order-details/order-details.module";
 import { OrderNewModule } from "~/pages/order-new/order-new.module";
@@ -33,7 +32,6 @@ import { OrderNewModule } from "~/pages/order-new/order-new.module";
 		NativeScriptHttpClientModule,
 		CoreModule,
 		HomeModule,
-		SettingsModule,
 		NativeScriptUISideDrawerModule,
 		OrderListModule,
 		OrderDetailsModule,

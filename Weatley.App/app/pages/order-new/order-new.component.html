@@ -54,7 +54,7 @@
 		</TabView>
 	</StackLayout>
 	<StackLayout *tabItem="{title: 'Cart'}">
-		<Label class="title text-right"text="Total price: {{orderItems.finalPrice | number: '1.2-2'}} €"></Label>
+		<Label class="title text-right p-15"text="Total: {{orderItems.finalPrice | number: '1.2-2'}} €"></Label>
 		<TextField hint="Enter comment (optional)"autocorrect="false" (textChange)="onTextChange($event)" class="m-10 input input-border"></TextField>
 		<Label class="title text-center"text="Cart"></Label>
 		<ListView [items]="orderItems.productsOrdered" class="list-group">
