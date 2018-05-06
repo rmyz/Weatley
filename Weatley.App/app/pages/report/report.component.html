@@ -1,0 +1,23 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Report"></Label>
+</ActionBar>
+
+<ScrollView>
+    <StackLayout class="page p-15">
+        <GridLayout class="page page-content margin-page" tkMainContent>
+            <Label col="0" class="page-icon mdi" [text]="'mdi-report-problem' | fonticon"></Label>
+        </GridLayout>
+        <Label text="Tell us what happened..." class="label page-placeholder margin-top"></Label>
+        <TextView
+            hint="Report description"
+            [(ngModel)]="description"
+            [editable]="true"
+            minHeight="300px"
+            returnKeyType="send"
+            class="input input-border margin-top"></TextView>
+    </StackLayout>
+</ScrollView>
