@@ -13,7 +13,7 @@
 								<mat-icon color="primary" class="icons">shopping_card</mat-icon>
 							</div>
 							<mat-card-title>Order from {{ order.customer.name }} {{order.customer.surname }}</mat-card-title>
-							<mat-card-subtitle>Total Import: {{ order.finalPrice }} €</mat-card-subtitle>
+							<mat-card-subtitle>Total Import: {{ order.finalPrice | number: '1.2-2' }} €</mat-card-subtitle>
 							<mat-card-subtitle>Date: {{ order.orderDate | date: 'MM/dd/yyyy HH:mm' }}</mat-card-subtitle>
 						</mat-card-header>
 						<mat-card-content>
@@ -68,7 +68,7 @@
 	
 						<ng-container matColumnDef="finalPrice">
 							<mat-header-cell *matHeaderCellDef mat-sort-header> Final Price </mat-header-cell>
-							<mat-cell *matCellDef="let item"> {{ item.finalPrice }} €</mat-cell>
+							<mat-cell *matCellDef="let item"> {{ item.finalPrice | number: '1.2-2' }} €</mat-cell>
 						</ng-container>
 	
 						<ng-container matColumnDef="status">

@@ -39,7 +39,7 @@
 
 		<ng-container matColumnDef="price">
 			<mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-			<mat-cell *matCellDef="let item"> {{ item.price }} €</mat-cell>
+			<mat-cell *matCellDef="let item"> {{ item.price | number: '1.2-2'}} €</mat-cell>
 		</ng-container>
 
 		<ng-container matColumnDef="rooms">

@@ -98,8 +98,12 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Customers.Attach(order.Customer);
+            foreach (var product in order.ProductsOrdered)
+            {
+                _context.Products.Attach(product.Product);
+            }
 
+            _context.Customers.Attach(order.Customer);
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 

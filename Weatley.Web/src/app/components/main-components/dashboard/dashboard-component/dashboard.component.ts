@@ -51,7 +51,6 @@ export class DashboardComponent implements OnInit {
 			const order: Order[] = orders;
 			for (let i = 0; i < order.length ; i++) {
 				this.ordersRevenue = this.ordersRevenue + order[i].finalPrice;
-				console.log(this.ordersRevenue);
 				this.order1 = order[0];
 				this.order2 = order[1];
 				this.order3 = order[2];

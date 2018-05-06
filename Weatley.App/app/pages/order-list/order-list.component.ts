@@ -25,7 +25,6 @@ export class OrderListComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.customerDataService.getCustomerById(this.customerId).subscribe((customer) => {
-			console.log("works");
 			this.customer = customer;
 			this.customer.orders.forEach((order) => {
 				order.countProducts = 0;
@@ -44,5 +43,9 @@ export class OrderListComponent implements OnInit {
 	onDrawerButtonTap(): void {
 		const sideDrawer = <RadSideDrawer>app.getRootView();
 		sideDrawer.showDrawer();
+	}
+
+	fabTap(): void {
+		this.routerExtensions.navigate(["/order"]);
 	}
 }

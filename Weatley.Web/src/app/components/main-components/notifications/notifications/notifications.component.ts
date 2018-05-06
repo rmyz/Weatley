@@ -115,7 +115,14 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 	}
 
 	addOrderToTableOrder(order) {
-		this.dataSource.data.push(order);
+		this.dataSource.data.push(new FilterOrder({
+			id: order.id,
+			finalPrice: order.finalPrice,
+			name: order.customer.name,
+			surname: order.customer.surname,
+			status: order.status,
+			order: order
+		}));
 		this.dataSource = new MatTableDataSource<FilterOrder>(this.dataSource.data);
 		this.dataSource.sort = this.sort;
 		setTimeout(() => this.dataSource.paginator = this.paginator);

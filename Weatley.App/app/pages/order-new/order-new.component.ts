@@ -1,27 +1,292 @@
 import { Component, OnInit } from "@angular/core";
+import { RouterExtensions } from "nativescript-angular/router";
+import { ProductDataService } from "~/core/data-services/product-data.service";
+import { Product } from "~/core/entities/product";
+import { Order } from "~/core/entities/order";
+import { ProductOrdered } from "~/core/entities/product-ordered";
+import { Customer } from "~/core/entities/customer";
+import { CustomerDataService } from "~/core/data-services/customer-data.service";
 
-/* ***********************************************************
-* Before you can navigate to this page from your app, you need to reference this page's module in the
-* global app router module. Add the following object to the global array of routes:
-* { path: "order-new", loadChildren: "./order-new/order-new.module#OrderNewModule" }
-* Note that this simply points the path to the page module file. If you move the page, you need to update the route too.
-*************************************************************/
+import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
+import { TextField } from "ui/text-field";
+
+import { confirm } from "ui/dialogs";
+import { OrdersDataService } from "~/core/data-services/orders-data.service";
+
+const uuidv4 = require("uuid/v4");
 
 @Component({
-    selector: "OrderNew",
-    moduleId: module.id,
-    templateUrl: "./order-new.component.html"
+	selector: "OrderNew",
+	moduleId: module.id,
+	templateUrl: "./order-new.component.html",
+	styleUrls: ["./order-new.component.scss"],
+	providers: [ProductDataService, CustomerDataService, OrdersDataService]
 })
 export class OrderNewComponent implements OnInit {
-    constructor() {
-        /* ***********************************************************
-        * Use the constructor to inject app services that you need in this component.
-        *************************************************************/
-    }
+	_SnackBar: SnackBar = new SnackBar();
+	private foodItems: Array<Product> = [];
+	private drinkItems: Array<Product> = [];
+	private serviceItems: Array<Product> = [];
 
-    ngOnInit(): void {
-        /* ***********************************************************
-        * Use the "ngOnInit" handler to initialize data for this component.
-        *************************************************************/
-    }
+	private comment: string = "";
+	private finalPrice: number = 0;
+	private orderId = uuidv4();
+	private orderItems: Order = new Order();
+	private customer: Customer;
+	private customerId = "ed90a54c-d224-49aa-8046-f88ba013f854";
+
+	constructor(private routerExtensions: RouterExtensions,
+				private productDataService: ProductDataService,
+				private customerDataService: CustomerDataService,
+				private orderDataService: OrdersDataService) { }
+
+	ngOnInit(): void {
+		this.productDataService.getProduct().subscribe((products) => {
+			products.forEach(product => {
+				if (product.available) {
+					if (product.productType === "Food") {
+						this.foodItems.push(product);
+					} else if (product.productType === "Service") {
+						this.serviceItems.push(product);
+					} else {
+						this.drinkItems.push(product);
+					}
+				}
+			});
+		});
+		this.customerDataService.getCustomerById(this.customerId).subscribe((customer) => {
+			this.customer = customer;
+		});
+	}
+
+	goBack() {
+		this.routerExtensions.back();
+	}
+
+	onTapFood(food) {
+		if (this.orderItems.productsOrdered) {
+			let changed = false;
+			const found = this.orderItems.productsOrdered.find(p => p.product.name === this.foodItems[food.index].name);
+			if (found) {
+				found.quantity += 1;
+				changed = true;
+				this.finalPrice = this.finalPrice + this.foodItems[food.index].price;
+				this.orderItems.finalPrice = this.finalPrice;
+			} else {
+				this.finalPrice = this.finalPrice + this.foodItems[food.index].price;
+				this.orderItems.productsOrdered.push(new ProductOrdered({
+					id: uuidv4(),
+					order: new Order({
+						id: this.orderId,
+						orderDate: new Date(),
+						customer: this.customer,
+						comment: this.comment,
+						finalPrice: this.finalPrice
+					}),
+					product: this.foodItems[food.index],
+					quantity: 1
+				}));
+			}
+		} else {
+			this.orderItems.productsOrdered = new Array<ProductOrdered>();
+			this.finalPrice = this.foodItems[food.index].price;
+			this.orderItems.productsOrdered.push(new ProductOrdered({
+				id: uuidv4(),
+				order: new Order({
+					id: this.orderId,
+					orderDate: new Date(),
+					customer: this.customer,
+					comment: this.comment,
+					finalPrice: this.finalPrice
+				}),
+				product: this.foodItems[food.index],
+				quantity: 1
+			}));
+		}
+		this.showSnackbar(this.foodItems[food.index].name + " added to cart");
+		this.updateOrder();
+	}
+
+	onTapDrink(drink) {
+		if (this.orderItems.productsOrdered) {
+			let changed = false;
+			const found = this.orderItems.productsOrdered.find(p => p.product.name === this.drinkItems[drink.index].name);
+			if (found) {
+				found.quantity += 1;
+				changed = true;
+				this.finalPrice = this.finalPrice + this.drinkItems[drink.index].price;
+				this.orderItems.finalPrice = this.finalPrice;
+			} else {
+				this.finalPrice = this.finalPrice + this.drinkItems[drink.index].price;
+				this.orderItems.productsOrdered.push(new ProductOrdered({
+					id: uuidv4(),
+					order: new Order({
+						id: this.orderId,
+						orderDate: new Date(),
+						customer: this.customer,
+						comment: this.comment,
+						finalPrice: this.finalPrice
+					}),
+					product: this.drinkItems[drink.index],
+					quantity: 1
+				}));
+			}
+		} else {
+			this.orderItems.productsOrdered = new Array<ProductOrdered>();
+			this.finalPrice = this.drinkItems[drink.index].price;
+			this.orderItems.productsOrdered.push(new ProductOrdered({
+				id: uuidv4(),
+				order: new Order({
+					id: this.orderId,
+					orderDate: new Date(),
+					customer: this.customer,
+					comment: this.comment,
+					finalPrice: this.finalPrice
+				}),
+				product: this.drinkItems[drink.index],
+				quantity: 1
+			}));
+		}
+		this.showSnackbar(this.drinkItems[drink.index].name + " added to cart");
+		this.updateOrder();
+	}
+
+	onTapService(service) {
+		if (this.orderItems.productsOrdered) {
+			let changed = false;
+			const found = this.orderItems.productsOrdered.find(p => p.product.name === this.serviceItems[service.index].name);
+			if (found) {
+				found.quantity += 1;
+				changed = true;
+				this.finalPrice = this.finalPrice + this.serviceItems[service.index].price;
+				this.orderItems.finalPrice = this.finalPrice;
+			} else {
+				this.finalPrice = this.finalPrice + this.serviceItems[service.index].price;
+				this.orderItems.productsOrdered.push(new ProductOrdered({
+					id: uuidv4(),
+					order: new Order({
+						id: this.orderId,
+						orderDate: new Date(),
+						customer: this.customer,
+						comment: this.comment,
+						finalPrice: this.finalPrice
+					}),
+					product: this.serviceItems[service.index],
+					quantity: 1
+				}));
+			}
+		} else {
+			this.orderItems.productsOrdered = new Array<ProductOrdered>();
+			this.finalPrice = this.serviceItems[service.index].price;
+			this.orderItems.productsOrdered.push(new ProductOrdered({
+				id: uuidv4(),
+				order: new Order({
+					id: this.orderId,
+					orderDate: new Date(),
+					customer: this.customer,
+					comment: this.comment,
+					finalPrice: this.finalPrice
+				}),
+				product: this.serviceItems[service.index],
+				quantity: 1
+			}));
+		}
+		this.showSnackbar(this.serviceItems[service.index].name + " added to cart");
+		this.updateOrder();
+	}
+
+	updateOrder() {
+
+		this.orderItems.finalPrice = this.finalPrice;
+		this.orderItems.productsOrdered.forEach((order) => {
+			order.order.finalPrice = this.finalPrice;
+			order.order.comment = this.comment;
+			order.order.id = this.orderId;
+			order.order.status = "pending";
+		});
+	}
+
+	showSnackbar(text: string) {
+		const options: SnackBarOptions = {
+			actionText: "Dismiss",
+			snackText: text,
+			hideDelay: 3000,
+			textColor: "#ffffff",
+			backgroundColor: "#2196F3"
+		};
+
+		this._SnackBar.action(options);
+	}
+
+	showSnackbarError(text: string) {
+		const options: SnackBarOptions = {
+			actionText: "Dismiss",
+			snackText: text,
+			hideDelay: 3000,
+			textColor: "#ffffff",
+			backgroundColor: "#FF5555"
+		};
+
+		this._SnackBar.action(options);
+	}
+
+	addQuantity(item) {
+		item.quantity = item.quantity + 1;
+		this.finalPrice = this.finalPrice + item.product.price;
+		this.updateOrder();
+	}
+
+	removeQuantity(item) {
+		if (item.quantity > 1) {
+			item.quantity = item.quantity - 1;
+			this.finalPrice = this.finalPrice - item.product.price;
+		} else {
+			const itemToRemove = this.orderItems.productsOrdered.indexOf(item);
+			this.orderItems.productsOrdered.splice(itemToRemove, 1);
+			this.finalPrice = this.finalPrice - item.product.price;
+		}
+
+		this.updateOrder();
+	}
+
+	onTextChange(args) {
+		const textField = <TextField>args.object;
+		this.comment = textField.text;
+	}
+
+	submitOrder() {
+		if (this.finalPrice > 0) {
+
+			const options = {
+				title: "Confirm order",
+				message: "Are you sure?",
+				okButtonText: "Yes",
+				cancelButtonText: "No"
+			};
+
+			confirm(options).then((result: boolean) => {
+				if (result) {
+					this.orderItems.customer = this.customer;
+					this.orderItems.id = this.orderId;
+					this.orderItems.comment = this.comment;
+					this.orderItems.status = "pending";
+					this.orderItems.orderDate = new Date();
+					this.updateOrder();
+					console.log(this.orderItems);
+
+					this.orderDataService.createOrders(this.orderItems).subscribe((res) => {
+						this.orderId = uuidv4();
+						this.showSnackbar("Ordered succesfully");
+						this.routerExtensions.navigate(["/orderList"]);
+					}, (err) => {
+						console.log(err);
+						this.orderId = uuidv4();
+					});
+				}
+			});
+
+		} else {
+			this.showSnackbarError("You must select a product");
+		}
+	}
 }
