@@ -5,19 +5,23 @@
     </ActionItem>
     <Label class="action-bar-title" text="Report"></Label>
 </ActionBar>
-
-<ScrollView>
-    <StackLayout class="page p-15">
-        <GridLayout class="page page-content margin-page" tkMainContent>
+<Page class="page">
+    <ScrollView>
+        <StackLayout class="center-layout p-15">
             <Label col="0" class="page-icon mdi" [text]="'mdi-report-problem' | fonticon"></Label>
-        </GridLayout>
-        <Label text="Tell us what happened..." class="label page-placeholder margin-top"></Label>
-        <TextView
-            hint="Report description"
-            [(ngModel)]="description"
-            [editable]="true"
-            minHeight="300px"
-            returnKeyType="send"
-            class="input input-border margin-top"></TextView>
-    </StackLayout>
-</ScrollView>
+            <Label text="Tell us what happened..." class="label page-placeholder margin-top"></Label>
+            <TextView
+                id="textView"
+                [(ngModel)]="description"
+                returnKeyType="send"
+                (textChange)="onTextChange($event)"
+                (returnPress)="submit($event)"
+                (blur)="onBlur($event)"
+                hint="Report description"
+                minHeight="300px"
+                class="input input-border margin-top">
+            </TextView>
+            <Button class="btn btn-primary margin-button" text="Send" (tap)="sendReport()"></Button>
+        </StackLayout>
+    </ScrollView>
+</Page>
