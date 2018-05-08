@@ -1,0 +1,27 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Report"></Label>
+</ActionBar>
+<Page class="page">
+    <ScrollView>
+        <StackLayout class="center-layout p-15">
+            <Label col="0" class="page-icon mdi" [text]="'mdi-report-problem' | fonticon"></Label>
+            <Label text="Tell us what happened..." class="label page-placeholder margin-top"></Label>
+            <TextView
+                id="textView"
+                [(ngModel)]="description"
+                returnKeyType="send"
+                (textChange)="onTextChange($event)"
+                (returnPress)="submit($event)"
+                (blur)="onBlur($event)"
+                hint="Report description"
+                minHeight="300px"
+                class="input input-border margin-top">
+            </TextView>
+            <Button class="btn btn-primary margin-button" text="Send" (tap)="sendReport()"></Button>
+        </StackLayout>
+    </ScrollView>
+</Page>

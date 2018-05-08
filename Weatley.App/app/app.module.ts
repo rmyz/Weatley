@@ -9,17 +9,18 @@ import { AppComponent } from "./app.component";
 
 import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+
+import { HomeModule } from "~/pages/home/home.module";
 import { InfoModule } from "~/pages/info/info.module";
 import { OrderListModule } from "~/pages/order-list/order-list.module";
 import { ProfileModule } from "~/pages/profile/profile.module";
 import { LoginModule } from "~/utils/Login/Login.module";
-
 import { CoreModule } from "./core/core.module";
-import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
-import { HomeModule } from "~/pages/home/home.module";
 
 import { OrderDetailsModule } from "~/pages/order-details/order-details.module";
 import { OrderNewModule } from "~/pages/order-new/order-new.module";
+import { ReportModule } from "~/pages/report/report.module";
 
 @NgModule({
 	bootstrap: [
@@ -39,6 +40,7 @@ import { OrderNewModule } from "~/pages/order-new/order-new.module";
 		InfoModule,
 		ProfileModule,
 		LoginModule,
+		ReportModule,
 		TNSFontIconModule.forRoot({
 			// tslint:disable-next-line:object-literal-key-quotes
 			"mdi": "material-design-icons.css"
