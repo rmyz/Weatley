@@ -94,6 +94,8 @@ namespace Weatley.Backend.Controllers
                 return BadRequest(ModelState);
             }
 
+            _context.Customers.Attach(report.Customer);
+
             _context.Reports.Add(report);
             await _context.SaveChangesAsync();
 

@@ -283,6 +283,7 @@ export class OrderNewComponent implements OnInit {
 						this.routerExtensions.navigate(["/orderList"]);
 					}, (err) => {
 						console.log(err);
+						this.showSnackbarError("An error has ocurred");
 						this.orderId = uuidv4();
 					});
 				}

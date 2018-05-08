@@ -11,14 +11,9 @@ import { CustomerDataService } from "~/core/data-services/customer-data.service"
 import { ReportsDataService } from "~/core/data-services/reports-data.service";
 import { Customer } from "~/core/entities/customer";
 import { Report } from "~/core/entities/report";
-import { RouterExtensions } from "nativescript-angular/router";
 
-/* ***********************************************************
-* Before you can navigate to this page from your app, you need to reference this page's module in the
-* global app router module. Add the following object to the global array of routes:
-* { path: "report", loadChildren: "./report/report.module#ReportModule" }
-* Note that this simply points the path to the page module file. If you move the page, you need to update the route too.
-*************************************************************/
+import { RouterExtensions } from "nativescript-angular/router";
+const uuidv4 = require("uuid/v4");
 
 @Component({
 	selector: "Report",
@@ -65,7 +60,7 @@ export class ReportComponent implements OnInit {
 	sendReport() {
 		if (this.description) {
 			this.report = {
-				id: "e7ec8fe1-6240-47f7-a225-52e61dc437a8",
+				id: uuidv4(),
 				description: this.description,
 				date: new Date(),
 				status: "pending",
@@ -75,7 +70,7 @@ export class ReportComponent implements OnInit {
 			this.reportsDataService.createReports(this.report).subscribe((report) => {
 				console.log(report);
 				this.showSnackbar("Report Sent Succefull!");
-
+				this.report.id = uuidv4();
 				this.routerExtensions.navigate(["/home"], {
 					transition: {
 						name: "fade"
