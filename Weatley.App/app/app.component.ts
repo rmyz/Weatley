@@ -47,7 +47,8 @@ export class AppComponent implements OnInit {
 		this.routerExtensions.navigate([navItemRoute], {
 			transition: {
 				name: "fade"
-			}
+			},
+			clearHistory: true
 		});
 
 		this._selectedPage = navItemRoute;

@@ -280,7 +280,12 @@ export class OrderNewComponent implements OnInit {
 					this.orderDataService.createOrders(this.orderItems).subscribe((res) => {
 						this.orderId = uuidv4();
 						this.showSnackbar("Ordered succesfully");
-						this.routerExtensions.navigate(["/orderList"]);
+						this.routerExtensions.navigate(["/orderList"], {
+							transition: {
+								name: "fade"
+							},
+							clearHistory: true
+						});
 					}, (err) => {
 						console.log(err);
 						this.showSnackbarError("An error has ocurred");
