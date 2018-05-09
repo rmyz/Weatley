@@ -5,7 +5,7 @@ import { HotelDataService } from "~/core/data-services/hotel-data.service";
 
 import { Activity } from "~/core/entities/activity";
 import { Hotel } from "~/core/entities/hotel";
-
+import { Service } from "~/core/entities/service";
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
 * global app router module. Add the following object to the global array of routes:
@@ -24,14 +24,15 @@ export class InfoComponent implements OnInit {
 
 	private hotel: Hotel = new Hotel();
 	private activities: Array<Activity>;
-
+	private services: Array<Service>;
 	constructor(private hotelDataService: HotelDataService) { }
 
 	ngOnInit(): void {
 		this.hotelDataService.getHotel().subscribe((hotel) => {
 			this.hotel = hotel;
 			this.activities = hotel.activities;
-			console.log(this.activities);
+			this.services = hotel.services;
+			console.log(this.hotel);
 		});
 	}
 

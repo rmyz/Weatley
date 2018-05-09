@@ -25,17 +25,25 @@
 		<StackLayout orientation="vertical" width="100%">
 			<CardView class="innerCardStyle" margin="7" elevation="10" radius="10" *ngFor="let activity of activities">
 
-				<GridLayout rows="40, 40, auto">
-					<Label [text]="activity.name" class="headers-cards" textWrap="true" row="0"></Label>
-					<Label text="Date:  {{ activity.startHour | date:' dd-MM-yyy HH:mm' }} - {{ activity.endHour | date:'HH:mm' }}" class="data-hour" textWrap="true" row="1"></Label>					
-					<Label [text]="activity.description" textWrap="true"   class="data-cards" row="2"></Label>
+				<GridLayout rows="auto, auto, auto">
+					<Label text="{{ activity.name }}" class="headers-cards" textWrap="true" row="0"></Label>
+					<Label [text]="activity.description" textWrap="true"   class="data-cards" row="1"></Label>
+					<Label text="Date:  {{ activity.startHour | date:' dd-MM-yyy HH:mm' }} - {{ activity.endHour | date:'HH:mm' }}" class="data-hour" textWrap="true" row="2"></Label>										
 				</GridLayout>
 				
 			</CardView>
 		</StackLayout>
 	</ScrollView>
 	<ScrollView orientation="vertical" *tabItem="{title: 'Services'}">
-		<StackLayout>
+		<StackLayout orientation="vertical" width="100%">
+			<CardView class="innerCardStyle" margin="7" elevation="10" radius="10" *ngFor="let service of services">
+
+				<GridLayout rows="auto, auto, auto">
+					<Label text=" - {{ service.name }}" class="headers-cards" textWrap="true" row="0"></Label>
+					<Label [text]="service.description" textWrap="true"   class="data-cards-service" row="1"></Label>
+				</GridLayout>
+				
+			</CardView>
 		</StackLayout>
 	</ScrollView>
 </TabView>
