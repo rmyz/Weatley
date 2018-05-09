@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import * as app from "application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { HotelDataService } from "~/core/data-services/hotel-data.service";
+
+import { Activity } from "~/core/entities/activity";
 import { Hotel } from "~/core/entities/hotel";
 
 /* ***********************************************************
@@ -21,12 +23,15 @@ import { Hotel } from "~/core/entities/hotel";
 export class InfoComponent implements OnInit {
 
 	private hotel: Hotel = new Hotel();
+	private activities: Array<Activity>;
 
 	constructor(private hotelDataService: HotelDataService) { }
 
 	ngOnInit(): void {
 		this.hotelDataService.getHotel().subscribe((hotel) => {
 			this.hotel = hotel;
+			this.activities = hotel.activities;
+			console.log(this.activities);
 		});
 	}
 

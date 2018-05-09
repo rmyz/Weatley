@@ -5,12 +5,34 @@
 	padding: 25px 0 0 15px;	
 }
 
+.headers-cards{
+	font-family: 'icomoon';
+	font-size: 22px;
+	color: #1E1E1E;
+	padding-left: 50px;	
+}
+
 .data {
 	font-size: 15px;
 	color: #448AFF;
 	padding: 15px;
 }
+.data-cards {
+	font-size: 18px;
+	color: #1E1E1E;
+	padding-left: 50px;
+	padding-bottom: 50px;
+}
+.data-hour{
+	font-size: 15px;
+	color: #1E1E1E;
+	padding-left: 50px;
+	padding-bottom: 5px;
+}
 .image-hotel {
 	width: 40px;
 	height: 40px;
+}
+.innerCardStyle {
+    color: black;
 }
