@@ -31,7 +31,8 @@ namespace Weatley.Backend.Controllers
                                      .Include(c => c.Bookings)
                                      .Include(c => c.Reports)
                                      .Include(c => c.Orders)
-                                        .ThenInclude(o => o.ProductsOrdered);
+                                        .ThenInclude(o => o.ProductsOrdered)
+                                            .ThenInclude(po => po.Product);
         }
 
         // GET: api/Customers/5
