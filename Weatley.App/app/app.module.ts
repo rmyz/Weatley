@@ -11,7 +11,6 @@ import { TNSFontIconModule } from "nativescript-ngx-fonticon";
 
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
-import { HomeModule } from "~/pages/home/home.module";
 import { InfoModule } from "~/pages/info/info.module";
 import { OrderListModule } from "~/pages/order-list/order-list.module";
 import { ProfileModule } from "~/pages/profile/profile.module";

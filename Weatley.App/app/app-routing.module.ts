@@ -8,8 +8,6 @@ import { OrderListComponent } from "~/pages/order-list/order-list.component";
 import { ProfileComponent } from "~/pages/profile/profile.component";
 import { LoginComponent } from "~/utils/Login/Login.component";
 
-import { HomeComponent } from "~/pages/home/home.component";
-
 import { OrderDetailsComponent } from "~/pages/order-details/order-details.component";
 import { OrderNewComponent } from "~/pages/order-new/order-new.component";
 import { ReportComponent } from "~/pages/report/report.component";
