@@ -4,8 +4,12 @@
 	<mat-table #table [dataSource]="dataSource" matSort>
 
 		<ng-container matColumnDef="comment">
-			<mat-header-cell *matHeaderCellDef mat-sort-header> Product </mat-header-cell>
-			<mat-cell *matCellDef="let item"> {{ item.comment }} </mat-cell>
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Products </mat-header-cell>
+			<mat-cell *matCellDef="let item">
+				<button type="button" mat-icon-button class="float-center" matTooltip="Order" matTooltipPosition="above" (click)="goToDetailsDialog(item)">
+					<mat-icon>assignment</mat-icon>
+				</button>
+				</mat-cell>
 		</ng-container>
 
 		<ng-container matColumnDef="finalPrice">
@@ -16,11 +20,6 @@
 		<ng-container matColumnDef="orderDate">
 			<mat-header-cell *matHeaderCellDef mat-sort-header> Order Date </mat-header-cell>
 			<mat-cell *matCellDef="let item"> {{ item.orderDate | date: 'dd-MM-yyyy' }}</mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="deliveryDate">
-			<mat-header-cell *matHeaderCellDef mat-sort-header> Delivery Date </mat-header-cell>
-			<mat-cell *matCellDef="let item"> {{ item.deliveryDate | date: 'dd-MM-yyyy' }}</mat-cell>
 		</ng-container>
 
 		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -1,8 +1,10 @@
 import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Customer } from '../../../core/entities/customer';
 import { Order } from '../../../core/entities/order';
 import { MatPaginator, MatTableDataSource, MatSnackBarConfig } from '@angular/material';
+import { DetailsOrderDialogComponent } from '../../../widgets/details-order-dialog/details-order-dialog.component';
+import { DialogComponent } from '../../../widgets/dialog/dialog.component';
 
 @Component({
 	selector: 'app-customer-order-dialog',
@@ -11,7 +13,7 @@ import { MatPaginator, MatTableDataSource, MatSnackBarConfig } from '@angular/ma
 })
 export class CustomerOrderDialogComponent implements OnInit, AfterViewInit {
 
-	displayedColumns = ['comment', 'finalPrice', 'orderDate', 'deliveryDate'];
+	displayedColumns = ['comment', 'finalPrice', 'orderDate'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -20,6 +22,7 @@ export class CustomerOrderDialogComponent implements OnInit, AfterViewInit {
 	dataOrder: Order[] = [];
 
 	constructor(public dialogRef: MatDialogRef<CustomerOrderDialogComponent>,
+		private dialog: MatDialog,
 		@Inject(MAT_DIALOG_DATA) public data: any) { }
 
 	ngOnInit() {
@@ -31,5 +34,15 @@ export class CustomerOrderDialogComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit() {
 		this.dataSource = new MatTableDataSource<Order>(this.dataOrder);
+	}
+
+	goToDetailsDialog(order) {
+		order.customer = this.customer;
+		const dialogRef = this.dialog.open(DetailsOrderDialogComponent, {
+			width: '500px',
+			panelClass: 'details-order-dialog',
+			data: { order: order
+			}
+		});
 	}
 }
