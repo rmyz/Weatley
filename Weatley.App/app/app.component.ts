@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.isAuthenticated = this.authService.isAuthenticated();
-		this._selectedPage = "Home";
+		this._selectedPage = "info";
 		this._sideDrawerTransition = new SlideInOnTopTransition();
 	}
 

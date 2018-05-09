@@ -32,7 +32,6 @@ import { ReportModule } from "~/pages/report/report.module";
 		HttpClientModule,
 		NativeScriptHttpClientModule,
 		CoreModule,
-		HomeModule,
 		NativeScriptUISideDrawerModule,
 		OrderListModule,
 		OrderDetailsModule,

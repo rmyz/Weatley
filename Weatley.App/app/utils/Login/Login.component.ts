@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 		this.page.actionBarHidden = true;
 
 		if (this.userService.isAuthenticated()) {
-			this.routerExtensions.navigate(["/home"], {
+			this.routerExtensions.navigate(["/info"], {
 				transition: {
 					name: "fade"
 				},

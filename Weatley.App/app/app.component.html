@@ -13,19 +13,15 @@ http://docs.telerik.com/devtools/nativescript-ui/Controls/NativeScript/SideDrawe
     
         <ScrollView row="1">
             <StackLayout class="sidedrawer-content">
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('/home')" (tap)="onNavItemTap('/home')">
-                    <Label col="0" class="mdi" [text]="'mdi-home' | fonticon"></Label>
-                    <Label col="1" text="Home" class="p-r-10"></Label>
+
+				<GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('/info')" (tap)="onNavItemTap('/info')">
+                    <Label col="0" class="mdi" [text]="'mdi-info' | fonticon"></Label>
+                    <Label col="1" text="Info" class="p-r-10"></Label>
                 </GridLayout>
 
                 <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('/orderList')" (tap)="onNavItemTap('/orderList')">
                     <Label col="0" class="mdi" [text]="'mdi-shopping-cart' | fonticon"></Label>
                     <Label col="1" text="Orders" class="p-r-10"></Label>
-                </GridLayout>
-
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isPageSelected('/info')" (tap)="onNavItemTap('/info')">
-                    <Label col="0" class="mdi" [text]="'mdi-info' | fonticon"></Label>
-                    <Label col="1" text="Info" class="p-r-10"></Label>
                 </GridLayout>
 
                 <StackLayout class="hr-light"></StackLayout>

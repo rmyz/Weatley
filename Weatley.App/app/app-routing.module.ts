@@ -17,7 +17,6 @@ import { ReportComponent } from "~/pages/report/report.component";
 const routes: Routes = [
 	{ path: "", redirectTo: "/login", pathMatch: "full" },
 	{ path: "login", component: LoginComponent },
-	{ path: "home", component: HomeComponent },
 	{ path: "orderList", component: OrderListComponent },
 	{ path: "info", component: InfoComponent },
 	{ path: "profile", component: ProfileComponent },
