@@ -76,6 +76,7 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 			setTimeout(() => this.dataSource.paginator = this.paginator);
 			this.dataSource.sort = this.sort;
 
+			this.isLoading = false;
 		});
 
 		this.reportDataService.getReports().subscribe(reports => {
@@ -85,7 +86,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 				}
 			});
 
-			this.isLoading = false;
 		});
 
 	}
