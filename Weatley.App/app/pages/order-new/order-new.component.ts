@@ -35,7 +35,7 @@ export class OrderNewComponent implements OnInit {
 	private orderId = uuidv4();
 	private orderItems: Order = new Order();
 	private customer: Customer;
-	private customerId = getString("customer_id");
+	private customerId;
 
 	constructor(private routerExtensions: RouterExtensions,
 				private productDataService: ProductDataService,
@@ -43,7 +43,8 @@ export class OrderNewComponent implements OnInit {
 				private orderDataService: OrdersDataService) { }
 
 	ngOnInit(): void {
-		console.log(this.customerId);
+		this.customerId = getString("customer_id");
+
 		this.productDataService.getProduct().subscribe((products) => {
 			products.forEach(product => {
 				if (product.available) {
@@ -59,6 +60,8 @@ export class OrderNewComponent implements OnInit {
 		});
 		this.customerDataService.getCustomerById(this.customerId).subscribe((customer) => {
 			this.customer = customer;
+		}, (err) => {
+			console.log("the customer was not found");
 		});
 	}
 
@@ -68,11 +71,9 @@ export class OrderNewComponent implements OnInit {
 
 	onTapFood(food) {
 		if (this.orderItems.productsOrdered) {
-			let changed = false;
 			const found = this.orderItems.productsOrdered.find(p => p.product.name === this.foodItems[food.index].name);
 			if (found) {
 				found.quantity += 1;
-				changed = true;
 				this.finalPrice = this.finalPrice + this.foodItems[food.index].price;
 				this.orderItems.finalPrice = this.finalPrice;
 			} else {
@@ -82,7 +83,6 @@ export class OrderNewComponent implements OnInit {
 					order: new Order({
 						id: this.orderId,
 						orderDate: new Date(),
-						customer: this.customer,
 						comment: this.comment,
 						finalPrice: this.finalPrice
 					}),
@@ -98,7 +98,6 @@ export class OrderNewComponent implements OnInit {
 				order: new Order({
 					id: this.orderId,
 					orderDate: new Date(),
-					customer: this.customer,
 					comment: this.comment,
 					finalPrice: this.finalPrice
 				}),
@@ -112,11 +111,9 @@ export class OrderNewComponent implements OnInit {
 
 	onTapDrink(drink) {
 		if (this.orderItems.productsOrdered) {
-			let changed = false;
 			const found = this.orderItems.productsOrdered.find(p => p.product.name === this.drinkItems[drink.index].name);
 			if (found) {
 				found.quantity += 1;
-				changed = true;
 				this.finalPrice = this.finalPrice + this.drinkItems[drink.index].price;
 				this.orderItems.finalPrice = this.finalPrice;
 			} else {
@@ -126,7 +123,6 @@ export class OrderNewComponent implements OnInit {
 					order: new Order({
 						id: this.orderId,
 						orderDate: new Date(),
-						customer: this.customer,
 						comment: this.comment,
 						finalPrice: this.finalPrice
 					}),
@@ -142,7 +138,6 @@ export class OrderNewComponent implements OnInit {
 				order: new Order({
 					id: this.orderId,
 					orderDate: new Date(),
-					customer: this.customer,
 					comment: this.comment,
 					finalPrice: this.finalPrice
 				}),
@@ -156,11 +151,9 @@ export class OrderNewComponent implements OnInit {
 
 	onTapService(service) {
 		if (this.orderItems.productsOrdered) {
-			let changed = false;
 			const found = this.orderItems.productsOrdered.find(p => p.product.name === this.serviceItems[service.index].name);
 			if (found) {
 				found.quantity += 1;
-				changed = true;
 				this.finalPrice = this.finalPrice + this.serviceItems[service.index].price;
 				this.orderItems.finalPrice = this.finalPrice;
 			} else {
@@ -170,7 +163,6 @@ export class OrderNewComponent implements OnInit {
 					order: new Order({
 						id: this.orderId,
 						orderDate: new Date(),
-						customer: this.customer,
 						comment: this.comment,
 						finalPrice: this.finalPrice
 					}),
@@ -186,7 +178,6 @@ export class OrderNewComponent implements OnInit {
 				order: new Order({
 					id: this.orderId,
 					orderDate: new Date(),
-					customer: this.customer,
 					comment: this.comment,
 					finalPrice: this.finalPrice
 				}),
@@ -202,6 +193,7 @@ export class OrderNewComponent implements OnInit {
 
 		this.orderItems.finalPrice = this.finalPrice;
 		this.orderItems.productsOrdered.forEach((order) => {
+			//order.order.customer = this.customer;
 			order.order.finalPrice = this.finalPrice;
 			order.order.comment = this.comment;
 			order.order.id = this.orderId;
@@ -275,7 +267,9 @@ export class OrderNewComponent implements OnInit {
 					this.orderItems.status = "pending";
 					this.orderItems.orderDate = new Date();
 					this.updateOrder();
+					console.log("start order ---");
 					console.log(this.orderItems);
+					console.log("end order -----");
 
 					this.orderDataService.createOrders(this.orderItems).subscribe((res) => {
 						this.orderId = uuidv4();

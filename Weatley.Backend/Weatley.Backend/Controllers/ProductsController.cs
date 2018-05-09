@@ -27,8 +27,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Product> GetProducts()
         {
-            return _context.Products.Include(p => p.Hotel)
-                                    .Include(p => p.ProductsOrdered);
+            return _context.Products;
         }
 
         // GET: api/Products/5

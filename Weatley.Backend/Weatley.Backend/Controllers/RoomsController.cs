@@ -27,8 +27,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Room> GetRooms()
         {
-            return _context.Rooms.Include(r => r.BookedRooms)
-                                 .Include(r => r.Hotel);
+            return _context.Rooms.Include(r => r.BookedRooms);
         }
 
         // GET: api/Rooms/5
