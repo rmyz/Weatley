@@ -1,15 +1,14 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/do";
 import "rxjs/add/operator/catch";
-
-import { CommonService } from "../services/common.service";
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/map";
 import { contentHeaders } from "../common/headers";
-import { UserProfile } from "./User.Profile";
-import { RoutingEnum } from "../enums/routing-enum";
 import { Token } from "../entities/token";
+import { RoutingEnum } from "../enums/routing-enum";
+import { CommonService } from "../services/common.service";
+import { UserProfile } from "./User.Profile";
 
 @Injectable()
 export class UserService {
@@ -50,16 +49,7 @@ export class UserService {
 			id: incomingId
 		};
 
-		this.http.post<Token>(url, credentials, {headers: options})
-			.subscribe((res) => {
-				const userProfile = res;
-				this.authProfile.setProfile(userProfile, incomingId);
-
-				return res;
-			}, ((error) => {
-				console.error(error);
-			})
-		);
+		return this.http.post<Token>(url, credentials, {headers: options});
 	}
 
 	logout(): void {

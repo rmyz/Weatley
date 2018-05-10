@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import { Response } from '@angular/http';
-import { Subject } from 'rxjs/Subject';
+import { Injectable } from "@angular/core";
+import { Response } from "@angular/http";
+import "rxjs/add/observable/throw";
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class IsLoggedService {
