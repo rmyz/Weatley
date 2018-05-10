@@ -1,8 +1,11 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { BarcodeScanner } from "nativescript-barcodescanner";
+import { SnackBar, SnackBarOptions } from "nativescript-snackbar";
 import { Page } from "ui/page";
+import { UserProfile } from "~/core/Auth-services/User.Profile";
 import { UserService } from "~/core/Auth-services/user.service";
+import { IsLoggedService } from "~/core/services/isLogged.service";
 
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
@@ -15,16 +18,22 @@ import { UserService } from "~/core/Auth-services/user.service";
 	selector: "Login",
 	styleUrls: ["Login.scss"],
 	moduleId: module.id,
-	templateUrl: "./Login.component.html"
+	templateUrl: "./Login.component.html",
+	providers: [IsLoggedService]
 })
 export class LoginComponent implements OnInit {
 
+	_SnackBar: SnackBar;
 	constructor(
 		private page: Page,
 		private routerExtensions: RouterExtensions,
 		private barcodeScanner: BarcodeScanner,
-		private userService: UserService
-	) { }
+		private userService: UserService,
+		private authProfile: UserProfile,
+		private isLoggedService: IsLoggedService
+	) {
+		this._SnackBar = new SnackBar();
+	}
 
 	ngOnInit(): void {
 		this.page.actionBarHidden = true;
@@ -36,6 +45,8 @@ export class LoginComponent implements OnInit {
 				},
 				clearHistory: true
 			});
+
+			this.isLoggedService.sendMessage(true);
 		}
 	}
 
@@ -47,7 +58,7 @@ export class LoginComponent implements OnInit {
 			showTorchButton: true
 		}).then((result) => {
 			this.userService.login(result.text);
-			this.routerExtensions.navigate(["/home"], {
+			this.routerExtensions.navigate(["/info"], {
 				transition: {
 					name: "fade"
 				},
@@ -59,24 +70,35 @@ export class LoginComponent implements OnInit {
 	}
 
 	navigateHome() {
-		this.userService.login("ED90A54C-D224-49AA-8046-F88BA013F854");
-		this.routerExtensions.navigate(["/home"], {
-				transition: {
-					name: "fade"
-				},
-				clearHistory: true
-			});
+		this.userService.login("ED90A54C-D224-49AA-8046-F88BA013F854")
+			.subscribe((res) => {
+				const userProfile = res;
+				this.authProfile.setProfile(userProfile, "ED90A54C-D224-49AA-8046-F88BA013F854");
+				this.routerExtensions.navigate(["/info"], {
+					transition: {
+						name: "fade"
+					},
+					clearHistory: true
+				});
+
+				this.showSnackbar("Successfully logged in!");
+				this.isLoggedService.sendMessage(true);
+			}, ((error) => {
+				console.error(error);
+				this.showSnackbar("Couldn’t sign in, try again later.");
+			})
+			);
 	}
 
-	// showSnackbar(text: string) {
-	// 	const options: SnackBarOptions = {
-	// 		actionText: "Dismiss",
-	// 		snackText: text,
-	// 		hideDelay: 3000,
-	// 		textColor: "#ffffff",
-	// 		backgroundColor: "#2196F3"
-	// 	};
+	showSnackbar(text: string) {
+		const options: SnackBarOptions = {
+			actionText: "Dismiss",
+			snackText: text,
+			hideDelay: 3000,
+			textColor: "#ffffff",
+			backgroundColor: "#2196F3"
+		};
 
-	// 	this._SnackBar.action(options);
-	// }
+		this._SnackBar.action(options);
+	}
 }

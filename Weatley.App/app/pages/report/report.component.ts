@@ -71,7 +71,7 @@ export class ReportComponent implements OnInit {
 				console.log(report);
 				this.showSnackbar("Report Sent Succefull!");
 				this.report.id = uuidv4();
-				this.routerExtensions.navigate(["/home"], {
+				this.routerExtensions.navigate(["/info"], {
 					transition: {
 						name: "fade"
 					},
