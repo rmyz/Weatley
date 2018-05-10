@@ -267,9 +267,6 @@ export class OrderNewComponent implements OnInit {
 					this.orderItems.status = "pending";
 					this.orderItems.orderDate = new Date();
 					this.updateOrder();
-					console.log("start order ---");
-					console.log(this.orderItems);
-					console.log("end order -----");
 
 					this.orderDataService.createOrders(this.orderItems).subscribe((res) => {
 						this.orderId = uuidv4();

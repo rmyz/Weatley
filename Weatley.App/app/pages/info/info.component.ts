@@ -32,7 +32,6 @@ export class InfoComponent implements OnInit {
 			this.hotel = hotel;
 			this.activities = hotel.activities;
 			this.services = hotel.services;
-			console.log(this.hotel);
 		});
 	}
 
