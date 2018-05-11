@@ -34,6 +34,17 @@ export class OrderListComponent implements OnInit {
 				});
 				order.totalProducts = order.countProducts + " Items";
 			});
+			this.customer.orders = this.customer.orders.sort((n1,n2) => {
+				if (n1.orderDate < n2.orderDate) {
+					return 1;
+				}
+			
+				if (n1.orderDate > n2.orderDate) {
+					return -1;
+				}
+			
+				return 0;
+			});
 		});
 	}
 
