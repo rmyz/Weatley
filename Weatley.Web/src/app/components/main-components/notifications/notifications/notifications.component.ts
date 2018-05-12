@@ -46,8 +46,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 	ngOnInit() {
 		this.loadData();
 		this.signalRService.getMessage().subscribe(message => {
-
-			console.log(message);
 			if (message.description !== undefined) {
 				this.newReports.unshift(message);
 			} else {
