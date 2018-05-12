@@ -69,7 +69,7 @@ export class ReportComponent implements OnInit {
 
 			this.reportsDataService.createReports(this.report).subscribe((report) => {
 				console.log(report);
-				this.showSnackbar("Report Sent Succefull!");
+				this.showSnackbar("Report sent successfully!");
 				this.report.id = uuidv4();
 				this.routerExtensions.navigate(["/info"], {
 					transition: {

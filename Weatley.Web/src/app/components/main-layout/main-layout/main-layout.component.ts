@@ -15,6 +15,7 @@ import { Order } from '../../../core/entities/order';
 import { SignalRService } from '../../../core/services/signalR.service';
 import { MatSnackBar } from '@angular/material';
 import { UserTypeEnum } from '../../../core/enums/userType-enum';
+import signalR = require('@aspnet/signalr');
 
 @Component({
 	selector: 'app-main-layout',
@@ -54,7 +55,10 @@ export class MainLayoutComponent implements OnInit {
 		private signalRService: SignalRService) { }
 
 	ngOnInit() {
-		this.hubConnection = new HubConnection('http://weatleywebapi.azurewebsites.net/chat');
+		this.hubConnection = new signalR.HubConnectionBuilder()
+			.withUrl('http://weatleywebapi.azurewebsites.net/chat')
+			.configureLogging(signalR.LogLevel.Information)
+			.build();
 		this.hubConnection
 		.start()
 		.then(() => {
@@ -62,8 +66,8 @@ export class MainLayoutComponent implements OnInit {
 		})
 		.catch(err => console.log('Error while establishing connection :('));
 
-		this.hubConnection.on('sendToAllReport', (report: Report, id) => {
-			this.signalRService.sendOrder([report, id]);
+		this.hubConnection.on('sendToAllReport', (report: Report) => {
+			this.signalRService.sendReport(report);
 			this.snackBar.open('New report arrived!', 'Dismiss', {
 				duration: 3000,
 				verticalPosition: 'top',
@@ -72,8 +76,17 @@ export class MainLayoutComponent implements OnInit {
 			// notify user who send the report
 		});
 
-		this.hubConnection.on('sendToAllOrder', (order: Order, id) => {
-			this.signalRService.sendOrder([order, id]);
+		this.hubConnection.on('sendToAllOrder', (order: Order) => {
+			this.signalRService.sendOrder(order);
+			this.snackBar.open('New order arrived!', 'Dismiss', {
+				duration: 3000,
+				verticalPosition: 'top',
+				horizontalPosition: 'end'
+			});
+		});
+
+		this.hubConnection.on('test', (order: Order) => {
+			this.signalRService.sendOrder(order);
 			this.snackBar.open('New order arrived!', 'Dismiss', {
 				duration: 3000,
 				verticalPosition: 'top',

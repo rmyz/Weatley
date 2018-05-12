@@ -47,11 +47,11 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 		this.loadData();
 		this.signalRService.getMessage().subscribe(message => {
 
-			if (message[0].description) {
-				// Report
-				console.log(message);
+			console.log(message);
+			if (message.description !== undefined) {
+				this.newReports.unshift(message);
 			} else {
-				// Order
+				this.newOrders.unshift(message);
 			}
 		});
 	}
@@ -108,7 +108,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 				horizontalPosition: 'end'
 			});
 			this.addOrderToTableOrder(order);
-			// Send notification to the phone
 		}, err => {
 			console.log(err);
 		});
@@ -145,7 +144,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 					horizontalPosition: 'end'
 				});
 				this.addOrderToTableOrder(order);
-				// Send notification to the phone
 			}, err => {
 				console.log(err);
 			});
@@ -163,7 +161,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 				verticalPosition: 'top',
 				horizontalPosition: 'end'
 			});
-			// Send notification to the phone
 		}, err => {
 			console.log(err);
 		});

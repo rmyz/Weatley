@@ -269,6 +269,7 @@ export class OrderNewComponent implements OnInit {
 					this.updateOrder();
 
 					this.orderDataService.createOrders(this.orderItems).subscribe((res) => {
+						console.log(this.orderItems);
 						this.orderId = uuidv4();
 						this.showSnackbar("Ordered succesfully");
 						this.routerExtensions.navigate(["/orderList"], {

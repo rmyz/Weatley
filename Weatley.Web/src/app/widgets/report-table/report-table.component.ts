@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { FilterReport } from '../../core/filterEntities/filterReport';
 import { ReportDataService } from '../../core/data-services/report-data.service';
-import { SignalRService } from '../../core/services/signalR.service';
+import { Report } from '../../core/entities/report';
 
 @Component({
 	selector: 'app-report-table',
@@ -21,20 +21,10 @@ export class ReportTableComponent implements OnInit {
 
 	constructor(private reportDataService: ReportDataService,
 				private dialog: MatDialog,
-				public snackBar: MatSnackBar,
-				private signalRService: SignalRService) { }
+				public snackBar: MatSnackBar) { }
 
 	ngOnInit() {
 		this.loadData();
-		this.signalRService.getMessage().subscribe(message => {
-
-			if (message[0].description) {
-				// Report
-				console.log(message);
-			} else {
-				// Order
-			}
-		});
 	}
 
 	loadData() {
