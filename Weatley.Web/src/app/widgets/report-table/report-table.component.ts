@@ -3,6 +3,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } fro
 import { FilterReport } from '../../core/filterEntities/filterReport';
 import { ReportDataService } from '../../core/data-services/report-data.service';
 import { Report } from '../../core/entities/report';
+import { IsLoggedService } from '../../core/services/isLogged.service';
 
 @Component({
 	selector: 'app-report-table',
@@ -21,10 +22,17 @@ export class ReportTableComponent implements OnInit {
 
 	constructor(private reportDataService: ReportDataService,
 				private dialog: MatDialog,
-				public snackBar: MatSnackBar) { }
+				public snackBar: MatSnackBar,
+				private updateReports: IsLoggedService) { }
 
 	ngOnInit() {
 		this.loadData();
+		this.updateReports.getMessage().subscribe(res => {
+			if (res) {
+				this.loadData();
+			}
+		});
+
 	}
 
 	loadData() {
@@ -45,6 +53,7 @@ export class ReportTableComponent implements OnInit {
 			this.dataSourceReport = new MatTableDataSource<FilterReport>(this.olderReports);
 			this.dataSourceReport.sort = this.sort;
 			this.dataSourceReport.paginator = this.paginator;
+			this.olderReports = [];
 		});
 	}
 
