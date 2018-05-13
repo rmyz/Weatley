@@ -11,6 +11,7 @@ import { ReportDataService } from '../../../../core/data-services/report-data.se
 import { SignalRService } from '../../../../core/services/signalR.service';
 import { FilterOrder } from '../../../../core/filterEntities/filterOrders';
 import { FilterReport } from '../../../../core/filterEntities/filterReport';
+import { IsLoggedService } from '../../../../core/services/isLogged.service';
 @Component({
 	selector: 'app-notifications',
 	templateUrl: './notifications.component.html',
@@ -19,7 +20,7 @@ import { FilterReport } from '../../../../core/filterEntities/filterReport';
 })
 export class NotificationsComponent implements OnInit {
 
-displayedColumns = ['name', 'surname', 'finalPrice', 'status', 'function'];
+displayedColumns = ['name', 'surname', 'finalPrice', 'date', 'status', 'function'];
 displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -41,17 +42,16 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 				private reportDataService: ReportDataService,
 				private dialog: MatDialog,
 				public snackBar: MatSnackBar,
-				private signalRService: SignalRService) { }
+				private signalRService: SignalRService,
+				private updateReportTable: IsLoggedService) { }
 
 	ngOnInit() {
 		this.loadData();
 		this.signalRService.getMessage().subscribe(message => {
-
-			if (message[0].description) {
-				// Report
-				console.log(message);
+			if (message.description !== undefined) {
+				this.newReports.unshift(message);
 			} else {
-				// Order
+				this.newOrders.unshift(message);
 			}
 		});
 	}
@@ -68,6 +68,7 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 						name: order.customer.name,
 						surname: order.customer.surname,
 						status: order.status,
+						orderDate: order.orderDate,
 						order: order
 					}));
 				}
@@ -108,7 +109,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 				horizontalPosition: 'end'
 			});
 			this.addOrderToTableOrder(order);
-			// Send notification to the phone
 		}, err => {
 			console.log(err);
 		});
@@ -121,6 +121,7 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 			name: order.customer.name,
 			surname: order.customer.surname,
 			status: order.status,
+			orderDate: order.orderDate,
 			order: order
 		}));
 		this.dataSource = new MatTableDataSource<FilterOrder>(this.dataSource.data);
@@ -145,7 +146,6 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 					horizontalPosition: 'end'
 				});
 				this.addOrderToTableOrder(order);
-				// Send notification to the phone
 			}, err => {
 				console.log(err);
 			});
@@ -163,7 +163,7 @@ displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 				verticalPosition: 'top',
 				horizontalPosition: 'end'
 			});
-			// Send notification to the phone
+			this.updateReportTable.sendMessage(true);
 		}, err => {
 			console.log(err);
 		});

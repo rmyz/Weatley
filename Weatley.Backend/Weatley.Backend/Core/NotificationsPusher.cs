@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using System.Threading.Tasks;
 using Weatley.Model.Entities;
 
 namespace Weatley.Backend.Core
@@ -7,13 +8,13 @@ namespace Weatley.Backend.Core
     [AllowAnonymous]
     public class NotificationsPusher : Hub
     {
-        public void sendToAllReport(Report report)
+        public async Task sendToAllReport(Report report)
         {
-            Clients.All.SendAsync("sendToAllReport", report);
+           await Clients.All.SendAsync("sendToAllReport", report);
         }
-        public void sendToAllOrder(Order order)
+        public async Task sendToAllOrder(Order order)
         {
-            Clients.All.SendAsync("sendToAllOrder", order);
+            await Clients.All.SendAsync("sendToAllOrder", order);
         }
     }
 }

@@ -6,6 +6,7 @@ export class FilterOrder {
 	name: string;
 	surname: string;
 	status: string;
+	orderDate: Date;
 	order: Order;
 
 	constructor(values: Object = {}) {

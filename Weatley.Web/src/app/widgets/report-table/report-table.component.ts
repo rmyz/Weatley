@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { FilterReport } from '../../core/filterEntities/filterReport';
 import { ReportDataService } from '../../core/data-services/report-data.service';
-import { SignalRService } from '../../core/services/signalR.service';
+import { Report } from '../../core/entities/report';
+import { IsLoggedService } from '../../core/services/isLogged.service';
 
 @Component({
 	selector: 'app-report-table',
@@ -22,19 +23,16 @@ export class ReportTableComponent implements OnInit {
 	constructor(private reportDataService: ReportDataService,
 				private dialog: MatDialog,
 				public snackBar: MatSnackBar,
-				private signalRService: SignalRService) { }
+				private updateReports: IsLoggedService) { }
 
 	ngOnInit() {
 		this.loadData();
-		this.signalRService.getMessage().subscribe(message => {
-
-			if (message[0].description) {
-				// Report
-				console.log(message);
-			} else {
-				// Order
+		this.updateReports.getMessage().subscribe(res => {
+			if (res) {
+				this.loadData();
 			}
 		});
+
 	}
 
 	loadData() {
@@ -55,6 +53,7 @@ export class ReportTableComponent implements OnInit {
 			this.dataSourceReport = new MatTableDataSource<FilterReport>(this.olderReports);
 			this.dataSourceReport.sort = this.sort;
 			this.dataSourceReport.paginator = this.paginator;
+			this.olderReports = [];
 		});
 	}
 

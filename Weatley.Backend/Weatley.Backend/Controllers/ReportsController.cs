@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Weatley.Backend.Core;
 using Weatley.DataAccess;
 using Weatley.Model.Entities;
 
@@ -17,10 +19,12 @@ namespace Weatley.Backend.Controllers
     public class ReportsController : Controller
     {
         private readonly WeatleyContext _context;
+        private IHubContext<NotificationsPusher> HubContext { get; set; }
 
-        public ReportsController(WeatleyContext context)
+        public ReportsController(WeatleyContext context, IHubContext<NotificationsPusher> hub)
         {
             _context = context;
+            HubContext = hub;
         }
 
         // GET: api/Reports
@@ -93,6 +97,8 @@ namespace Weatley.Backend.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            await HubContext.Clients.All.SendAsync("sendToAllReport", report);
 
             _context.Customers.Attach(report.Customer);
 
