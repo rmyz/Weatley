@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
 				console.error(error);
 				this.showSnackbar("Couldn’t sign in, try again later.");
 			})
-			);
+		);
 	}
 
 	showSnackbar(text: string) {

@@ -34,14 +34,18 @@ export class AppComponent implements OnInit {
 		private authService: UserService,
 		private isLoggedService: IsLoggedService,
 		private customerDataService: CustomerDataService) {
-		// Use the component constructor to inject services.
+
+			this.isLoggedService.getMessage()
+			.subscribe((message) => {
+				console.log(message);
+				this.loadUserData();
+			});
 	}
 
 	ngOnInit(): void {
 		this.isAuthenticated = this.authService.isAuthenticated();
 		this._selectedPage = "info";
 		this._sideDrawerTransition = new SlideInOnTopTransition();
-		this.isLoggedService.getMessage().subscribe((message) => this.loadUserData());
 	}
 
 	get sideDrawerTransition(): DrawerTransitionBase {
@@ -66,12 +70,9 @@ export class AppComponent implements OnInit {
 	}
 
 	loadUserData() {
-		console.log("it works!");
 		this.customerDataService.getCustomerById(getString("customer_id"))
 			.subscribe((customer) => {
 				this.customer = customer;
-
-				console.log(customer);
 			});
 	}
 }
