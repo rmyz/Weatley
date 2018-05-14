@@ -6,6 +6,7 @@ export class Accounting {
 	date: Date;
 	paymentType: string;
 	customer: Customer;
+	paid: boolean;
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);

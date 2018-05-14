@@ -12,6 +12,7 @@ namespace Weatley.Model.Entities
         public DateTime Date { get; set; }
         public string PaymentType { get; set; }
         public Customer Customer { get; set; }
+        public Boolean Paid { get; set; }
 
     }
 }

@@ -18,7 +18,7 @@ import { FilterAccounting } from '../../../../core/filterEntities/filterAccounti
 })
 export class AccountingComponent implements OnInit {
 
-	displayedColumns = ['name', 'surname', 'date', 'finalPrice', 'paymentType', 'function'];
+	displayedColumns = ['name', 'surname', 'date', 'finalPrice', 'paid', 'paymentType', 'function'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
@@ -41,7 +41,8 @@ export class AccountingComponent implements OnInit {
 					date: accounting.date,
 					paymentType: accounting.paymentType,
 					name: accounting.customer.name,
-					surname: accounting.customer.surname
+					surname: accounting.customer.surname,
+					paid: accounting.paid
 				}));
 			});
 			this.dataSource = new MatTableDataSource<FilterAccounting>(this.dataAccount);

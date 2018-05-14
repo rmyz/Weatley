@@ -31,14 +31,21 @@
                         <mat-error>Please select a date</mat-error>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-select placeholder="Is Paid?" required formControlName="paid" name="paid">
+						<mat-option [value]="false">No</mat-option>
+						<mat-option [value]="true">Yes</mat-option>
+					</mat-select>
+					<mat-error>Please choose if it is paid</mat-error>
+				</mat-form-field>
                 <mat-form-field>
                     <mat-select placeholder="Payment Type" required formControlName="paymentType" name="paymentType">
                         <mat-option value="Credit card">Credit card</mat-option>
                         <mat-option value="Cash">Cash</mat-option>
                     </mat-select>
                     <mat-error>Please choose a payment type</mat-error>
-                </mat-form-field>
+				</mat-form-field>
             </form>
             <mat-card-actions>
                 <button type="button" mat-button class="float-right" (click)="submitAccounting()">

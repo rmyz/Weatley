@@ -5,6 +5,7 @@ export class FilterAccounting {
 	paymentType: string;
 	name: string;
 	surname: string;
+	paid: boolean;
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);

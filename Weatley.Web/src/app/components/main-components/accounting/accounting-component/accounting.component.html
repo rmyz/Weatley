@@ -30,7 +30,15 @@
             <ng-container matColumnDef="finalPrice">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
                 <mat-cell *matCellDef="let item">{{ item.finalPrice | number: '1.2-2' }} €</mat-cell>
-            </ng-container>
+			</ng-container>
+			
+			<ng-container matColumnDef="paid">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Paid </mat-header-cell>
+				<mat-cell *matCellDef="let item">
+				<p *ngIf="item.paid">Yes</p>
+				<p *ngIf="!item.paid">No</p>
+				</mat-cell>
+			</ng-container>
 
             <ng-container matColumnDef="paymentType">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Payment type </mat-header-cell>

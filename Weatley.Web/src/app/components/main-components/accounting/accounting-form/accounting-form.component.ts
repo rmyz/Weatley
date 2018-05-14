@@ -20,6 +20,7 @@ export class AccountingFormComponent implements OnInit {
 		customer: new FormControl(),
 		finalPrice: new FormControl(),
 		date: new FormControl(),
+		paid: new FormControl(),
 		paymentType: new FormControl()
 	});
 	private accountingById: Accounting = new Accounting({
@@ -55,6 +56,7 @@ export class AccountingFormComponent implements OnInit {
 					customer: [this.accountingById.customer, Validators.required],
 					finalPrice: [this.accountingById.finalPrice, Validators.required],
 					date: [this.accountingById.date, Validators.required],
+					paid: [this.accountingById.paid, Validators.required],
 					paymentType: [this.accountingById.paymentType, Validators.required]
 				});
 			});
@@ -63,6 +65,7 @@ export class AccountingFormComponent implements OnInit {
 				customer: [new Customer, Validators.required],
 				finalPrice: ['', Validators.required],
 				date: ['', Validators.required],
+				paid: [null, Validators.required],
 				paymentType: ['', Validators.required]
 			});
 		}

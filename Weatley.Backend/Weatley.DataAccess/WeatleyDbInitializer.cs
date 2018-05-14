@@ -18,11 +18,11 @@ namespace Weatley.DataAccess
                 Customer cust_01 = new Customer
                 {
                     Id = Guid.NewGuid(),
-                    Email = "user@gmail.com",
+                    Email = "pam@gmail.com",
                     IdentificationDocument = "20193013T",
                     Accountings = new List<Accounting>(),
-                    Name = "User",
-                    Surname = "One",
+                    Name = "Pam",
+                    Surname = "Merchant",
                     PhoneNumber = "641567532",
                     Bookings = new List<Booking>(),
                     Orders = new List<Order>(),
@@ -32,18 +32,139 @@ namespace Weatley.DataAccess
                 Customer cust_02 = new Customer
                 {
                     Id = Guid.NewGuid(),
-                    Email = "user2@gmail.com",
+                    Email = "eckehard@gmail.com",
                     IdentificationDocument = "31193537T",
                     Accountings = new List<Accounting>(),
-                    Name = "User",
-                    Surname = "Two",
+                    Name = "Eckehard",
+                    Surname = "Whinery",
                     PhoneNumber = "698712617",
                     Bookings = new List<Booking>(),
                     Orders = new List<Order>(),
                     Reports = new List<Report>()
                 };
+
+                Customer cust_03 = new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Email = "ernst@gmail.com",
+                    IdentificationDocument = "21496537T",
+                    Accountings = new List<Accounting>(),
+                    Name = "Ernst",
+                    Surname = "Adam",
+                    PhoneNumber = "658712629",
+                    Bookings = new List<Booking>(),
+                    Orders = new List<Order>(),
+                    Reports = new List<Report>()
+                };
+
+                Customer cust_04 = new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Email = "charlene@gmail.com",
+                    IdentificationDocument = "24802230L",
+                    Accountings = new List<Accounting>(),
+                    Name = "Charlene",
+                    Surname = "Beltz",
+                    PhoneNumber = "648412647",
+                    Bookings = new List<Booking>(),
+                    Orders = new List<Order>(),
+                    Reports = new List<Report>()
+                };
+
+                Customer cust_05 = new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Email = "mora@gmail.com",
+                    IdentificationDocument = "22902718P",
+                    Accountings = new List<Accounting>(),
+                    Name = "Mora",
+                    Surname = "Reynoso",
+                    PhoneNumber = "751937180",
+                    Bookings = new List<Booking>(),
+                    Orders = new List<Order>(),
+                    Reports = new List<Report>()
+                };
+
+                Customer cust_06 = new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Email = "pichi@gmail.com",
+                    IdentificationDocument = "89852086X",
+                    Accountings = new List<Accounting>(),
+                    Name = "Pichi",
+                    Surname = "Ramos",
+                    PhoneNumber = "766139091",
+                    Bookings = new List<Booking>(),
+                    Orders = new List<Order>(),
+                    Reports = new List<Report>()
+                };
+
+                Customer cust_07 = new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Email = "pichi@gmail.com",
+                    IdentificationDocument = "53652814R",
+                    Accountings = new List<Accounting>(),
+                    Name = "Ariel",
+                    Surname = "Atkinson",
+                    PhoneNumber = "781501291",
+                    Bookings = new List<Booking>(),
+                    Orders = new List<Order>(),
+                    Reports = new List<Report>()
+                };
+
+                Customer cust_08 = new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Email = "dani@gmail.com",
+                    IdentificationDocument = "50005059T",
+                    Accountings = new List<Accounting>(),
+                    Name = "Dani",
+                    Surname = "Bonner",
+                    PhoneNumber = "748851603",
+                    Bookings = new List<Booking>(),
+                    Orders = new List<Order>(),
+                    Reports = new List<Report>()
+                };
+
+                Customer cust_09 = new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Email = "kevin@gmail.com",
+                    IdentificationDocument = "22102477Y",
+                    Accountings = new List<Accounting>(),
+                    Name = "Kevin",
+                    Surname = "Lynton",
+                    PhoneNumber = "696410390",
+                    Bookings = new List<Booking>(),
+                    Orders = new List<Order>(),
+                    Reports = new List<Report>()
+                };
+
+                Customer cust_10 = new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Email = "Lois@gmail.com",
+                    IdentificationDocument = "85274839Q",
+                    Accountings = new List<Accounting>(),
+                    Name = "Lois",
+                    Surname = "Griffin",
+                    PhoneNumber = "763895071",
+                    Bookings = new List<Booking>(),
+                    Orders = new List<Order>(),
+                    Reports = new List<Report>()
+                };
+
                 context.Customers.Add(cust_01);
                 context.Customers.Add(cust_02);
+                context.Customers.Add(cust_03);
+                context.Customers.Add(cust_04);
+                context.Customers.Add(cust_05);
+                context.Customers.Add(cust_06);
+                context.Customers.Add(cust_07);
+                context.Customers.Add(cust_08);
+                context.Customers.Add(cust_09);
+                context.Customers.Add(cust_10);
                 context.SaveChanges();
             }
             #endregion
@@ -52,13 +173,13 @@ namespace Weatley.DataAccess
             {
                 Hotel hot_01 = new Hotel
                 {
-                    Id = Guid.NewGuid(),
-                    Name = "Hotel One",
-                    Description = "Just a test hotel",
-                    Address = "Fake Street 123",
-                    Email = "hotelone@gmail.com",
+                    Id = Guid.Parse("782A6441-7A9D-4C1C-9B9F-27E13ABD7CD1"),
+                    Name = "King's Time Hotel",
+                    Description = "King's Time Hotel was founded in 1732.",
+                    Address = "Oak Street 3",
+                    Email = "kingstime@gmail.com",
                     PhoneNumber = "936842157",
-                    Website = "hotelone.com",
+                    Website = "kingstimehotel.com",
                     Activities = new List<Activity>(),
                     Services = new List<Service>(),
                     Products = new List<Product>(),
@@ -66,23 +187,7 @@ namespace Weatley.DataAccess
                     Rooms = new List<Room>()
                 };
 
-                Hotel hot_02 = new Hotel
-                {
-                    Id = Guid.Parse("782A6441-7A9D-4C1C-9B9F-27E13ABD7CD1"),
-                    Name = "Hotel Two",
-                    Description = "Just a test hotel2",
-                    Address = "Fake Street 321",
-                    Email = "hoteltwo@gmail.com",
-                    PhoneNumber = "968742365",
-                    Website = "hoteltwo.com",
-                    Activities = new List<Activity>(),
-                    Services = new List<Service>(),
-                    Products = new List<Product>(),
-                    Users = new List<User>(),
-                    Rooms = new List<Room>()
-                };
                 context.Hotels.Add(hot_01);
-                context.Hotels.Add(hot_02);
                 context.SaveChanges();
             }
             #endregion 
