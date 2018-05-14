@@ -50,7 +50,7 @@
 }
 
 .green-text {
-    color:#64DD17;
+    color:#558B2F;
 }
 .data-horizontal {
     width: 50%;
@@ -70,4 +70,13 @@
 .right-align {
     horizontal-align: right;
     text-align: right;
+}
+
+.fab-button {
+    height: 70;
+	margin: 15;
+	color: white;
+    background-color: #448AFF; 
+    horizontal-align: right;
+    vertical-align: bottom;
 }

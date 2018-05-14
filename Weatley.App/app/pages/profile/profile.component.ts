@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
 	fullName: string;
 	booking: Booking;
 	orders: Array<Order>;
-
+	totalPrice: number;
 	constructor(
 		private customerDataService: CustomerDataService,
 		private tnsFontIconService: TNSFontIconService) {
