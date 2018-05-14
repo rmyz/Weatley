@@ -1,13 +1,41 @@
 <ActionBar class="action-bar">
-    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+	<NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
 
-    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
-        ios.position="left">
-    </ActionItem>
-    <Label class="action-bar-title" text="Profile"></Label>
+	<ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+	</ActionItem>
+	<Label class="action-bar-title" text="Profile"></Label>
 </ActionBar>
+<TabView iosIconRenderingMode="alwaysOriginal" sdkExampleTitle sdkToggleNavButton>
+	<ScrollView orientation="vertical" *tabItem="{title: 'Profile'}">
+		<StackLayout orientation="vertical" class="p-15">
+			<Label col="0" row="0" rowSpan="2" class="profile" [text]="'mdi-account-circle' | fonticon"></Label>
+			<Label [text]="fullName" class="headers center"></Label>
+			<Label text="Booked Rooms" class="headers"></Label>
+            <Label *ngIf="booking" [text]="booking.rooms" class="data"></Label>
+            <Label *ngIf="!booking" text="No booked rooms at the moment" class="data"></Label>
+            <FlexBoxLayout orientation="horizontal" width="100%">
+                <Label class="headers-horizontal" *ngIf="booking" text="Start Date"></Label>
+                <Label class="headers-horizontal right-align" *ngIf="booking" text="End Date"></Label>
+            </FlexBoxLayout>
+            <FlexboxLayout orientation="horizontal" width="100%">
+                <Label class="data-horizontal" *ngIf="booking" [text]="booking.startingDate | date:' dd-MM-yyy'" ></Label>
+                <Label class="data-horizontal right-align" *ngIf="booking" [text]="booking.endDate | date:' dd-MM-yyy'"></Label>
+            </FlexboxLayout>
+		</StackLayout>
+	</ScrollView>
 
-<GridLayout class="page page-content" tkMainContent>
-    <Label class="page-icon fa" text="&#xf002;"></Label>
-    <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+	<ScrollView orientation="vertical" *tabItem="{title: 'Billing'}">
+        <StackLayout width="100%">
+            <CardView class="innerCardStyle" margin="5" elevation="10" radius="10" *ngFor="let order of orders">
+                <GridLayout rows="40, 40" columns="65, 200, 80">
+        
+                    <Label col="0" row="0" rowSpan="2" class="mdi big" [text]="'mdi-shopping-basket' | fonticon"></Label>
+                    <Label [text]="order.totalProducts" class="p-10" fontAttributes="Bold" textWrap="true" row="0" col="1"></Label>
+                    <Label [text]="order.orderDate | date:'d MMM'" class="p-10 grey-text" textWrap="true" row="1" col="1"></Label>
+                    <Label [text]="order.finalPrice + '€'" class="p-10 green-text" textWrap="true" row="1" col="2"></Label>
+
+                </GridLayout>
+            </CardView>
+        </StackLayout>
+    </ScrollView>
+</TabView>

@@ -57,13 +57,24 @@ export class LoginComponent implements OnInit {
 			showFlipCameraButton: true,
 			showTorchButton: true
 		}).then((result) => {
-			this.userService.login(result.text);
-			this.routerExtensions.navigate(["/info"], {
-				transition: {
-					name: "fade"
-				},
-				clearHistory: true
-			});
+			this.userService.login("ED90A54C-D224-49AA-8046-F88BA013F854")
+				.subscribe((res) => {
+					const userProfile = res;
+					this.authProfile.setProfile(userProfile, "ED90A54C-D224-49AA-8046-F88BA013F854");
+					this.routerExtensions.navigate(["/info"], {
+						transition: {
+							name: "fade"
+						},
+						clearHistory: true
+					});
+
+					this.showSnackbar("Successfully logged in!");
+					this.isLoggedService.sendMessage(true);
+				}, ((error) => {
+					console.error(error);
+					this.showSnackbar("Couldn’t sign in, try again later.");
+				})
+			);
 		}, (errorMessage) => {
 			console.log("No scan. " + errorMessage);
 		});
