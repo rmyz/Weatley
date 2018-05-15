@@ -75,6 +75,8 @@ export class AppComponent implements OnInit {
 			.subscribe((customer) => {
 				this.fullName = customer.name + " " + customer.surname;
 				this.email = customer.email;
+			}, (error) => {
+				console.log(error);
 			});
 	}
 }

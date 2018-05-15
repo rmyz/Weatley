@@ -17,6 +17,7 @@ import { ProfileModule } from "~/pages/profile/profile.module";
 import { LoginModule } from "~/utils/Login/Login.module";
 import { CoreModule } from "./core/core.module";
 
+import { IsLoggedService } from "~/core/services/isLogged.service";
 import { OrderDetailsModule } from "~/pages/order-details/order-details.module";
 import { OrderNewModule } from "~/pages/order-new/order-new.module";
 import { ReportModule } from "~/pages/report/report.module";
@@ -49,7 +50,8 @@ import { ReportModule } from "~/pages/report/report.module";
 	],
 	providers: [
 		HttpClientModule,
-		NativeScriptHttpClientModule
+		NativeScriptHttpClientModule,
+		IsLoggedService
 	],
 	schemas: [
 		NO_ERRORS_SCHEMA
