@@ -19,7 +19,6 @@ import { IsLoggedService } from "~/core/services/isLogged.service";
 	styleUrls: ["Login.scss"],
 	moduleId: module.id,
 	templateUrl: "./Login.component.html",
-	providers: [IsLoggedService]
 })
 export class LoginComponent implements OnInit {
 
@@ -57,23 +56,15 @@ export class LoginComponent implements OnInit {
 			showFlipCameraButton: true,
 			showTorchButton: true
 		}).then((result) => {
-			this.userService.login(result.text);
-			this.routerExtensions.navigate(["/info"], {
-				transition: {
-					name: "fade"
-				},
-				clearHistory: true
-			});
-		}, (errorMessage) => {
-			console.log("No scan. " + errorMessage);
-		});
-	}
-
-	navigateHome() {
-		this.userService.login("ED90A54C-D224-49AA-8046-F88BA013F854")
+			this.userService.login(result.text)
 			.subscribe((res) => {
 				const userProfile = res;
-				this.authProfile.setProfile(userProfile, "ED90A54C-D224-49AA-8046-F88BA013F854");
+
+				this.authProfile.setProfile(userProfile, result.text);
+
+				this.showSnackbar("Successfully logged in!");
+				this.isLoggedService.sendMessage(true);
+
 				this.routerExtensions.navigate(["/info"], {
 					transition: {
 						name: "fade"
@@ -81,8 +72,33 @@ export class LoginComponent implements OnInit {
 					clearHistory: true
 				});
 
+			}, ((error) => {
+				console.error(error);
+				this.showSnackbar("Couldn’t sign in, try again later.");
+			})
+		);
+		}, (errorMessage) => {
+			console.log("No scan. " + errorMessage);
+		});
+	}
+
+	navigateHome() {
+		this.userService.login("949A2129-9C0A-48CC-88BD-76688EE957A0")
+			.subscribe((res) => {
+				const userProfile = res;
+
+				this.authProfile.setProfile(userProfile, "949A2129-9C0A-48CC-88BD-76688EE957A0");
+
 				this.showSnackbar("Successfully logged in!");
 				this.isLoggedService.sendMessage(true);
+
+				this.routerExtensions.navigate(["/info"], {
+					transition: {
+						name: "fade"
+					},
+					clearHistory: true
+				});
+
 			}, ((error) => {
 				console.error(error);
 				this.showSnackbar("Couldn’t sign in, try again later.");

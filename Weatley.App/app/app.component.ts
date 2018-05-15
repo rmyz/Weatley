@@ -22,7 +22,8 @@ import { IsLoggedService } from "~/core/services/isLogged.service";
 })
 export class AppComponent implements OnInit {
 
-	customer: Customer;
+	fullName: string;
+	email: string;
 	isAuthenticated = false;
 
 	private _selectedPage: string;
@@ -72,7 +73,10 @@ export class AppComponent implements OnInit {
 	loadUserData() {
 		this.customerDataService.getCustomerById(getString("customer_id"))
 			.subscribe((customer) => {
-				this.customer = customer;
+				this.fullName = customer.name + " " + customer.surname;
+				this.email = customer.email;
+			}, (error) => {
+				console.log(error);
 			});
 	}
 }
