@@ -1,5 +1,5 @@
-import { Product } from './product';
 import { Customer } from './customer';
+import { Product } from './product';
 import { ProductOrdered } from './product-ordered';
 
 export class Order {

@@ -68,7 +68,6 @@
 }
 
 .right-align {
-    horizontal-align: right;
     text-align: right;
 }
 
@@ -76,7 +75,16 @@
     height: 70;
 	margin: 15;
 	color: white;
-    background-color: #448AFF; 
+    background-color: #448AFF;
     horizontal-align: right;
     vertical-align: bottom;
+}
+
+.margin {
+	margin-top: 15;
+	margin-bottom: 5;
+}
+
+.general-margin {
+	margin: 10;
 }

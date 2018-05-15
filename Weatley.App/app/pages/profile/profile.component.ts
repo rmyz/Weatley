@@ -5,8 +5,10 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { getString } from "tns-core-modules/application-settings/application-settings";
 import { CustomerDataService } from "~/core/data-services/customer-data.service";
 
+import { HotelDataService } from "~/core/data-services/hotel-data.service";
 import { Booking } from "~/core/entities/booking";
 import { Customer } from "~/core/entities/customer";
+import { Hotel } from "~/core/entities/hotel";
 import { Order } from "~/core/entities/order";
 
 /* ***********************************************************
@@ -20,16 +22,27 @@ import { Order } from "~/core/entities/order";
 	selector: "Profile",
 	moduleId: module.id,
 	templateUrl: "./profile.component.html",
-	styleUrls: ["profile.scss"]
+	styleUrls: ["profile.scss"],
+	providers: [HotelDataService]
 })
 export class ProfileComponent implements OnInit {
 
+	hotel: Hotel;
+
 	fullName: string;
-	booking: Booking;
+
 	orders: Array<Order>;
-	totalPrice: number;
+	totalProducts = 0;
+	totalOrderPrice = 0;
+
+	booking: Booking;
+	totalBookedRooms = 0;
+
+	totalPrice = 0;
+
 	constructor(
 		private customerDataService: CustomerDataService,
+		private hotelDataService: HotelDataService,
 		private tnsFontIconService: TNSFontIconService) {
 	}
 
@@ -39,14 +52,20 @@ export class ProfileComponent implements OnInit {
 			this.orders = customer.orders;
 
 			for (const order of this.orders) {
-				order.countProducts = 0;
 				for (const product of order.productsOrdered) {
-					order.countProducts += product.quantity;
+					this.totalProducts = this.totalProducts + 1;
 				}
-				order.totalProducts = "You ordered " + order.countProducts + " Items";
+				this.totalOrderPrice = this.totalOrderPrice + order.finalPrice;
 			}
+			this.totalPrice = this.totalPrice + this.totalOrderPrice;
 			this.findBooking(customer);
 
+		}, (error) => {
+			console.log(error);
+		});
+
+		this.hotelDataService.getHotel().subscribe((hotel) => {
+			this.hotel = hotel;
 		}, (error) => {
 			console.log(error);
 		});
@@ -55,10 +74,12 @@ export class ProfileComponent implements OnInit {
 	findBooking(customer: Customer) {
 		// this.booking = customer.bookings
 		// 		.find((booking) => booking.endDate > new Date());
-		this.booking = customer.bookings[1];
+		this.booking = customer.bookings[0];
 		for (const room of this.booking.bookedRooms) {
 			this.booking.rooms = this.booking.rooms + " " + room.room;
+			this.totalBookedRooms = this.totalBookedRooms + 1;
 		}
+		this.totalPrice = this.totalPrice + this.booking.price;
 	}
 
 	onDrawerButtonTap(): void {
