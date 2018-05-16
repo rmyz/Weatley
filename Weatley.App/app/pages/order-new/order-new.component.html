@@ -12,7 +12,7 @@
 			<StackLayout *tabItem="{title: 'Food'}">
 				<ListView [items]="foodItems" (itemTap)="onTapFood($event)" class="list-group">
 					<ng-template let-food="item" let-i="index" let-odd="odd" let-even="even">
-						<GridLayout columns="265, 65" class="list-group-item">
+						<GridLayout columns="255, 80" class="list-group-item">
 
 							<Label class="title" [text]="food.name" col="0"></Label>
 							<Label class="price" text=" {{food.price | number: '1.2-2' }} €" col="1"></Label>
@@ -26,7 +26,7 @@
 			<StackLayout *tabItem="{title: 'Drinks'}">
 				<ListView [items]="drinkItems" (itemTap)="onTapDrink($event)" class="list-group">
 					<ng-template let-drink="item" let-i="index" let-odd="odd" let-even="even">
-						<GridLayout columns="265, 65" class="list-group-item">
+						<GridLayout columns="255, 80" class="list-group-item">
 
 							<Label class="title" [text]="drink.name" col="0"></Label>
 							<Label class="price" text=" {{drink.price | number: '1.2-2' }} €" col="1"></Label>
@@ -40,7 +40,7 @@
 			<StackLayout *tabItem="{title: 'Services'}">
 				<ListView [items]="serviceItems" (itemTap)="onTapService($event)" class="list-group">
 					<ng-template let-service="item" let-i="index" let-odd="odd" let-even="even">
-						<GridLayout columns="265, 65" class="list-group-item">
+						<GridLayout columns="255, 80" class="list-group-item">
 
 							<Label class="title" [text]="service.name" col="0"></Label>
 							<Label class="price" text=" {{service.price | number: '1.2-2' }} €" col="1"></Label>
