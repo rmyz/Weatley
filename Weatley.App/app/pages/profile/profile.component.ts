@@ -58,7 +58,18 @@ export class ProfileComponent implements OnInit {
 				this.totalOrderPrice = this.totalOrderPrice + order.finalPrice;
 			}
 			this.totalPrice = this.totalPrice + this.totalOrderPrice;
-			this.findBooking(customer);
+
+			// this.booking = customer.bookings
+			// 		.find((booking) => booking.endDate > new Date());
+			this.booking = customer.bookings[0];
+			this.totalPrice = this.totalPrice + this.booking.price;
+
+			if (this.booking.bookedRooms) {
+				for (const room of this.booking.bookedRooms) {
+					this.booking.rooms = this.booking.rooms + " " + room.room;
+					this.totalBookedRooms = this.totalBookedRooms + 1;
+				}
+			}
 
 		}, (error) => {
 			console.log(error);
@@ -69,20 +80,6 @@ export class ProfileComponent implements OnInit {
 		}, (error) => {
 			console.log(error);
 		});
-	}
-
-	findBooking(customer: Customer) {
-		// this.booking = customer.bookings
-		// 		.find((booking) => booking.endDate > new Date());
-		this.booking = customer.bookings[0];
-		this.totalPrice = this.totalPrice + this.booking.price;
-
-		if (this.booking.bookedRooms) {
-			for (const room of this.booking.bookedRooms) {
-				this.booking.rooms = this.booking.rooms + " " + room.room;
-				this.totalBookedRooms = this.totalBookedRooms + 1;
-			}
-		}
 	}
 
 	onDrawerButtonTap(): void {
