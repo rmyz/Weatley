@@ -35,6 +35,24 @@
      }
 }
 
+//dashboard
+.darkTheme .card {
+    background: #424242 !important;
+  }
+
+.darkTheme .card-footer {
+    border-top: 1px solid #424242 !important;
+    background: #303030 !important;
+}
+
+.darkTheme h3.title {
+    color: white !important;
+}
+
+.darkTheme .table {
+    color: white !important;
+}
+
 // Calendar css
 
 .darkTheme a {

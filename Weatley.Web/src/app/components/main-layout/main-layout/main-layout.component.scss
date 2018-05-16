@@ -3,7 +3,7 @@ $userIconSize: 84px;
 .sidenav-container {
     width: 100%;
     position: absolute;
-    min-height: 90%;
+    min-height: calc(100% - 64px);
     font-family: Roboto;
     font-size: 18px;
 }
