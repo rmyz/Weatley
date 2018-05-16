@@ -29,7 +29,7 @@
 	</div>
 	<mat-divider class="row-padding"></mat-divider>
 	<div class="row">
-		<div class="full-width" *ngFor="let room of booking.bookedRooms; let i = index">
+		<div class="full-width top-padding" *ngFor="let room of booking.bookedRooms; let i = index">
 			<div>
 				<span class="font-weight-bold">Room{{i+1}}:&nbsp;</span> 
 				{{room.room.roomType}}
@@ -57,11 +57,13 @@
 			<h5>Booking Price</h5>
 		</div>
 		<mat-divider class="row-padding"></mat-divider>
-		<div class="row">
+		<div>
 			<div>
 				<span class="font-weight-bold">Total Booking Price:&nbsp;</span> 
 				{{booking.price}}
-				<span class="font-weight-bold">€</span> 
+				<span class="font-weight-bold">€</span>
+
+				<mat-slide-toggle class="float-right">Paid</mat-slide-toggle>
 			</div>
 		</div>
 		<div class="float-right button-padding">

@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Booking } from '../../core/entities/booking';
 import { Activity } from '../../core/entities/activity';
+import { Accounting } from '../../core/entities/accounting';
 
 @Component({
 	selector: 'app-event-dialog',
@@ -25,6 +26,7 @@ export class EventDialogComponent implements OnInit {
 
 	ngOnInit() {
 		const rawData = this.data.event.meta;
+
 		if (rawData.description) {
 			this.activity = rawData;
 			this.isActivity = true;
