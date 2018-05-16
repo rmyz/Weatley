@@ -10,6 +10,7 @@ import { Booking } from "~/core/entities/booking";
 import { Customer } from "~/core/entities/customer";
 import { Hotel } from "~/core/entities/hotel";
 import { Order } from "~/core/entities/order";
+import { BookingsDataService } from "~/core/data-services/booking-data.service";
 
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
@@ -23,7 +24,11 @@ import { Order } from "~/core/entities/order";
 	moduleId: module.id,
 	templateUrl: "./profile.component.html",
 	styleUrls: ["profile.scss"],
-	providers: [HotelDataService]
+	providers:
+	[
+		HotelDataService,
+		BookingsDataService
+	]
 })
 export class ProfileComponent implements OnInit {
 
@@ -43,6 +48,7 @@ export class ProfileComponent implements OnInit {
 	constructor(
 		private customerDataService: CustomerDataService,
 		private hotelDataService: HotelDataService,
+		private bookingDataService: BookingsDataService,
 		private tnsFontIconService: TNSFontIconService) {
 	}
 
@@ -61,15 +67,21 @@ export class ProfileComponent implements OnInit {
 
 			// this.booking = customer.bookings
 			// 		.find((booking) => booking.endDate > new Date());
-			this.booking = customer.bookings[0];
-			this.totalPrice = this.totalPrice + this.booking.price;
+			const bookingid = customer.bookings[0].id;
 
-			if (this.booking.bookedRooms) {
-				for (const room of this.booking.bookedRooms) {
-					this.booking.rooms = this.booking.rooms + " " + room.room;
+			this.bookingDataService.getBooking(bookingid).subscribe((booking) => {
+				this.booking = booking;
+
+				this.booking.rooms = "";
+				for (const room of booking.bookedRooms) {
+					this.booking.rooms = this.booking.rooms + " " + room.room.roomNumber;
 					this.totalBookedRooms = this.totalBookedRooms + 1;
 				}
-			}
+				console.log(this.booking.rooms);
+				this.totalPrice = this.totalPrice + booking.price;
+			}, (error) => {
+				console.log(error);
+			});
 
 		}, (error) => {
 			console.log(error);
