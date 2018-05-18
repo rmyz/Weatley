@@ -27,7 +27,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Service> GetServices()
         {
-            return _context.Services.Include(s => s.Hotel);
+            return _context.Services.Include(s => s.Hotel).OrderBy(h => h.Name);
         }
 
         // GET: api/Services/5

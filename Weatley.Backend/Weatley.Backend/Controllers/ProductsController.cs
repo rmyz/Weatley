@@ -27,7 +27,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Product> GetProducts()
         {
-            return _context.Products;
+            return _context.Products.OrderBy(p => p.Name);
         }
 
         // GET: api/Products/5

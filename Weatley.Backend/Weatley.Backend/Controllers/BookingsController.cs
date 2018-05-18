@@ -29,7 +29,8 @@ namespace Weatley.Backend.Controllers
         {
             return _context.Bookings.Include(b => b.Customer)
                                     .Include(b => b.BookedRooms)
-                                        .ThenInclude(br => br.Room);
+                                        .ThenInclude(br => br.Room)
+                                        .OrderByDescending(b => b.StartingDate);
         }
 
         // GET: api/Bookings/5

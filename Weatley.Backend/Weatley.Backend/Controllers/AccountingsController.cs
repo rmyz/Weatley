@@ -27,7 +27,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Accounting> GetAccountings()
         {
-            return _context.Accountings.Include(a => a.Customer);
+            return _context.Accountings.Include(a => a.Customer).OrderByDescending(a => a.Date);
         }
 
         // GET: api/Accountings/5

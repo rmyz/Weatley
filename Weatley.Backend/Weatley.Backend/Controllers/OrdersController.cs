@@ -33,7 +33,8 @@ namespace Weatley.Backend.Controllers
         {
             return _context.Orders.Include(o => o.Customer)
                                   .Include(o => o.ProductsOrdered)
-                                    .ThenInclude(po => po.Product); 
+                                    .ThenInclude(po => po.Product)
+                                    .OrderByDescending(o => o.OrderDate); 
         }
 
         // GET: api/Orders/5

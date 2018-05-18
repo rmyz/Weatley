@@ -31,7 +31,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Report> GetReports()
         {
-            return _context.Reports.Include(r => r.Customer);
+            return _context.Reports.Include(r => r.Customer).OrderByDescending(r => r.Date);
         }
 
         // GET: api/Reports/5

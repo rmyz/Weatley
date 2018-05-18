@@ -27,7 +27,7 @@ namespace Weatley.Backend.Controllers
         [HttpGet]
         public IEnumerable<Activity> GetActivities()
         {
-            return _context.Activities.Include(a => a.Hotel);
+            return _context.Activities.Include(a => a.Hotel).OrderBy(a => a.StartHour);
         }
 
         // GET: api/Activities/5
