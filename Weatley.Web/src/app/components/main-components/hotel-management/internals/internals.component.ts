@@ -36,8 +36,10 @@ export class InternalsComponent implements OnInit {
 		this.usersDataService.getUsers().subscribe(user => {
 			this.dataAccount = user;
 			this.dataSource = new MatTableDataSource<IUser>(this.dataAccount);
-			this.dataSource.sort = this.sort;
-			setTimeout(() => this.dataSource.paginator = this.paginator);
+			setTimeout(() => {
+				this.dataSource.paginator = this.paginator;
+				this.dataSource.sort = this.sort;
+			});
 
 			this.isLoading = false;
 		});
@@ -79,7 +81,9 @@ export class InternalsComponent implements OnInit {
 			this.dataSource.data.splice(index, 1);
 		}
 		this.dataSource = new MatTableDataSource<IUser>(this.dataSource.data);
-		this.dataSource.sort = this.sort;
-		setTimeout(() => this.dataSource.paginator = this.paginator);
+		setTimeout(() => {
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
+		});
 	}
 }

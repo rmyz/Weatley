@@ -33,8 +33,10 @@ export class ServicesComponent implements OnInit {
 		this.servicesDataService.getServices().subscribe(services => {
 			this.dataAccount = services;
 			this.dataSource = new MatTableDataSource<Service>(this.dataAccount);
-			this.dataSource.sort = this.sort;
-			setTimeout(() => this.dataSource.paginator = this.paginator);
+			setTimeout(() => {
+				this.dataSource.paginator = this.paginator;
+				this.dataSource.sort = this.sort;
+			});
 
 			this.isLoading = false;
 		});
@@ -80,8 +82,10 @@ export class ServicesComponent implements OnInit {
 			this.dataSource.data.splice(index, 1);
 		}
 		this.dataSource = new MatTableDataSource<Service>(this.dataSource.data);
-		this.dataSource.sort = this.sort;
-		setTimeout(() => this.dataSource.paginator = this.paginator);
+		setTimeout(() => {
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
+		});
 	}
 
 }

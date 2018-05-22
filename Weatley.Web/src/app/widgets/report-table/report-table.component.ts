@@ -51,8 +51,10 @@ export class ReportTableComponent implements OnInit {
 			});
 
 			this.dataSourceReport = new MatTableDataSource<FilterReport>(this.olderReports);
-			this.dataSourceReport.sort = this.sort;
-			this.dataSourceReport.paginator = this.paginator;
+			setTimeout(() => {
+				this.dataSourceReport.paginator = this.paginator;
+				this.dataSourceReport.sort = this.sort;
+			});
 			this.olderReports = [];
 		});
 	}

@@ -46,8 +46,10 @@ export class AccountingComponent implements OnInit {
 				}));
 			});
 			this.dataSource = new MatTableDataSource<FilterAccounting>(this.dataAccount);
-			this.dataSource.sort = this.sort;
-			setTimeout(() => this.dataSource.paginator = this.paginator);
+			setTimeout(() => {
+				this.dataSource.paginator = this.paginator;
+				this.dataSource.sort = this.sort;
+			});
 
 			this.isLoading = false;
 		});
@@ -93,7 +95,9 @@ export class AccountingComponent implements OnInit {
 			this.dataSource.data.splice(index, 1);
 		}
 		this.dataSource = new MatTableDataSource<FilterAccounting>(this.dataSource.data);
-		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
+		setTimeout(() => {
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
+		});
 	}
 }

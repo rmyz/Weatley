@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSort } from '@angular/material';
 import { Customer } from '../../../core/entities/customer';
 import { Accounting } from '../../../core/entities/accounting';
 import { MatPaginator, MatTableDataSource, MatSnackBarConfig } from '@angular/material';
@@ -15,6 +15,7 @@ export class CustomerAccoutingDialogComponent implements OnInit, AfterViewInit {
 	displayedColumns = ['finalPrice', 'date', 'paymentType'];
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild(MatSort) sort: MatSort;
 
 	customer: Customer = new Customer;
 	dataSource: MatTableDataSource<Accounting>;
@@ -27,7 +28,10 @@ export class CustomerAccoutingDialogComponent implements OnInit, AfterViewInit {
 		this.customer = this.data.customer;
 		this.dataAccounting = this.customer.accountings;
 		this.dataSource = new MatTableDataSource<Accounting>(this.dataAccounting);
-		this.dataSource.paginator = this.paginator;
+		setTimeout(() => {
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
+		});
 	}
 
 	ngAfterViewInit() {

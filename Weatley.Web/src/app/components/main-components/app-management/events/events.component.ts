@@ -33,8 +33,10 @@ export class EventsComponent implements OnInit {
 		this.activitiesDataService.getActivity().subscribe(activities => {
 			this.dataAccount = activities;
 			this.dataSource = new MatTableDataSource<Activity>(this.dataAccount);
-			this.dataSource.sort = this.sort;
-			setTimeout(() => this.dataSource.paginator = this.paginator);
+			setTimeout(() => {
+				this.dataSource.paginator = this.paginator;
+				this.dataSource.sort = this.sort;
+			});
 
 			this.isLoading = false;
 		});

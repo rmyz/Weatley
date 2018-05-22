@@ -53,11 +53,15 @@ export class BookingComponent implements OnInit {
 					surname: booking.customer.surname,
 					rooms: booking.rooms
 				}));
+
 			});
 
 			this.dataSource = new MatTableDataSource<FilterBooking>(this.dataAccount);
-			setTimeout(() => this.dataSource.paginator = this.paginator);
-			this.dataSource.sort = this.sort;
+			setTimeout(() => {
+				this.dataSource.paginator = this.paginator;
+				this.dataSource.sort = this.sort;
+			});
+
 			this.isLoading = false;
 		});
 	}
@@ -102,8 +106,10 @@ export class BookingComponent implements OnInit {
 			this.dataSource.data.splice(index, 1);
 		}
 		this.dataSource = new MatTableDataSource<FilterBooking>(this.dataSource.data);
-		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
+		setTimeout(() => {
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
+		});
 	}
 
 }

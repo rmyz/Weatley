@@ -53,8 +53,10 @@ export class CustomerComponent implements OnInit {
 		this.customerDataService.getCustomers().subscribe(customers => {
 			this.dataCustomer = customers;
 			this.dataSource = new MatTableDataSource<Customer>(this.dataCustomer);
-			this.dataSource.sort = this.sort;
-			setTimeout(() => this.dataSource.paginator = this.paginator);
+			setTimeout(() => {
+				this.dataSource.paginator = this.paginator;
+				this.dataSource.sort = this.sort;
+			});
 
 			this.isLoading = false;
 		});
@@ -97,8 +99,10 @@ export class CustomerComponent implements OnInit {
 			this.dataSource.data.splice(index, 1);
 		}
 		this.dataSource = new MatTableDataSource<Customer>(this.dataSource.data);
-		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
+		setTimeout(() => {
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
+		});
 	}
 	goToDetailsDialog(customer) {
 		const dialogRef = this.dialog.open(CustomerDetailsDialogComponent, {

@@ -34,9 +34,10 @@ export class RoomsComponent implements OnInit {
 		this.roomDataService.getRooms().subscribe(rooms => {
 			this.dataAccount = rooms;
 			this.dataSource = new MatTableDataSource<Room>(this.dataAccount);
-			this.dataSource.sort = this.sort;
-			setTimeout(() => this.dataSource.paginator = this.paginator);
-
+			setTimeout(() => {
+				this.dataSource.paginator = this.paginator;
+				this.dataSource.sort = this.sort;
+			});
 			this.isLoading = false;
 		});
 	}
@@ -81,8 +82,10 @@ export class RoomsComponent implements OnInit {
 			this.dataSource.data.splice(index, 1);
 		}
 		this.dataSource = new MatTableDataSource<Room>(this.dataSource.data);
-		this.dataSource.sort = this.sort;
-		setTimeout(() => this.dataSource.paginator = this.paginator);
+		setTimeout(() => {
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
+		});
 	}
 
 }
