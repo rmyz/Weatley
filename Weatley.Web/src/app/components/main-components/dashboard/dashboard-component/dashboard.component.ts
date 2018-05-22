@@ -6,7 +6,9 @@ import { Report } from '../../../../core/entities/report';
 import { OrdersDataService } from '../../../../core/data-services/orders-data.service';
 import { CustomerDataService } from '../../../../core/data-services/customer-data.service';
 import { ReportDataService } from '../../../../core/data-services/reports-data.service';
+import { BookingDataService } from '../../../../core/data-services/bookings-data.service';
 import { SignalRService } from '../../../../core/services/signalR.service';
+import { Booking } from '../../../../core/entities/booking';
 
 
 @Component({
@@ -15,7 +17,8 @@ import { SignalRService } from '../../../../core/services/signalR.service';
 	styleUrls: ['./dashboard.component.scss'],
 	providers: [OrdersDataService,
 	CustomerDataService,
-	ReportDataService]
+	ReportDataService,
+	BookingDataService]
 })
 export class DashboardComponent implements OnInit {
 
@@ -38,7 +41,8 @@ export class DashboardComponent implements OnInit {
 		private ordersDataService: OrdersDataService,
 		private customerDataService: CustomerDataService,
 		private reportDataService: ReportDataService,
-		private signalRService: SignalRService
+		private signalRService: SignalRService,
+		private bookingDataService: BookingDataService
 	) { }
 
 	ngOnInit() {
@@ -58,18 +62,17 @@ export class DashboardComponent implements OnInit {
 					this.notification = this.notification + 1;
 				}
 			}
+			this.isLoading = false;
 		});
 
-		this.customerDataService.getCustomers().subscribe(customers => {
-			const customer: Customer[] = customers;
-			for (let i = 0; i < customer.length ; i++) {
-				this.customer1 = customer[0];
-				this.customer2 = customer[1];
-				this.customer3 = customer[2];
+		this.bookingDataService.getBookings().subscribe(bookings => {
+			const booking: Booking[] = bookings;
+			for (let i = 0; i < booking.length ; i++) {
+				this.customer1 = booking[0].customer;
+				this.customer2 = booking[1].customer;
+				this.customer3 = booking[2].customer;
 			}
-			this.customerCount = customer.length;
-
-			this.isLoading = false;
+			this.customerCount = booking.length;
 		});
 
 		this.reportDataService.getReports().subscribe(reports => {
