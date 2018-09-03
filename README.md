@@ -1,5 +1,8 @@
 # Weatley
-<div style="text-align:center">![logo](Weatley.App/app/App_Resources/Android/drawable-xxxhdpi/weatley_logo.png)</div>
+<p align="center">
+  <img src="Weatley.App/app/App_Resources/Android/drawable-xxxhdpi/weatley_logo.png"/>
+</p>
+
 ## What does Weatley do?
 
 Weatley is a hotel managment system software to speed up the entire management and administration
