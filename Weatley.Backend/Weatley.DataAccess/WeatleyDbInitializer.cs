@@ -12,6 +12,21 @@ namespace Weatley.DataAccess
     {
         public static void Seed(WeatleyContext context, UserManager<User> userManager)
         {
+            #region Users
+            if (!context.Users.Any())
+            {
+                var user = new User
+                {
+                    Email = "Admin@admin.com",
+                    UserName = "Admin",
+                    Name = "Admin",
+                    Surname = "Test",
+                    UserType = UserTypeEnum.Admin,
+                    Hotel = context.Hotels.FirstOrDefault()
+                };
+                userManager.CreateAsync(user, "Pa$$w0rd");
+            }
+            #endregion
             #region Customers
             if (!context.Customers.Any())
             {
@@ -1218,22 +1233,7 @@ namespace Weatley.DataAccess
 
                 context.SaveChanges();
             }
-            #endregion
-            #region Users
-            if (!context.Users.Any())
-            {
-                var user = new User
-                {
-                    Email = "Admin@admin.com",
-                    UserName = "Admin",
-                    Name = "Admin",
-                    Surname = "Test",
-                    UserType = UserTypeEnum.Admin,
-                    Hotel = context.Hotels.FirstOrDefault()
-                };
-                userManager.CreateAsync(user, "Pa$$w0rd");
-            }
-            #endregion
+            #endregion         
 
             context.SaveChanges();
         }

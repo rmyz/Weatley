@@ -7,12 +7,12 @@ import { UserProfile } from '../Auth-services/User.Profile';
 @Injectable()
 export class CommonService {
 	private baseUrl = 'http://weatleywebapi.azurewebsites.net/api/';
-	private localUrl = 'http://localhost:5000/api/';
+	private localUrl = 'https://localhost:44333/api/';
 
 	constructor(private authProfile: UserProfile) { }
 
 	getBaseUrl(): string {
-		return this.baseUrl;
+		return this.localUrl;
 	}
 
 	handleFullError(error: Response) {
