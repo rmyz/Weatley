@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Accounting } from '../entities/accounting';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { UserProfile } from '../Auth-services/User.Profile';
+import { Observable } from 'rxjs';
 import { CommonService } from '../services/common.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AccountingDataService {
-	constructor(private http: Http,
-		private authProfile: UserProfile,
+	constructor(private http: HttpClient,
 		private commonService: CommonService) {}
 
-	getAccounting(): Observable<Accounting[]> {
+	getAccounting(): Observable<Array<Accounting>> {
 
 		const options = this.commonService.checkAuth();
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get(url + 'Accountings', options)
-					.map((res: Response) => res.json());
+					.get<Array<Accounting>>(url + 'Accountings', {headers: options});
 	}
 
 	getAccountingById(id: string): Observable<Accounting> {
@@ -28,8 +24,7 @@ export class AccountingDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get(url + 'Accountings/' + id, options)
-					.map((res: Response) => res.json());
+					.get<Accounting>(url + 'Accountings/' + id, {headers: options});
 	}
 
 	createAccounting(accounting: Accounting) {
@@ -38,10 +33,7 @@ export class AccountingDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post(url + 'Accountings/', accounting, options)
-			.map((res: Response) => {
-				return new Accounting(res.json());
-			});
+			.post<Accounting>(url + 'Accountings/', accounting, {headers: options});
 	}
 
 	updateAccounting(accounting: Accounting): Observable<any> {
@@ -50,10 +42,7 @@ export class AccountingDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put(url + 'Accountings/' + accounting.id , accounting, options)
-			.map((res: Response) => {
-				return new Accounting(res.json());
-		});
+			.put<Accounting>(url + 'Accountings/' + accounting.id , accounting, {headers: options});
 	}
 
 	deleteAccounting(accountingId: string): Observable<any> {
@@ -62,9 +51,6 @@ export class AccountingDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete(url + 'Accountings/' + accountingId, options)
-			.map((res: Response) => {
-				return res.json();
-			});
+			.delete<Accounting>(url + 'Accountings/' + accountingId, {headers: options});
 		}
 }

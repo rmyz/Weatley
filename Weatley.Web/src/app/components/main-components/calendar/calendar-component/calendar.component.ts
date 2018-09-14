@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Booking } from '../../../../core/entities/booking';
 import { BookingDataService } from '../../../../core/data-services/bookings-data.service';
 import { CalendarEvent, CalendarEventAction } from 'angular-calendar';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { ActivitiesDataService } from '../../../../core/data-services/activities-data.service';
 import { MatDialog } from '@angular/material';

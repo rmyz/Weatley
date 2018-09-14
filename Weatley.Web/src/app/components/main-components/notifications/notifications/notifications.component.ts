@@ -7,7 +7,7 @@ import { Report } from '../../../../core/entities/report';
 import { HubConnection } from '@aspnet/signalr';
 import { DenyOrderComponent } from '../../../../widgets/deny-order/deny-order.component';
 import { DetailsOrderDialogComponent } from '../../../../widgets/details-order-dialog/details-order-dialog.component';
-import { ReportDataService } from '../../../../core/data-services/report-data.service';
+import { ReportDataService } from '../../../../core/data-services/reports-data.service';
 import { SignalRService } from '../../../../core/services/signalR.service';
 import { FilterOrder } from '../../../../core/filterEntities/filterOrders';
 import { FilterReport } from '../../../../core/filterEntities/filterReport';

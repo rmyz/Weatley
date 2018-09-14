@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { UserProfile } from '../Auth-services/User.Profile';
+import { Observable } from 'rxjs';
 import { CommonService } from '../services/common.service';
 import { Product } from '../entities/product';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ProductDataService {
-	constructor(private http: Http,
-		private authProfile: UserProfile,
+	constructor(private http: HttpClient,
 		private commonService: CommonService) {}
 
-	getProduct(): Observable<Product[]> {
+	getProduct(): Observable<Array<Product>> {
 
 		const options = this.commonService.checkAuth();
 		const url = this.commonService.getBaseUrl();
 
-		return this.http.get(url + 'Products', options)
-			.map(res => res.json());
+		return this.http.get<Array<Product>>(url + 'Products', {headers: options});
 	}
 
 	getProductById(id: string): Observable<Product> {
@@ -26,8 +22,7 @@ export class ProductDataService {
 		const options = this.commonService.checkAuth();
 		const url = this.commonService.getBaseUrl();
 
-		return this.http.get(url + 'Products/' + id, options)
-			.map(res => <Product>res.json());
+		return this.http.get<Product>(url + 'Products/' + id, {headers: options});
 	}
 
 	createProduct(product: Product) {
@@ -36,10 +31,7 @@ export class ProductDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post(url + 'Products/', product, options)
-			.map((res: Response) => {
-				return new Product(res.json());
-			});
+			.post<Product>(url + 'Products/', product, {headers: options});
 	}
 
 	updateProduct(product: Product): Observable<any> {
@@ -48,10 +40,7 @@ export class ProductDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put(url + 'Products/' + product.id , product, options)
-			.map((res: Response) => {
-				return new Product(res.json());
-		});
+			.put<Product>(url + 'Products/' + product.id , product, {headers: options});
 	}
 
 	deleteProduct(productId: string): Observable<any> {
@@ -60,9 +49,6 @@ export class ProductDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete(url + 'Products/' + productId, options)
-			.map((res: Response) => {
-				return res.json();
-		});
+			.delete<Product>(url + 'Products/' + productId, {headers: options});
 	}
 }

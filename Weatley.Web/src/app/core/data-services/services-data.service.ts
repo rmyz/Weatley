@@ -1,29 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
+import { Observable } from 'rxjs';
 import { Service } from '../entities/service';
 import { CommonService } from '../services/common.service';
-import { UserProfile } from '../Auth-services/User.Profile';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ServicesDataService {
-	constructor(private http: Http,
-		private authProfile: UserProfile,
+	constructor(private http: HttpClient,
 		private commonService: CommonService) { }
 
-		getServices(): Observable<Service[]> {
+		getServices(): Observable<Array<Service>> {
 
 			const options = this.commonService.checkAuth();
 			const url = this.commonService.getBaseUrl();
 
 			return this.http
-						.get(url + 'Services', options)
-						.map((res: Response) => res.json());
+						.get<Array<Service>>(url + 'Services', {headers: options});
 		}
 
 		getServiceById(id: string): Observable<Service> {
@@ -32,8 +24,7 @@ export class ServicesDataService {
 			const url = this.commonService.getBaseUrl();
 
 			return this.http
-						.get(url + 'Services/' + id, options)
-						.map((res: Response) => res.json());
+						.get<Service>(url + 'Services/' + id, {headers: options});
 		}
 
 		createService(service: Service) {
@@ -42,10 +33,7 @@ export class ServicesDataService {
 			const url = this.commonService.getBaseUrl();
 
 			return this.http
-				.post(url + 'Services/', service, options)
-				.map((res: Response) => {
-					return new Service(res.json());
-				});
+				.post<Service>(url + 'Services/', service, {headers: options});
 		}
 
 		updateService(service: Service): Observable<any> {
@@ -54,10 +42,7 @@ export class ServicesDataService {
 			const url = this.commonService.getBaseUrl();
 
 			return this.http
-				.put(url + 'Services/' + service.id , service, options)
-				.map((res: Response) => {
-					return new Service(res.json());
-			});
+				.put<Service>(url + 'Services/' + service.id , service, {headers: options});
 		}
 
 		deleteService(serviceId: string): Observable<any> {
@@ -66,9 +51,6 @@ export class ServicesDataService {
 			const url = this.commonService.getBaseUrl();
 
 			return this.http
-				.delete(url + 'Services/' + serviceId, options)
-				.map((res: Response) => {
-					return res.json();
-				});
+				.delete<Service>(url + 'Services/' + serviceId, {headers: options});
 		}
 }

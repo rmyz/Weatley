@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { UserProfile } from '../Auth-services/User.Profile';
+import { Observable } from 'rxjs';
 import { CommonService } from '../services/common.service';
 import { Report } from '../entities/report';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
 export class ReportDataService {
-	constructor(private http: Http,
-		private authProfile: UserProfile,
-		private commonService: CommonService) { }
+	constructor(private http: HttpClient,
+		private commonService: CommonService) {}
 
-	getReports(): Observable<Report[]> {
+	getReports(): Observable<Array<Report>> {
 
 		const options = this.commonService.checkAuth();
 		const url = this.commonService.getBaseUrl();
 
-		return this.http.get(url + 'Reports', options)
-			.map(res => res.json());
+		return this.http.get<Array<Report>>(url + 'Reports', {headers: options});
 	}
 
 	getReportById(id: string): Observable<Report> {
@@ -27,8 +23,7 @@ export class ReportDataService {
 		const options = this.commonService.checkAuth();
 		const url = this.commonService.getBaseUrl();
 
-		return this.http.get(url + 'Reports/' + id, options)
-			.map(res => <Report>res.json());
+		return this.http.get<Report>(url + 'Reports/' + id, {headers: options});
 	}
 
 	createReports(report: Report) {
@@ -37,10 +32,7 @@ export class ReportDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post(url + 'Reports/', report, options)
-			.map((res: Response) => {
-				return new Report(res.json());
-			});
+			.post<Report>(url + 'Reports/', report, {headers: options});
 	}
 
 	updateReport(report: Report): Observable<any> {
@@ -49,10 +41,7 @@ export class ReportDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put(url + 'Reports/' + report.id, report, options)
-			.map((res: Response) => {
-				return new Report(res.json());
-			});
+			.put<Report>(url + 'Reports/' + report.id , report, {headers: options});
 	}
 
 	deleteReport(reportId: string): Observable<any> {
@@ -61,9 +50,6 @@ export class ReportDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete(url + 'Reports/' + reportId, options)
-			.map((res: Response) => {
-				return res.json();
-			});
+			.delete<Report>(url + 'Reports/' + reportId, {headers: options});
 	}
 }

@@ -5,11 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CoreModule } from './core/core.module';
 import { ComponentModule } from './components/components.module';
-import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { WidgetsModule } from './widgets/widgets.module';
 import { AuthGuard } from './core/guards/auth.guard';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
 	declarations: [
@@ -20,13 +20,14 @@ import { AuthGuard } from './core/guards/auth.guard';
 		AppRoutingModule,
 		ComponentModule,
 		WidgetsModule,
+		HttpClientModule,
 		HttpModule
 	],
 	providers: [
 		HttpClientModule,
-		HttpModule,
 		CoreModule,
-		AuthGuard
+		AuthGuard,
+		HttpModule
 	],
 	bootstrap: [AppComponent]
 })

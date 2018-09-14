@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-
+import { map } from 'rxjs/operators';
 import { CommonService } from '../services/common.service';
 import { contentHeaders } from '../common/headers';
 import { UserProfile } from './User.Profile';
@@ -53,11 +50,11 @@ export class UserService {
 		const url = this.commonService.getBaseUrl() + 'auth/token';
 
 		return this.http.post(url, credentials, options)
-			.map((response: Response) => {
+			.pipe(map((response: Response) => {
 				const userProfile: IProfile = response.json();
 				this.authProfile.setProfile(userProfile);
 				return response.json();
-			}).catch(this.commonService.handleFullError);
+			}));
 	}
 	register(user: IUser, password: string, confirmPassword: string) {
 		if (!user.email || !password) {
@@ -77,9 +74,9 @@ export class UserService {
 		};
 		const url = this.commonService.getBaseUrl() + 'auth/register';
 		return this.http.post(url, credentials, options)
-			.map((response: Response) => {
+			.pipe(map((response: Response) => {
 				return response.json();
-			}).catch(this.commonService.handleFullError);
+			}));
 	}
 
 	logout(): void {
