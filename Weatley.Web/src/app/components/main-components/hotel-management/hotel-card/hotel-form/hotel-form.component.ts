@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { MatSnackBar } from '@angular/material';
 import { HotelDataService } from '../../../../../core/data-services/hotel-data.service';
 import { Hotel } from '../../../../../core/entities/hotel';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -30,15 +31,18 @@ export class HotelFormComponent implements OnInit {
 
 	constructor(private hotelDataService: HotelDataService,
 				private fb: FormBuilder,
-				private snackBar: MatSnackBar) { }
+				private snackBar: MatSnackBar,
+				private route: ActivatedRoute) { }
 
 	ngOnInit() {
-		this.loadData();
+		this.route.params.subscribe(params => {
+			this.id = params['id'];
+			this.loadData();
+		});
 	}
 
 	private loadData() {
-		this.hotelDataService.getHotel().subscribe(hotel => {
-			this.id = hotel.id;
+		this.hotelDataService.getHotel(this.id).subscribe(hotel => {
 			this.hotelById = hotel;
 
 			this.hotelForm = this.fb.group({

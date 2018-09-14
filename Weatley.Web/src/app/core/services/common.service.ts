@@ -2,9 +2,8 @@
 import {throwError as observableThrowError, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { Response } from '@angular/http';
 import { UserProfile } from '../Auth-services/User.Profile';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class CommonService {
@@ -17,12 +16,12 @@ export class CommonService {
 		return this.localUrl;
 	}
 
-	handleFullError(error: Response) {
+	handleFullError(error: HttpErrorResponse) {
 		return observableThrowError(error);
 	}
 
-	handleError(error: Response): Observable<any> {
-		const errorMessage = error.json();
+	handleError(error: HttpErrorResponse): Observable<any> {
+		const errorMessage = error;
 		console.error(errorMessage);
 		return observableThrowError(errorMessage.error || 'Server error');
 	}

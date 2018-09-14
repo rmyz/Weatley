@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { CommonService } from '../services/common.service';
 import { contentHeaders } from '../common/headers';
 import { UserProfile } from './User.Profile';
 import { IProfile, IUser } from '../models/user-model';
-import { RoutingEnum } from '../enums/routing-enum';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
 	redirectUrl: string;
 	errorMessage: string;
 	constructor(
-		private http: Http,
+		private http: HttpClient,
 		private router: Router,
 		private authProfile: UserProfile,
 		private commonService: CommonService) { }
@@ -39,8 +38,7 @@ export class UserService {
 		if (!username || !password) {
 			return;
 		}
-		const options = new RequestOptions(
-			{ headers: contentHeaders });
+		const options = contentHeaders;
 
 		const credentials = {
 			grant_type: 'password',
@@ -49,19 +47,17 @@ export class UserService {
 		};
 		const url = this.commonService.getBaseUrl() + 'auth/token';
 
-		return this.http.post(url, credentials, options)
-			.pipe(map((response: Response) => {
-				const userProfile: IProfile = response.json();
+		return this.http.post<IProfile>(url, credentials, {headers: contentHeaders})
+			.pipe(map (response => {
+				const userProfile: IProfile = response;
 				this.authProfile.setProfile(userProfile);
-				return response.json();
+				return response;
 			}));
 	}
 	register(user: IUser, password: string, confirmPassword: string) {
 		if (!user.email || !password) {
 			return;
 		}
-		const options = new RequestOptions(
-			{ headers: contentHeaders });
 
 		const credentials = {
 			userName: user.userName,
@@ -73,9 +69,9 @@ export class UserService {
 			confirmPassword: confirmPassword
 		};
 		const url = this.commonService.getBaseUrl() + 'auth/register';
-		return this.http.post(url, credentials, options)
-			.pipe(map((response: Response) => {
-				return response.json();
+		return this.http.post<IProfile>(url, credentials, {headers: contentHeaders})
+			.pipe(map((response) => {
+				return response;
 			}));
 	}
 

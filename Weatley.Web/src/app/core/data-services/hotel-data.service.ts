@@ -9,13 +9,22 @@ export class HotelDataService {
 	constructor(private http: HttpClient,
 		private commonService: CommonService) {}
 
-	getHotel(): Observable<Hotel> {
+	getHotels(): Observable<Array<Hotel>> {
 
 		const options = this.commonService.checkAuth();
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.get<Hotel>(url + 'Hotels', {headers: options});
+			.get<Array<Hotel>>(url + 'Hotels', {headers: options});
+	}
+
+	getHotel(id: string): Observable<Hotel> {
+
+		const options = this.commonService.checkAuth();
+		const url = this.commonService.getBaseUrl();
+
+		return this.http
+			.get<Hotel>(url + 'Hotels/' + id, {headers: options});
 	}
 
 	updateHotel(hotel: Hotel): Observable<any> {
