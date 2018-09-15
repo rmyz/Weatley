@@ -1,9 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Headers, RequestOptions, Response } from "@angular/http";
-import "rxjs/add/operator/map";
-import { Observable } from "rxjs/Observable";
-import { UserProfile } from "../Auth-services/User.Profile";
+import { Observable } from "rxjs";
 import { Report } from "../entities/report";
 import { CommonService } from "../services/common.service";
 
@@ -11,7 +8,6 @@ import { CommonService } from "../services/common.service";
 export class ReportsDataService {
 	constructor(
 		private http: HttpClient,
-		private authProfile: UserProfile,
 		private commonService: CommonService) { }
 
 	getReports(): Observable<Array<Report>> {

@@ -1,12 +1,8 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/do";
-import "rxjs/add/operator/map";
 import { contentHeaders } from "../common/headers";
 import { Token } from "../entities/token";
-import { RoutingEnum } from "../enums/routing-enum";
 import { CommonService } from "../services/common.service";
 import { UserProfile } from "./User.Profile";
 

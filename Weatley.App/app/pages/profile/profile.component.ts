@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit {
 		});
 
 		this.hotelDataService.getHotel().subscribe((hotel) => {
-			this.hotel = hotel;
+			this.hotel = hotel[0];
 		}, (error) => {
 			console.log(error);
 		});

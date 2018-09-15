@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { RequestOptions, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Response } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 import { Hotel } from '../entities/hotel';
 import { CommonService } from '../services/common.service';
 import { HttpClient } from '@angular/common/http';
@@ -18,6 +16,6 @@ export class HotelDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.get<Hotel>(url + 'Hotels/782A6441-7A9D-4C1C-9B9F-27E13ABD7CD1', {headers: options});
+			.get<Hotel>(url + 'Hotels', {headers: options});
 	}
 }
