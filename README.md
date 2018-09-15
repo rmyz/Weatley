@@ -13,9 +13,9 @@ of entries and outings, access to hotel information, and request of products and
 
 ## Technologies used
 
-Weatley.Web contains the website, done with Angular 5.
+Weatley.Web contains the website, done with Angular 6.
 
-Weatley.Backend contains the backend, done with .NET Core 2.0
+Weatley.Backend contains the backend, done with .NET Core 2.1
 
 Weatley.App contains the application, done with nativescript + angular
 
