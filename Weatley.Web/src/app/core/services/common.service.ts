@@ -1,37 +1,36 @@
+
+import {throwError as observableThrowError, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import { Response, RequestOptions, Headers } from '@angular/http';
+
 import { UserProfile } from '../Auth-services/User.Profile';
+import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class CommonService {
 	private baseUrl = 'http://weatleywebapi.azurewebsites.net/api/';
-	private localUrl = 'http://localhost:5000/api/';
+	private localUrl = 'https://localhost:44333/api/';
 
 	constructor(private authProfile: UserProfile) { }
 
 	getBaseUrl(): string {
-		return this.baseUrl;
+		return this.localUrl;
 	}
 
-	handleFullError(error: Response) {
-		return Observable.throw(error);
+	handleFullError(error: HttpErrorResponse) {
+		return observableThrowError(error);
 	}
 
-	handleError(error: Response): Observable<any> {
-		const errorMessage = error.json();
+	handleError(error: HttpErrorResponse): Observable<any> {
+		const errorMessage = error;
 		console.error(errorMessage);
-		return Observable.throw(errorMessage.error || 'Server error');
+		return observableThrowError(errorMessage.error || 'Server error');
 	}
 
-	checkAuth(): RequestOptions {
-		let options = null;
+	checkAuth(): HttpHeaders {
 		const profile = this.authProfile.getProfile();
 
 		if (profile != null && profile !== undefined) {
-			const headers = new Headers({ 'Authorization': 'Bearer ' + profile.token });
-			return options = new RequestOptions({ headers: headers });
+			return new HttpHeaders({ 'Authorization': 'Bearer ' + profile.token });
 		}
 	}
 }

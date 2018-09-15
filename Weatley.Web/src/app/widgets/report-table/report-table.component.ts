@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { FilterReport } from '../../core/filterEntities/filterReport';
-import { ReportDataService } from '../../core/data-services/report-data.service';
+import { ReportDataService } from '../../core/data-services/reports-data.service';
 import { Report } from '../../core/entities/report';
 import { IsLoggedService } from '../../core/services/isLogged.service';
 

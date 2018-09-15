@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions } from '@angular/http';
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import { Observable } from "rxjs";
 import { Customer } from '../entities/customer';
-import { UserProfile } from '../Auth-services/User.Profile';
 import { CommonService } from '../services/common.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class CustomerDataService {
 	constructor(private http: HttpClient,
-				private authProfile: UserProfile,
 				private commonService: CommonService) {}
 
 	getCustomers(): Observable<Array<Customer>> {

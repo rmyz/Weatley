@@ -13,6 +13,7 @@ import { Customer } from "~/core/entities/customer";
 import { Report } from "~/core/entities/report";
 
 import { RouterExtensions } from "nativescript-angular/router";
+require("nativescript-nodeify");
 const uuidv4 = require("uuid/v4");
 
 @Component({

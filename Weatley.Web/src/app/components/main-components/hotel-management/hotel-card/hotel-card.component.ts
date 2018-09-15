@@ -21,9 +21,8 @@ import { Router } from '@angular/router';
 				private router: Router) { }
 
 	ngOnInit() {
-		this.hotelDataService.getHotel().subscribe(hotel => {
-			this.hotel = hotel;
-
+		this.hotelDataService.getHotels().subscribe(hotel => {
+			this.hotel = hotel[0];
 			this.isLoading = false;
 		});
 	}

@@ -29,9 +29,9 @@ export class InfoComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.hotelDataService.getHotel().subscribe((hotel) => {
-			this.hotel = hotel;
-			this.activities = hotel.activities;
-			this.services = hotel.services;
+			this.hotel = hotel[0];
+			this.activities = hotel[0].activities;
+			this.services = hotel[0].services;
 		});
 	}
 

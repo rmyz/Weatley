@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Booking } from '../entities/booking';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
 import { CommonService } from '../services/common.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
 export class BookingDataService {
 
-	constructor(private http: Http,
+	constructor(private http: HttpClient,
 				private commonService: CommonService) {}
 
-	getBookings(): Observable<Booking[]> {
+	getBookings(): Observable<Array<Booking>> {
 
 		const options = this.commonService.checkAuth();
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get(url + 'Bookings', options)
-					.map((res: Response) => res.json());
+					.get<Array<Booking>>(url + 'Bookings', {headers: options});
 	}
 
 	getBookingById(id: string): Observable<Booking> {
@@ -28,8 +26,7 @@ export class BookingDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get(url + 'Bookings/' + id, options)
-					.map((res: Response) => res.json());
+					.get<Booking>(url + 'Bookings/' + id, {headers: options});
 	}
 
 	createBooking(booking: Booking) {
@@ -38,10 +35,7 @@ export class BookingDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post(url + 'Bookings/', booking, options)
-			.map((res: Response) => {
-				return new Booking(res.json());
-			});
+			.post<Booking>(url + 'Bookings/', booking, {headers: options});
 	}
 
 	updateBooking(booking: Booking): Observable<any> {
@@ -50,10 +44,7 @@ export class BookingDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put(url + 'Bookings/' + booking.id , booking, options)
-			.map((res: Response) => {
-				return new Booking(res.json());
-		});
+			.put<Booking>(url + 'Bookings/' + booking.id , booking, {headers: options});
 	}
 
 	deleteBooking(bookingId: string): Observable<any> {
@@ -62,9 +53,6 @@ export class BookingDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete(url + 'Bookings/' + bookingId, options)
-			.map((res: Response) => {
-				return res.json();
-			});
+			.delete<Booking>(url + 'Bookings/' + bookingId, {headers: options});
 		}
 }

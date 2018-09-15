@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { UserProfile } from '../Auth-services/User.Profile';
+import { Observable } from 'rxjs';
 import { CommonService } from '../services/common.service';
 import { Product } from '../entities/product';
 import { HttpClient } from '@angular/common/http';
@@ -10,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class ProductDataService {
 	constructor(private http: HttpClient,
-		private authProfile: UserProfile,
 		private commonService: CommonService) {}
 
 	getProduct(): Observable<Array<Product>> {

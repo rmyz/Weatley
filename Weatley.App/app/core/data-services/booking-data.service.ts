@@ -1,17 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Headers, RequestOptions, Response } from "@angular/http";
-import "rxjs/add/operator/map";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { Booking } from "~/core/entities/booking";
-import { UserProfile } from "../Auth-services/User.Profile";
 import { CommonService } from "../services/common.service";
 
 @Injectable()
 export class BookingsDataService {
 	constructor(
 		private http: HttpClient,
-		private authProfile: UserProfile,
 		private commonService: CommonService) {}
 
 	getBookings(): Observable<Array<Booking>> {

@@ -83,11 +83,11 @@ export class LoginComponent implements OnInit {
 	}
 
 	navigateHome() {
-		this.userService.login("949A2129-9C0A-48CC-88BD-76688EE957A0")
+		this.userService.login("446EDE2E-71E8-4184-BC3A-3F29039A2322")
 			.subscribe((res) => {
 				const userProfile = res;
 
-				this.authProfile.setProfile(userProfile, "949A2129-9C0A-48CC-88BD-76688EE957A0");
+				this.authProfile.setProfile(userProfile, "446EDE2E-71E8-4184-BC3A-3F29039A2322");
 
 				this.showSnackbar("Successfully logged in!");
 				this.isLoggedService.sendMessage(true);

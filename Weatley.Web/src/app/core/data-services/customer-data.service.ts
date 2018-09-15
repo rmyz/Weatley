@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
 import { Customer } from '../entities/customer';
-import { UserProfile } from '../Auth-services/User.Profile';
 import { CommonService } from '../services/common.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class CustomerDataService {
-	constructor(private http: Http,
-		private authProfile: UserProfile,
+	constructor(private http: HttpClient,
 		private commonService: CommonService) {}
 
-	getCustomers(): Observable<Customer[]> {
+	getCustomers(): Observable<Array<Customer>> {
 
 		const options = this.commonService.checkAuth();
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get( url + 'Customers', options)
-					.map((res: Response) => res.json());
+					.get<Array<Customer>>( url + 'Customers', {headers: options});
 	}
 	getCustomerById(id: string): Observable<Customer> {
 
@@ -27,8 +23,7 @@ export class CustomerDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-					.get(url + 'Customers/' + id, options)
-					.map((res: Response) => res.json());
+					.get<Customer>(url + 'Customers/' + id, {headers: options});
 	}
 	updateCustomers(customer: Customer): Observable<any> {
 
@@ -36,10 +31,7 @@ export class CustomerDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.put(url + 'Customers/' + customer.id , customer, options)
-			.map((res: Response) => {
-				return new Customer(res.json());
-		});
+			.put<Customer>(url + 'Customers/' + customer.id , customer, {headers: options});
 	}
 	createCustomer(customer: Customer) {
 
@@ -47,10 +39,7 @@ export class CustomerDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.post(url + 'Customers/', customer, options)
-			.map((res: Response) => {
-				return new Customer(res.json());
-			});
+			.post<Customer>(url + 'Customers/', customer, {headers: options});
 	}
 	deleteGoal(customerId: string): Observable<any> {
 
@@ -58,9 +47,6 @@ export class CustomerDataService {
 		const url = this.commonService.getBaseUrl();
 
 		return this.http
-			.delete(url + 'Customers/' + customerId, options)
-			.map((res: Response) => {
-				return res.json();
-			});
+			.delete<Customer>(url + 'Customers/' + customerId, {headers: options});
 		}
 }

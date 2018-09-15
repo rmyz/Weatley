@@ -14,6 +14,7 @@ import { confirm } from "ui/dialogs";
 import { OrdersDataService } from "~/core/data-services/orders-data.service";
 
 import { getString } from "tns-core-modules/application-settings/application-settings";
+require("nativescript-nodeify");
 
 const uuidv4 = require("uuid/v4");
 

@@ -15,7 +15,7 @@ import { Order } from '../../../core/entities/order';
 import { SignalRService } from '../../../core/services/signalR.service';
 import { MatSnackBar } from '@angular/material';
 import { UserTypeEnum } from '../../../core/enums/userType-enum';
-import signalR = require('@aspnet/signalr');
+import * as signalR from '@aspnet/signalr';
 
 @Component({
 	selector: 'app-main-layout',
@@ -56,7 +56,7 @@ export class MainLayoutComponent implements OnInit {
 
 	ngOnInit() {
 		this.hubConnection = new signalR.HubConnectionBuilder()
-			.withUrl('http://weatleywebapi.azurewebsites.net/chat')
+			.withUrl('https://localhost:44333/chat')
 			.configureLogging(signalR.LogLevel.Information)
 			.build();
 		this.hubConnection
