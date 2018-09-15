@@ -1,18 +1,44 @@
-<mat-drawer-container class="sidenav-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
-      <mat-list>
-          <mat-list-item *ngFor="let menuItem of menuItems">
-            <mat-icon matListIcon>{{ menuItem.icon }}</mat-icon>
-            <h4> {{ menuItem.name }}</h4>
-          </mat-list-item>
-         </mat-list>
-  </mat-drawer>
+<div [class.darkTheme]="theme">
+	<mat-toolbar color="primary">
+		<img class="logo" src="../../../../assets/login/logo_header.png" alt="logo"/>
+		<h2>Weatley</h2>
+		<div class="flex-spacer"></div>
+		<button class="header-spacer" mat-icon-button (click)="changeTheme()">
+			<mat-icon>wb_sunny</mat-icon>
+		</button>
+		<button class="header-spacer" mat-button (click)="logOut()">Log out</button>
+	</mat-toolbar>
+	<mat-sidenav-container class="sidenav-container" autosize>
+		<mat-sidenav #sidenav mode="side" opened="true" 
+			[@sidenav]="sidenavStatus"
+			(@sidenav.done)="animationDone()"
+			[disableClose]="true">
+			<mat-nav-list>
+				<mat-list-item (click)="toggleState()">
+					<button mat-icon-button>
+						<mat-icon *ngIf="!sidenavItems">chevron_right</mat-icon>
+						<mat-icon *ngIf="sidenavItems">chevron_left</mat-icon>
+					</button>
+				</mat-list-item>
+					<div *ngIf ="sidenavItems" class="container text-center">
+						<mat-icon color="primary" class="user-icon" mat-list-icon>account_circle</mat-icon>
+						<mat-chip-list class="mat-chip-list-stacked">
+							<mat-chip color="primary" selected="true">
+								<span class="font-weight-normal">{{user?.name}} {{user?.surname}}</span>, 
+								<span class="font-italic">{{user?.userType}}</span></mat-chip>
+						</mat-chip-list>
+						<mat-divider class="chip-margin"></mat-divider>
+					</div>
+				<mat-list-item *ngFor="let menuItem of menuItems" [routerLink]="['/' + menuItem.route]" >
+					<mat-icon color="accent" mat-list-icon>{{ menuItem.icon }}</mat-icon>
+					<p matLine *ngIf="sidenavItems">{{ menuItem.name }}</p>
+				</mat-list-item>
+			</mat-nav-list>
+		</mat-sidenav>
 
-  <div class="outside-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
+		<div class="outside-content">
+			<router-outlet></router-outlet>
+		</div>
 
-      Toggle sidenav
-    </button>
-  </div>
-
-</mat-drawer-container>
+	</mat-sidenav-container>
+</div>

@@ -1,0 +1,17 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Login"></Label>
+</ActionBar>
+<Page class="page gradient">
+    <StackLayout class="center-layout p-t-15">
+        <image class="logo" src="res://weatley_logo"></image>
+        <Button class="btn btn-primary" text="Scan QR" (tap)="onQrScannButtonTap()"></Button>
+        <Button class="btn btn-primary" text="Go to APP (dev only)" (tap)="navigateHome()"></Button>
+        <BarcodeScanner class="scanner-round"
+            formats="QR_CODE, EAN_13" 
+            beepOnScan="true" 
+            reportDuplicates="true" 
+            preferFrontCamera="false"
+            (scanResult)="onScanResult($event)">
+        </BarcodeScanner>
+    </StackLayout>
+</Page>

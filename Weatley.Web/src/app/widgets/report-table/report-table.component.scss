@@ -1,0 +1,31 @@
+::ng-deep .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition {
+    opacity: 0;
+  }
+
+  ::ng-deep .mat-sort-header-pointer-left.ng-trigger.ng-trigger-leftPointer {
+    transform: rotate(-45deg);
+  }
+
+  ::ng-deep .mat-sort-header-pointer-right.ng-trigger.ng-trigger-rightPointer {
+    transform: rotate(45deg);
+  }
+
+  .title {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .icons {
+    margin-bottom: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+    font-size: 35px;
+  }
+  
+  .example-container {
+      display: flex;
+      flex-direction: column;
+      padding-top: auto;
+      padding-bottom: auto;
+    }

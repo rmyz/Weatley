@@ -1,0 +1,49 @@
+<ActionBar class="action-bar">
+	<NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+
+	<ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+	</ActionItem>
+	<Label class="action-bar-title" text="Info"></Label>
+</ActionBar>
+<TabView iosIconRenderingMode="alwaysOriginal" sdkExampleTitle sdkToggleNavButton>
+	<ScrollView orientation="vertical" *tabItem="{title: 'Hotel'}">
+		<StackLayout orientation="vertical" class="p-15">
+			<Image src="res://hotel"></Image>
+			<Label></Label>
+			<Label text="Hotel" class="headers"></Label>
+			<Label [text]="hotel?.name" class="data"></Label>
+			<Label text="Address" class="headers"></Label>
+			<Label [text]="hotel?.address" class="data"></Label>
+			<Label text="Email" class="headers"></Label>
+			<Label [text]="hotel?.email" class="data"></Label>
+			<Label text="Phone Number" class="headers"></Label>
+			<Label [text]="hotel?.phoneNumber" class="data"></Label>
+		</StackLayout>
+	</ScrollView>
+
+	<ScrollView orientation="vertical" *tabItem="{title: 'Activities'}">
+		<StackLayout orientation="vertical" width="100%">
+			<CardView class="innerCardStyle" margin="7" elevation="10" radius="10" *ngFor="let activity of activities">
+
+				<GridLayout rows="auto, auto, auto">
+					<Label text="{{ activity.name }}" class="headers-cards" textWrap="true" row="0"></Label>
+					<Label [text]="activity.description" textWrap="true"   class="data-cards" row="1"></Label>
+					<Label text="Date:  {{ activity.startHour | date:' dd-MM-yyy HH:mm' }} - {{ activity.endHour | date:'HH:mm' }}" class="data-hour" textWrap="true" row="2"></Label>										
+				</GridLayout>
+				
+			</CardView>
+		</StackLayout>
+	</ScrollView>
+	<ScrollView orientation="vertical" *tabItem="{title: 'Services'}">
+		<StackLayout orientation="vertical" width="100%">
+			<CardView class="innerCardStyle" margin="7" elevation="10" radius="10" *ngFor="let service of services">
+
+				<GridLayout rows="auto, auto, auto">
+					<Label text=" - {{ service.name }}" class="headers-cards" textWrap="true" row="0"></Label>
+					<Label [text]="service.description" textWrap="true"   class="data-cards-service" row="1"></Label>
+				</GridLayout>
+				
+			</CardView>
+		</StackLayout>
+	</ScrollView>
+</TabView>

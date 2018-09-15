@@ -1,2 +1,142 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/angular-calendar/css/angular-calendar.css';
+
+.background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(120deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.Absolute-Center {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 400px;
+    height: 700px;
+}
+
+.image {
+    display: block;
+    margin: auto;
+    padding: 20px;
+    height: 70%;
+    width: 70%;
+}
+
+.event-dialog {
+    .mat-dialog-container {
+		padding: 0;
+        
+     }
+}
+
+//dashboard
+.darkTheme .card {
+    background: #424242 !important;
+  }
+
+.darkTheme .card-footer {
+    border-top: 1px solid #424242 !important;
+    background: #303030 !important;
+}
+
+.darkTheme h3.title {
+    color: white !important;
+}
+
+.darkTheme .table {
+    color: white !important;
+}
+
+// Calendar css
+
+
+//month
+
+.cal-month-view .cal-cell-row:hover {
+    background-color: transparent;
+   }
+
+.darkTheme .cal-month-view .cal-header .cal-cell:hover {
+    background-color: lighten($color: #303030, $amount: 10%);
+}
+
+.darkTheme .cal-month-view .cal-header .cal-cell-row:hover {
+    background-color: lighten($color: #303030, $amount: 20%);
+}
+
+.cal-month-view .cal-day-badge {
+    background-color: #00BCD4 !important;
+}
+
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+    color: #EF9A9A;
+}
+
+.darkTheme .cal-month-view .cal-day-cell.cal-today {
+    background-color: #009688;
+}
+
+.darkTheme .cal-month-view .cal-day-cell:not(:last-child):hover {
+    background-color: lighten($color: #303030, $amount: 10%);
+}
+
+.darkTheme .cal-month-view .cal-day-cell.cal-in-month:hover {
+    background-color: lighten($color: #303030, $amount: 10%);
+}
+
+.darkTheme .cal-month-view .cal-days .cal-cell-row:hover {
+    background-color: lighten($color: #303030, $amount: 20%);
+    color: white;
+}
+
+.darkTheme .cal-month-view .cal-day-cell:not(:last-child) {
+    border-right: 1px solid transparent;
+}
+
+.darkTheme .cal-month-view .cal-cell.cal-has-events.cal-open {
+    background-color: lighten($color: #303030, $amount: 10%)
+ }
+  
+
+//week
+.cal-week-view .cal-header.cal-weekend span {
+    color: #EF9A9A;
+}
+
+.darkTheme .cal-week-view .cal-day-headers .cal-header:hover {
+    background-color: lighten($color: #303030, $amount: 20%);
+}
+
+.cal-week-view .cal-header.cal-today {
+    color: black;
+}
+
+//day
+.cal-day-view .cal-hour:nth-child(odd) {
+    background-color: transparent !important;
+}
+
+.darkTheme .cal-day-view .cal-hour:not(:last-child) .cal-hour-segment:hover, .cal-day-view.cal-hour:last-child :not(:last-child) .cal-hour-segment:hover {
+    background-color: lighten($color: #303030, $amount: 20%);
+}
+
+.qr-image img {
+    position: relative;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.details-order-dialog {
+    .mat-dialog-container {
+        padding: 0;
+     }
+
+}

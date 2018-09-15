@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="title">Customer Form Management</div>
+    <div>
+        <button type="button" mat-button (click)="cancel()"><mat-icon>arrow_back</mat-icon>Go back</button>
+    </div>
+    <div class="example-container mat-elevation-z8">
+        <mat-card class="example-container">
+            <form class="main-div" [formGroup]="customerForm">
+                <mat-form-field *ngIf="!id">
+                    <input matInput placeholder="Name" type="text" required name="name" formControlName="name">
+                    <mat-error>Please insert name</mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf="id">
+                    <input matInput placeholder="Name" type="text" required name="name" formControlName="name">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Surname" type="text" required name="surname" formControlName="surname">
+                    <mat-error>Please insert surname</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="DNI/NIF" type="text" required name="identificationDocument" formControlName="identificationDocument">
+                    <mat-error>Please insert DNI/NIF</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Phone Number" type="text" required name="phoneNumber" formControlName="phoneNumber">
+                    <mat-error>Please insert Phone Number</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Email" type="text" required name="email" formControlName="email">
+                    <mat-error>Please insert Email</mat-error>
+                </mat-form-field>
+            </form>
+            <mat-card-actions>
+                <button type="button" mat-button class="float-right" (click)="submitCustomer()">
+                  Save <mat-icon>save</mat-icon>
+              </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <p></p>
+</div>

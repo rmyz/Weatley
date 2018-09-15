@@ -1,0 +1,32 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Orders"></Label>
+</ActionBar>
+
+
+ <ScrollView>
+
+   <StackLayout width="100%" >
+
+       <CardView class="innerCardStyle" margin="5" elevation="10" radius="10" *ngFor="let order of customer?.orders" (tap)="goToOrder(order.id)">
+
+          <GridLayout rows="40, 40" columns="65, 200, 80">
+
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'accepted'" [text]="'mdi-shopping-basket' | fonticon"></Label>
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'denied'" [text]="'mdi-highlight-off' | fonticon"></Label>
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'pending'" [text]="'mdi-autorenew' | fonticon"></Label>
+			<Label col="0" row="0" rowSpan="2" class="mdi big" *ngIf="order.status === 'seen'" [text]="'mdi-visibility' | fonticon"></Label>
+			<Label [text]="order.totalProducts" class="p-10" textWrap="true" row="0" col="1"></Label>
+			<Label [text]="order.status | titlecase" textWrap="true" class="p-10" row="1" col="1"></Label>
+			<Label [text]="order.orderDate | date:'d MMM'" class="p-10" textWrap="true" row="0" col="2"></Label>
+		
+          </GridLayout>
+
+	   </CardView>
+	   
+   </StackLayout>
+</ScrollView>
+<FAB (tap)="fabTap()" icon="res://ic_add_white_24dp" rippleColor="#FFFFFF" class="fab-button"></FAB>

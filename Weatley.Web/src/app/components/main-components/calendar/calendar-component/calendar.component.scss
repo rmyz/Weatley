@@ -1,0 +1,30 @@
+:host(app-calendar) {
+    width: 100%;
+}
+
+.c-padding {
+    padding-bottom: 24px;
+}
+
+.header-spacing {
+    margin: 30px;
+}
+
+.btn-primary {
+    background-color: #2196F3 !important;
+    border-color: #2196F3 !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    background-color: #1565C0 !important;
+    border-color: #1565C0 !important;
+}
+
+.btn-outline-secondary {
+    background-color: transparent !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #607D8B !important;
+    color: white !important;
+}

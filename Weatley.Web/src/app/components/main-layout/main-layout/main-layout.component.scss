@@ -1,18 +1,40 @@
+$userIconSize: 84px;
+
 .sidenav-container {
-    width: 99%;
+    width: 100%;
     position: absolute;
-    min-height: 99%;
+    min-height: calc(100% - 64px);
     font-family: Roboto;
     font-size: 18px;
-  }
-  
-  .outside-content { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;  
-  }
-  
-  .sidenav {
-    padding: 20px;
-  }
-  
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.outside-content {
+    display: flex;
+    align-items: center;
+}
+
+.flex-spacer {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+.user-icon {
+    font-size: $userIconSize;
+    height: $userIconSize;
+    width: $userIconSize;
+}
+
+.chip-margin {
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header-spacer {
+    margin-right: 10px;
+}

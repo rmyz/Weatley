@@ -1,0 +1,56 @@
+<ActionBar class="action-bar">
+	<NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+
+	<ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Profile"></Label>
+</ActionBar>
+<TabView iosIconRenderingMode="alwaysOriginal" sdkExampleTitle sdkToggleNavButton>
+	<ScrollView orientation="vertical" *tabItem="{title: 'Profile'}">
+		<StackLayout orientation="vertical" class="p-15">
+			<Label col="0" row="0" rowSpan="2" class="profile" [text]="'mdi-account-circle' | fonticon"></Label>
+			<Label [text]="fullName" class="headers center"></Label>
+			<Label text="Booked Rooms" class="headers"></Label>
+            <Label *ngIf="booking" [text]="booking.rooms" class="data"></Label>
+            <Label *ngIf="!booking" text="No booked rooms at the moment" class="data"></Label>
+            <FlexBoxLayout orientation="horizontal" width="100%">
+                <Label class="headers-horizontal" *ngIf="booking" text="Start Date"></Label>
+                <Label class="headers-horizontal right-align" *ngIf="booking" text="End Date"></Label>
+            </FlexBoxLayout>
+            <FlexboxLayout orientation="horizontal" width="100%">
+                <Label class="data-horizontal" *ngIf="booking" [text]="booking.startingDate | date:' dd-MM-yyy'" ></Label>
+                <Label class="data-horizontal right-align" *ngIf="booking" [text]="booking.endDate | date:' dd-MM-yyy'"></Label>
+            </FlexboxLayout>
+		</StackLayout>
+	</ScrollView>
+
+	<ScrollView orientation="vertical" *tabItem="{title: 'Billing'}">
+        <StackLayout width="100%">
+            <label [text]="hotel?.name" class="center grey-text margin"></label>
+            <CardView class="innerCardStyle" margin="5" elevation="10" radius="10">
+                <GridLayout rows="40, 40" columns="65, 200, 80">
+        
+                    <Label col="0" row="0" rowSpan="2" class="mdi big" [text]="'mdi-shopping-basket' | fonticon"></Label>
+                    <Label *ngIf="totalProducts !== 0" [text]="'You Ordered ' + totalProducts + ' Items'" class="p-10" fontAttributes="Bold" textWrap="true" row="0" col="1"></Label>
+                    <Label *ngIf="totalProducts === 0" text="No products Ordered" class="p-10" fontAttributes="Bold" textWrap="true" row="0" col="1"></Label>
+                    <Label [text]="booking?.startingDate | date:'d MMM'" class="p-10 grey-text" textWrap="true" row="1" col="1"></Label>
+                    <Label text="{{ totalOrderPrice | number: '1.2-2' }} €" class="p-10 green-text" textWrap="true" row="1" col="2"></Label>
+
+                </GridLayout>
+            </CardView>
+
+            <CardView class="innerCardStyle" margin="5" elevation="10" radius="10">
+                    <GridLayout rows="40, 40" columns="65, 200, 80">
+            
+                        <Label col="0" row="0" rowSpan="2" class="mdi big" [text]="'mdi-book' | fonticon"></Label>
+                        <Label *ngIf="totalBookedRooms !== 0" [text]="'You booked ' + totalBookedRooms + ' rooms'" class="p-10" fontAttributes="Bold" textWrap="true" row="0" col="1"></Label>
+                        <Label *ngIf="totalBookedRooms === 0" text="No rooms Booked" class="p-10" fontAttributes="Bold" textWrap="true" row="0" col="1"></Label>
+                        <Label [text]="booking?.startingDate | date:'d MMM'" class="p-10 grey-text" textWrap="true" row="1" col="1"></Label>
+                        <Label text=" {{booking?.price | number: '1.2-2'}} €" class="p-10 green-text" textWrap="true" row="1" col="2"></Label>
+    
+                    </GridLayout>
+                </CardView>
+                <label text="Total: {{ totalPrice | number: '1.2-2' }} €" class="grey-text right-align general-margin"></label>
+        </StackLayout>
+    </ScrollView>
+</TabView>
