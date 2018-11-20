@@ -112,7 +112,6 @@ namespace Weatley.API
                     });
               });
 
-            app.UseGraphiQl();
             app.UseAuthentication();
             app.UseMvc();
         }
