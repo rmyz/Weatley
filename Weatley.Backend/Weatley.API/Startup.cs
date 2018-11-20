@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text;
+using GraphiQl;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
