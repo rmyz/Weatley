@@ -1,112 +1,118 @@
 <mat-toolbar color="primary">
-	<span *ngIf="isBooking">
-		{{booking?.customer.name}} {{booking?.customer.surname}} Booking
-	</span>
-	<span *ngIf="isActivity">
-		{{activity?.name}}
-	</span>
+  <span *ngIf="isBooking">
+    {{ booking?.customer.name }} {{ booking?.customer.surname }} Booking
+  </span>
+  <span *ngIf="isActivity"> {{ activity?.name }} </span>
 </mat-toolbar>
 
 <div class="container" *ngIf="isBooking && !isQr">
-	<div class="row row-padding">
-		<h4>Reservation Summary</h4>
-		<span class="stay-days font-weight-light">{{daysDiff}} nights stay</span>
-		<div class="half-card">
-			<mat-card>
-				<span class="font-weight-bold">Check-in Date</span>
-				<span>{{booking.startingDate | date:'MM/dd/yyyy'}}</span>
-			</mat-card>
-		</div>
-		<div class="half-card">
-			<mat-card class="text-right">
-				<span class="font-weight-bold">Check-out Date</span>
-				<span>{{booking.endDate | date:'MM/dd/yyyy'}}</span>
-			</mat-card>
-		</div>
-	</div>
-	<div class="row">
-		<h5>Rooms</h5>
-	</div>
-	<mat-divider class="row-padding"></mat-divider>
-	<div class="row">
-		<div class="full-width top-padding" *ngFor="let room of booking.bookedRooms; let i = index">
-			<div>
-				<span class="font-weight-bold">Room{{i+1}}:&nbsp;</span> 
-				{{room.room.roomType}}
-			</div>
-			<div>
-				<span class="font-weight-bold">Number:&nbsp;</span>
-				{{room.room.roomNumber}}
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<div class="float-right">
-					<span class="font-weight-bold">Floor:&nbsp;</span> 
-					{{room.room.floorNumber}}
-				</div>
-			</div>
-		</div>
-	</div>
-	<div *ngIf="isCheckIn">
-		<div class="float-right button-padding">
-			<button mat-raised-button color="primary" (click)="generateQr()">Generate QR</button>
-			<button mat-raised-button color="warn" (click)="dialogClose()">Cancel</button>
-		</div>
-	</div>
-	
-	<div *ngIf="!isCheckIn">
-		<div class="row top-padding">
-			<h5>Booking Price</h5>
-		</div>
-		<mat-divider class="row-padding"></mat-divider>
-		<div>
-			<div>
-				<span class="font-weight-bold">Total Booking Price:&nbsp;</span> 
-				{{booking.price}}
-				<span class="font-weight-bold">€</span>
+  <div class="row row-padding">
+    <h4>Reservation Summary</h4>
+    <span class="stay-days font-weight-light">{{ daysDiff }} nights stay</span>
+    <div class="half-card">
+      <mat-card>
+        <span class="font-weight-bold">Check-in Date</span>
+        <span>{{ booking.startingDate | date: "MM/dd/yyyy" }}</span>
+      </mat-card>
+    </div>
+    <div class="half-card">
+      <mat-card class="text-right">
+        <span class="font-weight-bold">Check-out Date</span>
+        <span>{{ booking.endDate | date: "MM/dd/yyyy" }}</span>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row"><h5>Rooms</h5></div>
+  <mat-divider class="row-padding"></mat-divider>
+  <div class="row">
+    <div
+      class="full-width top-padding"
+      *ngFor="let room of booking.bookedRooms; let i = index"
+    >
+      <div>
+        <span class="font-weight-bold">Room{{ i + 1 }}:&nbsp;</span>
+        {{ room.room.roomType }}
+      </div>
+      <div>
+        <span class="font-weight-bold">Number:&nbsp;</span>
+        {{ room.room.roomNumber }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="float-right">
+          <span class="font-weight-bold">Floor:&nbsp;</span>
+          {{ room.room.floorNumber }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isCheckIn">
+    <div class="float-right button-padding">
+      <button mat-raised-button color="primary" (click)="generateQr()">
+        Generate QR
+      </button>
+      <button mat-raised-button color="warn" (click)="dialogClose()">
+        Cancel
+      </button>
+    </div>
+  </div>
 
-				<mat-slide-toggle class="float-right">Paid</mat-slide-toggle>
-			</div>
-		</div>
-		<div class="float-right button-padding">
-			<button mat-raised-button color="warn" (click)="dialogClose()">Dimiss</button>
-		</div>
-	</div>
+  <div *ngIf="!isCheckIn">
+    <div class="row top-padding"><h5>Booking Price</h5></div>
+    <mat-divider class="row-padding"></mat-divider>
+    <div>
+      <div>
+        <span class="font-weight-bold">Total Booking Price:&nbsp;</span>
+        {{ booking.price }} <span class="font-weight-bold">€</span>
+
+        <mat-slide-toggle class="float-right">Paid</mat-slide-toggle>
+      </div>
+    </div>
+    <div class="float-right button-padding">
+      <button mat-raised-button color="warn" (click)="dialogClose()">
+        Dismiss
+      </button>
+    </div>
+  </div>
 </div>
 
 <div class="container" *ngIf="isActivity && !isQr">
-	<div class="row row-padding">
-		<h4>Activity Date</h4>
-		<div class="row">
-			<div class="half-card">
-				<mat-card>
-					<span class="font-weight-bold">Activity Start Date</span>
-					<span>{{activity.startHour | date:'short'}}</span>
-				</mat-card>
-			</div>
-			<div class="half-card">
-				<mat-card class="text-right">
-					<span class="font-weight-bold">Activity End Date</span>
-					<span>{{activity.endHour  | date:'short'}}</span>
-				</mat-card>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<h5>Description</h5>
-	</div>
-	<mat-divider class="row-padding"></mat-divider>
-	<div class="row">
-		{{activity.description}}
-	</div>
-	<div class="float-right button-padding">
-		<button mat-raised-button color="warn" (click)="dialogClose()">Dimiss</button>
-	</div>
+  <div class="row row-padding">
+    <h4>Activity Date</h4>
+    <div class="row">
+      <div class="half-card">
+        <mat-card>
+          <span class="font-weight-bold">Activity Start Date</span>
+          <span>{{ activity.startHour | date: "short" }}</span>
+        </mat-card>
+      </div>
+      <div class="half-card">
+        <mat-card class="text-right">
+          <span class="font-weight-bold">Activity End Date</span>
+          <span>{{ activity.endHour | date: "short" }}</span>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="row"><h5>Description</h5></div>
+  <mat-divider class="row-padding"></mat-divider>
+  <div class="row">{{ activity.description }}</div>
+  <div class="float-right button-padding">
+    <button mat-raised-button color="warn" (click)="dialogClose()">
+      Dismiss
+    </button>
+  </div>
 </div>
 
 <div class="container" *ngIf="isQr">
-	<div class="float-center">
-		<qrcode class="qr-image"[qrdata]="customerID" [size]="384" [level]="'M'"></qrcode>
-	</div>
-	<div class="float-right button-padding">
-		<button mat-raised-button color="warn" (click)="dialogClose()">Dimiss</button>
-	</div>
+  <div class="float-center">
+    <qrcode
+      class="qr-image"
+      [qrdata]="customerID"
+      [size]="384"
+      [level]="'M'"
+    ></qrcode>
+  </div>
+  <div class="float-right button-padding">
+    <button mat-raised-button color="warn" (click)="dialogClose()">
+      Dismiss
+    </button>
+  </div>
 </div>
