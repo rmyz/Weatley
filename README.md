@@ -26,7 +26,8 @@ of entries and outings, access to hotel information, and request of products and
 <p align="center">
   <img src="images/weatley-screen-4.png"/>
 </p>
-------
+
+---
 
 ## Technologies used
 
