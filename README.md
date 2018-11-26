@@ -37,42 +37,42 @@ of entries and outings, access to hotel information, and request of products and
 
 <p align="center">Login</p>
 <p align="center">
-  <img src="images/weatley-screen-5.png"/>
+  <img src="images/weatley-screen-5.PNG"/>
 </p>
 
 <p align="center">Hotel</p>
 <p align="center">
-  <img src="images/weatley-screen-6.png"/>
+  <img src="images/weatley-screen-6.PNG"/>
 </p>
 
 <p align="center">Activities</p>
 <p align="center">
-  <img src="images/weatley-screen-7.png"/>
+  <img src="images/weatley-screen-7.PNG"/>
 </p>
 
 <p align="center">Services</p>
 <p align="center">
-  <img src="images/weatley-screen-8.png"/>
+  <img src="images/weatley-screen-8.PNG"/>
 </p>
 
 <p align="center">Orders</p>
 <p align="center">
-  <img src="images/weatley-screen-9.png"/>
+  <img src="images/weatley-screen-9.PNG"/>
 </p>
 
 <p align="center">New Order Products</p>
 <p align="center">
-  <img src="images/weatley-screen-10.png"/>
+  <img src="images/weatley-screen-10.PNG"/>
 </p>
 
 <p align="center">New Order Cart</p>
 <p align="center">
-  <img src="images/weatley-screen-11.png"/>
+  <img src="images/weatley-screen-11.PNG"/>
 </p>
 
 <p align="center">Report</p>
 <p align="center">
-  <img src="images/weatley-screen-12.png"/>
+  <img src="images/weatley-screen-12.PNG"/>
 </p>
 
 ---
