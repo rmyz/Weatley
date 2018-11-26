@@ -14,17 +14,65 @@ of entries and outings, access to hotel information, and request of products and
 
 ## Screenshots
 
+### Weatley Web (Admin Panel)
+
 <p align="center">
+  Dashboard
   <img src="images/weatley-screen-1.png"/>
 </p>
 <p align="center">
+  Calendar
   <img src="images/weatley-screen-2.png"/>
 </p>
 <p align="center">
+  Booking Management
   <img src="images/weatley-screen-3.png"/>
 </p>
 <p align="center">
+  Notifications (Reports and Orders)
   <img src="images/weatley-screen-4.png"/>
+</p>
+
+### Weatley App (Customer)
+
+<p align="center">Login</p>
+<p align="center">
+  <img src="images/weatley-screen-5.png"/>
+</p>
+
+<p align="center">Hotel</p>
+<p align="center">
+  <img src="images/weatley-screen-6.png"/>
+</p>
+
+<p align="center">Activities</p>
+<p align="center">
+  <img src="images/weatley-screen-7.png"/>
+</p>
+
+<p align="center">Services</p>
+<p align="center">
+  <img src="images/weatley-screen-8.png"/>
+</p>
+
+<p align="center">Orders</p>
+<p align="center">
+  <img src="images/weatley-screen-9.png"/>
+</p>
+
+<p align="center">New Order Products</p>
+<p align="center">
+  <img src="images/weatley-screen-10.png"/>
+</p>
+
+<p align="center">New Order Cart</p>
+<p align="center">
+  <img src="images/weatley-screen-11.png"/>
+</p>
+
+<p align="center">Report</p>
+<p align="center">
+  <img src="images/weatley-screen-12.png"/>
 </p>
 
 ---
@@ -35,7 +83,7 @@ Weatley.Web contains the website, done with Angular 7.
 
 Weatley.Backend contains the backend, done with .NET Core 2.1
 
-Weatley.App contains the application, done with nativescript + angular
+Weatley.App contains the application, done with Nativescript + Angular
 
 ---
 
