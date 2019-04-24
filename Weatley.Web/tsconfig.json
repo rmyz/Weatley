@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-	"baseUrl": "./",
+    "baseUrl": "./",
     "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -15,10 +15,8 @@
     ],
     "lib": [
       "es2017",
-      "dom"
+      "dom",
+      "esnext.asynciterable"
     ]
-  },
-  "angularCompilerOptions": {
-    "enableIvy": true
-  },
+  }
 }

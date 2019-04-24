@@ -9,22 +9,19 @@ import { ComponentModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { WidgetsModule } from './widgets/widgets.module';
 import { AuthGuard } from './core/guards/auth.guard';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
-	declarations: [
-		AppComponent
-	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		ComponentModule,
-		WidgetsModule,
-		HttpClientModule
-	],
-	providers: [
-		CoreModule,
-		AuthGuard
-	],
-	bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ComponentModule,
+    WidgetsModule,
+    HttpClientModule,
+    GraphQLModule,
+  ],
+  providers: [CoreModule, AuthGuard, GraphQLModule],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
