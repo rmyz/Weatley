@@ -1,5 +1,4 @@
-
-import {throwError as observableThrowError, Observable } from 'rxjs';
+import { throwError as observableThrowError, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { UserProfile } from '../Auth-services/User.Profile';
@@ -7,30 +6,34 @@ import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class CommonService {
-	private baseUrl = 'http://weatleywebapi.azurewebsites.net/api/';
-	private localUrl = 'https://localhost:44333/api/';
+  private baseUrl = 'http://weatleywebapi.azurewebsites.net/api/';
+  private localUrl = 'http://localhost:4466/';
 
-	constructor(private authProfile: UserProfile) { }
+  constructor(private authProfile: UserProfile) {}
 
-	getBaseUrl(): string {
-		return this.localUrl;
-	}
+  getBaseUrl(): string {
+    return this.localUrl;
+  }
 
-	handleFullError(error: HttpErrorResponse) {
-		return observableThrowError(error);
-	}
+  formatGraphQLError(error: string): string {
+    return error.replace('GraphQL error:', '').trim();
+  }
 
-	handleError(error: HttpErrorResponse): Observable<any> {
-		const errorMessage = error;
-		console.error(errorMessage);
-		return observableThrowError(errorMessage.error || 'Server error');
-	}
+  handleFullError(error: HttpErrorResponse) {
+    return observableThrowError(error);
+  }
 
-	checkAuth(): HttpHeaders {
-		const profile = this.authProfile.getProfile();
+  handleError(error: HttpErrorResponse): Observable<any> {
+    const errorMessage = error;
+    console.error(errorMessage);
+    return observableThrowError(errorMessage.error || 'Server error');
+  }
 
-		if (profile != null && profile !== undefined) {
-			return new HttpHeaders({ 'Authorization': 'Bearer ' + profile.token });
-		}
-	}
+  checkAuth(): HttpHeaders {
+    const profile = this.authProfile.getProfile();
+
+    if (profile) {
+      return new HttpHeaders({ Authorization: 'Bearer ' + profile.token });
+    }
+  }
 }
