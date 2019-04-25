@@ -1,5 +1,5 @@
 export enum UserTypeEnum {
-	ADMIN_TYPE = 'Admin',
-	MANAGER_TYPE = 'Manager',
-	RECEPTIONIST_TYPE = 'Receptionist',
+  ADMIN_TYPE = 'admin',
+  MANAGER_TYPE = 'manager',
+  RECEPTIONIST_TYPE = 'receptionist',
 }

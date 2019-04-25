@@ -1,4 +1,4 @@
-<div [class.darkTheme]="theme">
+<div [class.darkTheme]="nightTheme">
 	<mat-toolbar color="primary">
 		<img class="logo" src="../../../../assets/login/logo_header.png" alt="logo"/>
 		<h2>Weatley</h2>
@@ -9,7 +9,7 @@
 		<button class="header-spacer" mat-button (click)="logOut()">Log out</button>
 	</mat-toolbar>
 	<mat-sidenav-container class="sidenav-container" autosize>
-		<mat-sidenav #sidenav mode="side" opened="true" 
+		<mat-sidenav #sidenav mode="side" opened="true"
 			[@sidenav]="sidenavStatus"
 			(@sidenav.done)="animationDone()"
 			[disableClose]="true">
@@ -24,7 +24,7 @@
 						<mat-icon color="primary" class="user-icon" mat-list-icon>account_circle</mat-icon>
 						<mat-chip-list class="mat-chip-list-stacked">
 							<mat-chip color="primary" selected="true">
-								<span class="font-weight-normal">{{user?.name}} {{user?.surname}}</span>, 
+								<span class="font-weight-normal">{{user?.name}} {{user?.surname}}</span>,
 								<span class="font-italic">{{user?.userType}}</span></mat-chip>
 						</mat-chip-list>
 						<mat-divider class="chip-margin"></mat-divider>
