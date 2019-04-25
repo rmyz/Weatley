@@ -23,7 +23,6 @@
     "@angular/platform-browser": "7.2.14",
     "@angular/platform-browser-dynamic": "7.2.14",
     "@angular/router": "7.2.14",
-    "@aspnet/signalr": "1.1.4",
     "angular-calendar": "0.27.5",
     "angularx-qrcode": "1.5.3",
     "bootstrap": "4.3.1",
