@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Room } from '../../../../../core/entities/room';
 import { RoomDataService } from '../../../../../core/data-services/room-data.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const uuidv4 = require('uuid/v4');
 

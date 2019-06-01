@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrdersDataService } from '../../../../core/data-services/orders-data.service';
 import { Order } from '../../../../core/entities/order';
-import {
-  MatPaginator,
-  MatSort,
-  MatTableDataSource,
-  MatDialog,
-  MatSnackBar,
-} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Report } from '../../../../core/entities/report';
 import { DenyOrderComponent } from '../../../../widgets/deny-order/deny-order.component';
 import { DetailsOrderDialogComponent } from '../../../../widgets/details-order-dialog/details-order-dialog.component';

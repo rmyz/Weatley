@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Booking } from '../../core/entities/booking';
 import { Activity } from '../../core/entities/activity';
 import { Accounting } from '../../core/entities/accounting';

@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { CustomerDataService } from '../../../../core/data-services/customer-data.service';
-import { MatPaginator, MatTableDataSource, MatSort, MatSnackBarConfig } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { RoutingEnum } from '../../../../core/enums/routing-enum';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';

@@ -1,8 +1,11 @@
 import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSort } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 import { Customer } from '../../../core/entities/customer';
 import { Booking } from '../../../core/entities/booking';
-import { MatPaginator, MatTableDataSource, MatSnackBarConfig } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
 	selector: 'app-customer-booking-dialog',

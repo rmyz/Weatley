@@ -5,7 +5,7 @@ import { CalendarEvent, CalendarEventAction } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { ActivitiesDataService } from '../../../../core/data-services/activities-data.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { EventDialogComponent } from '../../../../widgets/event-dialog/event-dialog.component';
 
 @Component({

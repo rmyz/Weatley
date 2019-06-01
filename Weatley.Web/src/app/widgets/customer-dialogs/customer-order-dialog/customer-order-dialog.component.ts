@@ -1,8 +1,11 @@
 import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSort } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 import { Customer } from '../../../core/entities/customer';
 import { Order } from '../../../core/entities/order';
-import { MatPaginator, MatTableDataSource, MatSnackBarConfig } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { DetailsOrderDialogComponent } from '../../../widgets/details-order-dialog/details-order-dialog.component';
 import { DialogComponent } from '../../../widgets/dialog/dialog.component';
 
