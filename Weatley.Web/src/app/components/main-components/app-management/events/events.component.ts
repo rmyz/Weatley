@@ -19,8 +19,8 @@ export class EventsComponent implements OnInit {
 	dataSource: MatTableDataSource<Activity>;
 	dataAccount: Activity[] = [];
 
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: false }) sort: MatSort;
 
 	isLoading = true;
 

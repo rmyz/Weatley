@@ -14,8 +14,8 @@ export class CustomerAccoutingDialogComponent implements OnInit, AfterViewInit {
 
 	displayedColumns = ['finalPrice', 'date', 'paymentType'];
 
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: true }) sort: MatSort;
 
 	customer: Customer = new Customer;
 	dataSource: MatTableDataSource<Accounting>;

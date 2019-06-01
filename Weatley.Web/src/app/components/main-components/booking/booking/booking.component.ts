@@ -18,8 +18,8 @@ export class BookingComponent implements OnInit {
 	displayedColumns = ['name', 'surname', 'startingDate', 'endDate', 'comment', 'price', 'rooms', 'function'];
 
 	private temp = '';
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: false }) sort: MatSort;
 
 	dataSource: MatTableDataSource<FilterBooking>;
 	dataAccount: FilterBooking[] = [];

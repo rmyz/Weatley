@@ -13,8 +13,8 @@ export class CustomerBookingDialogComponent implements OnInit, AfterViewInit {
 
 	displayedColumns = ['startingDate', 'endDate', 'price', 'comment'];
 
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: true }) sort: MatSort;
 
 	customer: Customer = new Customer;
 	dataSource: MatTableDataSource<Booking>;

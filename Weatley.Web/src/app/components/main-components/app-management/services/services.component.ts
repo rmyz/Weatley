@@ -19,8 +19,8 @@ export class ServicesComponent implements OnInit {
 	dataSource: MatTableDataSource<Service>;
 	dataAccount: Service[] = [];
 
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: false }) sort: MatSort;
 
 	isLoading = true;
 

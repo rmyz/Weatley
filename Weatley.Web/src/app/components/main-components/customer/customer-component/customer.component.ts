@@ -35,8 +35,8 @@ export class CustomerComponent implements OnInit {
 
 	displayedColumns = ['name', 'surname', 'dni', 'function', 'function_edit'];
 
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: false }) sort: MatSort;
 
 	customer: object;
 

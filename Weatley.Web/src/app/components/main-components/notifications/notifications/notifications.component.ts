@@ -25,10 +25,10 @@ export class NotificationsComponent implements OnInit {
   displayedColumns = ['name', 'surname', 'finalPrice', 'date', 'status', 'function'];
   displayedColumnsReport = ['name', 'surname', 'description', 'date', 'status'];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginatorReport: MatPaginator;
-  @ViewChild(MatSort) sortReport: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginatorReport: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sortReport: MatSort;
   dataSourceReport: MatTableDataSource<FilterReport>;
   dataSource: MatTableDataSource<FilterOrder>;
 

@@ -21,8 +21,8 @@ export class InternalsComponent implements OnInit {
 	dataAccount: IUser[] = [];
 
 	private temp = '';
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: false }) sort: MatSort;
 
 	isLoading = true;
 

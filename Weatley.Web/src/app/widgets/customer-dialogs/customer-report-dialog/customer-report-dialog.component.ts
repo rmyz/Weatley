@@ -13,8 +13,8 @@ export class CustomerReportDialogComponent implements OnInit, AfterViewInit {
 
 	displayedColumns = ['description', 'date', 'status'];
 
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: true }) sort: MatSort;
 
 	customer: Customer = new Customer;
 	dataSource: MatTableDataSource<Report>;

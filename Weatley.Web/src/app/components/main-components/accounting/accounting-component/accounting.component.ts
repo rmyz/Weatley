@@ -20,8 +20,8 @@ export class AccountingComponent implements OnInit {
 
 	displayedColumns = ['name', 'surname', 'date', 'finalPrice', 'paid', 'paymentType', 'function'];
 
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: false }) sort: MatSort;
 
 	dataSource: MatTableDataSource<FilterAccounting>;
 	dataAccount: FilterAccounting[] = [];

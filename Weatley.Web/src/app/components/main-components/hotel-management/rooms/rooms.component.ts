@@ -20,8 +20,8 @@ export class RoomsComponent implements OnInit {
 	dataAccount: Room[] = [];
 
 	private temp = '';
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: false }) sort: MatSort;
 
 	isLoading = true;
 
