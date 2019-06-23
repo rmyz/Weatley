@@ -13,18 +13,18 @@
                     <mat-error>Please select a customer</mat-error>
                 </mat-form-field>
                 <mat-form-field *ngIf="id">
-                    <input matInput placeholder="Customer" [disabled]="true" name="customer" [value]="accountingById.customer.name">
+                    <input matInput placeholder="Customer" [disabled]="true" name="customer" [value]="fullName">
                 </mat-form-field>
                 <mat-form-field>
                     <input matInput placeholder="Amount" type="number" required name="amount" formControlName="finalPrice">
                     <mat-error>Please insert the amount</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" 
-                        placeholder="Choose a date" 
+                    <input matInput [matDatepicker]="picker"
+                        placeholder="Choose a date"
                         formControlName="date"
                         required
-                        (focus)="picker.open()" 
+                        (focus)="picker.open()"
                         (click)="picker.open()"
                         readonly
                         name="date">
@@ -41,8 +41,8 @@
 				</mat-form-field>
                 <mat-form-field>
                     <mat-select placeholder="Payment Type" required formControlName="paymentType" name="paymentType">
-                        <mat-option value="Credit card">Credit card</mat-option>
-                        <mat-option value="Cash">Cash</mat-option>
+                        <mat-option value="credit_card">Credit card</mat-option>
+                        <mat-option value="cash">Cash</mat-option>
                     </mat-select>
                     <mat-error>Please choose a payment type</mat-error>
 				</mat-form-field>
@@ -56,4 +56,3 @@
     </div>
     <p></p>
 </div>
-    

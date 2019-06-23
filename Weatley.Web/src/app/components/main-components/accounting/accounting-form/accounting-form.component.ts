@@ -1,124 +1,134 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Accounting } from '../../../../core/entities/accounting';
-
-import { AccountingDataService } from '../../../../core/data-services/accounting-data.service';
-import { CustomerDataService } from '../../../../core/data-services/customer-data.service';
-import { Customer } from '../../../../core/entities/customer';
+import { ActivatedRoute } from '@angular/router';
+import { v4 } from 'uuid';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-const uuidv4 = require('uuid/v4');
+
+import { Accounting } from '../../../../core/entities/accounting';
+import { GraphQLDataService } from '../../../../core/data-services/graphql-data.service';
+import { Customer } from '../../../../core/entities/customer';
+import { CommonService } from '../../../../core/services/common.service';
 
 @Component({
-	selector: 'app-accounting-form',
-	templateUrl: './accounting-form.component.html',
-	styleUrls: ['./accounting-form.component.scss'],
-	providers: [AccountingDataService, CustomerDataService]
+  selector: 'app-accounting-form',
+  templateUrl: './accounting-form.component.html',
+  styleUrls: ['./accounting-form.component.scss'],
+  providers: [GraphQLDataService],
 })
 export class AccountingFormComponent implements OnInit {
-	private accountingForm = new FormGroup ({
-		customer: new FormControl(),
-		finalPrice: new FormControl(),
-		date: new FormControl(),
-		paid: new FormControl(),
-		paymentType: new FormControl()
-	});
-	private accountingById: Accounting = new Accounting({
-		customer: new Customer
-	});
-	private id: string;
-	private customers: Customer[] = [];
+  private accountingForm = new FormGroup({
+    customer: new FormControl(),
+    finalPrice: new FormControl(),
+    date: new FormControl(),
+    paid: new FormControl(),
+    paymentType: new FormControl(),
+  });
+  private accountingById: Accounting = new Accounting({
+    customer: null,
+  });
+  private id: string;
+  private fullName;
+  private customers: Customer[] = [];
 
-	constructor(private accountingDataService: AccountingDataService,
-				private route: ActivatedRoute,
-				private customerDataService: CustomerDataService,
-				private fb: FormBuilder,
-				private snackBar: MatSnackBar) { }
+  constructor(
+    private graphQLDataService: GraphQLDataService,
+    private commonService: CommonService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+  ) {}
 
-	ngOnInit() {
-			this.route.params.subscribe(params => {
-				this.id = params['id'];
-				this.loadData(this.id);
-			});
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+      this.loadData();
+    });
+  }
 
-			this.customerDataService.getCustomers().subscribe(customers => {
-				this.customers = customers;
-			});
-	}
+  private async loadData() {
+    if (this.id) {
+      const { getById } = await this.commonService.importQuery('accounting');
+      this.graphQLDataService.getById(getById, this.id).subscribe(({ data: { accounting } }) => {
+        this.accountingById = accounting;
+        this.accountingById.date = new Date(this.accountingById.date);
+        this.fullName = `${this.accountingById.customer.name} ${
+          this.accountingById.customer.surname
+        }`;
 
-	private loadData(id: string) {
-		if (id) {
-			this.accountingDataService.getAccountingById(id).subscribe(accounting => {
-				this.accountingById = accounting;
-				this.accountingById.date = new Date(this.accountingById.date);
+        this.accountingForm = this.fb.group({
+          customer: [this.accountingById.customer, Validators.required],
+          finalPrice: [this.accountingById.finalPrice, Validators.required],
+          date: [this.accountingById.date, Validators.required],
+          paid: [this.accountingById.paid, Validators.required],
+          paymentType: [this.accountingById.paymentType, Validators.required],
+        });
+        this.accountingForm.value;
+      });
+    } else {
+      this.accountingForm = this.fb.group({
+        customer: [null, Validators.required],
+        finalPrice: ['', Validators.required],
+        date: ['', Validators.required],
+        paid: [null, Validators.required],
+        paymentType: ['', Validators.required],
+      });
 
-				this.accountingForm = this.fb.group({
-					customer: [this.accountingById.customer, Validators.required],
-					finalPrice: [this.accountingById.finalPrice, Validators.required],
-					date: [this.accountingById.date, Validators.required],
-					paid: [this.accountingById.paid, Validators.required],
-					paymentType: [this.accountingById.paymentType, Validators.required]
-				});
-			});
-		} else {
-			this.accountingForm = this.fb.group({
-				customer: [new Customer, Validators.required],
-				finalPrice: ['', Validators.required],
-				date: ['', Validators.required],
-				paid: [null, Validators.required],
-				paymentType: ['', Validators.required]
-			});
-		}
-	}
+      const { get } = await this.commonService.importQuery('customer');
+      this.graphQLDataService.get(get).subscribe(({ data: { customers } }) => {
+        this.customers = customers;
+      });
+    }
+  }
 
-	dateChange() {
-		this.accountingById.date.setDate(this.accountingById.date.getDate() + 1);
-	}
+  async submitAccounting() {
+    if (this.accountingForm.valid) {
+      this.accountingById = this.accountingForm.value;
 
-	dateGoBack() {
-		this.accountingById.date.setDate(this.accountingById.date.getDate() - 1);
-	}
+      if (this.id) {
+        this.accountingById.id = this.id;
+        const { update } = await this.commonService.importQuery('accounting');
 
-	submitAccounting() {
-		if (this.accountingForm.valid) {
-			this.accountingById = this.accountingForm.value;
-			this.dateChange();
-			if (this.id) {
-				this.accountingById.id = this.id;
-				this.accountingDataService.updateAccounting(this.accountingById).subscribe(res => {
-					this.snackBar.open('Accounting updated succesfully', 'Dismiss', {
-						duration: 3000,
-						verticalPosition: 'top',
-						horizontalPosition: 'end'
-					});
-					this.cancel();
-				}, err => {
-					console.log(err);
-				});
-			} else {
-				this.accountingById.id = uuidv4();
-				this.accountingDataService.createAccounting(this.accountingById).subscribe(res => {
-					this.snackBar.open('Accounting created succesfully', 'Dismiss', {
-						duration: 3000,
-						verticalPosition: 'top',
-						horizontalPosition: 'end'
-					});
-					this.cancel();
-				}, err => {
-					console.log(err);
-				});
-			}
-			this.dateGoBack();
-		} else {
-			this.snackBar.open('The inputs are not valid', 'Dismiss', {
-				duration: 3000,
-				verticalPosition: 'top',
-				horizontalPosition: 'end'
-			});
-		}
-	}
+        this.graphQLDataService.update(update, this.accountingById).subscribe(
+          () => {
+            this.snackBar.open('Accounting updated successfully', 'Dismiss', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'end',
+            });
+            this.goBack();
+          },
+          (err) => {
+            console.error(err);
+          },
+        );
+      } else {
+        this.accountingById.id = v4();
+        const { create } = await this.commonService.importQuery('accounting');
 
-	cancel() {
-		history.go(-1);
-	}
+        this.graphQLDataService.create(create, this.accountingById).subscribe(
+          () => {
+            this.snackBar.open('Accounting created successfully', 'Dismiss', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'end',
+            });
+            this.goBack();
+          },
+          (err) => {
+            console.error(err);
+          },
+        );
+      }
+    } else {
+      this.snackBar.open('The inputs are not valid', 'Dismiss', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'end',
+      });
+    }
+  }
+
+  goBack() {
+    history.go(-1);
+  }
 }

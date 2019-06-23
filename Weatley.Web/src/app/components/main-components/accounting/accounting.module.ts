@@ -20,53 +20,46 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AccountingComponent } from './accounting-component/accounting.component';
-import { AccountingDataService } from '../../../core/data-services/accounting-data.service';
+import { GraphQLDataService } from '../../../core/data-services/graphql-data.service';
 import { AccountingFormComponent } from './accounting-form/accounting-form.component';
 import { PageLoaderModule } from '../../../widgets/page-loader/page-loader.module';
 
 @NgModule({
-	declarations: [
-		AccountingComponent,
-		AccountingFormComponent
-	],
-	imports: [
-		MatTooltipModule,
-		MatIconModule,
-		BrowserModule,
-		MatButtonModule,
-		BrowserAnimationsModule,
-		MatTableModule,
-		BrowserAnimationsModule,
-		MatInputModule,
-		MatTableModule,
-		MatPaginatorModule,
-		MatSortModule,
-		MatProgressSpinnerModule,
-		MatFormFieldModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MatNativeDateModule,
-		MatDatepickerModule,
-		MatSelectModule,
-		// AccountingRouter,
-		MatCardModule,
-		MatGridListModule,
-		MatDividerModule,
-		MatSnackBarModule,
-		PageLoaderModule
-	],
-	providers: [
-		AccountingDataService
-	],
-	exports: [
-		AccountingComponent,
-		MatGridListModule,
-		MatDatepickerModule,
-		MatNativeDateModule,
-		AccountingFormComponent
-	],
-	entryComponents: [
-		AccountingFormComponent
-	]
+  declarations: [AccountingComponent, AccountingFormComponent],
+  imports: [
+    MatTooltipModule,
+    MatIconModule,
+    BrowserModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    // AccountingRouter,
+    MatCardModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatSnackBarModule,
+    PageLoaderModule,
+  ],
+  providers: [GraphQLDataService],
+  exports: [
+    AccountingComponent,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    AccountingFormComponent,
+  ],
+  entryComponents: [AccountingFormComponent],
 })
-export class AccountingModule { }
+export class AccountingModule {}
