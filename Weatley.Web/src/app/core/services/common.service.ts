@@ -36,4 +36,8 @@ export class CommonService {
       return new HttpHeaders({ Authorization: 'Bearer ' + profile.token });
     }
   }
+
+  importQuery(query) {
+    return import(`../queries/${query}`);
+  }
 }
